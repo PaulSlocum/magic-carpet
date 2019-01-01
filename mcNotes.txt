@@ -1,0 +1,55 @@
+Magic Carpet 2
+--------------
+
+TODO:
+- plan project file structure
+- determine which audio capabilities are required
+- set up initial C++ files
+- set up project files for RPi/SDL
+- set up project for iOS
+~- ~- ~- ~- ~- ~- ~- ~- ~- 
+- get display proof of concept working on RPi
+- get display proof of concept working on iOS
+~- ~- ~- ~- ~- ~- ~- ~- ~- 
+
+mc_virtual_system.cpp
+mc_application.cpp
+mc_audio.cpp
+mc_control.cpp
+mc_keyboard.cpp
+mc_mouse.cpp
+mc_touch.cpp
+mc_renderer.cpp
+mc_game.cpp
+mc_util.cpp
+
+--------------------------------------------------------
+
+VIRTUAL SYSTEM
+
+render()
+swapFrameBuffer()
+int loadImage( char* data )
+unloadImage( int imageID )
+
+
+--------------------------------------------------------
+
+APPLICATION
+
+touchDown( int touchID, float x, float y )
+touchMoved( int touchID, float x, float y )
+touchUp( int touchID, float x, float y )
+keyDown( int )
+keyUp( int )
+mouseDown( int touchID, float x, float y )
+mouseMoved( int touchID, float x, float y )
+mouseUp( int touchID, float x, float y )
+
+start()
+stop()
+
+audioRenderCallback( char* audioBufferToFill, long bytesToFill )
+
+graphicsRenderCallback( int graphicsContext? )
+
