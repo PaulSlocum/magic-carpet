@@ -59,9 +59,9 @@ LDLIBS := -L/opt/vc/lib \
 
 #############################################################################
 
-srcfiles := sdl_main.cpp
+srcfiles := source/sdl_main.cpp
 
-objects := sdl_main.o 
+objects := source/sdl_main.o 
 
 #objects	 := $(patsubst %.cpp, %.o, $(srcfiles))
 
