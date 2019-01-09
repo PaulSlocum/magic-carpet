@@ -17,6 +17,10 @@ Screenshots
 Textures_MASTER
 DataStore
 
+.depend
+*.o
+*.prg
+
 #####
 # OS X temporary files that should never be committed
 
