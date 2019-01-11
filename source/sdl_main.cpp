@@ -65,7 +65,8 @@ main(int argc, char *argv[])
         return 1;
     }
 
-    Jpeg::Decoder decoder();
+    //Jpeg::Decoder decoder();
+    printf( "PREF PATH: %s\n", SDL_GetBasePath() );
     
     /* seed random number generator */
     srand(time(NULL));
