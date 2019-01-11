@@ -8,6 +8,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include "jpeg_decoder.h"
+
 
 #define SCREEN_WIDTH 320
 #define SCREEN_HEIGHT 480
@@ -63,6 +65,8 @@ main(int argc, char *argv[])
         return 1;
     }
 
+    Jpeg::Decoder decoder();
+    
     /* seed random number generator */
     srand(time(NULL));
 
