@@ -81,19 +81,38 @@ int main(int argc, char *argv[])
     
     std::string imageFilename = stdprintf( "%s%s", SDL_GetBasePath(), "media/images/pattern0.jpg" );
     printf( "FILE PATH: %s\n", imageFilename.c_str() );
-    SDL_RWops *rw = SDL_RWFromFile( imageFilename.c_str(),"r");
-    if (rw != NULL) 
+    SDL_RWops *imageFile = SDL_RWFromFile( imageFilename.c_str(),"r");
+    if (imageFile != NULL) 
     {
         printf( "OPENED FILE\n" );
+
+        SDL_RWseek( imageFile, 0, SEEK_END );
+        size_t imageFileLength = SDL_RWtell( imageFile );
+        Uint8 *imageFileBuffer = (unsigned char*)malloc( imageFileLength );
+        SDL_RWseek( imageFile, 0, SEEK_SET );
+        size_t bytesRead = SDL_RWread( imageFile, imageFileBuffer, 1, imageFileLength );
+        printf( "FILE SIZE: %ld   BYTES READ: %ld\n", imageFileLength, bytesRead );
+        
         Uint8 buf[256];
         //extern Uint8 buf[256];
-        SDL_RWread(rw, buf, sizeof (buf), 1);
-        SDL_RWclose(rw);
+        SDL_RWread( imageFile, buf, sizeof (buf), 1 );
+        SDL_RWclose( imageFile);
     }//*/
     else 
     {
         printf( "DID NOT OPEN FILE\n" );
     }
+    
+    ////////////////////////////////////////////////
+    // JPEG LIBRARY SAMPLE CODE
+    //fseek(f, 0, SEEK_END);
+    //size = ftell(f);
+    //buf = (unsigned char*)malloc(size);
+    //fseek(f, 0, SEEK_SET);
+    //size_t read = fread(buf, 1, size, f);
+    //fclose(f);
+    /////////////////////////////////////////
+
     
     /* seed random number generator */
     srand(time(NULL));
