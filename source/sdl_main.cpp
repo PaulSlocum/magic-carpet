@@ -98,16 +98,12 @@ int main(int argc, char *argv[])
     
     
     //std::string imageFilename = stdprintf( "%s%s", SDL_GetBasePath(), "media/images/menuBG2c.jpg" );
-    //std::string imageFilename = stdprintf( "%s%s", SDL_GetBasePath(), "media/images/pattern0.jpg" );
-    std::string imageFilename = stdprintf( "%s%s", SDL_GetBasePath(), "media/images/pattern0.bmp" );
     
-    printf( "FILE PATH: %s\n", imageFilename.c_str() );
-    SDL_Surface *bmp_surface = NULL;
-
     //---------------------
     // BMP LOADER
     // load the bmp
-    bmp_surface = SDL_LoadBMP( imageFilename.c_str() );
+    /*std::string imageFilename = stdprintf( "%s%s", SDL_GetBasePath(), "media/images/pattern0.bmp" );
+    SDL_Surface *bmp_surface = SDL_LoadBMP( imageFilename.c_str() );
     if( bmp_surface == NULL ) 
     {
         printf( "ERROR LOADING BMP\n" );
@@ -122,15 +118,19 @@ int main(int argc, char *argv[])
     
     //---------------------
     // JPEG LOADER
-    /*SDL_RWops *imageFile = SDL_RWFromFile( imageFilename.c_str(), "r" );
+    std::string imageFilename = stdprintf( "%s%s", SDL_GetBasePath(), "media/images/pattern0.jpg" );
+    printf( "FILE PATH: %s\n", imageFilename.c_str() );
+    SDL_Surface *bmp_surface = NULL;
+    SDL_RWops *imageFile = SDL_RWFromFile( imageFilename.c_str(), "r" );
     if (imageFile != NULL) 
     {
         printf( "OPENED FILE\n" );
 
-        SDL_RWseek( imageFile, 0, SEEK_END );
-        size_t imageFileLength = SDL_RWtell( imageFile );
+        size_t imageFileLength = SDL_RWsize( imageFile );
+        //SDL_RWseek( imageFile, 0, SEEK_END );
+        //size_t imageFileLength = SDL_RWtell( imageFile );
         Uint8 *imageFileBuffer = (unsigned char*)malloc( imageFileLength );
-        SDL_RWseek( imageFile, 0, SEEK_SET );
+        //SDL_RWseek( imageFile, 0, SEEK_SET );
         size_t bytesRead = SDL_RWread( imageFile, imageFileBuffer, 1, imageFileLength );  // DEBUG!!!!!!!
         printf( "FILE SIZE: %ld   BYTES READ: %ld\n", imageFileLength, bytesRead );
         
@@ -140,20 +140,6 @@ int main(int argc, char *argv[])
         SDL_RWclose( imageFile);
         
         //-----------------------------------------------------------
-        
-        //****************************************************************************
-        bmp_surface = SDL_LoadBMP("icon.bmp");
-        if (bmp_surface == NULL) {
-            fatalError("could not load bmp");
-        }
-        // set white to transparent on the happyface 
-        SDL_SetColorKey(bmp_surface, 1,
-                        SDL_MapRGB(bmp_surface->format, 255, 255, 255));
-        
-        // convert RGBA surface to texture 
-        texture = SDL_CreateTextureFromSurface(renderer, bmp_surface);
-        //****************************************************************************
-        
         
         Jpeg::Decoder decoder( imageFileBuffer, imageFileLength );
         if( decoder.GetResult() != Jpeg::Decoder::OK )
@@ -171,7 +157,8 @@ int main(int argc, char *argv[])
         
         //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         bmp_surface = SDL_CreateRGBSurfaceFrom( decoder.GetImage(), decoder.GetWidth(), 
-                                                                decoder.GetHeight(), 24, decoder.GetWidth()*3, 0,0,0,255 );
+                                                                //decoder.GetHeight(), 24, decoder.GetWidth()*3, 0xFF0000, 0xFF00, 0xFF, 0 );
+                                                                decoder.GetHeight(), 24, decoder.GetWidth()*3, 0, 0, 0, 0 );
                                                             
         //SDL_Surface* SDL_CreateRGBSurfaceFrom(void*  pixels,
         // int    width,
@@ -222,6 +209,9 @@ int main(int argc, char *argv[])
     
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // convert RGBA surface to texture 
+    printf( "SURFACE --> W:%d H:%d DEPTH:%d PITCH:%d\n", bmp_surface->w, bmp_surface->h, bmp_surface->format->BitsPerPixel, bmp_surface->pitch ); 
+    printf( "FORMAT:%d RMASK:%x GMASK:%x BMASK:%x AMASK:%x\n", 
+           bmp_surface->format->format, bmp_surface->format->Rmask, bmp_surface->format->Gmask, bmp_surface->format->Bmask, bmp_surface->format->Amask ); 
     texture = SDL_CreateTextureFromSurface(renderer, bmp_surface);
     if (texture == 0) 
     {

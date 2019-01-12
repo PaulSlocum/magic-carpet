@@ -13,6 +13,9 @@ x get display proof of concept working on iOS
 ~~ + ~~ + ~~ + ~~ + ~~ + ~~ + ~~ + ~~ + 
 
 
+SURFACE --> W:512 H:512 DEPTH:24 PITCH:1536
+FORMAT:390076419 RMASK:ff0000 GMASK:ff00 BMASK:ff AMASK:0
+
 TODO:
 ~- ~- ~- ~- ~- ~- ~- ~- ~-
 - review mc_util #includes to remove unnecessary includes
