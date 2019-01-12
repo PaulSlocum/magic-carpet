@@ -11,11 +11,11 @@ CXXFLAGS := `sdl2-config --cflags --libs` \
 -lSDL2 \
 -lm \
 -lstdc++ \
--lfreeimage \
--lfreeimageplus \
 -I./lib/sdl/include \
 -Wno-variadic-macros 
 
+#-lfreeimageplus \
+#-lfreeimage \
 #-DVIDEO_PLAYER \
 #-L/usr/lib/omxplayer/ \
 #-lSDL2_ttf-2.0 \
@@ -44,9 +44,9 @@ LDLIBS := -L/opt/vc/lib \
 
 #############################################################################
 
-srcfiles := source/sdl_main.cpp
+srcfiles := source/mc_util.cpp source/sdl_main.cpp
 
-objects := source/sdl_main.o 
+objects := source/mc_util.o source/sdl_main.o 
 
 #############################################################################
 
