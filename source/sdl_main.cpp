@@ -93,10 +93,36 @@ int main(int argc, char *argv[])
         size_t bytesRead = SDL_RWread( imageFile, imageFileBuffer, 1, imageFileLength );
         printf( "FILE SIZE: %ld   BYTES READ: %ld\n", imageFileLength, bytesRead );
         
-        Uint8 buf[256];
+        //Uint8 buf[256];
         //extern Uint8 buf[256];
-        SDL_RWread( imageFile, buf, sizeof (buf), 1 );
+        //SDL_RWread( imageFile, buf, sizeof (buf), 1 );
         SDL_RWclose( imageFile);
+        
+        //-----------------------------------------------------------
+        
+        Jpeg::Decoder decoder( imageFileBuffer, imageFileLength );
+        if( decoder.GetResult() != Jpeg::Decoder::OK )
+        {
+            printf("JPEG DECODING FAILED\n");
+            //return 1;
+        }
+        else
+        {
+            printf("JPEG DECODED!!!!\n");
+            //return 1;
+        }
+        
+        /*f = fopen((argc > 2) ? argv[2] : (decoder.IsColor() ? "jpeg_out.ppm" : "jpeg_out.pgm"), "wb");
+        if (!f) {
+            printf("Error opening the output file.\n");
+            return 1;
+        }
+        fprintf(f, "P%d\n%d %d\n255\n", decoder.IsColor() ? 6 : 5, decoder.GetWidth(), decoder.GetHeight());
+        fwrite(decoder.GetImage(), 1, decoder.GetImageSize(), f);
+        fclose(f);
+        return 0; //*/
+
+        
     }//*/
     else 
     {
