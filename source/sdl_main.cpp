@@ -10,7 +10,7 @@
 #include <time.h>
 #include "SDL.h"
 
-#include "jpeg_decoder.h"
+//#include "jpeg_decoder.h"
 #include "mc_util.hpp"
 
 
@@ -74,6 +74,11 @@ void render(SDL_Renderer *renderer)
 }
 
 
+extern "C" {
+#define _NJ_INCLUDE_HEADER_ONLY
+#include "nanojpeg13.c"
+}
+
 //=======================================================================
 int main(int argc, char *argv[])
 {
@@ -115,6 +120,10 @@ int main(int argc, char *argv[])
     // set white to transparent on the happyface 
     //SDL_SetColorKey(bmp_surface, 1,
     //SDL_MapRGB(bmp_surface->format, 255, 255, 255)); //*/
+
+    //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+    //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
     
     //---------------------
     // JPEG LOADER
@@ -131,7 +140,7 @@ int main(int argc, char *argv[])
         //size_t imageFileLength = SDL_RWtell( imageFile );
         Uint8 *imageFileBuffer = (unsigned char*)malloc( imageFileLength );
         //SDL_RWseek( imageFile, 0, SEEK_SET );
-        size_t bytesRead = SDL_RWread( imageFile, imageFileBuffer, 1, imageFileLength );  // DEBUG!!!!!!!
+        size_t bytesRead = SDL_RWread( imageFile, imageFileBuffer, 1, imageFileLength ); 
         printf( "FILE SIZE: %ld   BYTES READ: %ld\n", imageFileLength, bytesRead );
         
         //Uint8 buf[256];
@@ -141,8 +150,10 @@ int main(int argc, char *argv[])
         
         //-----------------------------------------------------------
         
-        Jpeg::Decoder decoder( imageFileBuffer, imageFileLength );
-        if( decoder.GetResult() != Jpeg::Decoder::OK )
+        //Jpeg::Decoder decoder( imageFileBuffer, imageFileLength );
+        //if( decoder.GetResult() != Jpeg::Decoder::OK )
+        njInit();
+        if( njDecode( imageFileBuffer, (int)imageFileLength ) ) 
         {
             printf("JPEG DECODING FAILED\n");
             //return 1;
@@ -150,15 +161,19 @@ int main(int argc, char *argv[])
         else
         {
             printf("JPEG DECODED!!!!\n");
-            printf("W: %d   H: %d   COLOR:%d  SIZE:%ld\n", decoder.GetWidth(), decoder.GetHeight(), decoder.IsColor(), decoder.GetImageSize() );  
+            //printf("W: %d   H: %d   COLOR:%d  SIZE:%ld\n", decoder.GetWidth(), decoder.GetHeight(), decoder.IsColor(), decoder.GetImageSize() );  
+            printf("W: %d   H: %d   COLOR:%d  SIZE:%d\n", njGetWidth(), njGetHeight(), njIsColor(), njGetImageSize() );  
             
             //return 1;
         }
         
+        //njDone();
+        
         //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        bmp_surface = SDL_CreateRGBSurfaceFrom( decoder.GetImage(), decoder.GetWidth(), 
-                                                                //decoder.GetHeight(), 24, decoder.GetWidth()*3, 0xFF0000, 0xFF00, 0xFF, 0 );
-                                                                decoder.GetHeight(), 24, decoder.GetWidth()*3, 0, 0, 0, 0 );
+        //bmp_surface = SDL_CreateRGBSurfaceFrom( decoder.GetImage(), decoder.GetWidth(), decoder.GetHeight(), 24, decoder.GetWidth()*3, 0xFF0000, 0xFF00, 0xFF, 0 );
+        //bmp_surface = SDL_CreateRGBSurfaceFrom( njGetImage(), njGetWidth(), njGetHeight(), 24, njGetWidth()*3, 0xFF0000, 0xFF00, 0xFF, 0 );
+        bmp_surface = SDL_CreateRGBSurfaceFrom( njGetImage(), njGetWidth(), njGetHeight(), 24, njGetWidth()*3, 0xFF, 0xFF00, 0xFF0000, 0 );
+                                                                //decoder.GetHeight(), 24, decoder.GetWidth()*3, 0, 0, 0, 0 );
                                                             
         //SDL_Surface* SDL_CreateRGBSurfaceFrom(void*  pixels,
         // int    width,
