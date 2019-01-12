@@ -13,9 +13,9 @@
 		28FD15080DC6FC5B0079059D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28FD15070DC6FC5B0079059D /* QuartzCore.framework */; };
 		944A656F195747D90094A81E /* libSDL2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 944A656E1957463F0094A81E /* libSDL2.a */; };
 		945C4F53195AF17F00DBBF61 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 945C4F52195AF17F00DBBF61 /* Default-568h@2x.png */; };
-		EB2065A821E87518005398FF /* menuBG2c.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EB2065A521E87518005398FF /* menuBG2c.jpg */; };
-		EB2065A921E87518005398FF /* pattern_beige.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EB2065A621E87518005398FF /* pattern_beige.jpg */; };
-		EB2065AA21E87518005398FF /* pattern0.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EB2065A721E87518005398FF /* pattern0.jpg */; };
+		EB2560BA21E8F2E8007DC439 /* media in Resources */ = {isa = PBXBuildFile; fileRef = EB2560B921E8F2E7007DC439 /* media */; };
+		EBC84AC321E956EA0039B60F /* mc_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EBC84ABD21E956EA0039B60F /* mc_util.cpp */; };
+		EBC84AC521E967810039B60F /* mcNotes.txt in Resources */ = {isa = PBXBuildFile; fileRef = EBC84AC421E967810039B60F /* mcNotes.txt */; };
 		EBF1390021E464B700B55724 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBF138FF21E464B700B55724 /* Metal.framework */; };
 		EBF1390221E464D200B55724 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBF1390121E464D200B55724 /* AVFoundation.framework */; };
 		FA8B4B97196703B400F8EB7C /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA8B4B96196703B400F8EB7C /* CoreMotion.framework */; };
@@ -54,9 +54,9 @@
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		944A65681957463F0094A81E /* SDL.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SDL.xcodeproj; path = "../lib/sdl/Xcode-iOS/SDL/SDL.xcodeproj"; sourceTree = "<group>"; };
 		945C4F52195AF17F00DBBF61 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		EB2065A521E87518005398FF /* menuBG2c.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = menuBG2c.jpg; path = ../resources/images/menuBG2c.jpg; sourceTree = "<group>"; };
-		EB2065A621E87518005398FF /* pattern_beige.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = pattern_beige.jpg; path = ../resources/images/pattern_beige.jpg; sourceTree = "<group>"; };
-		EB2065A721E87518005398FF /* pattern0.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = pattern0.jpg; path = ../resources/images/pattern0.jpg; sourceTree = "<group>"; };
+		EB2560B921E8F2E7007DC439 /* media */ = {isa = PBXFileReference; lastKnownFileType = folder; name = media; path = ../media; sourceTree = "<group>"; };
+		EBC84ABD21E956EA0039B60F /* mc_util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mc_util.cpp; path = ../source/mc_util.cpp; sourceTree = "<group>"; };
+		EBC84AC421E967810039B60F /* mcNotes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = mcNotes.txt; path = ../mcNotes.txt; sourceTree = "<group>"; };
 		EBF138FF21E464B700B55724 /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
 		EBF1390121E464D200B55724 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		FA8B4B96196703B400F8EB7C /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
@@ -104,8 +104,9 @@
 			isa = PBXGroup;
 			children = (
 				8D1107310486CEB800E47090 /* Info.plist */,
+				EBC84AC421E967810039B60F /* mcNotes.txt */,
 				29B97315FDCFA39411CA2CEA /* Sources */,
-				29B97317FDCFA39411CA2CEA /* Images */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
@@ -117,20 +118,19 @@
 			children = (
 				944A65681957463F0094A81E /* SDL.xcodeproj */,
 				FD77A09C0E26BDE500F39101 /* sdl_main.cpp */,
+				EBC84ABD21E956EA0039B60F /* mc_util.cpp */,
 			);
 			name = Sources;
 			sourceTree = "<group>";
 		};
-		29B97317FDCFA39411CA2CEA /* Images */ = {
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				EB2065A521E87518005398FF /* menuBG2c.jpg */,
-				EB2065A621E87518005398FF /* pattern_beige.jpg */,
-				EB2065A721E87518005398FF /* pattern0.jpg */,
+				EB2560B921E8F2E7007DC439 /* media */,
 				EB2065A421E874FC005398FF /* Icon */,
 				EB2065A321E874DD005398FF /* LaunchScreen */,
 			);
-			name = Images;
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
@@ -258,10 +258,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				FD77A07D0E26BD8C00F39101 /* Icon.png in Resources */,
-				EB2065AA21E87518005398FF /* pattern0.jpg in Resources */,
+				EB2560BA21E8F2E8007DC439 /* media in Resources */,
+				EBC84AC521E967810039B60F /* mcNotes.txt in Resources */,
 				FD77A07F0E26BDA900F39101 /* Default.png in Resources */,
-				EB2065A921E87518005398FF /* pattern_beige.jpg in Resources */,
-				EB2065A821E87518005398FF /* menuBG2c.jpg in Resources */,
 				945C4F53195AF17F00DBBF61 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -274,6 +273,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FD77A09D0E26BDE500F39101 /* sdl_main.cpp in Sources */,
+				EBC84AC321E956EA0039B60F /* mc_util.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

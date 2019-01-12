@@ -1,15 +1,21 @@
 Magic Carpet 2
 --------------
 
+
+~~ + ~~ + ~~ + ~~ + ~~ + ~~ + ~~ + ~~ + 
+x plan project file structure
+x determine which audio capabilities are required
+x set up initial C++ files
+x set up project files for RPi/SDL
+x set up project for iOS
+x get display proof of concept working on RPi
+x get display proof of concept working on iOS
+~~ + ~~ + ~~ + ~~ + ~~ + ~~ + ~~ + ~~ + 
+
+
 TODO:
-- plan project file structure
-- determine which audio capabilities are required
-- set up initial C++ files
-- set up project files for RPi/SDL
-- set up project for iOS
-~- ~- ~- ~- ~- ~- ~- ~- ~- 
-- get display proof of concept working on RPi
-- get display proof of concept working on iOS
+~- ~- ~- ~- ~- ~- ~- ~- ~-
+- review mc_util #includes to remove unnecessary includes
 ~- ~- ~- ~- ~- ~- ~- ~- ~- 
 
 mc_virtual_system.cpp

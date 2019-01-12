@@ -4,24 +4,29 @@
  *  use however you want
  */
 
-#include "SDL.h"
+#include <string>
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include "SDL.h"
+
 #include "jpeg_decoder.h"
+#include "mc_util.hpp"
 
 
 #define SCREEN_WIDTH 320
 #define SCREEN_HEIGHT 480
 
-int
-randomInt(int min, int max)
+
+//=======================================================================
+int randomInt(int min, int max)
 {
     return min + rand() % (max - min + 1);
 }
 
-void
-render(SDL_Renderer *renderer)
+
+//=======================================================================
+void render(SDL_Renderer *renderer)
 {
 
     SDL_Rect rect;
@@ -50,8 +55,9 @@ render(SDL_Renderer *renderer)
     SDL_RenderPresent(renderer);
 }
 
-int
-main(int argc, char *argv[])
+
+//=======================================================================
+int main(int argc, char *argv[])
 {
 
     SDL_Window *window;
@@ -66,7 +72,28 @@ main(int argc, char *argv[])
     }
 
     //Jpeg::Decoder decoder();
-    printf( "PREF PATH: %s\n", SDL_GetBasePath() );
+    printf( "---------------------------------------\n" );
+    //printf( "PREF PATH: %s\n", SDL_GetBasePath() );
+    
+    
+    //SDL_RWops *rw = SDL_RWFromFile("resources/images/pattern0.jpg","r");
+    
+    
+    std::string imageFilename = stdprintf( "%s%s", SDL_GetBasePath(), "media/images/pattern0.jpg" );
+    printf( "FILE PATH: %s\n", imageFilename.c_str() );
+    SDL_RWops *rw = SDL_RWFromFile( imageFilename.c_str(),"r");
+    if (rw != NULL) 
+    {
+        printf( "OPENED FILE\n" );
+        Uint8 buf[256];
+        //extern Uint8 buf[256];
+        SDL_RWread(rw, buf, sizeof (buf), 1);
+        SDL_RWclose(rw);
+    }//*/
+    else 
+    {
+        printf( "DID NOT OPEN FILE\n" );
+    }
     
     /* seed random number generator */
     srand(time(NULL));
