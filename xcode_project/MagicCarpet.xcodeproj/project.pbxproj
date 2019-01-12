@@ -16,7 +16,7 @@
 		EB2560BA21E8F2E8007DC439 /* media in Resources */ = {isa = PBXBuildFile; fileRef = EB2560B921E8F2E7007DC439 /* media */; };
 		EBC84AC321E956EA0039B60F /* mc_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EBC84ABD21E956EA0039B60F /* mc_util.cpp */; };
 		EBC84AC521E967810039B60F /* mcNotes.txt in Resources */ = {isa = PBXBuildFile; fileRef = EBC84AC421E967810039B60F /* mcNotes.txt */; };
-		EBC84AC821EA29600039B60F /* nanojpeg13.c in Sources */ = {isa = PBXBuildFile; fileRef = EBC84AC721EA29600039B60F /* nanojpeg13.c */; };
+		EBC84ACA21EA94190039B60F /* ujpeg.c in Sources */ = {isa = PBXBuildFile; fileRef = EBC84AC921EA94190039B60F /* ujpeg.c */; };
 		EBF1390021E464B700B55724 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBF138FF21E464B700B55724 /* Metal.framework */; };
 		EBF1390221E464D200B55724 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBF1390121E464D200B55724 /* AVFoundation.framework */; };
 		FA8B4B97196703B400F8EB7C /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA8B4B96196703B400F8EB7C /* CoreMotion.framework */; };
@@ -58,7 +58,8 @@
 		EB2560B921E8F2E7007DC439 /* media */ = {isa = PBXFileReference; lastKnownFileType = folder; name = media; path = ../media; sourceTree = "<group>"; };
 		EBC84ABD21E956EA0039B60F /* mc_util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mc_util.cpp; path = ../source/mc_util.cpp; sourceTree = "<group>"; };
 		EBC84AC421E967810039B60F /* mcNotes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = mcNotes.txt; path = ../mcNotes.txt; sourceTree = "<group>"; };
-		EBC84AC721EA29600039B60F /* nanojpeg13.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = nanojpeg13.c; path = ../source/nanojpeg13.c; sourceTree = "<group>"; };
+		EBC84AC921EA94190039B60F /* ujpeg.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ujpeg.c; path = ../source/ujpeg.c; sourceTree = "<group>"; };
+		EBC84ACB21EA946C0039B60F /* ujpeg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ujpeg.h; path = ../source/ujpeg.h; sourceTree = "<group>"; };
 		EBF138FF21E464B700B55724 /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
 		EBF1390121E464D200B55724 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		FA8B4B96196703B400F8EB7C /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
@@ -121,7 +122,8 @@
 				944A65681957463F0094A81E /* SDL.xcodeproj */,
 				FD77A09C0E26BDE500F39101 /* sdl_main.cpp */,
 				EBC84ABD21E956EA0039B60F /* mc_util.cpp */,
-				EBC84AC721EA29600039B60F /* nanojpeg13.c */,
+				EBC84ACB21EA946C0039B60F /* ujpeg.h */,
+				EBC84AC921EA94190039B60F /* ujpeg.c */,
 			);
 			name = Sources;
 			sourceTree = "<group>";
@@ -275,8 +277,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EBC84ACA21EA94190039B60F /* ujpeg.c in Sources */,
 				FD77A09D0E26BDE500F39101 /* sdl_main.cpp in Sources */,
-				EBC84AC821EA29600039B60F /* nanojpeg13.c in Sources */,
 				EBC84AC321E956EA0039B60F /* mc_util.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

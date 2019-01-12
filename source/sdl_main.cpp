@@ -74,10 +74,13 @@ void render(SDL_Renderer *renderer)
 }
 
 
-extern "C" {
+/*extern "C" 
+{
 #define _NJ_INCLUDE_HEADER_ONLY
 #include "nanojpeg13.c"
-}
+}//*/
+
+#include "ujpeg.h"
 
 //=======================================================================
 int main(int argc, char *argv[])
@@ -127,6 +130,7 @@ int main(int argc, char *argv[])
     
     //---------------------
     // JPEG LOADER
+    uJPEG uj;
     std::string imageFilename = stdprintf( "%s%s", SDL_GetBasePath(), "media/images/pattern0.jpg" );
     printf( "FILE PATH: %s\n", imageFilename.c_str() );
     SDL_Surface *bmp_surface = NULL;
@@ -152,8 +156,22 @@ int main(int argc, char *argv[])
         
         //Jpeg::Decoder decoder( imageFileBuffer, imageFileLength );
         //if( decoder.GetResult() != Jpeg::Decoder::OK )
-        njInit();
-        if( njDecode( imageFileBuffer, (int)imageFileLength ) ) 
+        //njInit();
+        //ujImage jpegContext = ujCreate();
+        //if( ujDecode( jpegContext, imageFileBuffer, (int)imageFileLength ) )
+        
+        //uj.setChromaMode(UJ_CHROMA_MODE_FAST);
+        
+        //std::ofstream f(argv[2], std::ios_base::binary);
+        //f << (uj.isColor() ? "P6\n" : "P5\n") << uj.getWidth() << " " << uj.getHeight() << "\n255\n";
+        //f.write((const char*) uj.getImage(), uj.getImageSize());
+        //f.close();
+        
+            //extern ujImage ujDecode(ujImage img, const void* jpeg, const int size);
+
+        //if( njDecode( imageFileBuffer, (int)imageFileLength ) ) 
+        uj.decodeFile( imageFilename.c_str() );
+        if (uj.bad()) 
         {
             printf("JPEG DECODING FAILED\n");
             //return 1;
@@ -162,17 +180,18 @@ int main(int argc, char *argv[])
         {
             printf("JPEG DECODED!!!!\n");
             //printf("W: %d   H: %d   COLOR:%d  SIZE:%ld\n", decoder.GetWidth(), decoder.GetHeight(), decoder.IsColor(), decoder.GetImageSize() );  
-            printf("W: %d   H: %d   COLOR:%d  SIZE:%d\n", njGetWidth(), njGetHeight(), njIsColor(), njGetImageSize() );  
+            printf("W: %d   H: %d   COLOR:%d  SIZE:%d\n", uj.getWidth(), uj.getHeight(), uj.isColor(), uj.getImageSize() );  
             
             //return 1;
-        }
+        } //*/
         
         //njDone();
         
         //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         //bmp_surface = SDL_CreateRGBSurfaceFrom( decoder.GetImage(), decoder.GetWidth(), decoder.GetHeight(), 24, decoder.GetWidth()*3, 0xFF0000, 0xFF00, 0xFF, 0 );
         //bmp_surface = SDL_CreateRGBSurfaceFrom( njGetImage(), njGetWidth(), njGetHeight(), 24, njGetWidth()*3, 0xFF0000, 0xFF00, 0xFF, 0 );
-        bmp_surface = SDL_CreateRGBSurfaceFrom( njGetImage(), njGetWidth(), njGetHeight(), 24, njGetWidth()*3, 0xFF, 0xFF00, 0xFF0000, 0 );
+        bmp_surface = SDL_CreateRGBSurfaceFrom( (unsigned char*) uj.getImage(), 
+                                               uj.getWidth(), uj.getHeight(), 24, uj.getWidth()*3, 0xFF, 0xFF00, 0xFF0000, 0 );
                                                                 //decoder.GetHeight(), 24, decoder.GetWidth()*3, 0, 0, 0, 0 );
                                                             
         //SDL_Surface* SDL_CreateRGBSurfaceFrom(void*  pixels,
