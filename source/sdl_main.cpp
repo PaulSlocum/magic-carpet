@@ -18,6 +18,8 @@
 #define SCREEN_HEIGHT 480
 
 
+static SDL_Texture *texture = NULL;
+
 //=======================================================================
 int randomInt(int min, int max)
 {
@@ -49,7 +51,23 @@ void render(SDL_Renderer *renderer)
     SDL_SetRenderDrawColor(renderer, r, g, b, 255);
 
     /*  Fill the rectangle in the color */
-    SDL_RenderFillRect(renderer, &rect);
+    //SDL_RenderFillRect(renderer, &rect);
+
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    const int HAPPY_FACE_SIZE = 512;
+    SDL_Rect srcRect;
+    SDL_Rect dstRect;
+    /* setup rects for drawing */
+    srcRect.x = 0;
+    srcRect.y = 0;
+    srcRect.w = HAPPY_FACE_SIZE;
+    srcRect.h = HAPPY_FACE_SIZE;
+    dstRect.x = 0;
+    dstRect.y = 0;
+    dstRect.w = HAPPY_FACE_SIZE;
+    dstRect.h = HAPPY_FACE_SIZE;
+    SDL_RenderCopy(renderer, texture, &srcRect, &dstRect);
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     /* update screen */
     SDL_RenderPresent(renderer);
@@ -79,9 +97,32 @@ int main(int argc, char *argv[])
     //SDL_RWops *rw = SDL_RWFromFile("resources/images/pattern0.jpg","r");
     
     
-    std::string imageFilename = stdprintf( "%s%s", SDL_GetBasePath(), "media/images/pattern0.jpg" );
+    //std::string imageFilename = stdprintf( "%s%s", SDL_GetBasePath(), "media/images/menuBG2c.jpg" );
+    //std::string imageFilename = stdprintf( "%s%s", SDL_GetBasePath(), "media/images/pattern0.jpg" );
+    std::string imageFilename = stdprintf( "%s%s", SDL_GetBasePath(), "media/images/pattern0.bmp" );
+    
     printf( "FILE PATH: %s\n", imageFilename.c_str() );
-    SDL_RWops *imageFile = SDL_RWFromFile( imageFilename.c_str(),"r");
+    SDL_Surface *bmp_surface = NULL;
+
+    //---------------------
+    // BMP LOADER
+    // load the bmp
+    bmp_surface = SDL_LoadBMP( imageFilename.c_str() );
+    if( bmp_surface == NULL ) 
+    {
+        printf( "ERROR LOADING BMP\n" );
+    }
+    else
+    {
+        printf( "BMP LOADED!! \n" );
+    }
+    // set white to transparent on the happyface 
+    //SDL_SetColorKey(bmp_surface, 1,
+    //SDL_MapRGB(bmp_surface->format, 255, 255, 255)); //*/
+    
+    //---------------------
+    // JPEG LOADER
+    /*SDL_RWops *imageFile = SDL_RWFromFile( imageFilename.c_str(), "r" );
     if (imageFile != NULL) 
     {
         printf( "OPENED FILE\n" );
@@ -90,7 +131,7 @@ int main(int argc, char *argv[])
         size_t imageFileLength = SDL_RWtell( imageFile );
         Uint8 *imageFileBuffer = (unsigned char*)malloc( imageFileLength );
         SDL_RWseek( imageFile, 0, SEEK_SET );
-        size_t bytesRead = SDL_RWread( imageFile, imageFileBuffer, 1, imageFileLength );
+        size_t bytesRead = SDL_RWread( imageFile, imageFileBuffer, 1, imageFileLength );  // DEBUG!!!!!!!
         printf( "FILE SIZE: %ld   BYTES READ: %ld\n", imageFileLength, bytesRead );
         
         //Uint8 buf[256];
@@ -99,6 +140,20 @@ int main(int argc, char *argv[])
         SDL_RWclose( imageFile);
         
         //-----------------------------------------------------------
+        
+        //****************************************************************************
+        bmp_surface = SDL_LoadBMP("icon.bmp");
+        if (bmp_surface == NULL) {
+            fatalError("could not load bmp");
+        }
+        // set white to transparent on the happyface 
+        SDL_SetColorKey(bmp_surface, 1,
+                        SDL_MapRGB(bmp_surface->format, 255, 255, 255));
+        
+        // convert RGBA surface to texture 
+        texture = SDL_CreateTextureFromSurface(renderer, bmp_surface);
+        //****************************************************************************
+        
         
         Jpeg::Decoder decoder( imageFileBuffer, imageFileLength );
         if( decoder.GetResult() != Jpeg::Decoder::OK )
@@ -109,25 +164,30 @@ int main(int argc, char *argv[])
         else
         {
             printf("JPEG DECODED!!!!\n");
+            printf("W: %d   H: %d   COLOR:%d  SIZE:%ld\n", decoder.GetWidth(), decoder.GetHeight(), decoder.IsColor(), decoder.GetImageSize() );  
+            
             //return 1;
         }
         
-        /*f = fopen((argc > 2) ? argv[2] : (decoder.IsColor() ? "jpeg_out.ppm" : "jpeg_out.pgm"), "wb");
-        if (!f) {
-            printf("Error opening the output file.\n");
-            return 1;
-        }
-        fprintf(f, "P%d\n%d %d\n255\n", decoder.IsColor() ? 6 : 5, decoder.GetWidth(), decoder.GetHeight());
-        fwrite(decoder.GetImage(), 1, decoder.GetImageSize(), f);
-        fclose(f);
-        return 0; //*/
-
+        //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        bmp_surface = SDL_CreateRGBSurfaceFrom( decoder.GetImage(), decoder.GetWidth(), 
+                                                                decoder.GetHeight(), 24, decoder.GetWidth()*3, 0,0,0,255 );
+                                                            
+        //SDL_Surface* SDL_CreateRGBSurfaceFrom(void*  pixels,
+        // int    width,
+        // int    height,
+        // int    depth,
+        // int    pitch,
+        // Uint32 Rmask,
+        // Uint32 Gmask,
+        // Uint32 Bmask,
+        // Uint32 Amask) 
         
-    }//*/
+    }
     else 
     {
         printf( "DID NOT OPEN FILE\n" );
-    }
+    } //*/
     
     ////////////////////////////////////////////////
     // JPEG LIBRARY SAMPLE CODE
@@ -158,6 +218,26 @@ int main(int argc, char *argv[])
         return 1;
     }
 
+    
+    
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    // convert RGBA surface to texture 
+    texture = SDL_CreateTextureFromSurface(renderer, bmp_surface);
+    if (texture == 0) 
+    {
+        printf( "TEXTURE CREATION FAILED\n" );
+    }
+    else
+    {
+        printf( "TEXTURE CREATED!!!!\n" );
+        SDL_SetTextureBlendMode(texture, SDL_BLENDMODE_BLEND);  
+    }
+    
+    // free up allocated memory 
+    SDL_FreeSurface(bmp_surface); //*/
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    
+    
     /* Enter render loop, waiting for user to quit */
     done = 0;
     while (!done) {
