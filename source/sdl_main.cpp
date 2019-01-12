@@ -54,6 +54,8 @@ void render(SDL_Renderer *renderer)
     //SDL_RenderFillRect(renderer, &rect);
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    static float angle;
+    angle += 10.1;
     const int HAPPY_FACE_SIZE = 512;
     SDL_Rect srcRect;
     SDL_Rect dstRect;
@@ -66,7 +68,15 @@ void render(SDL_Renderer *renderer)
     dstRect.y = 0;
     dstRect.w = HAPPY_FACE_SIZE;
     dstRect.h = HAPPY_FACE_SIZE;
-    SDL_RenderCopy(renderer, texture, &srcRect, &dstRect);
+    //SDL_RenderCopy( renderer, texture, &srcRect, &dstRect );
+    SDL_RenderCopyEx( renderer, texture, &srcRect, &dstRect, angle, NULL, SDL_FLIP_NONE );
+    /*int SDL_RenderCopyEx(SDL_Renderer*          renderer,
+                         SDL_Texture*           texture,
+                         const SDL_Rect*        srcrect,
+                         const SDL_Rect*        dstrect,
+                         const double           angle,
+                         const SDL_Point*       center,
+                         const SDL_RendererFlip flip) //*/
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     /* update screen */
