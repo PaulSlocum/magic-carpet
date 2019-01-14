@@ -13,18 +13,22 @@ x get display proof of concept working on iOS
 ~~ + ~~ + ~~ + ~~ + ~~ + ~~ + ~~ + ~~ + 
 
 
-SURFACE --> W:512 H:512 DEPTH:24 PITCH:1536
-FORMAT:390076419 RMASK:ff0000 GMASK:ff00 BMASK:ff AMASK:0
-
 TODO:
 ~- ~- ~- ~- ~- ~- ~- ~- ~-
+- figure out beginning app structure for initialization, spinner array, and rendering
+-  ~  -  ~  -  ~  -  ~  
+- port texture loading
+- get 60fps callback working
+- port spinner array
+- port spinner renderer
+-  ~  -  ~  -  ~  -  ~  
 - review mc_util #includes to remove unnecessary includes
 ~- ~- ~- ~- ~- ~- ~- ~- ~- 
 
-mc_virtual_system.cpp
+X mc_virtual_system.cpp
+
 mc_application.cpp
 mc_audio.cpp
-mc_control.cpp
 mc_keyboard.cpp
 mc_mouse.cpp
 mc_touch.cpp

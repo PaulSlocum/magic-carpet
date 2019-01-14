@@ -17,6 +17,7 @@
 		EBC84AC321E956EA0039B60F /* mc_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EBC84ABD21E956EA0039B60F /* mc_util.cpp */; };
 		EBC84AC521E967810039B60F /* mcNotes.txt in Resources */ = {isa = PBXBuildFile; fileRef = EBC84AC421E967810039B60F /* mcNotes.txt */; };
 		EBC84ACA21EA94190039B60F /* ujpeg.c in Sources */ = {isa = PBXBuildFile; fileRef = EBC84AC921EA94190039B60F /* ujpeg.c */; };
+		EBC84AD221ED47F40039B60F /* mc_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EBC84AD021ED47F30039B60F /* mc_application.cpp */; };
 		EBF1390021E464B700B55724 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBF138FF21E464B700B55724 /* Metal.framework */; };
 		EBF1390221E464D200B55724 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBF1390121E464D200B55724 /* AVFoundation.framework */; };
 		FA8B4B97196703B400F8EB7C /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA8B4B96196703B400F8EB7C /* CoreMotion.framework */; };
@@ -25,7 +26,7 @@
 		FD77A07D0E26BD8C00F39101 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = FD77A07C0E26BD8C00F39101 /* Icon.png */; };
 		FD77A07F0E26BDA900F39101 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = FD77A07E0E26BDA900F39101 /* Default.png */; };
 		FD77A0850E26BDB800F39101 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD77A0840E26BDB800F39101 /* AudioToolbox.framework */; };
-		FD77A09D0E26BDE500F39101 /* sdl_main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FD77A09C0E26BDE500F39101 /* sdl_main.cpp */; };
+		FD77A09D0E26BDE500F39101 /* mc_main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FD77A09C0E26BDE500F39101 /* mc_main.cpp */; };
 		FDB8BFC60E5A0F6A00980157 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDB8BFC50E5A0F6A00980157 /* CoreGraphics.framework */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +61,9 @@
 		EBC84AC421E967810039B60F /* mcNotes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = mcNotes.txt; path = ../mcNotes.txt; sourceTree = "<group>"; };
 		EBC84AC921EA94190039B60F /* ujpeg.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ujpeg.c; path = ../source/ujpeg.c; sourceTree = "<group>"; };
 		EBC84ACB21EA946C0039B60F /* ujpeg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ujpeg.h; path = ../source/ujpeg.h; sourceTree = "<group>"; };
+		EBC84ACF21ED47F30039B60F /* mc_application.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = mc_application.hpp; path = ../source/mc_application.hpp; sourceTree = "<group>"; };
+		EBC84AD021ED47F30039B60F /* mc_application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mc_application.cpp; path = ../source/mc_application.cpp; sourceTree = "<group>"; };
+		EBC84AD121ED47F30039B60F /* mc_util.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = mc_util.hpp; path = ../source/mc_util.hpp; sourceTree = "<group>"; };
 		EBF138FF21E464B700B55724 /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
 		EBF1390121E464D200B55724 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		FA8B4B96196703B400F8EB7C /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
@@ -68,7 +72,7 @@
 		FD77A07C0E26BD8C00F39101 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		FD77A07E0E26BDA900F39101 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		FD77A0840E26BDB800F39101 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		FD77A09C0E26BDE500F39101 /* sdl_main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = sdl_main.cpp; path = ../source/sdl_main.cpp; sourceTree = "<group>"; };
+		FD77A09C0E26BDE500F39101 /* mc_main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mc_main.cpp; path = ../source/mc_main.cpp; sourceTree = "<group>"; };
 		FDB8BFC50E5A0F6A00980157 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -108,6 +112,7 @@
 			children = (
 				8D1107310486CEB800E47090 /* Info.plist */,
 				EBC84AC421E967810039B60F /* mcNotes.txt */,
+				944A65681957463F0094A81E /* SDL.xcodeproj */,
 				29B97315FDCFA39411CA2CEA /* Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
@@ -119,8 +124,10 @@
 		29B97315FDCFA39411CA2CEA /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				944A65681957463F0094A81E /* SDL.xcodeproj */,
-				FD77A09C0E26BDE500F39101 /* sdl_main.cpp */,
+				EBC84ACF21ED47F30039B60F /* mc_application.hpp */,
+				EBC84AD021ED47F30039B60F /* mc_application.cpp */,
+				FD77A09C0E26BDE500F39101 /* mc_main.cpp */,
+				EBC84AD121ED47F30039B60F /* mc_util.hpp */,
 				EBC84ABD21E956EA0039B60F /* mc_util.cpp */,
 				EBC84ACB21EA946C0039B60F /* ujpeg.h */,
 				EBC84AC921EA94190039B60F /* ujpeg.c */,
@@ -278,7 +285,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				EBC84ACA21EA94190039B60F /* ujpeg.c in Sources */,
-				FD77A09D0E26BDE500F39101 /* sdl_main.cpp in Sources */,
+				FD77A09D0E26BDE500F39101 /* mc_main.cpp in Sources */,
+				EBC84AD221ED47F40039B60F /* mc_application.cpp in Sources */,
 				EBC84AC321E956EA0039B60F /* mc_util.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
