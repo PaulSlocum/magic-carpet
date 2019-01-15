@@ -5,12 +5,13 @@
  */
 
 #include <string>
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
-#include "SDL.h"
+//#include <stdio.h>
+//#include <stdlib.h>
+//#include <time.h>
 
-//#include "jpeg_decoder.h"
+#include "SDL.h"
+#include "ujpeg.h"
+
 #include "mc_util.hpp"
 
 
@@ -21,34 +22,34 @@
 static SDL_Texture *texture = NULL;
 
 //=======================================================================
-int randomInt(int min, int max)
+/*int randomInt(int min, int max)
 {
     return min + rand() % (max - min + 1);
-}
+}//*/
 
 
 //=======================================================================
 void render(SDL_Renderer *renderer)
 {
 
-    SDL_Rect rect;
-    Uint8 r, g, b;
+    //SDL_Rect rect;
+    //Uint8 r, g, b;
 
     /* Clear the screen */
-    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+    //SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
     SDL_RenderClear(renderer);
 
     /*  Come up with a random rectangle */
-    rect.w = randomInt(64, 128);
+    /*rect.w = randomInt(64, 128);
     rect.h = randomInt(64, 128);
     rect.x = randomInt(0, SCREEN_WIDTH);
-    rect.y = randomInt(0, SCREEN_HEIGHT);
+    rect.y = randomInt(0, SCREEN_HEIGHT); //*/
 
     /* Come up with a random color */
-    r = randomInt(50, 255);
+    /*r = randomInt(50, 255);
     g = randomInt(50, 255);
     b = randomInt(50, 255);
-    SDL_SetRenderDrawColor(renderer, r, g, b, 255);
+    SDL_SetRenderDrawColor(renderer, r, g, b, 255); //*/
 
     /*  Fill the rectangle in the color */
     //SDL_RenderFillRect(renderer, &rect);
@@ -68,7 +69,6 @@ void render(SDL_Renderer *renderer)
     dstRect.y = 0;
     dstRect.w = HAPPY_FACE_SIZE;
     dstRect.h = HAPPY_FACE_SIZE;
-    //SDL_RenderCopy( renderer, texture, &srcRect, &dstRect );
     SDL_RenderCopyEx( renderer, texture, &srcRect, &dstRect, angle, NULL, SDL_FLIP_NONE );
     /*int SDL_RenderCopyEx(SDL_Renderer*          renderer,
                          SDL_Texture*           texture,
@@ -84,13 +84,6 @@ void render(SDL_Renderer *renderer)
 }
 
 
-/*extern "C" 
-{
-#define _NJ_INCLUDE_HEADER_ONLY
-#include "nanojpeg13.c"
-}//*/
-
-#include "ujpeg.h"
 
 //=======================================================================
 int main(int argc, char *argv[])
@@ -149,6 +142,7 @@ int main(int argc, char *argv[])
     {
         printf( "OPENED FILE\n" );
 
+        /*
         size_t imageFileLength = SDL_RWsize( imageFile );
         //SDL_RWseek( imageFile, 0, SEEK_END );
         //size_t imageFileLength = SDL_RWtell( imageFile );
@@ -157,10 +151,11 @@ int main(int argc, char *argv[])
         size_t bytesRead = SDL_RWread( imageFile, imageFileBuffer, 1, imageFileLength ); 
         printf( "FILE SIZE: %ld   BYTES READ: %ld\n", imageFileLength, bytesRead );
         
+         
         //Uint8 buf[256];
         //extern Uint8 buf[256];
         //SDL_RWread( imageFile, buf, sizeof (buf), 1 );
-        SDL_RWclose( imageFile);
+        SDL_RWclose( imageFile);  //*/
         
         //-----------------------------------------------------------
         
@@ -198,22 +193,8 @@ int main(int argc, char *argv[])
         //njDone();
         
         //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        //bmp_surface = SDL_CreateRGBSurfaceFrom( decoder.GetImage(), decoder.GetWidth(), decoder.GetHeight(), 24, decoder.GetWidth()*3, 0xFF0000, 0xFF00, 0xFF, 0 );
-        //bmp_surface = SDL_CreateRGBSurfaceFrom( njGetImage(), njGetWidth(), njGetHeight(), 24, njGetWidth()*3, 0xFF0000, 0xFF00, 0xFF, 0 );
         bmp_surface = SDL_CreateRGBSurfaceFrom( (unsigned char*) uj.getImage(), 
                                                uj.getWidth(), uj.getHeight(), 24, uj.getWidth()*3, 0xFF, 0xFF00, 0xFF0000, 0 );
-                                                                //decoder.GetHeight(), 24, decoder.GetWidth()*3, 0, 0, 0, 0 );
-                                                            
-        //SDL_Surface* SDL_CreateRGBSurfaceFrom(void*  pixels,
-        // int    width,
-        // int    height,
-        // int    depth,
-        // int    pitch,
-        // Uint32 Rmask,
-        // Uint32 Gmask,
-        // Uint32 Bmask,
-        // Uint32 Amask) 
-        
     }
     else 
     {
@@ -255,7 +236,9 @@ int main(int argc, char *argv[])
     // convert RGBA surface to texture 
     printf( "SURFACE --> W:%d H:%d DEPTH:%d PITCH:%d\n", bmp_surface->w, bmp_surface->h, bmp_surface->format->BitsPerPixel, bmp_surface->pitch ); 
     printf( "FORMAT:%d RMASK:%x GMASK:%x BMASK:%x AMASK:%x\n", 
-           bmp_surface->format->format, bmp_surface->format->Rmask, bmp_surface->format->Gmask, bmp_surface->format->Bmask, bmp_surface->format->Amask ); 
+           bmp_surface->format->format, bmp_surface->format->Rmask, bmp_surface->format->Gmask, bmp_surface->format->Bmask, bmp_surface->format->Amask );
+    
+    
     texture = SDL_CreateTextureFromSurface(renderer, bmp_surface);
     if (texture == 0) 
     {
@@ -271,8 +254,8 @@ int main(int argc, char *argv[])
     SDL_FreeSurface(bmp_surface); //*/
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     
-    
-    /* Enter render loop, waiting for user to quit */
+    //*************************************************************************
+    // Enter render loop, waiting for user to quit 
     done = 0;
     while (!done) {
         while (SDL_PollEvent(&event)) {
@@ -283,8 +266,9 @@ int main(int argc, char *argv[])
         render(renderer);
         SDL_Delay(1);
     }
+    //*************************************************************************
 
-    /* shutdown SDL */
+    // shutdown SDL 
     SDL_Quit();
 
     return 0;

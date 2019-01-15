@@ -1,13 +1,9 @@
 // mpUtil.h
 ////////////////////////////////////////////
 
-#include <iostream>
 #include <string>
-#include <stdarg.h>  // For va_start, etc.
-//#include <SDL2/SDL.h> 
 
 
-//#define COMMENT_CHARACTER '#'
 
 long long getCurrentTimeMSec();
 long long timeSinceEventMSec( long long eventTimeMSec );
