@@ -91,7 +91,7 @@ std::string shortenedString( std::string inputString, unsigned maxWidth )
   }
   else
   {
-    returnString = stdprintf( "%s..%s", trimFromPosition( inputString, maxWidth-5 ).c_str(), trimToPosition( inputString, inputString.length()-5 ).c_str() );
+    returnString = stdprintf( "%s..%s", trimFromPosition( inputString, maxWidth-5 ).c_str(), trimToPosition( inputString, (int)inputString.length()-5 ).c_str() );
   }
   //printf( "(SHORTENED STRING) input: %s  output: %s  maxWidth: %d \n", inputString.c_str(), returnString.c_str(), maxWidth );
   return returnString;  

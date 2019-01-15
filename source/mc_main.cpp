@@ -95,7 +95,7 @@ int main(int argc, char *argv[])
     }
     
     // SEED RANDOM NUMBER GENERATOR
-    srand(time(NULL));
+    srand( (unsigned int) time(NULL) );
 
     // CREATE SDL WINDOW
     window = SDL_CreateWindow(NULL, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_OPENGL);
