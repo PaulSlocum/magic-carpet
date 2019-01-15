@@ -18,6 +18,7 @@
 		EBC84AC521E967810039B60F /* mcNotes.txt in Resources */ = {isa = PBXBuildFile; fileRef = EBC84AC421E967810039B60F /* mcNotes.txt */; };
 		EBC84ACA21EA94190039B60F /* ujpeg.c in Sources */ = {isa = PBXBuildFile; fileRef = EBC84AC921EA94190039B60F /* ujpeg.c */; };
 		EBC84AD221ED47F40039B60F /* mc_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EBC84AD021ED47F30039B60F /* mc_application.cpp */; };
+		EBC84AD521EDAF670039B60F /* mc_renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EBC84AD321EDAF670039B60F /* mc_renderer.cpp */; };
 		EBF1390021E464B700B55724 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBF138FF21E464B700B55724 /* Metal.framework */; };
 		EBF1390221E464D200B55724 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBF1390121E464D200B55724 /* AVFoundation.framework */; };
 		FA8B4B97196703B400F8EB7C /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA8B4B96196703B400F8EB7C /* CoreMotion.framework */; };
@@ -64,6 +65,8 @@
 		EBC84ACF21ED47F30039B60F /* mc_application.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = mc_application.hpp; path = ../source/mc_application.hpp; sourceTree = "<group>"; };
 		EBC84AD021ED47F30039B60F /* mc_application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mc_application.cpp; path = ../source/mc_application.cpp; sourceTree = "<group>"; };
 		EBC84AD121ED47F30039B60F /* mc_util.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = mc_util.hpp; path = ../source/mc_util.hpp; sourceTree = "<group>"; };
+		EBC84AD321EDAF670039B60F /* mc_renderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mc_renderer.cpp; path = ../source/mc_renderer.cpp; sourceTree = "<group>"; };
+		EBC84AD421EDAF670039B60F /* mc_renderer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = mc_renderer.hpp; path = ../source/mc_renderer.hpp; sourceTree = "<group>"; };
 		EBF138FF21E464B700B55724 /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
 		EBF1390121E464D200B55724 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		FA8B4B96196703B400F8EB7C /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
@@ -124,6 +127,8 @@
 		29B97315FDCFA39411CA2CEA /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				EBC84AD321EDAF670039B60F /* mc_renderer.cpp */,
+				EBC84AD421EDAF670039B60F /* mc_renderer.hpp */,
 				EBC84ACF21ED47F30039B60F /* mc_application.hpp */,
 				EBC84AD021ED47F30039B60F /* mc_application.cpp */,
 				FD77A09C0E26BDE500F39101 /* mc_main.cpp */,
@@ -287,6 +292,7 @@
 				EBC84ACA21EA94190039B60F /* ujpeg.c in Sources */,
 				FD77A09D0E26BDE500F39101 /* mc_main.cpp in Sources */,
 				EBC84AD221ED47F40039B60F /* mc_application.cpp in Sources */,
+				EBC84AD521EDAF670039B60F /* mc_renderer.cpp in Sources */,
 				EBC84AC321E956EA0039B60F /* mc_util.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

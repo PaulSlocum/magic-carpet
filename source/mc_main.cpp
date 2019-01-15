@@ -7,6 +7,7 @@
 #include "SDL.h"
 #include "ujpeg.h"
 #include "mc_util.hpp"
+#include "mc_application.hpp"
 
 
 #define SCREEN_WIDTH 320
@@ -54,9 +55,13 @@ void render(SDL_Renderer *renderer)
 //=======================================================================
 int main(int argc, char *argv[])
 {
+    MCApplication magicCarpetApp;
+    magicCarpetApp.start();
+    
+    
     SDL_Window *window;
     SDL_Renderer *renderer;
-    int done;
+    int isQuitting;
     SDL_Event event;
 
     // INITIALIZE SDL
@@ -130,11 +135,14 @@ int main(int argc, char *argv[])
     
     //*************************************************************************
     // RUN LOOP
-    done = 0;
-    while (!done) {
-        while (SDL_PollEvent(&event)) {
-            if (event.type == SDL_QUIT) {
-                done = 1;
+    isQuitting = 0;
+    while( !isQuitting )
+    {
+        while (SDL_PollEvent(&event)) 
+        {
+            if (event.type == SDL_QUIT) 
+            {
+                isQuitting = 1;
             }
         }
         render(renderer);
