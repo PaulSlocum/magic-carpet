@@ -55,6 +55,9 @@ void MCApplication::start()
         SDL_Log( "Unable to initialize SDL: %s", SDL_GetError() );
     }
 
+    // SET IOS ALLOWED ORIENTATIONS
+    SDL_SetHint(SDL_HINT_ORIENTATIONS, "LandscapeLeft LandscapeRight");
+    
     // CREATE SDL WINDOW
     window = SDL_CreateWindow(NULL, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_OPENGL);
     if( !window ) 

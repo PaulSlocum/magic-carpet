@@ -10,13 +10,13 @@ x set up project files for RPi/SDL
 x set up project for iOS
 x get display proof of concept working on RPi
 x get display proof of concept working on iOS
+x figure out beginning app structure for initialization, spinner array, and rendering
+x figure out how to deal with orientation
 ~~ + ~~ + ~~ + ~~ + ~~ + ~~ + ~~ + ~~ + 
 
 
 TODO:
 ~- ~- ~- ~- ~- ~- ~- ~- ~-
-- figure out beginning app structure for initialization, spinner array, and rendering
--  ~  -  ~  -  ~  -  ~  
 - port texture loading
 - get 60fps callback working
 - port spinner array

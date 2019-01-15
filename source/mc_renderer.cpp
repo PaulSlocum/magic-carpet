@@ -5,6 +5,7 @@
 
 #include "mc_renderer.hpp"
 #include "mc_application.hpp"
+#include "mc_util.hpp"
 
 //////////////////////////////////////////////////////////////////////////////////////
 MCRenderer::MCRenderer( MCApplication* newApp )
@@ -54,4 +55,14 @@ void MCRenderer::render()
     
     // RENDER!
     SDL_RenderPresent( app->SDLRenderer );
+    
+    //-------------------------------------------------------
+    frameCount++;
+    if( startTimeMSec == 0 )
+       startTimeMSec = getCurrentTimeMSec();
+    if( frameCount % 60 == 0 )
+        printf( "FPS: %f\n",  frameCount * 1000.0 / ( getCurrentTimeMSec() - startTimeMSec )  );
+    
+
+    
 }

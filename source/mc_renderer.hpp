@@ -2,6 +2,7 @@
 ///////////////////////////////////////////////////////////////////////////////////
 
 
+
 class MCApplication;
 
 class MCRenderer
@@ -13,4 +14,7 @@ public:
     
 private:
     MCApplication* app;
+    // ~  ~  ~  ~  ~  ~  ~  ~  
+    int frameCount = 0;
+    long long startTimeMSec = 0;
 };

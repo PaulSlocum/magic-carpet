@@ -129,13 +129,13 @@
 			children = (
 				EBC84AD321EDAF670039B60F /* mc_renderer.cpp */,
 				EBC84AD421EDAF670039B60F /* mc_renderer.hpp */,
-				EBC84ACF21ED47F30039B60F /* mc_application.hpp */,
 				EBC84AD021ED47F30039B60F /* mc_application.cpp */,
+				EBC84ACF21ED47F30039B60F /* mc_application.hpp */,
 				FD77A09C0E26BDE500F39101 /* mc_main.cpp */,
 				EBC84AD121ED47F30039B60F /* mc_util.hpp */,
 				EBC84ABD21E956EA0039B60F /* mc_util.cpp */,
-				EBC84ACB21EA946C0039B60F /* ujpeg.h */,
 				EBC84AC921EA94190039B60F /* ujpeg.c */,
+				EBC84ACB21EA946C0039B60F /* ujpeg.h */,
 			);
 			name = Sources;
 			sourceTree = "<group>";
