@@ -9,8 +9,8 @@ class MCRenderer
 public:
     MCRenderer( MCApplication* newApp );
     ~MCRenderer();
+    void render();
     
 private:
     MCApplication* app;
-    void render();
 };

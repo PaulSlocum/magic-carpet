@@ -6,6 +6,8 @@
 #ifndef MC_APPLICATION_HPP
 #define MC_APPLICATION_HPP
 
+#include "SDL.h"
+
 class MCRenderer;
 
 
@@ -16,10 +18,16 @@ public:
     void stop();
     MCApplication();
     ~MCApplication();
+    // ~  ~  ~  ~  ~  ~  ~  ~  
+    SDL_Renderer *SDLRenderer = NULL;
+    SDL_Texture *texture = NULL;
+
 private:
     void runLoop();
     // ~  ~  ~  ~  ~  ~  ~  ~  
     MCRenderer* renderer;
+    SDL_Window *window;
+    int isQuitting;
 };
 
 
