@@ -6,6 +6,10 @@
 #include <sys/time.h>
 #include <iostream>
 #include <unistd.h>
+#include <memory>
+#include <string.h>
+#include <stdarg.h>
+#include <algorithm>
 
 //#include <stdio.h>
 //#include <stdlib.h>

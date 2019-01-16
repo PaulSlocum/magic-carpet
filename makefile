@@ -44,9 +44,11 @@ LDLIBS := -L/opt/vc/lib \
 
 #############################################################################
 
-srcfiles := source/mc_util.cpp source/sdl_main.cpp
+srcfiles := source/mc_util.cpp source/mc_main.cpp source/mc_renderer.cpp\
+ source/mc_application.cpp source/ujpeg.cpp
 
-objects := source/mc_util.o source/sdl_main.o 
+objects := source/mc_util.o source/mc_main.o source/mc_renderer.o\
+ source/mc_application.o source/ujpeg.o
 
 #############################################################################
 
