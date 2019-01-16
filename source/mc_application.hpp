@@ -10,6 +10,11 @@
 
 class MCRenderer;
 
+#define FRAMES_PER_SECOND 60.0
+
+
+enum class AppMode { STOPPED, LOADING, MENU, RUNNING };
+
 
 class MCApplication
 {
@@ -20,7 +25,6 @@ public:
     ~MCApplication();
     // ~  ~  ~  ~  ~  ~  ~  ~  
     SDL_Renderer *SDLRenderer = NULL;
-    SDL_Texture *texture = NULL;
 
 private:
     void runLoop();
@@ -28,6 +32,7 @@ private:
     MCRenderer* renderer;
     SDL_Window *window;
     int isQuitting;
+    AppMode mode = AppMode::STOPPED;
 };
 
 

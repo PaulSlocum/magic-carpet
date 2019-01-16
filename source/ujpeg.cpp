@@ -29,6 +29,10 @@
 
 #include "ujpeg.h"
 
+// ADDED BY PAUL SLOCUM TO GET RID OF C++ ERRORS IN XCODE 
+// "ISO C++17 does not allow 'register" storage class specifier"
+#define register 
+
 /* UJ_NODECODE_BLOCK_SIZE: if #defined, this specifies the amount of bytes
  * to load from disk if ujDecodeFile() is used after ujDisableDecoding().
  * This will speed up checking of large files, because not the whole file has

@@ -16,7 +16,7 @@
 		EB2560BA21E8F2E8007DC439 /* media in Resources */ = {isa = PBXBuildFile; fileRef = EB2560B921E8F2E7007DC439 /* media */; };
 		EBC84AC321E956EA0039B60F /* mc_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EBC84ABD21E956EA0039B60F /* mc_util.cpp */; };
 		EBC84AC521E967810039B60F /* mcNotes.txt in Resources */ = {isa = PBXBuildFile; fileRef = EBC84AC421E967810039B60F /* mcNotes.txt */; };
-		EBC84ACA21EA94190039B60F /* ujpeg.c in Sources */ = {isa = PBXBuildFile; fileRef = EBC84AC921EA94190039B60F /* ujpeg.c */; };
+		EBC84ACA21EA94190039B60F /* ujpeg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EBC84AC921EA94190039B60F /* ujpeg.cpp */; };
 		EBC84AD221ED47F40039B60F /* mc_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EBC84AD021ED47F30039B60F /* mc_application.cpp */; };
 		EBC84AD521EDAF670039B60F /* mc_renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EBC84AD321EDAF670039B60F /* mc_renderer.cpp */; };
 		EBF1390021E464B700B55724 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBF138FF21E464B700B55724 /* Metal.framework */; };
@@ -58,9 +58,10 @@
 		944A65681957463F0094A81E /* SDL.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SDL.xcodeproj; path = "../lib/sdl/Xcode-iOS/SDL/SDL.xcodeproj"; sourceTree = "<group>"; };
 		945C4F52195AF17F00DBBF61 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		EB2560B921E8F2E7007DC439 /* media */ = {isa = PBXFileReference; lastKnownFileType = folder; name = media; path = ../media; sourceTree = "<group>"; };
+		EB27A15921EF17080082D1C2 /* mc_texture_list.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = mc_texture_list.hpp; path = ../source/mc_texture_list.hpp; sourceTree = "<group>"; };
 		EBC84ABD21E956EA0039B60F /* mc_util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mc_util.cpp; path = ../source/mc_util.cpp; sourceTree = "<group>"; };
 		EBC84AC421E967810039B60F /* mcNotes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = mcNotes.txt; path = ../mcNotes.txt; sourceTree = "<group>"; };
-		EBC84AC921EA94190039B60F /* ujpeg.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ujpeg.c; path = ../source/ujpeg.c; sourceTree = "<group>"; };
+		EBC84AC921EA94190039B60F /* ujpeg.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ujpeg.cpp; path = ../source/ujpeg.cpp; sourceTree = "<group>"; };
 		EBC84ACB21EA946C0039B60F /* ujpeg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ujpeg.h; path = ../source/ujpeg.h; sourceTree = "<group>"; };
 		EBC84ACF21ED47F30039B60F /* mc_application.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = mc_application.hpp; path = ../source/mc_application.hpp; sourceTree = "<group>"; };
 		EBC84AD021ED47F30039B60F /* mc_application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mc_application.cpp; path = ../source/mc_application.cpp; sourceTree = "<group>"; };
@@ -127,6 +128,7 @@
 		29B97315FDCFA39411CA2CEA /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				EB27A15921EF17080082D1C2 /* mc_texture_list.hpp */,
 				EBC84AD321EDAF670039B60F /* mc_renderer.cpp */,
 				EBC84AD421EDAF670039B60F /* mc_renderer.hpp */,
 				EBC84AD021ED47F30039B60F /* mc_application.cpp */,
@@ -134,7 +136,7 @@
 				FD77A09C0E26BDE500F39101 /* mc_main.cpp */,
 				EBC84AD121ED47F30039B60F /* mc_util.hpp */,
 				EBC84ABD21E956EA0039B60F /* mc_util.cpp */,
-				EBC84AC921EA94190039B60F /* ujpeg.c */,
+				EBC84AC921EA94190039B60F /* ujpeg.cpp */,
 				EBC84ACB21EA946C0039B60F /* ujpeg.h */,
 			);
 			name = Sources;
@@ -289,7 +291,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EBC84ACA21EA94190039B60F /* ujpeg.c in Sources */,
+				EBC84ACA21EA94190039B60F /* ujpeg.cpp in Sources */,
 				FD77A09D0E26BDE500F39101 /* mc_main.cpp in Sources */,
 				EBC84AD221ED47F40039B60F /* mc_application.cpp in Sources */,
 				EBC84AD521EDAF670039B60F /* mc_renderer.cpp in Sources */,
