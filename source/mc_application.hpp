@@ -25,6 +25,7 @@ public:
     ~MCApplication();
     // ~  ~  ~  ~  ~  ~  ~  ~  
     SDL_Renderer *SDLRenderer = NULL;
+    SDL_Rect screenSize;
 
 private:
     void runLoop();

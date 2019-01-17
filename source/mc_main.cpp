@@ -10,7 +10,7 @@
 
 
 //=======================================================================
-int main(int argc, char *argv[])
+int main( int argc __attribute__ ((unused)), char *argv[] __attribute__ ((unused)) )
 {
     printf( "-----------------------\n" );
     printf( "M A G I C   C A R P E T \n" );

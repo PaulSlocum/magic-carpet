@@ -44,7 +44,7 @@ void MCRenderer::render()
     srcRect.y = 0;
     srcRect.w = IMAGE_SIZE;
     srcRect.h = IMAGE_SIZE;
-    dstRect.x = frameCount % IMAGE_SIZE;
+    dstRect.x = (frameCount % app->screenSize.w) - IMAGE_SIZE/2;
     dstRect.y = 0;
     dstRect.w = IMAGE_SIZE;
     dstRect.h = IMAGE_SIZE;

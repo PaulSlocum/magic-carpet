@@ -8,9 +8,6 @@
 #include "mc_util.hpp"
 
 
-#define SCREEN_WIDTH 320
-#define SCREEN_HEIGHT 480
-
 
 
 
@@ -55,10 +52,12 @@ void MCApplication::start()
         SDL_Log( "Unable to initialize SDL: %s", SDL_GetError() );
     }
 
+    // HIDE MOUSE CURSOR
+    SDL_ShowCursor( false );
+
     // SET IOS ALLOWED ORIENTATIONS
     SDL_SetHint( SDL_HINT_ORIENTATIONS, "LandscapeLeft LandscapeRight" );
     
-    SDL_Rect screenSize;
     SDL_GetDisplayBounds( 0, &screenSize );
     printf( "SCREEN SIZE: %d x %d \n", screenSize.w, screenSize.h );
     
@@ -112,7 +111,7 @@ void MCApplication::runLoop()
             }
         }
         
-        if( timeOfNextFrameMSec <= getCurrentTimeMSec() + 10 )
+        if( timeOfNextFrameMSec <= getCurrentTimeMSec() + 0 )
         {
             if( mode == AppMode::LOADING )
             {
