@@ -51,9 +51,11 @@ void MCRenderer::render()
     dstRect.w = IMAGE_SIZE;
     dstRect.h = IMAGE_SIZE;
     SDL_RenderCopyEx( app->SDLRenderer, spinnerTextureArray[0], &srcRect, &dstRect, angle, NULL, SDL_FLIP_NONE );
+    dstRect.x += IMAGE_SIZE/4;
+    dstRect.y += IMAGE_SIZE/4;
     dstRect.w = IMAGE_SIZE/2;
     dstRect.h = IMAGE_SIZE/2;
-    SDL_RenderCopyEx( app->SDLRenderer, spinnerTextureArray[1], &srcRect, &dstRect, angle*3, NULL, SDL_FLIP_NONE );
+    SDL_RenderCopyEx( app->SDLRenderer, spinnerTextureArray[1], &srcRect, &dstRect, angle*2.3, NULL, SDL_FLIP_NONE );
     /*int SDL_RenderCopyEx(SDL_Renderer*          renderer,
      SDL_Texture*           texture,
      const SDL_Rect*        srcrect,
