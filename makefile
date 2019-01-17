@@ -2,6 +2,7 @@ appname := magic_carpet.prg
 
 CXX := gcc
 CXXFLAGS := `sdl2-config --cflags --libs` \
+-DPLATFORM_RPI \
 -s \
 -Wall \
 -Wpedantic \
