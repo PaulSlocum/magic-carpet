@@ -15,16 +15,6 @@ CXXFLAGS := `sdl2-config --cflags --libs` \
 -I./lib/sdl/include \
 -Wno-variadic-macros 
 
-#-lfreeimageplus \
-#-lfreeimage \
-#-DVIDEO_PLAYER \
-#-L/usr/lib/omxplayer/ \
-#-lSDL2_ttf-2.0 \
-#-I/opt/vc/include \
-#-lbluetooth \
-#-I/usr/include/dbus-1.0 \
-#-I/usr/lib/arm-linux-gnueabihf/dbus-1.0/include 
-
 
 LDLIBS := -L/opt/vc/lib \
 -lbcm_host \
@@ -34,28 +24,20 @@ LDLIBS := -L/opt/vc/lib \
 -lpthread \
 -lasound 
 
-#-ldbus-1
-
 #-lefence 
 
-
-#-L/opt/vc/lib/libbcm_host.so
-
-# WORKS FOR BUILDING FREEIMAGE TEST --> gcc freeimageTest.cpp -o free.prg -lfreeimage -lstdc++ -lfreeimageplus
 
 #############################################################################
 
 srcfiles := source/mc_util.cpp source/mc_main.cpp source/mc_renderer.cpp\
- source/mc_application.cpp source/ujpeg.cpp
+ source/mc_application.cpp source/ujpeg.cpp source/mc_spinner.cpp
 
 objects := source/mc_util.o source/mc_main.o source/mc_renderer.o\
- source/mc_application.o source/ujpeg.o
+ source/mc_application.o source/ujpeg.o source/mc_spinner.o
 
 #############################################################################
 
 #objects	 := $(patsubst %.cpp, %.o, $(srcfiles))
-
-#srcfiles
 
 
 

@@ -12,21 +12,24 @@ x get display proof of concept working on RPi
 x get display proof of concept working on iOS
 x figure out beginning app structure for initialization, spinner array, and rendering
 x figure out how to deal with orientation
+x get 60fps callback working
+x port spinner array
+x review mc_util #includes to remove unnecessary includes
 ~~ + ~~ + ~~ + ~~ + ~~ + ~~ + ~~ + ~~ + 
 
 
 TODO:
 ~- ~- ~- ~- ~- ~- ~- ~- ~-
+- make spinners a class
+- make spinners able to draw themselves, or at least able to provide all data necessary for drawing?
+-  ~  -  ~  -  ~  -  ~  
 - port texture loading
-- get 60fps callback working
-- port spinner array
+- load all textures
 - port spinner renderer
 -  ~  -  ~  -  ~  -  ~  
-- review mc_util #includes to remove unnecessary includes
 ~- ~- ~- ~- ~- ~- ~- ~- ~- 
 
-X mc_virtual_system.cpp
-
+/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
 mc_application.cpp
 mc_audio.cpp
 mc_keyboard.cpp
@@ -35,6 +38,7 @@ mc_touch.cpp
 mc_renderer.cpp
 mc_game.cpp
 mc_util.cpp
+\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
 
 --------------------------------------------------------
 
