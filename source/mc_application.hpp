@@ -33,7 +33,7 @@ private:
     // ~  ~  ~  ~  ~  ~  ~  ~  
     MCRenderer* renderer;
     SDL_Window *window;
-    int isQuitting;
+    bool isQuitting = false;
     AppMode mode = AppMode::STOPPED;
 };
 

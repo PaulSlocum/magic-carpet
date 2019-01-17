@@ -72,13 +72,18 @@ void MCRenderer::render()
 
 void MCRenderer::loadTextures()
 {
+    loadTexture( "media/images/pattern0.jpg", 0 );
+}
+
+void MCRenderer::loadTexture( const std::string imageFilename, int arrayPosition )
+{
     //---------------------
     // LOAD JPEG
     uJPEG jpeg;
-    std::string imageFilename = stdprintf( "%s%s", SDL_GetBasePath(), "media/images/pattern0.jpg" );
-    printf( "FILE PATH: %s\n", imageFilename.c_str() );
+    std::string imageFilenameWithPath = stdprintf( "%s%s", SDL_GetBasePath(), imageFilename.c_str() );
+    printf( "FILE PATH: %s\n", imageFilenameWithPath.c_str() );
     SDL_Surface *bmp_surface = NULL;
-    jpeg.decodeFile( imageFilename.c_str() );
+    jpeg.decodeFile( imageFilenameWithPath.c_str() );
     if( jpeg.bad() ) 
     {
         printf("JPEG DECODING FAILED\n");

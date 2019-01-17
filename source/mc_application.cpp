@@ -11,7 +11,7 @@
 
 
 
-#pragma mark CONSTRUCTOR / DESTRUCTOR
+#pragma mark CONSTRUCTOR / DESTRUCTOR ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~  
 
 
 //////////////////////////////////////////////////////////////////////////////////////
@@ -34,7 +34,7 @@ MCApplication::~MCApplication()
 
 
 
-#pragma mark START / STOP 
+#pragma mark START / STOP  ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ 
 
 
 
@@ -90,6 +90,7 @@ void MCApplication::start()
 }
 
 
+
 /////////////////////////////////////////////////////////////////////////////////////
 void MCApplication::stop()
 {
@@ -98,25 +99,31 @@ void MCApplication::stop()
 }
 
 
-#pragma mark RUN LOOP
+
+
+#pragma mark RUN LOOP ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ 
+
 
 /////////////////////////////////////////////////////////////////////////////////////
 void MCApplication::runLoop()
 {
     SDL_Event event;
-    isQuitting = 0;
+    isQuitting = false;
     long long timeOfNextFrameMSec = getCurrentTimeMSec() + 1000.0/FRAMES_PER_SECOND;
-    while( !isQuitting )
+
+    // MAIN LOOP...
+    while( isQuitting == false )
     {
+        // PROCESS ALL EVENTS IN QUEUE...
         while (SDL_PollEvent(&event)) 
         {
             if (event.type == SDL_QUIT) 
             {
-                isQuitting = 1;
+                isQuitting = true;
             }
         }
         
-        //if( timeOfNextFrameMSec <= getCurrentTimeMSec() + 0 )
+        // DRAW SCREEN...
         if( (vsyncEnabled == true)  ||  (timeOfNextFrameMSec <= getCurrentTimeMSec() + 0) )
         {
             if( mode == AppMode::LOADING )
@@ -128,7 +135,7 @@ void MCApplication::runLoop()
                 renderer->render();
             timeOfNextFrameMSec = getCurrentTimeMSec() + 1000.0/FRAMES_PER_SECOND;
         }
-        //render( SDLRenderer );
+
         SDL_Delay(1);
     }
 }
