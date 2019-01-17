@@ -76,8 +76,9 @@ void MCApplication::start()
         printf("Could not create renderer\n");
         return;
     }
-    
 
+    printf( "VSYNC ENABLED: %s \n", SDL_GetHint( SDL_HINT_RENDER_VSYNC ) );
+    
     runLoop();
     
     // QUIT SDL
@@ -112,6 +113,7 @@ void MCApplication::runLoop()
         }
         
         if( timeOfNextFrameMSec <= getCurrentTimeMSec() + 0 )
+        //if( SDL_GetHint( SDL_HINT_RENDER_VSYNC )==1  ||  (timeOfNextFrameMSec <= getCurrentTimeMSec() + 0) )
         {
             if( mode == AppMode::LOADING )
             {
