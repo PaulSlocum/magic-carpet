@@ -26,6 +26,7 @@ public:
     // ~  ~  ~  ~  ~  ~  ~  ~  
     SDL_Renderer *SDLRenderer = NULL;
     SDL_Rect screenSize;
+    bool vsyncEnabled = false;
 
 private:
     void runLoop();

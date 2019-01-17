@@ -77,7 +77,11 @@ void MCApplication::start()
         return;
     }
 
-    printf( "VSYNC ENABLED: %s \n", SDL_GetHint( SDL_HINT_RENDER_VSYNC ) );
+#ifdef PLATFORM_RPI
+    vsyncEnabled = false;
+#else
+    vsyncEnabled = true;
+#endif    
     
     runLoop();
     
@@ -112,8 +116,8 @@ void MCApplication::runLoop()
             }
         }
         
-        if( timeOfNextFrameMSec <= getCurrentTimeMSec() + 0 )
-        //if( SDL_GetHint( SDL_HINT_RENDER_VSYNC )==1  ||  (timeOfNextFrameMSec <= getCurrentTimeMSec() + 0) )
+        //if( timeOfNextFrameMSec <= getCurrentTimeMSec() + 0 )
+        if( (vsyncEnabled == true)  ||  (timeOfNextFrameMSec <= getCurrentTimeMSec() + 0) )
         {
             if( mode == AppMode::LOADING )
             {
