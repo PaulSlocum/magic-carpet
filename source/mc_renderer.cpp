@@ -9,6 +9,8 @@
 #include "mc_application.hpp"
 #include "mc_util.hpp"
 
+
+
 //////////////////////////////////////////////////////////////////////////////////////
 MCRenderer::MCRenderer( MCApplication* newApp )
 {
@@ -48,7 +50,10 @@ void MCRenderer::render()
     dstRect.y = 0;
     dstRect.w = IMAGE_SIZE;
     dstRect.h = IMAGE_SIZE;
-    SDL_RenderCopyEx( app->SDLRenderer, texture, &srcRect, &dstRect, angle, NULL, SDL_FLIP_NONE );
+    SDL_RenderCopyEx( app->SDLRenderer, spinnerTextureArray[0], &srcRect, &dstRect, angle, NULL, SDL_FLIP_NONE );
+    dstRect.w = IMAGE_SIZE/2;
+    dstRect.h = IMAGE_SIZE/2;
+    SDL_RenderCopyEx( app->SDLRenderer, spinnerTextureArray[1], &srcRect, &dstRect, angle*3, NULL, SDL_FLIP_NONE );
     /*int SDL_RenderCopyEx(SDL_Renderer*          renderer,
      SDL_Texture*           texture,
      const SDL_Rect*        srcrect,
@@ -69,12 +74,15 @@ void MCRenderer::render()
 }
 
 
-
+///////////////////////////////////////////////////////////////////
 void MCRenderer::loadTextures()
 {
     loadTexture( "media/images/pattern0.jpg", 0 );
+    loadTexture( "media/images/pattern1.jpg", 1 );
 }
 
+
+//////////////////////////////////////////////////////////////////////////////////////////
 void MCRenderer::loadTexture( const std::string imageFilename, int arrayPosition )
 {
     //---------------------
@@ -99,15 +107,15 @@ void MCRenderer::loadTexture( const std::string imageFilename, int arrayPosition
     }
     
     // CREATE TEXTURE FROM JPEG SURFACE
-    texture = SDL_CreateTextureFromSurface( app->SDLRenderer, bmp_surface );
-    if( texture == 0 ) 
+    spinnerTextureArray[arrayPosition] = SDL_CreateTextureFromSurface( app->SDLRenderer, bmp_surface );
+    if( spinnerTextureArray[arrayPosition] == 0 ) 
     {
         printf( "TEXTURE CREATION FAILED\n" );
     }
     else
     {
         printf( "TEXTURE CREATED!!!!\n" );
-        SDL_SetTextureBlendMode(texture, SDL_BLENDMODE_BLEND);  
+        SDL_SetTextureBlendMode( spinnerTextureArray[arrayPosition], SDL_BLENDMODE_BLEND );  
     }
     
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

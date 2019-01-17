@@ -1,7 +1,8 @@
 // mc_renderer.hpp
 ///////////////////////////////////////////////////////////////////////////////////
 
-#include <vector>
+#include <string>
+#include <map>
 #include "SDL.h"
 
 
@@ -20,10 +21,9 @@ private:
     // ~  ~  ~  ~  ~  ~  ~  ~  
     int frameCount = 0;
     long long startTimeMSec = 0;
-    SDL_Texture *texture = NULL;
     // ~  ~  ~  ~  ~  ~  ~  ~  
-    std::vector<SDL_Texture*> spinnerTextureArray;
-    std::vector<bool> spinnerTextureArrayLoaded;
+    std::map<int, SDL_Texture*> spinnerTextureArray;
+    std::map<int, bool> spinnerTextureArrayLoaded;
     // ~  ~  ~  ~  ~  ~  ~  ~  
     void loadTexture( const std::string imageFilename, int arrayPosition );
 
