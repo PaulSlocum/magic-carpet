@@ -1,10 +1,9 @@
 // mc_renderer.cpp
 ////////////////////////////////////////////////////////////////////////
 
+#include <math.h>
 #include "SDL.h"
-
 #include "ujpeg.h"
-
 #include "mc_renderer.hpp"
 #include "mc_application.hpp"
 #include "mc_util.hpp"
@@ -15,6 +14,11 @@
 MCRenderer::MCRenderer( MCApplication* newApp )
 {
     app = newApp;
+    
+    int nWidth = 800;
+    int nHeight = 400;
+    softSurface = SDL_CreateRGBSurface( 0, nWidth, nHeight, 32, 0, 0, 0, 0 );
+    softRenderer = SDL_CreateSoftwareRenderer( softSurface );
 }
 
 
@@ -27,17 +31,13 @@ MCRenderer::~MCRenderer()
 
 
 
-/////////////////////////////////////////////////////////////////////////////////////
-void MCRenderer::render()
+////////////////////////////////////////////////////////////////////////////////////////////////
+void MCRenderer::drawSpinner( MCSpinner spinnerToDraw )
 {
-    frameCount++;
-
-    // CLEAR THE SCREEN
-    SDL_RenderClear( app->SDLRenderer );
-    
     // DRAW RUG IMAGE ON SCREEN ROTATED
     static float angle;
-    angle = frameCount * 10.1;
+    angle = frameCount * 30.1;
+    //float angle = spinnerToDraw.rotationPosition;
     const int IMAGE_SIZE = 512;
     SDL_Rect srcRect;
     SDL_Rect dstRect;
@@ -46,33 +46,41 @@ void MCRenderer::render()
     srcRect.y = 0;
     srcRect.w = IMAGE_SIZE;
     srcRect.h = IMAGE_SIZE;
-    dstRect.x = (frameCount % app->screenSize.w) - IMAGE_SIZE/2;
+    //dstRect.x = (frameCount % app->screenSize.w) - IMAGE_SIZE/2;
+    dstRect.x = 0;
     dstRect.y = 0;
-    dstRect.w = IMAGE_SIZE;
-    dstRect.h = IMAGE_SIZE;
+    //dstRect.w = IMAGE_SIZE;
+    //dstRect.h = IMAGE_SIZE;
+    dstRect.w = app->screenSize.w/1;
+    dstRect.h = app->screenSize.w/1;
+    //SDL_RenderCopyEx( softRenderer, spinnerTextureArray[0], &srcRect, &dstRect, angle, NULL, SDL_FLIP_NONE );
     SDL_RenderCopyEx( app->SDLRenderer, spinnerTextureArray[0], &srcRect, &dstRect, angle, NULL, SDL_FLIP_NONE );
-    dstRect.x += IMAGE_SIZE/4;
-    dstRect.y += IMAGE_SIZE/4;
-    dstRect.w = IMAGE_SIZE/2;
-    dstRect.h = IMAGE_SIZE/2;
-    SDL_RenderCopyEx( app->SDLRenderer, spinnerTextureArray[1], &srcRect, &dstRect, angle*2.3, NULL, SDL_FLIP_NONE );
-    /*int SDL_RenderCopyEx(SDL_Renderer*          renderer,
-     SDL_Texture*           texture,
-     const SDL_Rect*        srcrect,
-     const SDL_Rect*        dstrect,
-     const double           angle,
-     const SDL_Point*       center,
-     const SDL_RendererFlip flip) //*/
+}
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////
+void MCRenderer::render()
+{
+    frameCount++;
+
+    // CLEAR THE SCREEN
+    SDL_RenderClear( app->SDLRenderer );
     
-    // RENDER! -- THIS FUNCTION BLOCKS UNTIL VSYNC IF VSYNC IS ENABLED / WORKS ON THE SYSTEM
+    // DRAW SPINNERS
+    drawSpinner( app->spinnerArray[0] );
+    drawSpinner( app->spinnerArray[1] );
+    
+    // RENDER! -- THIS FUNCTION BLOCKS UNTIL VSYNC IF VSYNC IS ENABLED AND WORKS ON THE PLATFORM (CURRENTLY DOES NOT WORK ON RPI)
     SDL_RenderPresent( app->SDLRenderer );
     
-    //-------------------------------------------------------
+    // UPDATE TIMER
     if( startTimeMSec == 0 )
        startTimeMSec = getCurrentTimeMSec();
+    
+    // DEBUG!!!  SHOW FPS
     if( frameCount % 60 == 0 )
         printf( "FPS: %f\n",  frameCount * 1000.0 / ( getCurrentTimeMSec() - startTimeMSec )  );
-    
 }
 
 

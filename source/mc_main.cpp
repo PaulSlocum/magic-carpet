@@ -12,12 +12,11 @@
 //=======================================================================
 int main( int argc __attribute__ ((unused)), char *argv[] __attribute__ ((unused)) )
 {
-    printf( "-----------------------\n" );
-    printf( "M A G I C   C A R P E T \n" );
-    printf( "-----------------------\n" );
+    printf( "----------------------- \nM A G I C   C A R P E T \n----------------------- \n" );
     
     MCApplication magicCarpetApp;
     magicCarpetApp.start();
 
     return 0;
 }
+

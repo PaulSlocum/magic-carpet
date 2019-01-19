@@ -1,6 +1,4 @@
 // mc_application.hpp
-//
-// THE TOP LEVEL CLASS FOR THE MAGIC CARPET APPLICATION
 //////////////////////////////////////////////////////////////////////////////
 
 #ifndef MC_APPLICATION_HPP
@@ -8,8 +6,10 @@
 
 #include <map>
 #include "SDL.h"
+#include "mc_spinner.hpp"
 
 class MCRenderer;
+class MCGame;
 
 #define FRAMES_PER_SECOND 60.0
 
@@ -17,22 +17,12 @@ class MCRenderer;
 enum class AppMode { STOPPED, LOADING, MENU, RUNNING };
 
 
-// SPINNER STRUCT -----------------------------
-// Structure to track of spinning patterns
-struct spinnerStruct {
-    bool active;
-    int texture;
-    int xPosition;
-    int yPosition;
-    float rotationPosition;
-    float rotationRate;
-    float size;
-};
+
 
 
 // TOUCH STRUCT -----------------------------
 // structure to track multiple touches
-struct touchStruct {
+struct TouchStruct {
     long frameCountOfLastRefresh;
     //UITouch* touch;
     float x;
@@ -57,14 +47,16 @@ public:
     SDL_Rect screenSize;
     bool vsyncEnabled = false;
     // ~  ~  ~  ~  ~  ~  ~  ~
-    std::map<int, spinnerStruct> spinnerArray;
-    std::map<int, touchStruct> touchArray;
+    std::map<int,MCSpinner> spinnerArray;
+    std::map<int,TouchStruct> touchArray;
 
 private:
     void runLoop();
     // ~  ~  ~  ~  ~  ~  ~  ~  
     MCRenderer* renderer;
+    MCGame* game;
     SDL_Window *window;
+    // ~  ~  ~  ~  ~  ~  ~  ~  
     bool isQuitting = false;
     AppMode mode = AppMode::STOPPED;
 };

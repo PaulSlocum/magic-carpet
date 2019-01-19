@@ -16,6 +16,7 @@
 		EB2560BA21E8F2E8007DC439 /* media in Resources */ = {isa = PBXBuildFile; fileRef = EB2560B921E8F2E7007DC439 /* media */; };
 		EB27A15C21F0E3FB0082D1C2 /* mc_spinner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EB27A15A21F0E3FB0082D1C2 /* mc_spinner.cpp */; };
 		EB27A15E21F0E4170082D1C2 /* makefile in Sources */ = {isa = PBXBuildFile; fileRef = EB27A15D21F0E4160082D1C2 /* makefile */; };
+		EB27A16221F1644C0082D1C2 /* mc_game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EB27A16021F1644C0082D1C2 /* mc_game.cpp */; };
 		EBC84AC321E956EA0039B60F /* mc_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EBC84ABD21E956EA0039B60F /* mc_util.cpp */; };
 		EBC84AC521E967810039B60F /* mcNotes.txt in Resources */ = {isa = PBXBuildFile; fileRef = EBC84AC421E967810039B60F /* mcNotes.txt */; };
 		EBC84ACA21EA94190039B60F /* ujpeg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EBC84AC921EA94190039B60F /* ujpeg.cpp */; };
@@ -64,6 +65,8 @@
 		EB27A15A21F0E3FB0082D1C2 /* mc_spinner.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mc_spinner.cpp; path = ../source/mc_spinner.cpp; sourceTree = "<group>"; };
 		EB27A15B21F0E3FB0082D1C2 /* mc_spinner.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = mc_spinner.hpp; path = ../source/mc_spinner.hpp; sourceTree = "<group>"; };
 		EB27A15D21F0E4160082D1C2 /* makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; name = makefile; path = ../makefile; sourceTree = "<group>"; };
+		EB27A16021F1644C0082D1C2 /* mc_game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mc_game.cpp; path = ../source/mc_game.cpp; sourceTree = "<group>"; };
+		EB27A16121F1644C0082D1C2 /* mc_game.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = mc_game.hpp; path = ../source/mc_game.hpp; sourceTree = "<group>"; };
 		EBC84ABD21E956EA0039B60F /* mc_util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mc_util.cpp; path = ../source/mc_util.cpp; sourceTree = "<group>"; };
 		EBC84AC421E967810039B60F /* mcNotes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = mcNotes.txt; path = ../mcNotes.txt; sourceTree = "<group>"; };
 		EBC84AC921EA94190039B60F /* ujpeg.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ujpeg.cpp; path = ../source/ujpeg.cpp; sourceTree = "<group>"; };
@@ -123,7 +126,7 @@
 				EBC84AC421E967810039B60F /* mcNotes.txt */,
 				EB27A15D21F0E4160082D1C2 /* makefile */,
 				944A65681957463F0094A81E /* SDL.xcodeproj */,
-				29B97315FDCFA39411CA2CEA /* Sources */,
+				29B97315FDCFA39411CA2CEA /* Source */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
@@ -131,23 +134,24 @@
 			name = CustomTemplate;
 			sourceTree = "<group>";
 		};
-		29B97315FDCFA39411CA2CEA /* Sources */ = {
+		29B97315FDCFA39411CA2CEA /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				EB27A15A21F0E3FB0082D1C2 /* mc_spinner.cpp */,
-				EB27A15B21F0E3FB0082D1C2 /* mc_spinner.hpp */,
-				EB27A15921EF17080082D1C2 /* mc_texture_list.hpp */,
-				EBC84AD321EDAF670039B60F /* mc_renderer.cpp */,
-				EBC84AD421EDAF670039B60F /* mc_renderer.hpp */,
+				EB27A15F21F1641A0082D1C2 /* Libraries */,
 				EBC84AD021ED47F30039B60F /* mc_application.cpp */,
 				EBC84ACF21ED47F30039B60F /* mc_application.hpp */,
+				EBC84AD321EDAF670039B60F /* mc_renderer.cpp */,
+				EBC84AD421EDAF670039B60F /* mc_renderer.hpp */,
+				EB27A16021F1644C0082D1C2 /* mc_game.cpp */,
+				EB27A16121F1644C0082D1C2 /* mc_game.hpp */,
+				EB27A15A21F0E3FB0082D1C2 /* mc_spinner.cpp */,
+				EB27A15B21F0E3FB0082D1C2 /* mc_spinner.hpp */,
 				FD77A09C0E26BDE500F39101 /* mc_main.cpp */,
 				EBC84AD121ED47F30039B60F /* mc_util.hpp */,
 				EBC84ABD21E956EA0039B60F /* mc_util.cpp */,
-				EBC84AC921EA94190039B60F /* ujpeg.cpp */,
-				EBC84ACB21EA946C0039B60F /* ujpeg.h */,
+				EB27A15921EF17080082D1C2 /* mc_texture_list.hpp */,
 			);
-			name = Sources;
+			name = Source;
 			sourceTree = "<group>";
 		};
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
@@ -202,6 +206,15 @@
 				FD77A07C0E26BD8C00F39101 /* Icon.png */,
 			);
 			name = Icon;
+			sourceTree = "<group>";
+		};
+		EB27A15F21F1641A0082D1C2 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				EBC84AC921EA94190039B60F /* ujpeg.cpp */,
+				EBC84ACB21EA946C0039B60F /* ujpeg.h */,
+			);
+			name = Libraries;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -304,6 +317,7 @@
 				FD77A09D0E26BDE500F39101 /* mc_main.cpp in Sources */,
 				EBC84AD221ED47F40039B60F /* mc_application.cpp in Sources */,
 				EB27A15C21F0E3FB0082D1C2 /* mc_spinner.cpp in Sources */,
+				EB27A16221F1644C0082D1C2 /* mc_game.cpp in Sources */,
 				EBC84AD521EDAF670039B60F /* mc_renderer.cpp in Sources */,
 				EBC84AC321E956EA0039B60F /* mc_util.cpp in Sources */,
 			);

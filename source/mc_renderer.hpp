@@ -4,6 +4,7 @@
 #include <string>
 #include <map>
 #include "SDL.h"
+#include "mc_spinner.hpp"
 
 
 class MCApplication;
@@ -26,7 +27,10 @@ private:
     std::map<int, bool> spinnerTextureArrayLoaded;
     // ~  ~  ~  ~  ~  ~  ~  ~  
     void loadTexture( const std::string imageFilename, int arrayPosition );
+    void drawSpinner( MCSpinner spinnerToDraw );
 
+    SDL_Surface *softSurface;
+    SDL_Renderer *softRenderer;
     
     /* TEXTURES
     GLuint spinnerTextureArray[kMaxSpinnerTextures];

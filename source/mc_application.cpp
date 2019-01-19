@@ -6,12 +6,12 @@
 #include "mc_application.hpp"
 #include "mc_renderer.hpp"
 #include "mc_util.hpp"
+#include "mc_game.hpp"
 
 
 
 
 
-#pragma mark CONSTRUCTOR / DESTRUCTOR ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~  
 
 
 //////////////////////////////////////////////////////////////////////////////////////
@@ -22,6 +22,7 @@ MCApplication::MCApplication()
     srand( (unsigned int) time(NULL) );
     
     renderer = new MCRenderer( this );
+    game = new MCGame( this );
 }
 
 
@@ -34,14 +35,13 @@ MCApplication::~MCApplication()
 
 
 
-#pragma mark START / STOP  ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ 
-
 
 
 
 /////////////////////////////////////////////////////////////////////////////////////
 // THIS FUNCTION BLOCKS UNTIL THE APPLICATION CLOSES OR stop() IS CALLED.
 // SINCE CURRENTLY THERE IS NO COMMAND INTERNALLY TO CLOSE THE PROGRAM, stop() SHOULD PROBABLY BE IMPLEMENTED WITHIN MAIN
+// ...ALTHOUGH -- DOES SDL ALREADY IMPLEMENT THE CTRL-C INTERRUPT AND GENERATE A "QUIT" COMMAND?
 void MCApplication::start()
 {
     mode = AppMode::LOADING;
@@ -57,37 +57,49 @@ void MCApplication::start()
 
     // SET IOS ALLOWED ORIENTATIONS
     SDL_SetHint( SDL_HINT_ORIENTATIONS, "LandscapeLeft LandscapeRight" );
-    
+
     SDL_GetDisplayBounds( 0, &screenSize );
     printf( "SCREEN SIZE: %d x %d \n", screenSize.w, screenSize.h );
     
     // CREATE SDL WINDOW
-    window = SDL_CreateWindow( NULL, 0, 0, screenSize.w, screenSize.h, SDL_WINDOW_OPENGL );
+    window = SDL_CreateWindow( NULL, 0, 0, screenSize.w, screenSize.h, SDL_WINDOW_FULLSCREEN );
+    //window = SDL_CreateWindow( NULL, 0, 0, screenSize.w, screenSize.h, SDL_WINDOW_OPENGL );
+    
     if( !window ) 
     {
         printf("Could not initialize Window\n");
         return;
     }
+
+    // DEBUG! - SET WINDOW SIZE?
+    //SDL_SetWindowSize( window, 500, 250 ); 
     
     // CREATE SDL RENDERED IN WINDOW
     SDLRenderer = SDL_CreateRenderer( window, -1, 0 );
-    if( !renderer ) 
+    if( !SDLRenderer ) 
     {
         printf("Could not create renderer\n");
         return;
     }
 
+    // DEBUG! - SET WINDOW SIZE? SCALE?
+    // NOTE: THE PROBLEM IS THAT THESE ALWAYS LETTERBOX AND THERE DOESN'T SEEM TO BE A WAY TO CHANGE THAT
+    //SDL_RenderSetLogicalSize( SDLRenderer, 500, 1000 );
+    //SDL_RenderSetScale( SDLRenderer, 1.0, 0.2 ); 
+    
 #ifdef PLATFORM_RPI
     vsyncEnabled = false;
 #else
     vsyncEnabled = true;
 #endif    
     
+    // RUN LOOP BLOCKS UNTIL PROGRAM IS FINISHED...
     runLoop();
     
     // QUIT SDL
     SDL_Quit();
 }
+
 
 
 
@@ -100,8 +112,6 @@ void MCApplication::stop()
 
 
 
-
-#pragma mark RUN LOOP ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ 
 
 
 /////////////////////////////////////////////////////////////////////////////////////
@@ -132,11 +142,14 @@ void MCApplication::runLoop()
                 mode = AppMode::MENU;
             }
             if( mode == AppMode::MENU || mode == AppMode::RUNNING )
+            {
+                game->updateFrame();
                 renderer->render();
+            }
             timeOfNextFrameMSec = getCurrentTimeMSec() + 1000.0/FRAMES_PER_SECOND;
         }
 
-        SDL_Delay(1);
+        SDL_Delay(2);
     }
 }
 
