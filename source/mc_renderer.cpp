@@ -7,7 +7,7 @@
 #include "mc_renderer.hpp"
 #include "mc_application.hpp"
 #include "mc_util.hpp"
-
+#include "mc_texture_list.hpp"
 
 
 //////////////////////////////////////////////////////////////////////////////////////
@@ -87,8 +87,11 @@ void MCRenderer::render()
 ///////////////////////////////////////////////////////////////////
 void MCRenderer::loadTextures()
 {
-    loadTexture( "media/images/pattern0.jpg", 0 );
-    loadTexture( "media/images/pattern1.jpg", 1 );
+    for( int i=0; i<TEXTURE_LOAD_LIST_LENGTH; i++ )
+    {
+        if( TEXTURE_LOAD_LIST[i].isUsed == true )
+            loadTexture( TEXTURE_LOAD_LIST[i].filename, TEXTURE_LOAD_LIST[i].textureSlot );
+    }
 }
 
 
@@ -98,7 +101,7 @@ void MCRenderer::loadTexture( const std::string imageFilename, int arrayPosition
     //---------------------
     // LOAD JPEG
     uJPEG jpeg;
-    std::string imageFilenameWithPath = stdprintf( "%s%s", SDL_GetBasePath(), imageFilename.c_str() );
+    std::string imageFilenameWithPath = stdprintf( "%smedia/images/%s", SDL_GetBasePath(), imageFilename.c_str() );
     printf( "FILE PATH: %s\n", imageFilenameWithPath.c_str() );
     SDL_Surface *bmp_surface = NULL;
     jpeg.decodeFile( imageFilenameWithPath.c_str() );

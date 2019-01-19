@@ -61,12 +61,12 @@
 		944A65681957463F0094A81E /* SDL.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SDL.xcodeproj; path = "../lib/sdl/Xcode-iOS/SDL/SDL.xcodeproj"; sourceTree = "<group>"; };
 		945C4F52195AF17F00DBBF61 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		EB2560B921E8F2E7007DC439 /* media */ = {isa = PBXFileReference; lastKnownFileType = folder; name = media; path = ../media; sourceTree = "<group>"; };
-		EB27A15921EF17080082D1C2 /* mc_texture_list.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = mc_texture_list.hpp; path = ../source/mc_texture_list.hpp; sourceTree = "<group>"; };
 		EB27A15A21F0E3FB0082D1C2 /* mc_spinner.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mc_spinner.cpp; path = ../source/mc_spinner.cpp; sourceTree = "<group>"; };
 		EB27A15B21F0E3FB0082D1C2 /* mc_spinner.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = mc_spinner.hpp; path = ../source/mc_spinner.hpp; sourceTree = "<group>"; };
 		EB27A15D21F0E4160082D1C2 /* makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; name = makefile; path = ../makefile; sourceTree = "<group>"; };
 		EB27A16021F1644C0082D1C2 /* mc_game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mc_game.cpp; path = ../source/mc_game.cpp; sourceTree = "<group>"; };
 		EB27A16121F1644C0082D1C2 /* mc_game.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = mc_game.hpp; path = ../source/mc_game.hpp; sourceTree = "<group>"; };
+		EB27A16521F36EDB0082D1C2 /* mc_texture_list.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = mc_texture_list.hpp; path = ../source/mc_texture_list.hpp; sourceTree = "<group>"; };
 		EBC84ABD21E956EA0039B60F /* mc_util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mc_util.cpp; path = ../source/mc_util.cpp; sourceTree = "<group>"; };
 		EBC84AC421E967810039B60F /* mcNotes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = mcNotes.txt; path = ../mcNotes.txt; sourceTree = "<group>"; };
 		EBC84AC921EA94190039B60F /* ujpeg.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ujpeg.cpp; path = ../source/ujpeg.cpp; sourceTree = "<group>"; };
@@ -149,7 +149,7 @@
 				FD77A09C0E26BDE500F39101 /* mc_main.cpp */,
 				EBC84AD121ED47F30039B60F /* mc_util.hpp */,
 				EBC84ABD21E956EA0039B60F /* mc_util.cpp */,
-				EB27A15921EF17080082D1C2 /* mc_texture_list.hpp */,
+				EB27A16521F36EDB0082D1C2 /* mc_texture_list.hpp */,
 			);
 			name = Source;
 			sourceTree = "<group>";
