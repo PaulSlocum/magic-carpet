@@ -14,4 +14,5 @@ public:
     
 private:
     MCApplication* app;
+    int frameCount = 0;
 };

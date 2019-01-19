@@ -27,7 +27,7 @@ private:
     std::map<int, bool> spinnerTextureArrayLoaded;
     // ~  ~  ~  ~  ~  ~  ~  ~  
     void loadTexture( const std::string imageFilename, int arrayPosition );
-    void drawSpinner( MCSpinner spinnerToDraw );
+    void drawSpinner( MCSpinner spinner );
 
     SDL_Surface *softSurface;
     SDL_Renderer *softRenderer;

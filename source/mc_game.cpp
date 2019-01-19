@@ -3,6 +3,7 @@
 
 
 #include "mc_game.hpp"
+#include "mc_application.hpp"
 
 
 
@@ -25,6 +26,31 @@ MCGame::~MCGame()
 //////////////////////////////////////////////////////////////////////////////////////
 void MCGame::updateFrame()
 {
+    frameCount++;
+    
+    app->spinnerArray[0].rotationPosition = frameCount * 30.1;
+    app->spinnerArray[1].rotationPosition = frameCount * 19.1;
+    app->spinnerArray[1].size = 0.5;
+    app->spinnerArray[1].texture = 1;
+    
+    // DEBUG -- ANY ANIMATION SHOULD REALLY BE DONE IN THE 'GAME' CLASS
+    /*static float angle;
+    angle = frameCount * 30.1;
+    static float size;
+    size += 0.001;
+    if( size>1.3 ) size = 0.0;
+    size = 0.25;
+    static float xOffset;
+    xOffset += 0.002;
+    if( xOffset>0.8 ) xOffset = 0.2;
+    static float yOffset;
+    //yOffset += 0.001;
+    //if( yOffset>1.2 ) yOffset = -1.0;
+    yOffset = 0.5; //*/
+    // \/    \/    \/    \/    \/ //    
+    
+
+    
     /*
     // GET CURRENT ELAPSED TIME IN FRAMES
     float framesPerFrame = (displayID.timestamp - lastTimestamp)*60.0;

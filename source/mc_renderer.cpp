@@ -32,24 +32,8 @@ MCRenderer::~MCRenderer()
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
-void MCRenderer::drawSpinner( MCSpinner spinnerToDraw )
+void MCRenderer::drawSpinner( MCSpinner spinner )
 {
-    // DEBUG -- ANY ANIMATION SHOULD REALLY BE DONE IN THE 'GAME' CLASS
-    static float angle;
-    angle = frameCount * 30.1;
-    static float size;
-    size += 0.001;
-    if( size>1.3 ) size = 0.0;
-    size = 0.25;
-    static float xOffset;
-    xOffset += 0.002;
-    if( xOffset>0.8 ) xOffset = 0.2;
-    static float yOffset;
-    //yOffset += 0.001;
-    //if( yOffset>1.2 ) yOffset = -1.0;
-    yOffset = 0.5;
-    // \/    \/    \/    \/    \/ //    
-
     //float angle = spinnerToDraw.rotationPosition;
     const int IMAGE_WIDTH = 512; // <-- TODO: THESE SHOULD GET THE ACTUAL IMAGE SIZE PROGAMATICALLY
     const int IMAGE_HEIGHT = 512;
@@ -61,13 +45,13 @@ void MCRenderer::drawSpinner( MCSpinner spinnerToDraw )
     srcRect.x = 0;
     srcRect.y = 0;
     // ~~  -  ~~  -  ~~  -  ~~  -  
-    dstRect.w = app->screenWidth * size;
-    dstRect.h = app->screenWidth * size;
-    dstRect.x = (app->screenWidth - dstRect.w) / 2 + ( (xOffset-0.5) * 2 * app->screenWidth);
-    dstRect.y = (app->screenHeight - dstRect.h) / 2 + ( (yOffset-0.5) * 2 * app->screenHeight);
+    dstRect.w = app->screenWidth * spinner.size;
+    dstRect.h = app->screenWidth * spinner.size;
+    dstRect.x = (app->screenWidth - dstRect.w) / 2 + ( (spinner.xPosition-0.5) * 2 * app->screenWidth);
+    dstRect.y = (app->screenHeight - dstRect.h) / 2 + ( (spinner.yPosition-0.5) * 2 * app->screenHeight);
 
     //SDL_RenderCopyEx( softRenderer, spinnerTextureArray[0], &srcRect, &dstRect, angle, NULL, SDL_FLIP_NONE );
-    SDL_RenderCopyEx( app->SDLRenderer, spinnerTextureArray[0], &srcRect, &dstRect, angle, NULL, SDL_FLIP_NONE );
+    SDL_RenderCopyEx( app->SDLRenderer, spinnerTextureArray[ spinner.texture ], &srcRect, &dstRect, spinner.rotationPosition, NULL, SDL_FLIP_NONE );
 }
 
 
