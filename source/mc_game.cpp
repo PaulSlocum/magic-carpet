@@ -28,10 +28,19 @@ void MCGame::updateFrame()
 {
     frameCount++;
     
+    app->spinnerArray[0].active = true;
     app->spinnerArray[0].rotationPosition = frameCount * 30.1;
+    
+    app->spinnerArray[1].texture = 0;
+    app->spinnerArray[1].active = true;
     app->spinnerArray[1].rotationPosition = frameCount * 19.1;
     app->spinnerArray[1].size = 0.5;
     app->spinnerArray[1].texture = 1;
+    
+    app->spinnerArray[2].active = true;
+    app->spinnerArray[2].rotationPosition = frameCount * 49.1;
+    app->spinnerArray[2].size = 0.2;
+    app->spinnerArray[2].texture = 1;
     
     // DEBUG -- ANY ANIMATION SHOULD REALLY BE DONE IN THE 'GAME' CLASS
     /*static float angle;

@@ -65,8 +65,11 @@ void MCRenderer::render()
     SDL_RenderClear( app->SDLRenderer );
     
     // DRAW SPINNERS
-    drawSpinner( app->spinnerArray[0] );
-    drawSpinner( app->spinnerArray[1] );
+    for( int spinnerNumber=0; spinnerNumber<MAX_ACTIVE_SPINNERS; spinnerNumber++ )
+    {
+        if( app->spinnerArray[spinnerNumber].active == true )
+            drawSpinner( app->spinnerArray[ spinnerNumber ] );
+    }
     
     // RENDER! -- THIS FUNCTION BLOCKS UNTIL VSYNC IF VSYNC IS ENABLED AND WORKS ON THE PLATFORM (CURRENTLY DOES NOT WORK ON RPI)
     SDL_RenderPresent( app->SDLRenderer );
