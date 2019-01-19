@@ -29,11 +29,13 @@ LDLIBS := -L/opt/vc/lib \
 
 #############################################################################
 
-srcfiles := source/mc_util.cpp source/mc_main.cpp source/mc_renderer.cpp\
- source/mc_application.cpp source/ujpeg.cpp source/mc_spinner.cpp
+srcfiles := source/mc_util.cpp source/mc_main.cpp source/mc_renderer.cpp \
+ source/mc_application.cpp source/ujpeg.cpp source/mc_spinner.cpp \
+ source/mc_game.cpp
 
-objects := source/mc_util.o source/mc_main.o source/mc_renderer.o\
- source/mc_application.o source/ujpeg.o source/mc_spinner.o
+objects := source/mc_util.o source/mc_main.o source/mc_renderer.o \
+ source/mc_application.o source/ujpeg.o source/mc_spinner.o \
+ source/mc_game.o
 
 #############################################################################
 
