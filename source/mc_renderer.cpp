@@ -40,13 +40,14 @@ void MCRenderer::drawSpinner( MCSpinner spinnerToDraw )
     static float size;
     size += 0.001;
     if( size>1.3 ) size = 0.0;
-    //size = 0.25;
+    size = 0.25;
     static float xOffset;
-    xOffset += 0.01;
-    if( xOffset>1.2 ) xOffset = -1.0;
+    xOffset += 0.002;
+    if( xOffset>0.8 ) xOffset = 0.2;
     static float yOffset;
-    yOffset += 0.001;
-    if( yOffset>1.2 ) yOffset = -1.0;
+    //yOffset += 0.001;
+    //if( yOffset>1.2 ) yOffset = -1.0;
+    yOffset = 0.5;
     // \/    \/    \/    \/    \/ //    
 
     //float angle = spinnerToDraw.rotationPosition;
@@ -62,8 +63,8 @@ void MCRenderer::drawSpinner( MCSpinner spinnerToDraw )
     // ~~  -  ~~  -  ~~  -  ~~  -  
     dstRect.w = app->screenWidth * size;
     dstRect.h = app->screenWidth * size;
-    dstRect.x = (app->screenWidth - dstRect.w) / 2 + (xOffset * app->screenWidth);
-    dstRect.y = (app->screenHeight - dstRect.h) / 2 + (yOffset * app->screenHeight);
+    dstRect.x = (app->screenWidth - dstRect.w) / 2 + ( (xOffset-0.5) * 2 * app->screenWidth);
+    dstRect.y = (app->screenHeight - dstRect.h) / 2 + ( (yOffset-0.5) * 2 * app->screenHeight);
 
     //SDL_RenderCopyEx( softRenderer, spinnerTextureArray[0], &srcRect, &dstRect, angle, NULL, SDL_FLIP_NONE );
     SDL_RenderCopyEx( app->SDLRenderer, spinnerTextureArray[0], &srcRect, &dstRect, angle, NULL, SDL_FLIP_NONE );
