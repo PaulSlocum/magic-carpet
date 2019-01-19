@@ -51,8 +51,8 @@ void MCRenderer::drawSpinner( MCSpinner spinnerToDraw )
     dstRect.y = 0;
     //dstRect.w = IMAGE_SIZE;
     //dstRect.h = IMAGE_SIZE;
-    dstRect.w = app->screenSize.w/1;
-    dstRect.h = app->screenSize.w/1;
+    dstRect.w = app->screenWidth;
+    dstRect.h = app->screenWidth;
     //SDL_RenderCopyEx( softRenderer, spinnerTextureArray[0], &srcRect, &dstRect, angle, NULL, SDL_FLIP_NONE );
     SDL_RenderCopyEx( app->SDLRenderer, spinnerTextureArray[0], &srcRect, &dstRect, angle, NULL, SDL_FLIP_NONE );
 }

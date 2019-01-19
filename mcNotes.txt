@@ -15,18 +15,20 @@ x figure out how to deal with orientation
 x get 60fps callback working
 x port spinner array
 x review mc_util #includes to remove unnecessary includes
+x make spinners a class
+x make spinners able to draw themselves, or at least able to provide all data necessary for drawing?
+x port texture loading
 ~~ + ~~ + ~~ + ~~ + ~~ + ~~ + ~~ + ~~ + 
 
 
 TODO:
 ~- ~- ~- ~- ~- ~- ~- ~- ~-
-- make spinners a class
-- make spinners able to draw themselves, or at least able to provide all data necessary for drawing?
+- fix reversed screen height/width
 -  ~  -  ~  -  ~  -  ~  
-- port texture loading
 - load all textures
 - port spinner renderer
--  ~  -  ~  -  ~  -  ~  
+-  ~  -  ~  -  ~  -  ~
+- make textures load from a list
 ~- ~- ~- ~- ~- ~- ~- ~- ~- 
 
 /\/\/\/\/\/\/\/\/\/\/\/\/\/\/\

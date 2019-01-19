@@ -58,9 +58,10 @@ void MCApplication::start()
     // SET IOS ALLOWED ORIENTATIONS
     SDL_SetHint( SDL_HINT_ORIENTATIONS, "LandscapeLeft LandscapeRight" );
 
+    SDL_Rect screenSize;
     SDL_GetDisplayBounds( 0, &screenSize );
-    printf( "SCREEN SIZE: %d x %d \n", screenSize.w, screenSize.h );
-    
+    printf( "DISPLAY BOUNDS: %d x %d \n", screenSize.w, screenSize.h );
+
     // CREATE SDL WINDOW
     window = SDL_CreateWindow( NULL, 0, 0, screenSize.w, screenSize.h, SDL_WINDOW_FULLSCREEN );
     //window = SDL_CreateWindow( NULL, 0, 0, screenSize.w, screenSize.h, SDL_WINDOW_OPENGL );
@@ -82,6 +83,15 @@ void MCApplication::start()
         return;
     }
 
+    //SDL_Rect screenSize;
+    //SDL_GetDisplayBounds( 0, &screenSize );
+    SDL_GetWindowSize( window, &screenWidth, &screenHeight );
+    //screenWidth = screenSize.h; // <--- NOT SURE WHY, BUT SDL HEIGHT AND WIDTH ARE REVERSED
+    //screenHeight = screenSize.w; 
+    //printf( "SCREEN SIZE: %d x %d \n", screenSize.w, screenSize.h );
+    printf( "WINDOW SIZE: %d x %d \n", screenWidth, screenHeight );
+    exit(1);
+    
     // DEBUG! - SET WINDOW SIZE? SCALE?
     // NOTE: THE PROBLEM IS THAT THESE ALWAYS LETTERBOX AND THERE DOESN'T SEEM TO BE A WAY TO CHANGE THAT
     //SDL_RenderSetLogicalSize( SDLRenderer, 500, 1000 );

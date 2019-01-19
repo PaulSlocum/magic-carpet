@@ -44,7 +44,8 @@ public:
     ~MCApplication();
     // ~  ~  ~  ~  ~  ~  ~  ~  
     SDL_Renderer *SDLRenderer = NULL;
-    SDL_Rect screenSize;
+    int screenWidth = 0;
+    int screenHeight = 0;
     bool vsyncEnabled = false;
     // ~  ~  ~  ~  ~  ~  ~  ~
     std::map<int,MCSpinner> spinnerArray;

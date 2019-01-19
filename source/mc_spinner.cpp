@@ -7,5 +7,5 @@
 
 bool MCSpinner::isTouching()
 {
-    
+    return( true );
 }
