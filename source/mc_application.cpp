@@ -90,7 +90,6 @@ void MCApplication::start()
     //screenHeight = screenSize.w; 
     //printf( "SCREEN SIZE: %d x %d \n", screenSize.w, screenSize.h );
     printf( "WINDOW SIZE: %d x %d \n", screenWidth, screenHeight );
-    exit(1);
     
     // DEBUG! - SET WINDOW SIZE? SCALE?
     // NOTE: THE PROBLEM IS THAT THESE ALWAYS LETTERBOX AND THERE DOESN'T SEEM TO BE A WAY TO CHANGE THAT
