@@ -34,25 +34,33 @@ MCRenderer::~MCRenderer()
 ////////////////////////////////////////////////////////////////////////////////////////////////
 void MCRenderer::drawSpinner( MCSpinner spinnerToDraw )
 {
-    // DRAW RUG IMAGE ON SCREEN ROTATED
+    // DEBUG -- ANY ANIMATION SHOULD REALLY BE DONE IN THE 'GAME' CLASS
     static float angle;
     angle = frameCount * 30.1;
+    static float size;
+    size += 0.001;
+    if( size>1.3 ) size = 0.0;
+    static float positionOffset;
+    positionOffset += 0.001;
+    if( size>1.5 ) size = -0.5;
+    // \/    \/    \/    \/    \/ //    
+
     //float angle = spinnerToDraw.rotationPosition;
-    const int IMAGE_SIZE = 512;
+    const int IMAGE_WIDTH = 512; // <-- TODO: THESE SHOULD GET THE ACTUAL IMAGE SIZE PROGAMATICALLY
+    const int IMAGE_HEIGHT = 512;
     SDL_Rect srcRect;
     SDL_Rect dstRect;
-    /* setup rects for drawing */
+
+    srcRect.w = IMAGE_WIDTH;
+    srcRect.h = IMAGE_HEIGHT;
     srcRect.x = 0;
     srcRect.y = 0;
-    srcRect.w = IMAGE_SIZE;
-    srcRect.h = IMAGE_SIZE;
-    //dstRect.x = (frameCount % app->screenSize.w) - IMAGE_SIZE/2;
-    dstRect.x = 0;
-    dstRect.y = 0;
-    //dstRect.w = IMAGE_SIZE;
-    //dstRect.h = IMAGE_SIZE;
-    dstRect.w = app->screenWidth;
-    dstRect.h = app->screenWidth;
+    // ~~  -  ~~  -  ~~  -  ~~  -  
+    dstRect.w = app->screenWidth * size;
+    dstRect.h = app->screenWidth * size;
+    dstRect.x = (app->screenWidth - dstRect.w) / 2;
+    dstRect.y = (app->screenHeight - dstRect.h) / 2;
+
     //SDL_RenderCopyEx( softRenderer, spinnerTextureArray[0], &srcRect, &dstRect, angle, NULL, SDL_FLIP_NONE );
     SDL_RenderCopyEx( app->SDLRenderer, spinnerTextureArray[0], &srcRect, &dstRect, angle, NULL, SDL_FLIP_NONE );
 }

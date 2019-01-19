@@ -83,15 +83,10 @@ void MCApplication::start()
         return;
     }
 
-    //SDL_Rect screenSize;
-    //SDL_GetDisplayBounds( 0, &screenSize );
     SDL_GetWindowSize( window, &screenWidth, &screenHeight );
-    //screenWidth = screenSize.h; // <--- NOT SURE WHY, BUT SDL HEIGHT AND WIDTH ARE REVERSED
-    //screenHeight = screenSize.w; 
-    //printf( "SCREEN SIZE: %d x %d \n", screenSize.w, screenSize.h );
     printf( "WINDOW SIZE: %d x %d \n", screenWidth, screenHeight );
     
-    // DEBUG! - SET WINDOW SIZE? SCALE?
+    // DEBUG! - SET RENDER WINDOW SIZE? SCALE?
     // NOTE: THE PROBLEM IS THAT THESE ALWAYS LETTERBOX AND THERE DOESN'T SEEM TO BE A WAY TO CHANGE THAT
     //SDL_RenderSetLogicalSize( SDLRenderer, 500, 1000 );
     //SDL_RenderSetScale( SDLRenderer, 1.0, 0.2 ); 
