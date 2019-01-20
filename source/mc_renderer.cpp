@@ -31,27 +31,26 @@ MCRenderer::~MCRenderer()
 
 
 
-////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
 void MCRenderer::drawSpinner( MCSpinner spinner )
 {
-    //float angle = spinnerToDraw.rotationPosition;
-    const int IMAGE_WIDTH = 512; // <-- TODO: THESE SHOULD GET THE ACTUAL IMAGE SIZE PROGAMATICALLY
-    const int IMAGE_HEIGHT = 512;
-    SDL_Rect srcRect;
+    // GET TEXTURE SIZE
+    int textureHeight;
+    int textureWidth;
+    SDL_QueryTexture( spinnerTextureArray[ spinner.texture ], NULL, NULL, &textureHeight, &textureWidth ); 
+    
+    // SETUP SOURCE/DECT RECTS FOR COPY
+    SDL_Rect srcRect = { 0, 0, textureWidth, textureHeight };
     SDL_Rect dstRect;
-
-    srcRect.w = IMAGE_WIDTH;
-    srcRect.h = IMAGE_HEIGHT;
-    srcRect.x = 0;
-    srcRect.y = 0;
-    // ~~  -  ~~  -  ~~  -  ~~  -  
     dstRect.w = app->screenWidth * spinner.size;
     dstRect.h = app->screenWidth * spinner.size;
     dstRect.x = (app->screenWidth - dstRect.w) / 2 + ( (spinner.xPosition-0.5) * 2 * app->screenWidth);
     dstRect.y = (app->screenHeight - dstRect.h) / 2 + ( (spinner.yPosition-0.5) * 2 * app->screenHeight);
 
-    //SDL_RenderCopyEx( softRenderer, spinnerTextureArray[0], &srcRect, &dstRect, angle, NULL, SDL_FLIP_NONE );
     SDL_RenderCopyEx( app->SDLRenderer, spinnerTextureArray[ spinner.texture ], &srcRect, &dstRect, spinner.rotationPosition, NULL, SDL_FLIP_NONE );
+
+    // DEBUG - EVENTUALLY PROBABLY WANT TO CONVERT THIS RENDERER TO A RENGER TARGET
+    //SDL_RenderCopyEx( softRenderer, spinnerTextureArray[0], &srcRect, &dstRect, angle, NULL, SDL_FLIP_NONE );
 }
 
 
@@ -87,6 +86,7 @@ void MCRenderer::render()
 ///////////////////////////////////////////////////////////////////
 void MCRenderer::loadTextures()
 {
+    // LOAD TEXTURES FROM TEXTURE LIST ARRAY IN HEADER...
     for( int i=0; i<TEXTURE_LOAD_LIST_LENGTH; i++ )
     {
         if( TEXTURE_LOAD_LIST[i].isUsed == true )
@@ -139,5 +139,4 @@ void MCRenderer::loadTexture( const std::string imageFilename, int arrayPosition
     // FREE SURFACE MEMORY
     SDL_FreeSurface(bmp_surface); //*/
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    
 }

@@ -15,4 +15,5 @@ public:
 private:
     MCApplication* app;
     int frameCount = 0;
+    void loadPreset( int presetNumber );
 };

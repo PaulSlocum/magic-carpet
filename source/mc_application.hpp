@@ -22,7 +22,7 @@ enum class AppMode { STOPPED, LOADING, MENU, RUNNING };
 
 // TOUCH STRUCT -----------------------------
 // structure to track multiple touches
-struct TouchStruct {
+/*struct TouchStruct {
     long frameCountOfLastRefresh;
     //UITouch* touch;
     float x;
@@ -30,7 +30,7 @@ struct TouchStruct {
     float xStartingPoint;
     float yStartingPoint;
     float fade;
-};
+}; //*/
 
 
 
@@ -49,7 +49,7 @@ public:
     bool vsyncEnabled = false;
     // ~  ~  ~  ~  ~  ~  ~  ~
     std::map<int,MCSpinner> spinnerArray;
-    std::map<int,TouchStruct> touchArray;
+    //std::map<int,TouchStruct> touchArray;
 
 private:
     void runLoop();

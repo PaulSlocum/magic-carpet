@@ -11,9 +11,6 @@
 
 
 
-
-
-
 //////////////////////////////////////////////////////////////////////////////////////
 // CONSTRUCTOR
 MCApplication::MCApplication()
@@ -32,9 +29,6 @@ MCApplication::~MCApplication()
 {
     delete renderer;
 }
-
-
-
 
 
 

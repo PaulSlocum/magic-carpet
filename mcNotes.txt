@@ -18,17 +18,23 @@ x review mc_util #includes to remove unnecessary includes
 x make spinners a class
 x make spinners able to draw themselves, or at least able to provide all data necessary for drawing?
 x port texture loading
+x fix reversed screen height/width
+x load all textures
+x make textures load from a list
+x port spinner renderer
 ~~ + ~~ + ~~ + ~~ + ~~ + ~~ + ~~ + ~~ + 
 
 
 TODO:
 ~- ~- ~- ~- ~- ~- ~- ~- ~-
-- fix reversed screen height/width
+- fix the 3 JPEGs that won't load
 -  ~  -  ~  -  ~  -  ~  
-- load all textures
-- port spinner renderer
+- port preset loader
+- port fade in/out
+- port size fluctuations
+- port rotation and rate fluctionations
+- port preset phase cycler
 -  ~  -  ~  -  ~  -  ~
-- make textures load from a list
 ~- ~- ~- ~- ~- ~- ~- ~- ~- 
 
 /\/\/\/\/\/\/\/\/\/\/\/\/\/\/\

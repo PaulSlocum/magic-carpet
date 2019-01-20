@@ -21,12 +21,111 @@ MCGame::~MCGame()
 }
 
 
+///////////////////////////////////////////////////////////////////////////////////////
+void MCGame::loadPreset( int presetNumber )
+{
+    
+    // --   --   --   --   --   --   --   --   --   --   --   --   --   --   
+    // ORIGINAL CODE
+    
+    // set app into play mode
+    /*appMode = kAppModeRunning;
+    
+    // USE PRESET LOOKUP TABLE FOR INDEPENDENT VISUAL AND SOUND PRESETS
+    visualPreset = ROMVisualPresetOrder[presetIndex];
+    originalPresetIndex = visualPreset;
+    int tempSoundPreset = ROMSoundPresetOrder[presetIndex];
+    if( loadAudio )
+        soundPreset = tempSoundPreset;
+    
+    //===============================================================
+    // SOUND SETTINGS
+    
+    looper.vibratoLevel = ROMVibrato[tempSoundPreset];
+    looper.creepRate = ROMLoopCreepRate[tempSoundPreset];
+    looper.vibratoRate = ROMVibratoRate[tempSoundPreset];
+    looper.loopOffsetUpdateInterval = ROMLoopOffsetUpdateInterval[tempSoundPreset];
+    looper.binauralVibrato = ROMBinauralVibrato[tempSoundPreset];
+    looper.binauralVibratoRate = ROMBinauralVibratoRate[tempSoundPreset];
+    
+    // THE VOLUME SETTING is generally just to compensate for the volume of the source material, so...
+    // only set the volume when also loading a new audio file.
+    if( loadAudio )
+    {
+        looper.loopDivider = ROMloopDivider[tempSoundPreset];
+        looper.binauralPitch = ROMBinauralPitch[tempSoundPreset];
+        looper.binauralVolume = ROMBinauralVolume[tempSoundPreset];
+        looper.presetVolume = ROMVolume[tempSoundPreset];
+        looper.loopLengthInFrames = ROMLoopLength[tempSoundPreset];
+    }
+    
+    // set up initial audio status
+    for( int trackIndex=0; trackIndex<=2; trackIndex++ )
+    {
+        looper.voiceArrayPtr[trackIndex].loopOffset = 0;
+        looper.voiceArrayPtr[trackIndex].totalFrames = 0;
+        looper.voiceArrayPtr[trackIndex].loopCount = 0;
+        looper.voiceArrayPtr[trackIndex].envelope = 0.5;
+    } 
+    
+    if( appSoundMode==kAppSoundModeInstrumentA )
+        looper.loopLengthInFrames /= 4;
+    
+    // setup track 3 as an echo of track 0 
+    //looper.voiceArrayPtr[3].loopOffset = looper.voiceArrayPtr[1].loopOffset+kEchoOffset;
+    //looper.voiceArrayPtr[3].envelope = looper.voiceArrayPtr[1].envelope;
+    
+    //===============================================================
+    // VISUAL SETTINGS
+    
+    spinnerModeAdvanceRate = ROMSpinModeAdvRate[visualPreset];
+    
+    dualSpinners = ROMDualSpinners[visualPreset];
+    spinnerSizeOffset = ROMSpinnerSizeOffset[visualPreset];
+    spinnerScaleX = ROMSpinnerScaleX [visualPreset];
+    spinnerScaleY = ROMSpinnerScaleY [visualPreset];
+    
+    // set up correct textures based on menu selection
+    const int* ROMPattern;
+    switch( visualPreset )
+    {
+        case 0: ROMPattern = ROMPatternA1; break;
+        case 1: ROMPattern = ROMPatternA2; break;
+        case 2: ROMPattern = ROMPatternA3; break;
+        case 3: ROMPattern = ROMPatternA4; break;
+        case 4: ROMPattern = ROMPatternA5; break;
+        case 5: ROMPattern = ROMPatternA6; break;
+        case 6: ROMPattern = ROMPatternA7; break;
+        default: ROMPattern = ROMPatternA1;
+    }
+    for( int spinner=0; spinner<=7; spinner++ )
+        mainSpinnerArray[spinner].texture = ROMPattern[spinner];
+    
+    // turn off all spinners and set rotation rates
+    for( int i=0; i<kMaxMainSpinners; i++ )
+    {
+        mainSpinnerArray[i].rotationRate = 45.0+i*5;
+        mainSpinnerArray[i].active = false;
+        mainSpinnerArray[i].size = ROMSpinnerSize[ visualPreset*kMaxMainSpinners + i ];
+    }
+    
+    // then turn on a few spinners
+    for( int i=0; i<4; i++ )
+        mainSpinnerArray[i].active = true;
+    
+    // reset the frame count so spinner sequence starts in the same place
+    frameCount = 0;
+    //*/
+    
+}
+
 
 
 //////////////////////////////////////////////////////////////////////////////////////
 void MCGame::updateFrame()
 {
-    frameCount++;
+    // DEBUG - TEST SPINNER CONFIGS..............................
+    /*frameCount++;
     
     app->spinnerArray[0].active = true;
     app->spinnerArray[0].rotationPosition = frameCount * 30.1;
@@ -40,7 +139,7 @@ void MCGame::updateFrame()
     app->spinnerArray[2].active = true;
     app->spinnerArray[2].rotationPosition = frameCount * 49.1;
     app->spinnerArray[2].size = 0.2;
-    app->spinnerArray[2].texture = 19;
+    app->spinnerArray[2].texture = 19; //*/
     
     // DEBUG -- ANY ANIMATION SHOULD REALLY BE DONE IN THE 'GAME' CLASS
     /*static float angle;
