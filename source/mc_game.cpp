@@ -125,7 +125,7 @@ void MCGame::loadPreset( int presetNumber )
 void MCGame::updateFrame()
 {
     // DEBUG - TEST SPINNER CONFIGS..............................
-    /*frameCount++;
+    frameCount++;
     
     app->spinnerArray[0].active = true;
     app->spinnerArray[0].rotationPosition = frameCount * 30.1;
