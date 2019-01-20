@@ -5,7 +5,7 @@
 #define MC_SPINNER_HPP
 
 
-
+enum class SpinnerType { SPINNER, BUTTON, BACKGROUND };
 
 
 // SPINNER STRUCT -----------------------------
@@ -20,6 +20,7 @@ public:
     float rotationPosition = 0.0;
     float rotationRate = 0.0;
     float size = 1.0;
+    SpinnerType type = {SpinnerType::SPINNER};
     // ~  ~  ~  ~  ~  ~  ~  
     bool isTouching();
 };

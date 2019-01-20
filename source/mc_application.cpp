@@ -130,11 +130,11 @@ void MCApplication::runLoop()
         {
             if (event.type == SDL_QUIT) 
             {
-                isQuitting = true;
+                stop();
             }
         }
         
-        // DRAW SCREEN...
+        // LOAD TEXTURES / DRAW SCREEN...
         if( (vsyncEnabled == true)  ||  (timeOfNextFrameMSec <= getCurrentTimeMSec() + 0) )
         {
             if( mode == AppMode::LOADING )

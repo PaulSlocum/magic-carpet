@@ -15,10 +15,11 @@ MCRenderer::MCRenderer( MCApplication* newApp )
 {
     app = newApp;
     
-    int nWidth = 800;
+    // DEBUG - TRYING TO SET UP RENDER TARGET
+    /*int nWidth = 800;
     int nHeight = 400;
     softSurface = SDL_CreateRGBSurface( 0, nWidth, nHeight, 32, 0, 0, 0, 0 );
-    softRenderer = SDL_CreateSoftwareRenderer( softSurface );
+    softRenderer = SDL_CreateSoftwareRenderer( softSurface ); //*/
 }
 
 
@@ -32,12 +33,20 @@ MCRenderer::~MCRenderer()
 
 
 ///////////////////////////////////////////////////////////////////////////////////
-void MCRenderer::drawSpinner( MCSpinner spinner )
+void MCRenderer::drawSpinner( const MCSpinner spinner )
 {
+    SDL_Texture* spinnerTexture;
+    switch( spinner.type )
+    {
+        case SpinnerType::SPINNER: spinnerTexture = spinnerTextureArray[ spinner.texture ]; break; 
+        case SpinnerType::BUTTON: spinnerTexture = buttonTextureArray[ spinner.texture ]; break; 
+        case SpinnerType::BACKGROUND: spinnerTexture = backgroundTexture; break; 
+    }
+    
     // GET TEXTURE SIZE
     int textureHeight;
     int textureWidth;
-    SDL_QueryTexture( spinnerTextureArray[ spinner.texture ], NULL, NULL, &textureHeight, &textureWidth ); 
+    SDL_QueryTexture( spinnerTexture, NULL, NULL, &textureHeight, &textureWidth ); 
     
     // SETUP SOURCE/DECT RECTS FOR COPY
     SDL_Rect srcRect = { 0, 0, textureWidth, textureHeight };
@@ -47,7 +56,7 @@ void MCRenderer::drawSpinner( MCSpinner spinner )
     dstRect.x = (app->screenWidth - dstRect.w) / 2 + ( (spinner.xPosition-0.5) * 2 * app->screenWidth);
     dstRect.y = (app->screenHeight - dstRect.h) / 2 + ( (spinner.yPosition-0.5) * 2 * app->screenHeight);
 
-    SDL_RenderCopyEx( app->SDLRenderer, spinnerTextureArray[ spinner.texture ], &srcRect, &dstRect, spinner.rotationPosition, NULL, SDL_FLIP_NONE );
+    SDL_RenderCopyEx( app->SDLRenderer, spinnerTexture, &srcRect, &dstRect, spinner.rotationPosition, NULL, SDL_FLIP_NONE );
 
     // DEBUG - EVENTUALLY PROBABLY WANT TO CONVERT THIS RENDERER TO A RENGER TARGET
     //SDL_RenderCopyEx( softRenderer, spinnerTextureArray[0], &srcRect, &dstRect, angle, NULL, SDL_FLIP_NONE );
@@ -58,6 +67,7 @@ void MCRenderer::drawSpinner( MCSpinner spinner )
 /////////////////////////////////////////////////////////////////////////////////////
 void MCRenderer::render()
 {
+    // DEBUG! - THIS IS ONLY USED FOR THE FRAME COUNTER
     frameCount++;
 
     // CLEAR THE SCREEN
@@ -86,6 +96,17 @@ void MCRenderer::render()
 ///////////////////////////////////////////////////////////////////
 void MCRenderer::loadTextures()
 {
+    // ~~   ~   ~~   ~   ~~   ~   ~~   ~   ~~   ~   
+    /*if( (arc4random() %2)==0 )
+        [self loadTexture:@"menuBG2d" fileExt:@"jpg" texture:&buttonsTextureBG[0]];
+    else
+        [self loadTexture:@"menuBG2c" fileExt:@"jpg" texture:&buttonsTextureBG[0]]; 
+
+    [self loadTexture:@"bnChalice" fileExt:@"png" texture:&buttonTextureArray[0]];
+    [self loadTexture:@"bnGrid" fileExt:@"png" texture:&buttonTextureArray[1]];
+    [self loadTexture:@"bnBird" fileExt:@"png" texture:&buttonTextureArray[3]]; //*/
+    // ~~   ~   ~~   ~   ~~   ~   ~~   ~   ~~   ~   
+
     // LOAD TEXTURES FROM TEXTURE LIST ARRAY IN HEADER...
     for( int i=0; i<TEXTURE_LOAD_LIST_LENGTH; i++ )
     {
@@ -96,7 +117,7 @@ void MCRenderer::loadTextures()
 
 
 //////////////////////////////////////////////////////////////////////////////////////////
-void MCRenderer::loadTexture( const std::string imageFilename, int arrayPosition )
+void MCRenderer::loadTexture( const std::string imageFilename, const int arrayPosition )
 {
     //---------------------
     // LOAD JPEG
@@ -111,8 +132,8 @@ void MCRenderer::loadTexture( const std::string imageFilename, int arrayPosition
     }
     else
     {
-        printf("JPEG DECODED!!!!\n");
-        printf("W: %d   H: %d   COLOR:%d  SIZE:%d\n", jpeg.getWidth(), jpeg.getHeight(), jpeg.isColor(), jpeg.getImageSize() );  
+        //printf("JPEG DECODED!!!!\n");
+        //printf("W: %d   H: %d   COLOR:%d  SIZE:%d\n", jpeg.getWidth(), jpeg.getHeight(), jpeg.isColor(), jpeg.getImageSize() );  
         
         // CREATE SURFACE FROM JPEG
         bmp_surface = SDL_CreateRGBSurfaceFrom( (unsigned char*) jpeg.getImage(), 
@@ -126,8 +147,8 @@ void MCRenderer::loadTexture( const std::string imageFilename, int arrayPosition
         printf( "TEXTURE CREATION FAILED\n" );
     }
     else
-    {
-        printf( "TEXTURE CREATED!!!!\n" );
+    {   
+        // IS THIS NECESSARY?
         SDL_SetTextureBlendMode( spinnerTextureArray[arrayPosition], SDL_BLENDMODE_BLEND );  
     }
     

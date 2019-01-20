@@ -86,17 +86,14 @@ private:
     long long startTimeMSec = 0;
     // ~  ~  ~  ~  ~  ~  ~  ~  
     std::map<int, SDL_Texture*> spinnerTextureArray;
+    std::map<int, SDL_Texture*> buttonTextureArray;
+    SDL_Texture* backgroundTexture;
     std::map<int, bool> spinnerTextureArrayLoaded;
     // ~  ~  ~  ~  ~  ~  ~  ~  
-    void loadTexture( const std::string imageFilename, int arrayPosition );
-    void drawSpinner( MCSpinner spinner );
-
-    SDL_Surface *softSurface;
-    SDL_Renderer *softRenderer;
-    
-    /* TEXTURES
-    GLuint spinnerTextureArray[kMaxSpinnerTextures];
-    bool spinnerTextureArrayLoaded[kMaxSpinnerTextures];
-    GLuint buttonsTextureBG[1];
-    GLuint buttonTextureArray[32]; */
+    void loadTexture( const std::string imageFilename, const int arrayPosition );
+    void drawSpinner( const MCSpinner spinner );
+    // ~  ~  ~  ~  ~  ~  ~  ~  
+    // DEBUG - TRYING TO IMPLEMENT RENDER TARGET
+    //SDL_Surface *softSurface;
+    //SDL_Renderer *softRenderer;
 };
