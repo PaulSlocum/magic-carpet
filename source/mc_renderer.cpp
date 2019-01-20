@@ -111,13 +111,13 @@ void MCRenderer::loadTextures()
     for( int i=0; i<TEXTURE_LOAD_LIST_LENGTH; i++ )
     {
         if( TEXTURE_LOAD_LIST[i].isUsed == true )
-            loadTexture( TEXTURE_LOAD_LIST[i].filename, TEXTURE_LOAD_LIST[i].textureSlot );
+            spinnerTextureArray[ TEXTURE_LOAD_LIST[i].textureSlot ] = loadJpegTexture( TEXTURE_LOAD_LIST[i].filename );
     }
 }
 
 
 //////////////////////////////////////////////////////////////////////////////////////////
-void MCRenderer::loadTexture( const std::string imageFilename, const int arrayPosition )
+SDL_Texture* MCRenderer::loadJpegTexture( const std::string imageFilename )
 {
     //---------------------
     // LOAD JPEG
@@ -141,15 +141,15 @@ void MCRenderer::loadTexture( const std::string imageFilename, const int arrayPo
     }
     
     // CREATE TEXTURE FROM JPEG SURFACE
-    spinnerTextureArray[arrayPosition] = SDL_CreateTextureFromSurface( app->SDLRenderer, bmp_surface );
-    if( spinnerTextureArray[arrayPosition] == 0 ) 
+    SDL_Texture* texture = SDL_CreateTextureFromSurface( app->SDLRenderer, bmp_surface );
+    if( texture == 0 ) 
     {
         printf( "TEXTURE CREATION FAILED\n" );
     }
     else
     {   
         // IS THIS NECESSARY?
-        SDL_SetTextureBlendMode( spinnerTextureArray[arrayPosition], SDL_BLENDMODE_BLEND );  
+        SDL_SetTextureBlendMode( texture, SDL_BLENDMODE_BLEND );  
     }
     
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -160,4 +160,6 @@ void MCRenderer::loadTexture( const std::string imageFilename, const int arrayPo
     // FREE SURFACE MEMORY
     SDL_FreeSurface(bmp_surface); //*/
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    
+    return( texture );
 }

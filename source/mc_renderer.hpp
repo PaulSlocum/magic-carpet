@@ -90,7 +90,7 @@ private:
     SDL_Texture* backgroundTexture;
     std::map<int, bool> spinnerTextureArrayLoaded;
     // ~  ~  ~  ~  ~  ~  ~  ~  
-    void loadTexture( const std::string imageFilename, const int arrayPosition );
+    SDL_Texture* loadJpegTexture( const std::string imageFilename );
     void drawSpinner( const MCSpinner spinner );
     // ~  ~  ~  ~  ~  ~  ~  ~  
     // DEBUG - TRYING TO IMPLEMENT RENDER TARGET
