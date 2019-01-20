@@ -102,7 +102,7 @@ void MCRenderer::render()
 void MCRenderer::loadTextures()
 {
     // LOAD MENU BACKGROUND TEXTURE (RANDOMLY SELECT ONE OF TWO IMAGES)...
-    if( (arc4random() %2)==0 )
+    if( (rand() %2)==0 )
         backgroundTexture = loadJpegTexture( "menuBG2d.jpg" );
     else
         backgroundTexture = loadJpegTexture( "menuBG2c.jpg" );
