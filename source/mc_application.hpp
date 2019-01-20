@@ -49,14 +49,23 @@ public:
     bool vsyncEnabled = false;
     // ~  ~  ~  ~  ~  ~  ~  ~
     std::map<int,MCSpinner> spinnerArray;
+    MCSpinner muteButton;
+    MCSpinner normalButton;
+    MCSpinner instrumentButton;
+    MCSpinner background;
+    
     //std::map<int,TouchStruct> touchArray;
 
 private:
     void runLoop();
     // ~  ~  ~  ~  ~  ~  ~  ~  
     MCRenderer* renderer;
-    MCGame* game;
+    MCGame* gameController;
     SDL_Window *window;
+    //MCTouchHandler* touchHandler;
+    //MCKeyboardHandler* keyboardHandler;
+    //MCAudio* audioController;
+    
     // ~  ~  ~  ~  ~  ~  ~  ~  
     bool isQuitting = false;
     AppMode mode = AppMode::STOPPED;

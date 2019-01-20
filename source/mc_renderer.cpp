@@ -35,31 +35,34 @@ MCRenderer::~MCRenderer()
 ///////////////////////////////////////////////////////////////////////////////////
 void MCRenderer::drawSpinner( const MCSpinner spinner )
 {
-    SDL_Texture* spinnerTexture;
-    switch( spinner.type )
+    if( spinner.active == true )
     {
-        case SpinnerType::SPINNER: spinnerTexture = spinnerTextureArray[ spinner.texture ]; break; 
-        case SpinnerType::BUTTON: spinnerTexture = buttonTextureArray[ spinner.texture ]; break; 
-        case SpinnerType::BACKGROUND: spinnerTexture = backgroundTexture; break; 
+        SDL_Texture* spinnerTexture;
+        switch( spinner.type )
+        {
+            case SpinnerType::SPINNER: spinnerTexture = spinnerTextureArray[ spinner.texture ]; break; 
+            case SpinnerType::BUTTON: spinnerTexture = buttonTextureArray[ spinner.texture ]; break; 
+            case SpinnerType::BACKGROUND: spinnerTexture = backgroundTexture; break; 
+        }
+        
+        // GET TEXTURE SIZE
+        int textureHeight;
+        int textureWidth;
+        SDL_QueryTexture( spinnerTexture, NULL, NULL, &textureHeight, &textureWidth ); 
+        
+        // SETUP SOURCE/DECT RECTS FOR COPY
+        SDL_Rect srcRect = { 0, 0, textureWidth, textureHeight };
+        SDL_Rect dstRect;
+        dstRect.w = app->screenWidth * spinner.size;
+        dstRect.h = app->screenWidth * spinner.size;
+        dstRect.x = (app->screenWidth - dstRect.w) / 2 + ( (spinner.xPosition-0.5) * 2 * app->screenWidth);
+        dstRect.y = (app->screenHeight - dstRect.h) / 2 + ( (spinner.yPosition-0.5) * 2 * app->screenHeight);
+
+        SDL_RenderCopyEx( app->SDLRenderer, spinnerTexture, &srcRect, &dstRect, spinner.rotationPosition, NULL, SDL_FLIP_NONE );
+
+        // DEBUG - EVENTUALLY PROBABLY WANT TO CONVERT THIS RENDERER TO A RENGER TARGET
+        //SDL_RenderCopyEx( softRenderer, spinnerTextureArray[0], &srcRect, &dstRect, angle, NULL, SDL_FLIP_NONE );
     }
-    
-    // GET TEXTURE SIZE
-    int textureHeight;
-    int textureWidth;
-    SDL_QueryTexture( spinnerTexture, NULL, NULL, &textureHeight, &textureWidth ); 
-    
-    // SETUP SOURCE/DECT RECTS FOR COPY
-    SDL_Rect srcRect = { 0, 0, textureWidth, textureHeight };
-    SDL_Rect dstRect;
-    dstRect.w = app->screenWidth * spinner.size;
-    dstRect.h = app->screenWidth * spinner.size;
-    dstRect.x = (app->screenWidth - dstRect.w) / 2 + ( (spinner.xPosition-0.5) * 2 * app->screenWidth);
-    dstRect.y = (app->screenHeight - dstRect.h) / 2 + ( (spinner.yPosition-0.5) * 2 * app->screenHeight);
-
-    SDL_RenderCopyEx( app->SDLRenderer, spinnerTexture, &srcRect, &dstRect, spinner.rotationPosition, NULL, SDL_FLIP_NONE );
-
-    // DEBUG - EVENTUALLY PROBABLY WANT TO CONVERT THIS RENDERER TO A RENGER TARGET
-    //SDL_RenderCopyEx( softRenderer, spinnerTextureArray[0], &srcRect, &dstRect, angle, NULL, SDL_FLIP_NONE );
 }
 
 
@@ -73,17 +76,18 @@ void MCRenderer::render()
     // CLEAR THE SCREEN
     SDL_RenderClear( app->SDLRenderer );
     
-    // DRAW SPINNERS
+    // DRAW EVERYTHING
+    drawSpinner( app->background );
+    drawSpinner( app->normalButton );
+    drawSpinner( app->muteButton );
+    drawSpinner( app->instrumentButton );
     for( int spinnerNumber=0; spinnerNumber<MAX_ACTIVE_SPINNERS; spinnerNumber++ )
-    {
-        if( app->spinnerArray[spinnerNumber].active == true )
-            drawSpinner( app->spinnerArray[ spinnerNumber ] );
-    }
+        drawSpinner( app->spinnerArray[ spinnerNumber ] );
     
     // RENDER! -- THIS FUNCTION BLOCKS UNTIL VSYNC IF VSYNC IS ENABLED AND WORKS ON THE PLATFORM (CURRENTLY DOES NOT WORK ON RPI)
     SDL_RenderPresent( app->SDLRenderer );
     
-    // UPDATE TIMER
+    // UPDATE FRAME TIMER
     if( startTimeMSec == 0 )
        startTimeMSec = getCurrentTimeMSec();
     
@@ -96,18 +100,18 @@ void MCRenderer::render()
 ///////////////////////////////////////////////////////////////////
 void MCRenderer::loadTextures()
 {
-    // ~~   ~   ~~   ~   ~~   ~   ~~   ~   ~~   ~   
-    /*if( (arc4random() %2)==0 )
-        [self loadTexture:@"menuBG2d" fileExt:@"jpg" texture:&buttonsTextureBG[0]];
+    // LOAD MENU BACKGROUND TEXTURE (RANDOMLY SELECT ONE OF TWO IMAGES)...
+    if( (arc4random() %2)==0 )
+        backgroundTexture = loadJpegTexture( "menuBG2d.jpg" );
     else
-        [self loadTexture:@"menuBG2c" fileExt:@"jpg" texture:&buttonsTextureBG[0]]; 
+        backgroundTexture = loadJpegTexture( "menuBG2c.jpg" );
+    
+    // LOAD BUTTON TEXTURES
+    buttonTextureArray[ 0 ] = loadJpegTexture( "bnChalice.jpg" );
+    buttonTextureArray[ 1 ] = loadJpegTexture( "bnGrid.jpg" );
+    buttonTextureArray[ 2 ] = loadJpegTexture( "bnBird.jpg" );
 
-    [self loadTexture:@"bnChalice" fileExt:@"png" texture:&buttonTextureArray[0]];
-    [self loadTexture:@"bnGrid" fileExt:@"png" texture:&buttonTextureArray[1]];
-    [self loadTexture:@"bnBird" fileExt:@"png" texture:&buttonTextureArray[3]]; //*/
-    // ~~   ~   ~~   ~   ~~   ~   ~~   ~   ~~   ~   
-
-    // LOAD TEXTURES FROM TEXTURE LIST ARRAY IN HEADER...
+    // LOAD SPINNER TEXTURES FROM TEXTURE LIST ARRAY IN HEADER...
     for( int i=0; i<TEXTURE_LOAD_LIST_LENGTH; i++ )
     {
         if( TEXTURE_LOAD_LIST[i].isUsed == true )

@@ -21,6 +21,14 @@ MCGame::~MCGame()
 }
 
 
+
+//////////////////////////////////////////////////////////////////////////////////////
+void MCGame::init()
+{
+    
+}
+
+
 ///////////////////////////////////////////////////////////////////////////////////////
 void MCGame::loadPreset( int presetNumber )
 {
@@ -126,8 +134,29 @@ void MCGame::updateFrame()
 {
     // DEBUG - TEST SPINNER CONFIGS..............................
     frameCount++;
+    int buttonJiggler = frameCount;
+
+    app->normalButton.active = true;
+    app->normalButton.texture = 0;
+    app->normalButton.rotationPosition = frameCount * 25.1;
+    app->normalButton.size = 0.2;
+    app->normalButton.yPosition = 0.65;
+    app->normalButton.type = SpinnerType::BUTTON;
+
+    app->muteButton = app->normalButton;
+    app->muteButton.texture = 1;
+    app->muteButton.xPosition = 0.35;
     
-    app->spinnerArray[0].active = true;
+    app->instrumentButton = app->normalButton;
+    app->instrumentButton.texture = 2;
+    app->instrumentButton.xPosition = 0.65;
+  
+    app->background.active = true;
+    app->background.type = SpinnerType::BACKGROUND;
+    app->background.rotationPosition = sin(buttonJiggler*2.78)*3.1;
+
+    
+    /*app->spinnerArray[0].active = true;
     app->spinnerArray[0].rotationPosition = frameCount * 30.1;
     app->spinnerArray[0].texture = 13;
 

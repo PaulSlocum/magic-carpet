@@ -19,7 +19,7 @@ MCApplication::MCApplication()
     srand( (unsigned int) time(NULL) );
     
     renderer = new MCRenderer( this );
-    game = new MCGame( this );
+    gameController = new MCGame( this );
 }
 
 
@@ -128,6 +128,7 @@ void MCApplication::runLoop()
         // PROCESS ALL EVENTS IN QUEUE...
         while (SDL_PollEvent(&event)) 
         {
+            printf( "RECEIVED EVENT\n" );
             if (event.type == SDL_QUIT) 
             {
                 stop();
@@ -144,7 +145,7 @@ void MCApplication::runLoop()
             }
             if( mode == AppMode::MENU || mode == AppMode::RUNNING )
             {
-                game->updateFrame();
+                gameController->updateFrame();
                 renderer->render();
             }
             timeOfNextFrameMSec = getCurrentTimeMSec() + 1000.0/FRAMES_PER_SECOND;
