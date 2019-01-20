@@ -2,6 +2,7 @@
 ////////////////////////////////////////////////////////////////////////
 
 #include <math.h>
+#include <stdlib.h>
 #include "SDL.h"
 #include "ujpeg.h"
 #include "mc_renderer.hpp"
@@ -91,7 +92,7 @@ void MCRenderer::render()
     if( startTimeMSec == 0 )
        startTimeMSec = getCurrentTimeMSec();
     
-    // DEBUG!!!  SHOW FPS
+    // DEBUG!!!  SHOW FPS...
     if( frameCount % 60 == 0 )
         printf( "FPS: %f\n",  frameCount * 1000.0 / ( getCurrentTimeMSec() - startTimeMSec )  );
 }

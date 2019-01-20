@@ -15,12 +15,14 @@
 // CONSTRUCTOR
 MCApplication::MCApplication()
 {
-    // SEED RANDOM NUMBER GENERATOR
+    // SEED RANDOM NUMBERS
     srand( (unsigned int) time(NULL) );
     
     renderer = new MCRenderer( this );
     gameController = new MCGame( this );
 }
+
+
 
 
 //////////////////////////////////////////////////////////////////////////////////////

@@ -11,7 +11,9 @@
 class MCRenderer;
 class MCGame;
 
+// ~ ^  ~ ^  ~ ^  ~ ^  ~ ^  ~ ^  ~ ^  ~ ^  ~ ^ 
 #define FRAMES_PER_SECOND 60.0
+// ~ ^  ~ ^  ~ ^  ~ ^  ~ ^  ~ ^  ~ ^  ~ ^  ~ ^ 
 
 
 enum class AppMode { STOPPED, LOADING, MENU, RUNNING };
@@ -53,7 +55,7 @@ public:
     MCSpinner normalButton;
     MCSpinner instrumentButton;
     MCSpinner background;
-    
+
     //std::map<int,TouchStruct> touchArray;
 
 private:
