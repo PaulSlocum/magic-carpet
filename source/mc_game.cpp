@@ -25,11 +25,13 @@ MCGame::~MCGame()
 //////////////////////////////////////////////////////////////////////////////////////
 void MCGame::init()
 {
+    app->background.active = true;
+    app->background.type = SpinnerType::BACKGROUND;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////
-void MCGame::loadPreset( int presetNumber )
+void MCGame::loadPreset( const int presetNumber )
 {
   
     // --   --   --   --   --   --   --   --   --   --   --   --   --   --   
@@ -131,28 +133,35 @@ void MCGame::loadPreset( int presetNumber )
 //////////////////////////////////////////////////////////////////////////////////////
 void MCGame::updateFrame()
 {
-    // DEBUG - TEST SPINNER CONFIGS..............................
     frameCount++;
     int buttonJiggler = frameCount;
 
-    app->normalButton.active = true;
-    app->normalButton.texture = 0;
-    app->normalButton.rotationPosition = frameCount * 25.1;
-    app->normalButton.size = 0.15;
-    app->normalButton.yPosition = 0.65;
-    app->normalButton.type = SpinnerType::BUTTON;
+    if( app->mode == AppMode::MENU )
+    {
+        // DEBUG - TEST SPINNER CONFIGS..............................
+        app->spinnerArray[0].active = true;
+        app->spinnerArray[0].rotationPosition = frameCount * 30.1;
+        app->spinnerArray[0].texture = 13;
+        app->spinnerArray[0].size = 0.3;
+        app->spinnerArray[0].yPosition = 0.4;
 
-    app->muteButton = app->normalButton;
-    app->muteButton.texture = 1;
-    app->muteButton.xPosition = 0.35;
-    
-    app->instrumentButton = app->normalButton;
-    app->instrumentButton.texture = 2;
-    app->instrumentButton.xPosition = 0.65;
-  
-    app->background.active = true;
-    app->background.type = SpinnerType::BACKGROUND;
-    app->background.rotationPosition = sin(buttonJiggler*2.78)*1.6;
+        app->normalButton.active = true;
+        app->normalButton.texture = 0;
+        app->normalButton.rotationPosition = frameCount * 25.1;
+        app->normalButton.size = 0.15;
+        app->normalButton.yPosition = 0.65;
+        app->normalButton.type = SpinnerType::BUTTON;
+        
+        app->muteButton = app->normalButton;
+        app->muteButton.texture = 1;
+        app->muteButton.xPosition = 0.38;
+        
+        app->instrumentButton = app->normalButton;
+        app->instrumentButton.texture = 2;
+        app->instrumentButton.xPosition = 0.62;
+      
+        app->background.rotationPosition = sin(buttonJiggler*2.78)*1.6;
+    }
 
     
     /*app->spinnerArray[0].active = true;

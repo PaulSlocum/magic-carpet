@@ -106,6 +106,8 @@ void MCRenderer::loadTextures()
         backgroundTexture = loadJpegTexture( "menuBG2d.jpg" );
     else
         backgroundTexture = loadJpegTexture( "menuBG2c.jpg" );
+    drawSpinner( app->background );
+    SDL_RenderPresent( app->SDLRenderer );
     
     // LOAD BUTTON TEXTURES
     buttonTextureArray[ 0 ] = loadJpegTexture( "bnChalice.jpg" );

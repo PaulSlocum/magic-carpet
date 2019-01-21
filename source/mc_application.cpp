@@ -30,20 +30,19 @@ MCApplication::MCApplication()
 MCApplication::~MCApplication()
 {
     delete renderer;
+    delete gameController;
 }
 
 
 
 /////////////////////////////////////////////////////////////////////////////////////
-// THIS FUNCTION BLOCKS UNTIL THE APPLICATION CLOSES OR stop() IS CALLED.
-// SINCE CURRENTLY THERE IS NO COMMAND INTERNALLY TO CLOSE THE PROGRAM, stop() SHOULD PROBABLY BE IMPLEMENTED WITHIN MAIN
-// ...ALTHOUGH -- DOES SDL ALREADY IMPLEMENT THE CTRL-C INTERRUPT AND GENERATE A "QUIT" COMMAND?
+// NOTE: THIS FUNCTION BLOCKS UNTIL THE APPLICATION CLOSES OR stop() IS CALLED.
 void MCApplication::start()
 {
     if( mode == AppMode::STOPPED )
     {
         mode = AppMode::LOADING;
-        
+     
         // INITIALIZE SDL
         if( SDL_Init(SDL_INIT_VIDEO) != 0 ) 
         {
@@ -95,6 +94,8 @@ void MCApplication::start()
         vsyncEnabled = true;
     #endif    
         
+        gameController->init();
+        
         // RUN LOOP BLOCKS UNTIL PROGRAM IS FINISHED...
         runLoop();
         
@@ -131,6 +132,21 @@ void MCApplication::runLoop()
         while (SDL_PollEvent(&event)) 
         {
             printf( "RECEIVED EVENT\n" );
+            switch( event.type )
+            {
+                case SDL_QUIT: 
+                    stop(); 
+                    break;
+                    
+                case SDL_FINGERDOWN: 
+                case SDL_FINGERUP:
+                case SDL_FINGERMOTION:
+                    break;
+                
+                case SDL_KEYDOWN:
+                case SDL_KEYUP:
+                    break;
+            }
             if (event.type == SDL_QUIT) 
             {
                 stop();
@@ -144,6 +160,7 @@ void MCApplication::runLoop()
             {
                 renderer->loadTextures();
                 mode = AppMode::MENU;
+                menuFadeIn = 0.0;
             }
             if( mode == AppMode::MENU || mode == AppMode::RUNNING )
             {

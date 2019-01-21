@@ -19,5 +19,5 @@ private:
     int frameCount = 0;
     float prayerWheelPosition = 0.0;
     // ~  ~  ~  ~  ~  ~  ~  
-    void loadPreset( int presetNumber );
+    void loadPreset( const int presetNumber );
 };

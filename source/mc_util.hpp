@@ -6,9 +6,9 @@
 
 
 long long getCurrentTimeMSec();
-long long timeSinceEventMSec( long long eventTimeMSec );
+long long timeSinceEventMSec( const long long eventTimeMSec );
 
-void sleepFloatSeconds( float delaySeconds );
+void sleepFloatSeconds( const float delaySeconds );
 
 std::string logf(const std::string fmt_str, ...);
 

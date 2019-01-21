@@ -28,7 +28,7 @@ long long getCurrentTimeMSec()
 }
 
 //=============================================================================
-long long timeSinceEventMSec( long long eventTimeMSec )
+long long timeSinceEventMSec( const long long eventTimeMSec )
 {
   return( getCurrentTimeMSec() - eventTimeMSec );
 }
@@ -47,14 +47,14 @@ bool CompareNoCase( const std::string& s1, const std::string& s2 )
 
 
 //==========================================================================
-void sleepFloatSeconds( float delaySeconds )
+void sleepFloatSeconds( const float delaySeconds )
 {
 	usleep(1000000*delaySeconds); 
 }
 
 
 //==========================================================================
-std::string stdprintf(const std::string fmt_str, ...) 
+std::string stdprintf( const std::string fmt_str, ... ) 
 {
     int final_n, n = ((int)fmt_str.size()) * 2; /* Reserve two times as much as the length of the fmt_str */
     std::string str;

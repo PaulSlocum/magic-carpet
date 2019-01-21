@@ -17,7 +17,7 @@ class MCGame;
 
 
 enum class AppMode { STOPPED, LOADING, MENU, RUNNING };
-
+enum class SoundMode { NORMAL, MUTE, INSTRUMENT };
 
 
 
@@ -36,6 +36,8 @@ enum class AppMode { STOPPED, LOADING, MENU, RUNNING };
 
 
 
+
+
 //|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 class MCApplication
 {
@@ -48,16 +50,17 @@ public:
     SDL_Renderer *SDLRenderer = NULL;
     int screenWidth = 0;
     int screenHeight = 0;
-    bool vsyncEnabled = false;
     // ~  ~  ~  ~  ~  ~  ~  ~
+    // APP STATE ---------------
     std::map<int,MCSpinner> spinnerArray;
     MCSpinner muteButton;
     MCSpinner normalButton;
     MCSpinner instrumentButton;
     MCSpinner background;
     float menuFadeIn = 1.0;
-
-    //std::map<int,TouchStruct> touchArray;
+    AppMode mode = AppMode::STOPPED;
+    SoundMode soundMode = SoundMode::NORMAL;
+    // --------------------------------
 
 private:
     void runLoop();
@@ -65,13 +68,14 @@ private:
     MCRenderer* renderer;
     MCGame* gameController;
     SDL_Window *window;
+    // ~  ~  ~  ~  ~  ~  ~  ~  
     //MCTouchHandler* touchHandler;
     //MCKeyboardHandler* keyboardHandler;
     //MCAudio* audioController;
-    
+    // ~  ~  ~  ~  ~  ~  ~  ~  
+    bool vsyncEnabled = false;
     // ~  ~  ~  ~  ~  ~  ~  ~  
     bool isQuitting = false;
-    AppMode mode = AppMode::STOPPED;
 };
 
 
