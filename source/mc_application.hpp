@@ -55,6 +55,7 @@ public:
     MCSpinner normalButton;
     MCSpinner instrumentButton;
     MCSpinner background;
+    float menuFadeIn = 1.0;
 
     //std::map<int,TouchStruct> touchArray;
 

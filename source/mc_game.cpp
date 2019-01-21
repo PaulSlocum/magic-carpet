@@ -4,7 +4,7 @@
 
 #include "mc_game.hpp"
 #include "mc_application.hpp"
-
+#include "mc_sequence_data.hpp"
 
 
 //////////////////////////////////////////////////////////////////////////////////////
@@ -25,14 +25,13 @@ MCGame::~MCGame()
 //////////////////////////////////////////////////////////////////////////////////////
 void MCGame::init()
 {
-    
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////
 void MCGame::loadPreset( int presetNumber )
 {
-    
+  
     // --   --   --   --   --   --   --   --   --   --   --   --   --   --   
     // ORIGINAL CODE
     
@@ -139,7 +138,7 @@ void MCGame::updateFrame()
     app->normalButton.active = true;
     app->normalButton.texture = 0;
     app->normalButton.rotationPosition = frameCount * 25.1;
-    app->normalButton.size = 0.2;
+    app->normalButton.size = 0.15;
     app->normalButton.yPosition = 0.65;
     app->normalButton.type = SpinnerType::BUTTON;
 
@@ -153,7 +152,7 @@ void MCGame::updateFrame()
   
     app->background.active = true;
     app->background.type = SpinnerType::BACKGROUND;
-    app->background.rotationPosition = sin(buttonJiggler*2.78)*3.1;
+    app->background.rotationPosition = sin(buttonJiggler*2.78)*1.6;
 
     
     /*app->spinnerArray[0].active = true;
@@ -184,10 +183,23 @@ void MCGame::updateFrame()
     //yOffset += 0.001;
     //if( yOffset>1.2 ) yOffset = -1.0;
     yOffset = 0.5; //*/
-    // \/    \/    \/    \/    \/ //    
+    // \/    \/    \/    \/    \/ //
+    //---------------------------------------------------------------------------------------------------------
+    // END OF TEST CODE
+    // -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - 
+    
+    // HANDLE FADE INS
+    if( app->menuFadeIn < 1 )
+        app->menuFadeIn += 0.012;
+    if( app->menuFadeIn > 1.0 )
+        app->menuFadeIn = 1.0;
+    
     
 
     
+    // -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- -
+    // START OF ORIGINAL CODE
+    //---------------------------------------------------------------------------------------------------------    
     /*
     // GET CURRENT ELAPSED TIME IN FRAMES
     float framesPerFrame = (displayID.timestamp - lastTimestamp)*60.0;

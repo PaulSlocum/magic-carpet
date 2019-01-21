@@ -54,8 +54,8 @@ void MCRenderer::drawSpinner( const MCSpinner spinner )
         // SETUP SOURCE/DECT RECTS FOR COPY
         SDL_Rect srcRect = { 0, 0, textureWidth, textureHeight };
         SDL_Rect dstRect;
-        dstRect.w = app->screenWidth * spinner.size;
-        dstRect.h = app->screenWidth * spinner.size;
+        dstRect.w = app->screenWidth * spinner.size * app->menuFadeIn;
+        dstRect.h = app->screenWidth * spinner.size * app->menuFadeIn;
         dstRect.x = (app->screenWidth - dstRect.w) / 2 + ( (spinner.xPosition-0.5) * 2 * app->screenWidth);
         dstRect.y = (app->screenHeight - dstRect.h) / 2 + ( (spinner.yPosition-0.5) * 2 * app->screenHeight);
 
@@ -85,7 +85,7 @@ void MCRenderer::render()
     for( int spinnerNumber=0; spinnerNumber<MAX_ACTIVE_SPINNERS; spinnerNumber++ )
         drawSpinner( app->spinnerArray[ spinnerNumber ] );
     
-    // RENDER! -- THIS FUNCTION BLOCKS UNTIL VSYNC IF VSYNC IS ENABLED AND WORKS ON THE PLATFORM (CURRENTLY DOES NOT WORK ON RPI)
+    // RENDER! -- THIS FUNCTION BLOCKS UNTIL VSYNC IF VSYNC IS ENABLED/SUPPORTED ON THE PLATFORM (CURRENTLY DOES NOT WORK ON RPI)
     SDL_RenderPresent( app->SDLRenderer );
     
     // UPDATE FRAME TIMER

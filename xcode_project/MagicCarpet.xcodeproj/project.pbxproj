@@ -85,6 +85,7 @@
 		EBF01D3021F50661007E5B6C /* mc_keyboard.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mc_keyboard.cpp; path = ../source/mc_keyboard.cpp; sourceTree = "<group>"; };
 		EBF01D3121F50662007E5B6C /* mc_touch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mc_touch.cpp; path = ../source/mc_touch.cpp; sourceTree = "<group>"; };
 		EBF01D3221F50662007E5B6C /* mc_audio.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = mc_audio.hpp; path = ../source/mc_audio.hpp; sourceTree = "<group>"; };
+		EBF01D3621F56E3B007E5B6C /* mc_sequence_data.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = mc_sequence_data.hpp; path = ../source/mc_sequence_data.hpp; sourceTree = "<group>"; };
 		EBF138FF21E464B700B55724 /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
 		EBF1390121E464D200B55724 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		FA8B4B96196703B400F8EB7C /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
@@ -165,6 +166,7 @@
 				EBC84ABD21E956EA0039B60F /* mc_util.cpp */,
 				FD77A09C0E26BDE500F39101 /* mc_main.cpp */,
 				EB27A16521F36EDB0082D1C2 /* mc_texture_list.hpp */,
+				EBF01D3621F56E3B007E5B6C /* mc_sequence_data.hpp */,
 			);
 			name = Source;
 			sourceTree = "<group>";
