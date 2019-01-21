@@ -1,6 +1,7 @@
 // mc_game.cpp
 ////////////////////////////////////////////////////////////////////////
 
+#include <math.h>
 
 #include "mc_game.hpp"
 #include "mc_application.hpp"
@@ -8,9 +9,9 @@
 
 
 //////////////////////////////////////////////////////////////////////////////////////
-MCGame::MCGame( MCApplication* newApp )
+MCGame::MCGame( MCAppState* newState )
 {
-    app = newApp;
+    state = newState;
 }
 
 
@@ -25,8 +26,8 @@ MCGame::~MCGame()
 //////////////////////////////////////////////////////////////////////////////////////
 void MCGame::init()
 {
-    app->background.active = true;
-    app->background.type = SpinnerType::BACKGROUND;
+    state->background.active = true;
+    state->background.type = SpinnerType::BACKGROUND;
 }
 
 
@@ -135,48 +136,64 @@ void MCGame::updateFrame()
 {
     frameCount++;
     int buttonJiggler = frameCount;
+    
+    // HANDLE FADE INS
+    if( state->menuFadeIn < 1 )
+        state->menuFadeIn += 0.012;
+    if( state->menuFadeIn > 1.0 )
+        state->menuFadeIn = 1.0;
 
-    if( app->mode == AppMode::MENU )
+    // KEEP MENU WHEEL IN RANGE
+    if( state->menuWheelPosition>=NUMBER_OF_PRESETS )
+        state->menuWheelPosition -= NUMBER_OF_PRESETS;
+    if( state->menuWheelPosition<0.0 )
+        state->menuWheelPosition += NUMBER_OF_PRESETS;
+
+    if( state->mode == AppMode::MENU )
     {
-        // DEBUG - TEST SPINNER CONFIGS..............................
-        app->spinnerArray[0].active = true;
-        app->spinnerArray[0].rotationPosition = frameCount * 30.1;
-        app->spinnerArray[0].texture = 13;
-        app->spinnerArray[0].size = 0.3;
-        app->spinnerArray[0].yPosition = 0.4;
+        state->spinnerArray[0].active = true;
+        state->spinnerArray[0].rotationPosition = frameCount * 30.1;
+        state->spinnerArray[0].texture = ROMPreviewTrack0[ ROMVisualPresetOrder[ (int)state->menuWheelPosition ] ];
+        state->spinnerArray[0].size = 0.3;
+        state->spinnerArray[0].yPosition = 0.4;
+        state->spinnerArray[0].xPosition = state->menuWheelPosition - floor( state->menuWheelPosition);
+        
+        state->spinnerArray[1] = state->spinnerArray[0];
+        state->spinnerArray[1].size = 0.15;
+        state->spinnerArray[1].texture = ROMPreviewTrack1[ ROMVisualPresetOrder[ (int)state->menuWheelPosition ] ];
 
-        app->normalButton.active = true;
-        app->normalButton.texture = 0;
-        app->normalButton.rotationPosition = frameCount * 25.1;
-        app->normalButton.size = 0.15;
-        app->normalButton.yPosition = 0.65;
-        app->normalButton.type = SpinnerType::BUTTON;
+        state->normalButton.active = true;
+        state->normalButton.texture = 0;
+        state->normalButton.rotationPosition = frameCount * 25.1;
+        state->normalButton.size = 0.15;
+        state->normalButton.yPosition = 0.65;
+        state->normalButton.type = SpinnerType::BUTTON;
         
-        app->muteButton = app->normalButton;
-        app->muteButton.texture = 1;
-        app->muteButton.xPosition = 0.38;
+        state->muteButton = state->normalButton;
+        state->muteButton.texture = 1;
+        state->muteButton.xPosition = 0.38;
         
-        app->instrumentButton = app->normalButton;
-        app->instrumentButton.texture = 2;
-        app->instrumentButton.xPosition = 0.62;
+        state->instrumentButton = state->normalButton;
+        state->instrumentButton.texture = 2;
+        state->instrumentButton.xPosition = 0.62;
       
-        app->background.rotationPosition = sin(buttonJiggler*2.78)*1.6;
+        state->background.rotationPosition = sin(buttonJiggler*2.78)*1.6;
     }
 
     
-    /*app->spinnerArray[0].active = true;
-    app->spinnerArray[0].rotationPosition = frameCount * 30.1;
-    app->spinnerArray[0].texture = 13;
+    /*state->spinnerArray[0].active = true;
+    state->spinnerArray[0].rotationPosition = frameCount * 30.1;
+    state->spinnerArray[0].texture = 13;
 
-    app->spinnerArray[1].active = true;
-    app->spinnerArray[1].rotationPosition = frameCount * 19.1;
-    app->spinnerArray[1].size = 0.5;
-    app->spinnerArray[1].texture = 14;
+    state->spinnerArray[1].active = true;
+    state->spinnerArray[1].rotationPosition = frameCount * 19.1;
+    state->spinnerArray[1].size = 0.5;
+    state->spinnerArray[1].texture = 14;
     
-    app->spinnerArray[2].active = true;
-    app->spinnerArray[2].rotationPosition = frameCount * 49.1;
-    app->spinnerArray[2].size = 0.2;
-    app->spinnerArray[2].texture = 19; //*/
+    state->spinnerArray[2].active = true;
+    state->spinnerArray[2].rotationPosition = frameCount * 49.1;
+    state->spinnerArray[2].size = 0.2;
+    state->spinnerArray[2].texture = 19; //*/
     
     // DEBUG -- ANY ANIMATION SHOULD REALLY BE DONE IN THE 'GAME' CLASS
     /*static float angle;
@@ -196,12 +213,6 @@ void MCGame::updateFrame()
     //---------------------------------------------------------------------------------------------------------
     // END OF TEST CODE
     // -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - 
-    
-    // HANDLE FADE INS
-    if( app->menuFadeIn < 1 )
-        app->menuFadeIn += 0.012;
-    if( app->menuFadeIn > 1.0 )
-        app->menuFadeIn = 1.0;
     
     
 

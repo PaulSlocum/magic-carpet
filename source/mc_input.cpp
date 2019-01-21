@@ -1,4 +1,33 @@
 // mc_input.cpp
 ////////////////////////////////////////////////////////////////////
 
+#include "SDL.h"
 
+#include "mc_input.hpp"
+#include "mc_application.hpp"
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////
+MCInput::MCInput( MCAppState* newState )
+{
+    state = newState;
+}
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////
+MCInput::~MCInput()
+{
+}
+
+
+
+
+void MCInput::processTouchEvent( const SDL_TouchFingerEvent event )
+{
+    if( event.type == SDL_FINGERMOTION )
+    {
+        state->menuWheelPosition += event.dx;
+    }
+}

@@ -1,12 +1,15 @@
 // mc_application.cpp
 /////////////////////////////////////////////////////////////////////////////////
 
+#include "SDL.h"
+
 #include <string>
 
 #include "mc_application.hpp"
 #include "mc_renderer.hpp"
 #include "mc_util.hpp"
 #include "mc_game.hpp"
+#include "mc_input.hpp"
 
 
 
@@ -19,7 +22,8 @@ MCApplication::MCApplication()
     srand( (unsigned int) time(NULL) );
     
     renderer = new MCRenderer( this );
-    gameController = new MCGame( this );
+    gameController = new MCGame( &state );
+    inputHandler = new MCInput( &state );
 }
 
 
@@ -39,9 +43,9 @@ MCApplication::~MCApplication()
 // NOTE: THIS FUNCTION BLOCKS UNTIL THE APPLICATION CLOSES OR stop() IS CALLED.
 void MCApplication::start()
 {
-    if( mode == AppMode::STOPPED )
+    if( state.mode == AppMode::STOPPED )
     {
-        mode = AppMode::LOADING;
+        state.mode = AppMode::LOADING;
      
         // INITIALIZE SDL
         if( SDL_Init(SDL_INIT_VIDEO) != 0 ) 
@@ -101,7 +105,7 @@ void MCApplication::start()
         
         // QUIT SDL
         SDL_Quit();
-        mode = AppMode::STOPPED;
+        state.mode = AppMode::STOPPED;
     }
 }
 
@@ -129,7 +133,7 @@ void MCApplication::runLoop()
     while( isQuitting == false )
     {
         // PROCESS ALL EVENTS IN QUEUE...
-        while (SDL_PollEvent(&event)) 
+        while( SDL_PollEvent(&event) ) 
         {
             printf( "RECEIVED EVENT\n" );
             switch( event.type )
@@ -141,10 +145,9 @@ void MCApplication::runLoop()
                 case SDL_FINGERDOWN: 
                 case SDL_FINGERUP:
                 case SDL_FINGERMOTION:
-                    break;
-                
                 case SDL_KEYDOWN:
                 case SDL_KEYUP:
+                    inputHandler->processTouchEvent( event.tfinger );
                     break;
             }
             if (event.type == SDL_QUIT) 
@@ -156,13 +159,13 @@ void MCApplication::runLoop()
         // LOAD TEXTURES / DRAW SCREEN...
         if( (vsyncEnabled == true)  ||  (timeOfNextFrameMSec <= getCurrentTimeMSec() + 0) )
         {
-            if( mode == AppMode::LOADING )
+            if( state.mode == AppMode::LOADING )
             {
                 renderer->loadTextures();
-                mode = AppMode::MENU;
-                menuFadeIn = 0.0;
+                state.mode = AppMode::MENU;
+                state.menuFadeIn = 0.0;
             }
-            if( mode == AppMode::MENU || mode == AppMode::RUNNING )
+            if( state.mode == AppMode::MENU || state.mode == AppMode::RUNNING )
             {
                 gameController->updateFrame();
                 renderer->render();

@@ -2,22 +2,24 @@
 ////////////////////////////////////////////////////////////////////////
 
 
-class MCApplication;
+class MCAppState;
+
+
+#define NUMBER_OF_PRESETS 7
 
 
 class MCGame
 {
 public:
-    MCGame( MCApplication* newApp );
+    MCGame( MCAppState* newState );
     ~MCGame();
     void init();
     void updateFrame();
     
 private:
-    MCApplication* app;
+    MCAppState* state;
     // ~  ~  ~  ~  ~  ~  ~  
     int frameCount = 0;
-    float prayerWheelPosition = 0.0;
     // ~  ~  ~  ~  ~  ~  ~  
     void loadPreset( const int presetNumber );
 };

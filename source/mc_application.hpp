@@ -5,15 +5,18 @@
 #define MC_APPLICATION_HPP
 
 #include <map>
-#include "SDL.h"
 #include "mc_spinner.hpp"
-
-class MCRenderer;
-class MCGame;
 
 // ~ ^  ~ ^  ~ ^  ~ ^  ~ ^  ~ ^  ~ ^  ~ ^  ~ ^ 
 #define FRAMES_PER_SECOND 60.0
 // ~ ^  ~ ^  ~ ^  ~ ^  ~ ^  ~ ^  ~ ^  ~ ^  ~ ^ 
+
+
+class MCRenderer;
+class MCGame;
+class MCInput;
+class SDL_Renderer;
+class SDL_Window;
 
 
 enum class AppMode { STOPPED, LOADING, MENU, RUNNING };
@@ -35,7 +38,19 @@ enum class SoundMode { NORMAL, MUTE, INSTRUMENT };
 }; //*/
 
 
-
+//|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+struct MCAppState 
+{
+    AppMode mode = AppMode::STOPPED;
+    SoundMode soundMode = SoundMode::NORMAL;
+    std::map<int,MCSpinner> spinnerArray;
+    float menuWheelPosition = 0.5;
+    float menuFadeIn = 1.0;
+    MCSpinner muteButton;
+    MCSpinner normalButton;
+    MCSpinner instrumentButton;
+    MCSpinner background;
+};
 
 
 //|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
@@ -51,26 +66,16 @@ public:
     int screenWidth = 0;
     int screenHeight = 0;
     // ~  ~  ~  ~  ~  ~  ~  ~
-    // APP STATE ---------------
-    std::map<int,MCSpinner> spinnerArray;
-    MCSpinner muteButton;
-    MCSpinner normalButton;
-    MCSpinner instrumentButton;
-    MCSpinner background;
-    float menuFadeIn = 1.0;
-    AppMode mode = AppMode::STOPPED;
-    SoundMode soundMode = SoundMode::NORMAL;
-    // --------------------------------
-
+    MCAppState state;
+    
 private:
     void runLoop();
     // ~  ~  ~  ~  ~  ~  ~  ~  
     MCRenderer* renderer;
     MCGame* gameController;
+    MCInput* inputHandler;
     SDL_Window *window;
     // ~  ~  ~  ~  ~  ~  ~  ~  
-    //MCTouchHandler* touchHandler;
-    //MCKeyboardHandler* keyboardHandler;
     //MCAudio* audioController;
     // ~  ~  ~  ~  ~  ~  ~  ~  
     bool vsyncEnabled = false;
