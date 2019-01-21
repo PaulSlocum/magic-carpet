@@ -1,3 +1,5 @@
+// mc_sequence_data.hpp
+///////////////////////////////////////////////////////////////////////////////
 
 //====================================================================================
 //
@@ -7,39 +9,28 @@
 // music and graphics settings.  These const arrays define the settings for each
 // preset.
 
+// PRESETS:
+// 1) Sound: KYRIE
+// 2) Sound: GATHERING
+// 3) Sound: SS BELLS
+// 4) Sound: CHURCH ORGAN/CHOIR
+// 5) Sound: BELLS
+// 6) Sound: CHURCH ORGAN
+// 7) Sound: SLOWDIVE
+//
+
+// GOOD TEXTURES (?)
 //42 44 51 42 44 42 45 46
 // 52,38,33,33,33,38,33,45 <
 //44,27,33,36,44,44,37,38
 //53,26,43,53,53,55,53,50
 
-// PRESETS TODO:
-// 1) Visuals: done.
-//        Sound: KYRIE: edit content, make 30 secs
-//
-// 2) Visuals: done.
-//        Sound: GATHERING: edit out weird voice samples, make 30 secs
-//
-// 3) Visuals: probably done.
-//        Sound: SS BELLS: make 30 secs
-//
-// 4) Visuals: probably done.
-//        Sound: CHURCH ORGAN/CHOIR: edit content and length of sample.
-//
-// 5) Visuals: probably done.
-//        Sound: BELLS: consider changing sample / remove loud bells or compress
-//
-// 6) Visuals: RANDOM: maybe a little tuning
-//        Sound: CHURCH ORGAN: good, make 30 secs
-//
-// 7) Visuals: probably done.
-//        Sound: SLOWDIVE: edit better, set up offsets better
-//
-
-// NEW GOOD PATTERNS
+// NEW GOOD TEXTURES
 // ---------------------
 // 67,63,59,67,63,67,91,89
 // 70,101,3,99,4,91,3,100
 //107,64,96,97,20,93,110,74
+
 
 //  #O#O#O#O#O#O#O#O#O#O#O#O
 // <O#O VISUAL SETTINGS O#O#>
@@ -52,8 +43,6 @@ const int ROMVisualPresetOrder[] = {0,1,4,3,2,5,6};
 #endif
 
 // MENU SPINNER TEXTURES
-//const int ROMPreviewTrack0[] = {  1,  21,   22,   44,    53,   96,   48  };
-//const int ROMPreviewTrack1[] = {  1,  26,   25,   20,    53,   96,   4  };
 const int ROMPreviewTrack0[] = {  1,  21,   22,   44,    53,   107,   48  };
 const int ROMPreviewTrack1[] = {  1,  26,   25,   20,    53,   64,   4  };
 
@@ -93,29 +82,17 @@ const float ROMSpinnerScaleY[] = { 1.0,1.0,0.8,1.0, 1.0,0.5,1.0 };
 // DUAL SPINNERS
 const bool ROMDualSpinners[] = { false, false, false, false, false, false, false };
 
-/*const float ROMBGColorRedA[] =   { 0.3f,  0.2f,  0.4f,  0.4f,  0.25f,  0.1f,  0.34f };
- const float ROMBGColorGreenA[] = { 0.15f, 0.2f,  0.25f, 0.30f, 0.20f, 0.05f, 0.25f };
- const float ROMBGColorBlueA[] = {  0.1f,  0.2f,  0.50f, 0.25f,  0.20f,  0.0f,  0.25f };  */
-
 const float ROMBGColorRedA[] =   { 0.3f,  0.4f,  0.4f,  0.4f,  0.25f,  0.1f,  0.34f };
 const float ROMBGColorGreenA[] = { 0.15f, 0.2f,  0.25f, 0.30f, 0.20f, 0.05f, 0.25f };
 const float ROMBGColorBlueA[] = {  0.1f,  0.2f,  0.50f, 0.25f,  0.20f,  0.0f,  0.25f };
-
-/*const float ROMBGColorRedB[] =   { 1.0f,  1.0f,  1.0f,  1.0f,  0.55f,  1.0f,  0.60f };
- const float ROMBGColorGreenB[] = { 0.95f, 0.95f, 0.90f, 0.95f, 0.35f, 0.95f, 0.50f };
- const float ROMBGColorBlueB[] = {  0.95f, 0.95f, 0.90f, 0.95f, 0.75f, 0.95f, 0.50f };  */
 
 const float ROMBGColorRedB[] =   { 1.0f,  0.0f,  1.0f,  1.0f, 0.55f, 0.50f,  0.60f };
 const float ROMBGColorGreenB[] = { 0.95f, 0.0f, 0.90f, 0.95f, 0.35f, 0.35f, 0.50f };
 const float ROMBGColorBlueB[] = {  0.95f, 0.0f, 0.90f, 0.95f, 0.75f, 0.30f, 0.50f };
 
 // SPINNER MODE ADV RATE
-//const long ROMSpinModeAdvRate[] =  { 700, 650, 600, 450, 550, 500, 450 };
 const long ROMSpinModeAdvRate[] =  { 7000, 6500, 6000, 4500, 5500, 5000, 4500 };
 
-// SPINNER MODE FOR DEBUGGIN!!!
-//const long kDebugSpinnerTime=1500;
-//const long ROMSpinModeAdvRate[] =  { kDebugSpinnerTime, kDebugSpinnerTime, kDebugSpinnerTime, kDebugSpinnerTime, kDebugSpinnerTime, kDebugSpinnerTime, kDebugSpinnerTime };
 
 //  ========================
 //  #O#O#O#O#O#O#O#O#O#O#O#O
@@ -129,7 +106,7 @@ const int ROMSoundPresetOrder[] = { 6 ,2 ,5 ,3 ,4 ,1 ,0 };
 const int ROMSoundPresetOrder[] = { 6 ,2 ,4 ,3 ,5 ,1 ,0 };
 #endif
 
-// VOLUME !!!!!!!!!!
+// VOLUME 
 const float ROMVolume[] =               { -5,  -10, -18, -15,   -23, -23, -21 };
 //        0    1   2     3     4    5    6
 const float ROMBinauralVolume[] =      {  -7, -5,  -10,  -7,  -12,  -8,  -5 };
@@ -145,14 +122,6 @@ const float ROMBinauralPitch[] = //  0      1        2      3       4         5 
     0,   0.076,   -0.3,  0.0129, -0.11,   -0.002,  -0.251, // phase 7
     0,   0.076,   -0.2,  0.0129, -0.211,  -0.148,  -0.251  // phase 8 //
 }; //                0.21
-
-// preset#1: good
-// preset#2: good, try new layers in sample
-// preset#3: 
-// preset#4: 
-// preset#5: 
-// preset#6: 
-// preset#7: 
 
 const float ROMLoopOffsetUpdateInterval[] = {2,4,4,4, 4,4,2}; //??????
 
@@ -173,7 +142,6 @@ const long ROMVoiceThickness[] =   { 2,  1,  2,  1,  1,  1,  1 };
 
 // spinner cycle#    1   2  3  4  5   6  7  8
 const float ROMTromoloRate[][8] = {    
-    //{13,8,14,9, 13,8,13,5}, // preset #1
     {5,3,5,3, 5,3,5,3}, // preset #1
     {25,24,25,24, 25,24,25,24}, // preset #2
     {25,18,25,18, 25,18,25,18}, // preset #3
@@ -185,7 +153,6 @@ const float ROMTromoloRate[][8] = {
 // spinner cycle#    1   2  3  4  5   6  7  8
 const float ROMTromoloLevel[][8] = {    
     {1,1,1,1, 1,1,1,1}, // preset #1
-    //{4,3,4,3, 4,3,4,3}, // preset #1
     {1,1,1,1, 1,1,1,1}, // preset #2
     {1,1,1,1, 1,1,1,1}, // preset #3
     {4,4,4,4, 4,4,4,4}, // preset #4
@@ -194,7 +161,8 @@ const float ROMTromoloLevel[][8] = {
     {4,4,4,4, 4,4,4,4}}; // preset #7
 
 
-
+// SOUND NOTES:
+//
 // 12 = good, 13 = good, right on, 14 = pretty good, too quiet, 15 = wonky, 16 = decent, kinda wonky, 17 = double, good, slightly wonky, 18 = good, like triplets, 19 = good, triplets, 
 // 20 = good, wonky triplets , 21 = good, heavily lopsided triplets, 22 = wonky, 23 = almost 16ths, wonky, 24 = almost 16ths, little wonky, 25 = sixteenths, slightly wonky, 
 // 26= sixteenths, pretty even, 27 = jerky sixteenths, 

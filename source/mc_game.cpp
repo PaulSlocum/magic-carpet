@@ -159,7 +159,7 @@ void MCGame::updateFrame()
         state->spinnerArray[0].xPosition = state->menuWheelPosition - floor( state->menuWheelPosition);
         
         state->spinnerArray[1] = state->spinnerArray[0];
-        state->spinnerArray[1].size = 0.15;
+        state->spinnerArray[1].size = 0.19;
         state->spinnerArray[1].texture = ROMPreviewTrack1[ ROMVisualPresetOrder[ (int)state->menuWheelPosition ] ];
 
         state->normalButton.active = true;
