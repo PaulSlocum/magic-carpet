@@ -145,9 +145,12 @@ void MCApplication::runLoop()
                 case SDL_FINGERDOWN: 
                 case SDL_FINGERUP:
                 case SDL_FINGERMOTION:
+                    inputHandler->processTouchEvent( event.tfinger );
+                    break;
+
                 case SDL_KEYDOWN:
                 case SDL_KEYUP:
-                    inputHandler->processTouchEvent( event.tfinger );
+                    inputHandler->processKeyboardEvent( event.key );
                     break;
             }
             if (event.type == SDL_QUIT) 

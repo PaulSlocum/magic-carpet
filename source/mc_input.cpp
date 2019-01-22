@@ -23,11 +23,24 @@ MCInput::~MCInput()
 
 
 
-
-void MCInput::processTouchEvent( const SDL_TouchFingerEvent event )
+/////////////////////////////////////////////////////////////////////////////////////
+void MCInput::processTouchEvent( const SDL_TouchFingerEvent fingerEvent )
 {
-    if( event.type == SDL_FINGERMOTION )
+    if( fingerEvent.type == SDL_FINGERMOTION )
     {
-        state->menuWheelPosition += event.dx;
+        state->menuWheelPosition += fingerEvent.dx;
     }
+}
+
+
+/////////////////////////////////////////////////////////////////////////////////////
+void MCInput::processKeyboardEvent( const SDL_KeyboardEvent keyEvent )
+{
+    if( keyEvent.type == SDL_KEYDOWN )
+        keyState.insert( keyEvent.keysym.scancode );
+    if( keyEvent.type == SDL_KEYUP )
+        keyState.erase( keyEvent.keysym.scancode );
+    
+    if( keyState.count( SDL_SCANCODE_LEFT ) )
+        state->menuWheelPosition -= 0.01;
 }

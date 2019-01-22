@@ -135,7 +135,7 @@ void MCGame::loadPreset( const int presetNumber )
 void MCGame::updateFrame()
 {
     frameCount++;
-    int buttonJiggler = frameCount;
+    int buttonJiggler = frameCount; 
     
     // HANDLE FADE INS
     if( state->menuFadeIn < 1 )
