@@ -42,6 +42,7 @@ enum class WheelPanMode { STOPPED, LEFT, RIGHT };
 struct MCAppState 
 {
     AppMode mode = AppMode::STOPPED;
+    AppMode previousMode = AppMode::STOPPED;
     SoundMode soundMode = SoundMode::NORMAL;
     std::map<int,MCSpinner> spinnerArray;
     float menuWheelPosition = 0.5;

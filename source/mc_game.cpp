@@ -155,8 +155,6 @@ void MCGame::updateFrame()
 
     if( state->mode == AppMode::MENU )
     {
-            
-        
         state->spinnerArray[0].active = true;
         state->spinnerArray[0].rotationPosition = frameCount * 30.1;
         state->spinnerArray[0].texture = ROMPreviewTrack0[ ROMVisualPresetOrder[ (int)state->menuWheelPosition ] ];
@@ -186,20 +184,26 @@ void MCGame::updateFrame()
         state->background.rotationPosition = sin(buttonJiggler*2.78)*1.6;
     }
 
+    if( state->mode == AppMode::RUNNING )
+    {
+        state->spinnerArray[0].active = true;
+        state->spinnerArray[0].rotationPosition = frameCount * 30.1;
+        state->spinnerArray[0].texture = 13;
+        state->spinnerArray[0].xPosition = 0.5;
+        state->spinnerArray[0].yPosition = 0.5;
+        state->spinnerArray[0].size = 1.0;
     
-    /*state->spinnerArray[0].active = true;
-    state->spinnerArray[0].rotationPosition = frameCount * 30.1;
-    state->spinnerArray[0].texture = 13;
-
-    state->spinnerArray[1].active = true;
-    state->spinnerArray[1].rotationPosition = frameCount * 19.1;
-    state->spinnerArray[1].size = 0.5;
-    state->spinnerArray[1].texture = 14;
-    
-    state->spinnerArray[2].active = true;
-    state->spinnerArray[2].rotationPosition = frameCount * 49.1;
-    state->spinnerArray[2].size = 0.2;
-    state->spinnerArray[2].texture = 19; //*/
+        state->spinnerArray[1] = state->spinnerArray[0]; 
+        //state->spinnerArray[1].active = true;
+        state->spinnerArray[1].rotationPosition = frameCount * 19.1;
+        state->spinnerArray[1].size = 0.5;
+        state->spinnerArray[1].texture = 14;
+        
+        state->spinnerArray[2].active = true;
+        state->spinnerArray[2].rotationPosition = frameCount * 49.1;
+        state->spinnerArray[2].size = 0.2;
+        state->spinnerArray[2].texture = 19; //*/
+    }
     
     // DEBUG -- ANY ANIMATION SHOULD REALLY BE DONE IN THE 'GAME' CLASS
     /*static float angle;
