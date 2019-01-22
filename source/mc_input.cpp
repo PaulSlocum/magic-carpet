@@ -46,7 +46,7 @@ void MCInput::processKeyboardEvent( const SDL_KeyboardEvent keyEvent )
         keysDown.insert( keyEvent.keysym.scancode );
     if( keyEvent.type == SDL_KEYUP )
         keysDown.erase( keyEvent.keysym.scancode );
-    if( keyEvent.type == SDL_SCANCODE_RETURN  &&  state->mode == AppMode::MENU )
+    if( keyEvent.keysym.scancode == SDL_SCANCODE_RETURN  &&  state->mode == AppMode::MENU )
         state->mode = AppMode::RUNNING;
 
     if( keysDown.count( SDL_SCANCODE_LEFT ) )
