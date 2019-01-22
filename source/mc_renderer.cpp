@@ -114,11 +114,29 @@ void MCRenderer::loadTextures()
     buttonTextureArray[ 1 ] = loadJpegTexture( "bnGrid.jpg" );
     buttonTextureArray[ 2 ] = loadJpegTexture( "bnBird.jpg" );
 
+    //std::map<int, MCSpinner> tempSpinnerArray;
+    MCSpinner tempSpinner;
+    
     // LOAD SPINNER TEXTURES FROM TEXTURE LIST ARRAY IN HEADER...
     for( int i=0; i<TEXTURE_LOAD_LIST_LENGTH; i++ )
     {
         if( TEXTURE_LOAD_LIST[i].isUsed == true )
+        {
             spinnerTextureArray[ TEXTURE_LOAD_LIST[i].textureSlot ] = loadJpegTexture( TEXTURE_LOAD_LIST[i].filename );
+            //tempSpinnerArray[i].texture = TEXTURE_LOAD_LIST[i].textureSlot;
+            //tempSpinnerArray[i].size = i/20.0;
+            //drawSpinner( tempSpinnerArray[i] );
+
+            tempSpinner.size = i/150.0;
+            tempSpinner.active = true;
+            tempSpinner.texture = TEXTURE_LOAD_LIST[i].textureSlot;
+            tempSpinner.rotationPosition = i*15.0;
+            drawSpinner( tempSpinner );
+            
+            // RENDER (SHOW LOADED TEXTURE) -- THIS FUNCTION BLOCKS UNTIL VSYNC IF VSYNC IS ENABLED/SUPPORTED ON THE PLATFORM (CURRENTLY DOES NOT WORK ON RPI)
+            //if( i%2 == 0 )
+                SDL_RenderPresent( app->SDLRenderer );
+        }
     }
 }
 
