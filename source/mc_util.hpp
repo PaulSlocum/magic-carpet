@@ -4,15 +4,17 @@
 #include <string>
 
 
+std::string stdprintf(const std::string fmt_str, ...);
 
 long long getCurrentTimeMSec();
-long long timeSinceEventMSec( const long long eventTimeMSec );
+
+
+/*long long timeSinceEventMSec( const long long eventTimeMSec );
 
 void sleepFloatSeconds( const float delaySeconds );
 
 std::string logf(const std::string fmt_str, ...);
 
-std::string stdprintf(const std::string fmt_str, ...);
 std::string stdpopen(const std::string fmt_str, ...);
 
 std::string shortenedString( std::string inputString, unsigned maxWidth );
@@ -25,5 +27,5 @@ bool stringEndsWithNoCase(std::string const & value, std::string const & ending)
 std::string trimFromPosition( std::string inputString, unsigned maxLength );
 std::string trimToPosition( std::string inputString, unsigned maxLength );
 
-std::string removeFilenamePath( std::string filename );
+std::string removeFilenamePath( std::string filename ); //*/
 
