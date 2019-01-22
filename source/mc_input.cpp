@@ -48,6 +48,8 @@ void MCInput::processKeyboardEvent( const SDL_KeyboardEvent keyEvent )
         keysDown.erase( keyEvent.keysym.scancode );
     if( keyEvent.keysym.scancode == SDL_SCANCODE_RETURN  &&  state->mode == AppMode::MENU )
         state->mode = AppMode::RUNNING;
+    if( keyEvent.keysym.scancode == SDL_SCANCODE_ESCAPE  &&  state->mode == AppMode::RUNNING )
+        state->mode = AppMode::MENU;
 
     if( keysDown.count( SDL_SCANCODE_LEFT ) )
         state->wheelPan = WheelPanMode::LEFT;
