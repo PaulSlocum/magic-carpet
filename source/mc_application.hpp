@@ -21,7 +21,7 @@ class SDL_Window;
 
 enum class AppMode { STOPPED, LOADING, MENU, RUNNING };
 enum class SoundMode { NORMAL, MUTE, INSTRUMENT };
-
+enum class WheelPanMode { STOPPED, LEFT, RIGHT };
 
 
 
@@ -50,6 +50,7 @@ struct MCAppState
     MCSpinner normalButton;
     MCSpinner instrumentButton;
     MCSpinner background;
+    WheelPanMode wheelPan = WheelPanMode::STOPPED;
 };
 
 

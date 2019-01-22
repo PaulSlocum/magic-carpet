@@ -143,7 +143,11 @@ void MCGame::updateFrame()
     if( state->menuFadeIn > 1.0 )
         state->menuFadeIn = 1.0;
 
-    // KEEP MENU WHEEL IN RANGE
+    // PAN WHEEL AND KEEP MENU WHEEL IN RANGE
+    if( state->wheelPan == WheelPanMode::LEFT )
+        state->menuWheelPosition -= 0.005;
+    if( state->wheelPan == WheelPanMode::RIGHT )
+        state->menuWheelPosition += 0.005;
     if( state->menuWheelPosition>=NUMBER_OF_PRESETS )
         state->menuWheelPosition -= NUMBER_OF_PRESETS;
     if( state->menuWheelPosition<0.0 )
@@ -151,6 +155,8 @@ void MCGame::updateFrame()
 
     if( state->mode == AppMode::MENU )
     {
+            
+        
         state->spinnerArray[0].active = true;
         state->spinnerArray[0].rotationPosition = frameCount * 30.1;
         state->spinnerArray[0].texture = ROMPreviewTrack0[ ROMVisualPresetOrder[ (int)state->menuWheelPosition ] ];

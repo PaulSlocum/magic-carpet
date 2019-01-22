@@ -37,12 +37,17 @@ void MCInput::processTouchEvent( const SDL_TouchFingerEvent fingerEvent )
 void MCInput::processKeyboardEvent( const SDL_KeyboardEvent keyEvent )
 {
     if( keyEvent.type == SDL_KEYDOWN )
-        keyState.insert( keyEvent.keysym.scancode );
+        keysDown.insert( keyEvent.keysym.scancode );
     if( keyEvent.type == SDL_KEYUP )
-        keyState.erase( keyEvent.keysym.scancode );
-    
-    if( keyState.count( SDL_SCANCODE_LEFT ) )
-        state->menuWheelPosition -= 0.08;
-    if( keyState.count( SDL_SCANCODE_RIGHT ) )
-        state->menuWheelPosition -= 0.08;
+        keysDown.erase( keyEvent.keysym.scancode );
+
+    if( keysDown.count( SDL_SCANCODE_LEFT ) )
+        state->wheelPan = WheelPanMode::LEFT;
+    else
+    {
+        if( keysDown.count( SDL_SCANCODE_RIGHT ) )
+            state->wheelPan = WheelPanMode::RIGHT;
+        else
+            state->wheelPan = WheelPanMode::STOPPED;
+    }
 }

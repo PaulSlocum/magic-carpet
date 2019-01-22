@@ -19,5 +19,5 @@ public:
 private:
     MCAppState* state;
     // ~  ~  ~  ~  ~  ~  ~
-    std::set<int> keyState;
+    std::set<int> keysDown;
 };
