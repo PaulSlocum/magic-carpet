@@ -145,9 +145,9 @@ void MCGame::updateFrame()
 
     // PAN WHEEL AND KEEP MENU WHEEL IN RANGE
     if( state->wheelPan == WheelPanMode::LEFT )
-        state->menuWheelPosition -= 0.005;
+        state->menuWheelPosition -= 0.01;
     if( state->wheelPan == WheelPanMode::RIGHT )
-        state->menuWheelPosition += 0.005;
+        state->menuWheelPosition += 0.01; //*/
     if( state->menuWheelPosition>=NUMBER_OF_PRESETS )
         state->menuWheelPosition -= NUMBER_OF_PRESETS;
     if( state->menuWheelPosition<0.0 )

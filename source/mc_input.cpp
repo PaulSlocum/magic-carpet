@@ -49,5 +49,5 @@ void MCInput::processKeyboardEvent( const SDL_KeyboardEvent keyEvent )
             state->wheelPan = WheelPanMode::RIGHT;
         else
             state->wheelPan = WheelPanMode::STOPPED;
-    }
+    }//*/
 }
