@@ -42,5 +42,7 @@ void MCInput::processKeyboardEvent( const SDL_KeyboardEvent keyEvent )
         keyState.erase( keyEvent.keysym.scancode );
     
     if( keyState.count( SDL_SCANCODE_LEFT ) )
-        state->menuWheelPosition -= 0.01;
+        state->menuWheelPosition -= 0.08;
+    if( keyState.count( SDL_SCANCODE_RIGHT ) )
+        state->menuWheelPosition -= 0.08;
 }
