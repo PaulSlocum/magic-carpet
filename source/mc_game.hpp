@@ -22,4 +22,9 @@ private:
     int frameCount = 0;
     // ~  ~  ~  ~  ~  ~  ~  
     void loadPreset( const int presetNumber );
+    // ~  ~  ~  ~  ~  ~  ~
+    void initMenuMode();
+    void updateMenuModeFrame();
+    void initRunningMode();
+    void updateRunningModeFrame();
 };

@@ -15,6 +15,26 @@
 
 #pragma mark -- ~ -- ~ -- ~ -- ~ -- ~ -- ~ -- ~ -- ~ -- ~ -- ~ -- ~ -- ~ -- ~ -- 
 
+//==========================================================================
+float convergeValue( const float currentValue, const float targetValue, const float rate )
+{
+    float returnValue = currentValue;
+    if( returnValue < targetValue )
+    {
+        returnValue += rate;
+        if( returnValue > targetValue )
+            returnValue = targetValue;
+    }
+    if( returnValue > targetValue )
+    {
+        returnValue -= rate;
+        if( returnValue < targetValue )
+            returnValue = targetValue;
+    }
+    return returnValue;
+}
+
+
 
 //==========================================================================
 std::string stdprintf( const std::string fmt_str, ... ) 
