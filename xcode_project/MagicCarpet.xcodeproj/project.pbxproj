@@ -147,8 +147,6 @@
 		29B97315FDCFA39411CA2CEA /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				EB1118CE21F80576004022DC /* stb_vorbis.cpp */,
-				EB1118D521F81E67004022DC /* stb_vorbis.hpp */,
 				EB27A15F21F1641A0082D1C2 /* Libraries */,
 				EBC84AD021ED47F30039B60F /* mc_application.cpp */,
 				EBC84ACF21ED47F30039B60F /* mc_application.hpp */,
@@ -228,6 +226,8 @@
 		EB27A15F21F1641A0082D1C2 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				EB1118CE21F80576004022DC /* stb_vorbis.cpp */,
+				EB1118D521F81E67004022DC /* stb_vorbis.hpp */,
 				EBC84AC921EA94190039B60F /* ujpeg.cpp */,
 				EBC84ACB21EA946C0039B60F /* ujpeg.h */,
 			);

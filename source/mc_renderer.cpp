@@ -72,7 +72,7 @@ void MCRenderer::drawSpinner( const MCSpinner spinner )
 void MCRenderer::render()
 {
     // DEBUG! - THIS IS ONLY USED FOR THE FRAME COUNTER
-    frameCount++;
+    //frameCount++;
 
     // CLEAR THE SCREEN
     SDL_RenderClear( app->SDLRenderer );
@@ -93,8 +93,8 @@ void MCRenderer::render()
        startTimeMSec = getCurrentTimeMSec();
     
     // DEBUG!!!  SHOW FPS...
-    if( frameCount % 60 == 0 )
-        printf( "FPS: %f\n",  frameCount * 1000.0 / ( getCurrentTimeMSec() - startTimeMSec )  );
+    //if( frameCount % 60 == 0 )
+    //    printf( "FPS: %f\n",  frameCount * 1000.0 / ( getCurrentTimeMSec() - startTimeMSec )  );
 }
 
 
@@ -148,7 +148,7 @@ SDL_Texture* MCRenderer::loadJpegTexture( const std::string imageFilename )
     // LOAD JPEG
     uJPEG jpeg;
     std::string imageFilenameWithPath = stdprintf( "%smedia/images/%s", SDL_GetBasePath(), imageFilename.c_str() );
-    printf( "FILE PATH: %s\n", imageFilenameWithPath.c_str() );
+    //printf( "FILE PATH: %s\n", imageFilenameWithPath.c_str() );
     SDL_Surface *bmp_surface = NULL;
     jpeg.decodeFile( imageFilenameWithPath.c_str() );
     if( jpeg.bad() ) 
@@ -178,9 +178,9 @@ SDL_Texture* MCRenderer::loadJpegTexture( const std::string imageFilename )
     }
     
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    printf( "SURFACE --> W:%d H:%d DEPTH:%d PITCH:%d\n", bmp_surface->w, bmp_surface->h, bmp_surface->format->BitsPerPixel, bmp_surface->pitch ); 
-    printf( "FORMAT:%d RMASK:%x GMASK:%x BMASK:%x AMASK:%x\n", 
-           bmp_surface->format->format, bmp_surface->format->Rmask, bmp_surface->format->Gmask, bmp_surface->format->Bmask, bmp_surface->format->Amask );
+    //printf( "SURFACE --> W:%d H:%d DEPTH:%d PITCH:%d\n", bmp_surface->w, bmp_surface->h, bmp_surface->format->BitsPerPixel, bmp_surface->pitch ); 
+    //printf( "FORMAT:%d RMASK:%x GMASK:%x BMASK:%x AMASK:%x\n", 
+    //       bmp_surface->format->format, bmp_surface->format->Rmask, bmp_surface->format->Gmask, bmp_surface->format->Bmask, bmp_surface->format->Amask );
     
     // FREE SURFACE MEMORY
     SDL_FreeSurface(bmp_surface); //*/

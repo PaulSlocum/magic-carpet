@@ -36,9 +36,14 @@ unsigned int fase2 = 0;
 
 //=======================================================================================
 // AUDIO CALLBACK
-void example_mixaudio(void *unused, Uint8 *stream, int len) {
+void example_mixaudio( void *audioObject, Uint8 *stream, int len ) 
+{
+    ((MCAudio*)audioObject)->callback( stream, len );
     
-    unsigned int bytesPerPeriod1 = sampleFrequency / freq1;
+    
+    
+    
+    /*unsigned int bytesPerPeriod1 = sampleFrequency / freq1;
     unsigned int bytesPerPeriod2 = sampleFrequency / freq2;
     
     for (int i=0;i<len;i++) {
@@ -55,11 +60,18 @@ void example_mixaudio(void *unused, Uint8 *stream, int len) {
         fase1 %= bytesPerPeriod1;
         fase2++;
         fase2 %= bytesPerPeriod2;
-    }
+    }//*/
 }
 
-
-
+/////////////////////////////////////////////////////////////////////////////////////////
+void MCAudio::callback( Uint8* stream, int len )
+{
+    if( (playbackOffset + len) > (audioFileLength*2) ) 
+        playbackOffset = 0;
+    memcpy( stream, &audioDecodeBuffer[ playbackOffset ], len );
+    playbackOffset += len/2;
+    printf( "** PLAYBACK POS: %ld  CHUNK SIZE: %d \n", playbackOffset, len );
+}
 
 
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -67,18 +79,18 @@ void MCAudio::start()
 {
     int channels = 0;
     int sampleRate = 0;
-    short* outputBuffer;
     std::string audioFilenameWithPath = stdprintf( "%smedia/audio/%s", SDL_GetBasePath(), "instrument1.ogg" );
     printf( "** OGG FILENAME: %s \n", audioFilenameWithPath.c_str() );
-    int result = stb_vorbis_decode_filename( audioFilenameWithPath.c_str(), &channels, &sampleRate, &outputBuffer );
-    if( result > 0 )
+    audioFileLength = stb_vorbis_decode_filename( audioFilenameWithPath.c_str(), &channels, &sampleRate, &audioDecodeBuffer );
+    if( audioFileLength > 0 )
     {
-        printf( "** OGG FILE DECODED!! \n" );
+        printf( "** OGG FILE DECODED!!  CHAN: %d  RATE: %d   LEN: %ld \n", channels, sampleRate, audioFileLength );
     }
     else
     {
-        printf( "** ERROR DECODING OGG: %d  \n", result );
+        printf( "** ERROR DECODING OGG: %ld  \n", audioFileLength );
     }
+    //exit(1);
     //stb_vorbis_decode_filename(const char *filename, int *channels, int *sample_rate, short **output)
     
     // -=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -98,8 +110,11 @@ void MCAudio::start()
     obtained = (SDL_AudioSpec *) malloc(sizeof(SDL_AudioSpec));
     
     /* choose a samplerate and audio-format */
-    desired->freq = 44100;
-    desired->format = AUDIO_S8;
+    //desired->freq = 44100;
+    //desired->format = AUDIO_S8;
+
+    desired->freq = 22050;
+    desired->format = AUDIO_S16SYS;
     
     /* Large audio buffers reduces risk of dropouts but increases response time.
      *
@@ -109,13 +124,16 @@ void MCAudio::start()
      * buffersize of 11025 bytes, if your sdl.dll is approx. 1 Mb in stead of 220 Kb, download
      * v1.2.8 of SDL or better...)
      */
-    desired->samples = 4096;
+    
+    //desired->samples = 4096;
+    desired->samples = 4096*4;
     
     /* Our callback function */
-    desired->callback=example_mixaudio;
-    desired->userdata=NULL;
+    desired->callback = example_mixaudio;
+    desired->userdata = this;
+    //desired->userdata = NULL;
     
-    desired->channels = 1;
+    desired->channels = 2;
     
     /* Open the audio device and start playing sound! */
     if ( SDL_OpenAudio(desired, obtained) < 0 ) {
@@ -127,11 +145,11 @@ void MCAudio::start()
     sampleFrequency = obtained->freq;
     
     /* if the format is 16 bit, two bytes are written for every sample */
-    if (obtained->format==AUDIO_U16 || obtained->format==AUDIO_S16) {
+    /*if (obtained->format==AUDIO_U16 || obtained->format==AUDIO_S16) {
         outputAudioBufferSize = 2*audioBufferSize;
     } else {
         outputAudioBufferSize = audioBufferSize;
-    }
+    }//*/
     
     //SDL_Surface *screen = SDL_SetVideoMode(200,200, 16, SDL_SWSURFACE);
     //SDL_WM_SetCaption("Audio Example",0);
