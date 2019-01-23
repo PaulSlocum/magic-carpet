@@ -12,7 +12,35 @@ TODO:
 - port preset phase cycler
 -  ~  -  ~  -  ~  -  ~
 - fix the 3 JPEGs that won't load
--  ~  -  ~  -  ~  -  ~  
+-  ~  -  ~  -  ~  -  ~
+- figure out audio system
+- figure out how to implement multiple channels
+- port audio system
+- set up 
+-  ~  -  ~  -  ~  -  ~
+- implement rending to texture
+- implement sizing system
+-  ~  -  ~  -  ~  -  ~
+- add flipped double image to menu background
+- implement menu sound
+- implement zoom/sound blip in menu
+- fix odd color in red menu spinner
+-  ~  -  ~  -  ~  -  ~
+- implement both X and Y scaling fields for spinners
+-  ~  -  ~  -  ~  -  ~
+- get Android or Windows build working
+-  ~  -  ~  -  ~  -  ~
+- add namespace
+- implement exceptions and error handling
+- verify use of consts
+- review other C++ best practices
+- clean up everything
+- test on raw RPi system
+- finish readme.md
+- make GIF and/or video for readme.md
+-  ~  -  ~  -  ~  -  ~
+- implement or figure out VSync support on RPi
+-  ~  -  ~  -  ~  -  ~
 ~- ~- ~- ~- ~- ~- ~- ~- ~- 
 
 

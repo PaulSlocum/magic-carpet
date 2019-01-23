@@ -142,10 +142,10 @@ struct MCAppState
 class MCApplication
 {
 public:
-    void start();
-    void stop();
     MCApplication();
     ~MCApplication();
+    void start();
+    void stop();
     // ~  ~  ~  ~  ~  ~  ~  ~  
     SDL_Renderer *SDLRenderer = NULL;
     int screenWidth = 0;
