@@ -12,9 +12,9 @@
 
 
 //////////////////////////////////////////////////////////////////////////////////////
-MCRenderer::MCRenderer( MCApplication* newApp )
+MCRenderer::MCRenderer( MCAppState* newState )
 {
-    app = newApp;
+    state = newState;
     
     // DEBUG - TRYING TO SET UP RENDER TARGET
     /*int nWidth = 800;
@@ -85,8 +85,8 @@ void MCRenderer::drawSpinner( const MCSpinner spinner )
         // SETUP SOURCE/DECT RECTS FOR COPY
         SDL_Rect srcRect = { 0, 0, textureWidth, textureHeight };
         SDL_Rect dstRect;
-        dstRect.w = screenWidth * spinner.size * app->state.menuFadeIn;
-        dstRect.h = screenWidth * spinner.size * app->state.menuFadeIn;
+        dstRect.w = screenWidth * spinner.size * state->menuFadeIn;
+        dstRect.h = screenWidth * spinner.size * state->menuFadeIn;
         dstRect.x = (screenWidth - dstRect.w) / 2 + ( (spinner.xPosition-0.5) * 2 * screenWidth);
         dstRect.y = (screenHeight - dstRect.h) / 2 + ( (spinner.yPosition-0.5) * 2 * screenHeight);
 
@@ -109,12 +109,12 @@ void MCRenderer::render()
     SDL_RenderClear( SDLRenderer );
     
     // DRAW EVERYTHING
-    drawSpinner( app->state.background );
-    drawSpinner( app->state.normalButton );
-    drawSpinner( app->state.muteButton );
-    drawSpinner( app->state.instrumentButton );
+    drawSpinner( state->background );
+    drawSpinner( state->normalButton );
+    drawSpinner( state->muteButton );
+    drawSpinner( state->instrumentButton );
     for( int spinnerNumber=0; spinnerNumber<MAX_ACTIVE_SPINNERS; spinnerNumber++ )
-        drawSpinner( app->state.spinnerArray[ spinnerNumber ] );
+        drawSpinner( state->spinnerArray[ spinnerNumber ] );
     
     // RENDER! -- THIS FUNCTION BLOCKS UNTIL VSYNC IF VSYNC IS ENABLED/SUPPORTED ON THE PLATFORM (CURRENTLY DOES NOT WORK ON RPI)
     SDL_RenderPresent( SDLRenderer );
@@ -139,7 +139,7 @@ void MCRenderer::loadTextures()
         backgroundTexture = loadJpegTexture( "menuBG2d.jpg" );
     else
         backgroundTexture = loadJpegTexture( "menuBG2c.jpg" );
-    drawSpinner( app->state.background );
+    drawSpinner( state->background );
     SDL_RenderPresent( SDLRenderer );
     
     // LOAD BUTTON TEXTURES

@@ -8,19 +8,19 @@
 
 
 
-class MCApplication;
+class MCAppState;
 
 class MCRenderer
 {
 public:
-    MCRenderer( MCApplication* newApp );
+    MCRenderer( MCAppState* newState );
     ~MCRenderer();
     void start();
     void render();
     void loadTextures();
     
 private:
-    MCApplication* app;
+    MCAppState* state;
     // ~  ~  ~  ~  ~  ~  ~  ~  
     int frameCount = 0;
     long long startTimeMSec = 0;

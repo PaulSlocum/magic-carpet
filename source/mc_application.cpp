@@ -22,7 +22,7 @@ MCApplication::MCApplication()
     // SEED RANDOM NUMBERS
     srand( (unsigned int) time(NULL) );
     
-    renderer = new MCRenderer( this );
+    renderer = new MCRenderer( &state );
     audioController = new MCAudio( &state );
     gameController = new MCGame( &state );
     inputHandler = new MCInput( &state );
