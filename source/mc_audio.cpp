@@ -79,7 +79,7 @@ void MCAudio::start()
 {
     int channels = 0;
     int sampleRate = 0;
-    std::string audioFilenameWithPath = stdprintf( "%smedia/audio/%s", SDL_GetBasePath(), "instrument1.ogg" );
+    std::string audioFilenameWithPath = stdprintf( "%smedia/audio/%s", SDL_GetBasePath(), "music2.ogg" );
     printf( "** OGG FILENAME: %s \n", audioFilenameWithPath.c_str() );
     audioFileLength = stb_vorbis_decode_filename( audioFilenameWithPath.c_str(), &channels, &sampleRate, &audioDecodeBuffer );
     if( audioFileLength > 0 )
