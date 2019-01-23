@@ -15,6 +15,7 @@ class MCRenderer
 public:
     MCRenderer( MCApplication* newApp );
     ~MCRenderer();
+    void start();
     void render();
     void loadTextures();
     
@@ -23,6 +24,11 @@ private:
     // ~  ~  ~  ~  ~  ~  ~  ~  
     int frameCount = 0;
     long long startTimeMSec = 0;
+    // ~  ~  ~  ~  ~  ~  ~  ~  
+    SDL_Renderer *SDLRenderer = NULL;
+    SDL_Window *window = NULL;
+    int screenWidth = 0;
+    int screenHeight = 0;
     // ~  ~  ~  ~  ~  ~  ~  ~  
     std::map<int, SDL_Texture*> spinnerTextureArray;
     std::map<int, SDL_Texture*> buttonTextureArray;

@@ -146,10 +146,6 @@ public:
     ~MCApplication();
     void start();
     void stop();
-    // ~  ~  ~  ~  ~  ~  ~  ~  
-    SDL_Renderer *SDLRenderer = NULL;
-    int screenWidth = 0;
-    int screenHeight = 0;
     // ~  ~  ~  ~  ~  ~  ~  ~
     MCAppState state;
     
@@ -160,9 +156,6 @@ private:
     MCGame* gameController;
     MCInput* inputHandler;
     MCAudio* audioController;
-    SDL_Window *window;
-    // ~  ~  ~  ~  ~  ~  ~  ~  
-    //MCAudio* audioController;
     // ~  ~  ~  ~  ~  ~  ~  ~  
     bool vsyncEnabled = false;
     // ~  ~  ~  ~  ~  ~  ~  ~  

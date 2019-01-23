@@ -32,6 +32,37 @@ MCRenderer::~MCRenderer()
 
 
 
+/////////////////////////////////////////////////////////////////////////////////////
+void MCRenderer::start()
+{
+    SDL_Rect screenSize;
+    SDL_GetDisplayBounds( 0, &screenSize );
+    printf( "DISPLAY BOUNDS: %d x %d \n", screenSize.w, screenSize.h );
+    
+    // CREATE SDL WINDOW
+    window = SDL_CreateWindow( NULL, 0, 0, screenSize.w, screenSize.h, SDL_WINDOW_FULLSCREEN );
+    //window = SDL_CreateWindow( NULL, 0, 0, screenSize.w, screenSize.h, SDL_WINDOW_OPENGL );
+    
+    if( !window ) 
+    {
+        printf("Could not initialize Window\n");
+        return;
+    }
+    
+    // CREATE SDL RENDERED IN WINDOW
+    SDLRenderer = SDL_CreateRenderer( window, -1, 0 );
+    if( !SDLRenderer ) 
+    {
+        printf("Could not create renderer\n");
+        return;
+    }
+    
+    SDL_GetWindowSize( window, &screenWidth, &screenHeight );
+    printf( "WINDOW SIZE: %d x %d \n", screenWidth, screenHeight );
+}
+
+
+
 
 ///////////////////////////////////////////////////////////////////////////////////
 void MCRenderer::drawSpinner( const MCSpinner spinner )
@@ -54,12 +85,12 @@ void MCRenderer::drawSpinner( const MCSpinner spinner )
         // SETUP SOURCE/DECT RECTS FOR COPY
         SDL_Rect srcRect = { 0, 0, textureWidth, textureHeight };
         SDL_Rect dstRect;
-        dstRect.w = app->screenWidth * spinner.size * app->state.menuFadeIn;
-        dstRect.h = app->screenWidth * spinner.size * app->state.menuFadeIn;
-        dstRect.x = (app->screenWidth - dstRect.w) / 2 + ( (spinner.xPosition-0.5) * 2 * app->screenWidth);
-        dstRect.y = (app->screenHeight - dstRect.h) / 2 + ( (spinner.yPosition-0.5) * 2 * app->screenHeight);
+        dstRect.w = screenWidth * spinner.size * app->state.menuFadeIn;
+        dstRect.h = screenWidth * spinner.size * app->state.menuFadeIn;
+        dstRect.x = (screenWidth - dstRect.w) / 2 + ( (spinner.xPosition-0.5) * 2 * screenWidth);
+        dstRect.y = (screenHeight - dstRect.h) / 2 + ( (spinner.yPosition-0.5) * 2 * screenHeight);
 
-        SDL_RenderCopyEx( app->SDLRenderer, spinnerTexture, &srcRect, &dstRect, spinner.rotationPosition, NULL, SDL_FLIP_NONE );
+        SDL_RenderCopyEx( SDLRenderer, spinnerTexture, &srcRect, &dstRect, spinner.rotationPosition, NULL, SDL_FLIP_NONE );
 
         // DEBUG - EVENTUALLY PROBABLY WANT TO CONVERT THIS RENDERER TO A RENGER TARGET
         //SDL_RenderCopyEx( softRenderer, spinnerTextureArray[0], &srcRect, &dstRect, angle, NULL, SDL_FLIP_NONE );
@@ -75,7 +106,7 @@ void MCRenderer::render()
     //frameCount++;
 
     // CLEAR THE SCREEN
-    SDL_RenderClear( app->SDLRenderer );
+    SDL_RenderClear( SDLRenderer );
     
     // DRAW EVERYTHING
     drawSpinner( app->state.background );
@@ -86,7 +117,7 @@ void MCRenderer::render()
         drawSpinner( app->state.spinnerArray[ spinnerNumber ] );
     
     // RENDER! -- THIS FUNCTION BLOCKS UNTIL VSYNC IF VSYNC IS ENABLED/SUPPORTED ON THE PLATFORM (CURRENTLY DOES NOT WORK ON RPI)
-    SDL_RenderPresent( app->SDLRenderer );
+    SDL_RenderPresent( SDLRenderer );
     
     // UPDATE FRAME TIMER
     if( startTimeMSec == 0 )
@@ -98,6 +129,8 @@ void MCRenderer::render()
 }
 
 
+
+
 ///////////////////////////////////////////////////////////////////
 void MCRenderer::loadTextures()
 {
@@ -107,7 +140,7 @@ void MCRenderer::loadTextures()
     else
         backgroundTexture = loadJpegTexture( "menuBG2c.jpg" );
     drawSpinner( app->state.background );
-    SDL_RenderPresent( app->SDLRenderer );
+    SDL_RenderPresent( SDLRenderer );
     
     // LOAD BUTTON TEXTURES
     buttonTextureArray[ 0 ] = loadJpegTexture( "bnChalice.jpg" );
@@ -135,10 +168,12 @@ void MCRenderer::loadTextures()
             
             // RENDER (SHOW LOADED TEXTURE) -- THIS FUNCTION BLOCKS UNTIL VSYNC IF VSYNC IS ENABLED/SUPPORTED ON THE PLATFORM (CURRENTLY DOES NOT WORK ON RPI)
             //if( i%2 == 0 )
-                SDL_RenderPresent( app->SDLRenderer );
+                SDL_RenderPresent( SDLRenderer );
         }
     }
 }
+
+
 
 
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -166,7 +201,7 @@ SDL_Texture* MCRenderer::loadJpegTexture( const std::string imageFilename )
     }
     
     // CREATE TEXTURE FROM JPEG SURFACE
-    SDL_Texture* texture = SDL_CreateTextureFromSurface( app->SDLRenderer, bmp_surface );
+    SDL_Texture* texture = SDL_CreateTextureFromSurface( SDLRenderer, bmp_surface );
     if( texture == 0 ) 
     {
         printf( "TEXTURE CREATION FAILED\n" );
@@ -188,3 +223,12 @@ SDL_Texture* MCRenderer::loadJpegTexture( const std::string imageFilename )
     
     return( texture );
 }
+
+
+
+
+
+
+
+
+
