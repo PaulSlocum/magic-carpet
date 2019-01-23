@@ -1,8 +1,25 @@
-Magic Carpet 2
---------------
+--------------------
+Magic Carpet 2 Notes
+--------------------
 
 
-~~ + ~~ + ~~ + ~~ + ~~ + ~~ + ~~ + ~~ + 
+
+TODO:
+~- ~- ~- ~- ~- ~- ~- ~- ~-
+-  ~  -  ~  -  ~  -  ~  
+- port size fluctuations
+- port rotation and rate fluctionations
+- port preset phase cycler
+-  ~  -  ~  -  ~  -  ~
+- fix the 3 JPEGs that won't load
+-  ~  -  ~  -  ~  -  ~  
+~- ~- ~- ~- ~- ~- ~- ~- ~- 
+
+
+
+
+~~ + ~~ + ~~ + ~~ + ~~ + ~~ + ~~ + ~~ +
+DONE:
 x plan project file structure
 x determine which audio capabilities are required
 x set up initial C++ files
@@ -23,60 +40,10 @@ x load all textures
 x make textures load from a list
 x port spinner renderer
 x port fade in/out
+x figure out how preset is first loaded when menu is exited in original code
+x port preset loader
+x get audio working
+x get OGG audio file decoding and playing
 ~~ + ~~ + ~~ + ~~ + ~~ + ~~ + ~~ + ~~ + 
 
-
-TODO:
-~- ~- ~- ~- ~- ~- ~- ~- ~-
-- figure out how preset is first loaded when menu is exited in original code
--  ~  -  ~  -  ~  -  ~  
-- port preset loader
-- port size fluctuations
-- port rotation and rate fluctionations
-- port preset phase cycler
--  ~  -  ~  -  ~  -  ~
-- fix the 3 JPEGs that won't load
--  ~  -  ~  -  ~  -  ~  
-~- ~- ~- ~- ~- ~- ~- ~- ~- 
-
-/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
-mc_application.cpp
-mc_audio.cpp
-mc_keyboard.cpp
-mc_mouse.cpp
-mc_touch.cpp
-mc_renderer.cpp
-mc_game.cpp
-mc_util.cpp
-\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
-
---------------------------------------------------------
-
-VIRTUAL SYSTEM
-
-render()
-swapFrameBuffer()
-int loadImage( char* data )
-unloadImage( int imageID )
-
-
---------------------------------------------------------
-
-APPLICATION
-
-touchDown( int touchID, float x, float y )
-touchMoved( int touchID, float x, float y )
-touchUp( int touchID, float x, float y )
-keyDown( int )
-keyUp( int )
-mouseDown( int touchID, float x, float y )
-mouseMoved( int touchID, float x, float y )
-mouseUp( int touchID, float x, float y )
-
-start()
-stop()
-
-audioRenderCallback( char* audioBufferToFill, long bytesToFill )
-
-graphicsRenderCallback( int graphicsContext? )
 
