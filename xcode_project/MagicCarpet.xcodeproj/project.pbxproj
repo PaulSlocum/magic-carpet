@@ -13,6 +13,7 @@
 		28FD15080DC6FC5B0079059D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28FD15070DC6FC5B0079059D /* QuartzCore.framework */; };
 		944A656F195747D90094A81E /* libSDL2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 944A656E1957463F0094A81E /* libSDL2.a */; };
 		945C4F53195AF17F00DBBF61 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 945C4F52195AF17F00DBBF61 /* Default-568h@2x.png */; };
+		EB1118D421F80576004022DC /* stb_vorbis.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EB1118CE21F80576004022DC /* stb_vorbis.cpp */; };
 		EB2560BA21E8F2E8007DC439 /* media in Resources */ = {isa = PBXBuildFile; fileRef = EB2560B921E8F2E7007DC439 /* media */; };
 		EB27A15C21F0E3FB0082D1C2 /* mc_spinner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EB27A15A21F0E3FB0082D1C2 /* mc_spinner.cpp */; };
 		EB27A15E21F0E4170082D1C2 /* makefile in Sources */ = {isa = PBXBuildFile; fileRef = EB27A15D21F0E4160082D1C2 /* makefile */; };
@@ -62,6 +63,8 @@
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		944A65681957463F0094A81E /* SDL.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SDL.xcodeproj; path = "../lib/sdl/Xcode-iOS/SDL/SDL.xcodeproj"; sourceTree = "<group>"; };
 		945C4F52195AF17F00DBBF61 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		EB1118CE21F80576004022DC /* stb_vorbis.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = stb_vorbis.cpp; path = ../source/stb_vorbis.cpp; sourceTree = "<group>"; };
+		EB1118D521F81E67004022DC /* stb_vorbis.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = stb_vorbis.hpp; path = ../source/stb_vorbis.hpp; sourceTree = "<group>"; };
 		EB2560B921E8F2E7007DC439 /* media */ = {isa = PBXFileReference; lastKnownFileType = folder; name = media; path = ../media; sourceTree = "<group>"; };
 		EB27A15A21F0E3FB0082D1C2 /* mc_spinner.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mc_spinner.cpp; path = ../source/mc_spinner.cpp; sourceTree = "<group>"; };
 		EB27A15B21F0E3FB0082D1C2 /* mc_spinner.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = mc_spinner.hpp; path = ../source/mc_spinner.hpp; sourceTree = "<group>"; };
@@ -144,6 +147,8 @@
 		29B97315FDCFA39411CA2CEA /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				EB1118CE21F80576004022DC /* stb_vorbis.cpp */,
+				EB1118D521F81E67004022DC /* stb_vorbis.hpp */,
 				EB27A15F21F1641A0082D1C2 /* Libraries */,
 				EBC84AD021ED47F30039B60F /* mc_application.cpp */,
 				EBC84ACF21ED47F30039B60F /* mc_application.hpp */,
@@ -329,6 +334,7 @@
 				EBF01D3321F50662007E5B6C /* mc_audio.cpp in Sources */,
 				EB27A15E21F0E4170082D1C2 /* makefile in Sources */,
 				FD77A09D0E26BDE500F39101 /* mc_main.cpp in Sources */,
+				EB1118D421F80576004022DC /* stb_vorbis.cpp in Sources */,
 				EBC84AD221ED47F40039B60F /* mc_application.cpp in Sources */,
 				EB27A15C21F0E3FB0082D1C2 /* mc_spinner.cpp in Sources */,
 				EB27A16221F1644C0082D1C2 /* mc_game.cpp in Sources */,

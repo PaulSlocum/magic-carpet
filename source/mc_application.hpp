@@ -78,6 +78,7 @@
 class MCRenderer;
 class MCGame;
 class MCInput;
+class MCAudio;
 class SDL_Renderer;
 class SDL_Window;
 
@@ -158,6 +159,7 @@ private:
     MCRenderer* renderer;
     MCGame* gameController;
     MCInput* inputHandler;
+    MCAudio* audioController;
     SDL_Window *window;
     // ~  ~  ~  ~  ~  ~  ~  ~  
     //MCAudio* audioController;

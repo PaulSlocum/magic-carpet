@@ -2,14 +2,17 @@
 /////////////////////////////////////////////////////////////////////
 
 
-class MCState;
+class MCAppState;
 
 class MCAudio 
 {
 public:
-    MCAudio();
+    MCAudio( MCAppState* newState );
     ~MCAudio();
+    void start();
     
 private:
-    MCState* state;
+    MCAppState* state;
+    // ~  ~  ~  ~  ~  ~  
+    bool started = false;
 };
