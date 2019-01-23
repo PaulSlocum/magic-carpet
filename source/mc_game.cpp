@@ -37,6 +37,54 @@ void MCGame::init()
 }
 
 
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////
+void MCGame::updateFrame()
+{
+    frameCount++;
+    
+    // DEBUG -- KEEP UNTIL AUDIO SYSTEM IS IMPLEMENTED 
+    state->audioLoopPosition += 22000;
+    
+    // HANDLE FADE INS
+    state->menuFadeIn = convergeValue( state->menuFadeIn, 1.0, 0.012 );
+    state->runningFadeIn = convergeValue( state->runningFadeIn, 1.5, 0.006 );
+    
+    // IF STARTING MENU MODE...
+    if( state->mode == AppMode::MENU  &&  state->previousMode != AppMode::MENU )
+    {
+        initMenuMode();
+    }
+    
+    // MENU MODE FRAME UPDATE...
+    if( state->mode == AppMode::MENU )
+    {
+        updateMenuModeFrame();
+    }
+    
+    // IF STARTING RUNNING MODE...
+    if( state->mode == AppMode::RUNNING  &&  state->previousMode != AppMode::RUNNING )
+    {
+        initRunningMode();
+    }
+    
+    // RUNNING MODE FRAME UPDATE...
+    if( state->mode == AppMode::RUNNING )
+    {
+        updateRunningModeFrame();
+    }
+    
+    state->previousMode = state->mode;
+}
+
+
+
+
+
+
 ///////////////////////////////////////////////////////////////////////////////////////
 void MCGame::loadPreset( const int presetNumber )
 {
@@ -283,50 +331,6 @@ void MCGame::updateRunningModeFrame()
         
     } // for all main spinnaz    
 }
-
-
-
-
-
-//////////////////////////////////////////////////////////////////////////////////////
-void MCGame::updateFrame()
-{
-    frameCount++;
-    
-    // DEBUG -- KEEP UNTIL AUDIO SYSTEM IS IMPLEMENTED 
-    state->audioLoopPosition += 22000;
-    
-    // HANDLE FADE INS
-    state->menuFadeIn = convergeValue( state->menuFadeIn, 1.0, 0.012 );
-    state->runningFadeIn = convergeValue( state->runningFadeIn, 1.5, 0.006 );
-
-    // IF STARTING MENU MODE...
-    if( state->mode == AppMode::MENU  &&  state->previousMode != AppMode::MENU )
-    {
-        initMenuMode();
-    }
-    
-    // MENU MODE FRAME UPDATE...
-    if( state->mode == AppMode::MENU )
-    {
-        updateMenuModeFrame();
-    }
-
-    // IF STARTING RUNNING MODE...
-    if( state->mode == AppMode::RUNNING  &&  state->previousMode != AppMode::RUNNING )
-    {
-        initRunningMode();
-    }
-
-    // RUNNING MODE FRAME UPDATE...
-    if( state->mode == AppMode::RUNNING )
-    {
-        updateRunningModeFrame();
-    }
-
-    state->previousMode = state->mode;
-}
-
 
 
 

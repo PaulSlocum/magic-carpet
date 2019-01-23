@@ -34,13 +34,13 @@ const TextureDef TEXTURE_LOAD_LIST[] =
     { "patternv.jpg", 31, true },
     { "patternx.jpg", 33, true },
     { "pattern_black.jpg", 53, true },
-    //{ "pattern_white.jpg", 54, true },
+    { "pattern_white.jpg", 54, true },  // <-- ISSUE LOADING WITH ujpeg (FIXED, THIS NOTE CAN PROBABLY BE REMOVED)
     { "pattern_blue.jpg", 55, true },
     { "pattern_red.jpg", 56, true },
-    //{ "pattern_beige.jpg", 57, true },
+    { "pattern_beige.jpg", 57, true },  // <-- ISSUE LOADING WITH ujpeg (FIXED, THIS NOTE CAN PROBABLY BE REMOVED)
     { "patternza.jpg", 36, true },
     { "patternzc.jpg", 38, true },
-    //{ "patternzf.jpg", 41, true },
+    { "patternzf.jpg", 41, true },  // <-- ISSUE LOADING WITH ujpeg (FIXED, THIS NOTE CAN PROBABLY BE REMOVED)
     { "patternzg.jpg", 42, true },
     { "patternzh.jpg", 43, true },
     { "patternzi.jpg", 44, true },
