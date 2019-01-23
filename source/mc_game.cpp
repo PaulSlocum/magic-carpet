@@ -123,7 +123,7 @@ void MCGame::loadPreset( const int presetNumber )
     {
         state->spinnerArray[i].rotationRate = 45.0+i*5;
         state->spinnerArray[i].active = false;
-        state->spinnerArray[i].size = ROMSpinnerSize[ state->visualPreset * MAX_MAIN_SPINNERS + i ];
+        state->spinnerArray[i].scaleFactor = ROMSpinnerSize[ state->visualPreset * MAX_MAIN_SPINNERS + i ];
     }
     
     // then turn on a few spinners
@@ -231,7 +231,7 @@ void MCGame::updateRunningModeFrame()
         float biggestSpinner = 0;
         for( int i=8; i>=spinnerIndex; i-- )
         {
-            float spinnerSizeX = state->spinnerArray[i].size * (state->runningFadeIn - kFadeInStartPoint) * state->menuFadeIn * rhythmBloom * 0.97;
+            float spinnerSizeX = state->spinnerArray[i].scaleFactor * (state->runningFadeIn - kFadeInStartPoint) * state->menuFadeIn * rhythmBloom * 0.97;
             if( spinnerSizeX > biggestSpinner )
                 biggestSpinner = spinnerSizeX;
         }
@@ -273,16 +273,16 @@ void MCGame::updateRunningModeFrame()
             if( spinnerIndex == 0 )
             {
                 // FIRST SPINNER (the biggest spinner in the background)
-                spinnerSizeX = state->spinnerArray[spinnerIndex].size * 
+                spinnerSizeX = state->spinnerArray[spinnerIndex].scaleFactor * 
                                     ( state->runningFadeIn - kFadeInStartPoint ) * rhythmBloom * 0.7 * state->spinnerScaleX * state->pitchBend + state->spinnerSizeOffset;
-                spinnerSizeY = state->spinnerArray[spinnerIndex].size * 
+                spinnerSizeY = state->spinnerArray[spinnerIndex].scaleFactor * 
                                     ( state->runningFadeIn - kFadeInStartPoint ) * 0.85 * state->spinnerScaleX * state->pitchBend + state->spinnerSizeOffset;
             }
             else 
             {    // ALL OTHER SPINNERS
-                spinnerSizeX = state->spinnerArray[spinnerIndex].size * 
+                spinnerSizeX = state->spinnerArray[spinnerIndex].scaleFactor * 
                                     ( state->runningFadeIn - kFadeInStartPoint ) * state->menuFadeIn * rhythmBloom * 0.7 * state->spinnerScaleX * state->pitchBend;
-                spinnerSizeY = state->spinnerArray[spinnerIndex].size * 
+                spinnerSizeY = state->spinnerArray[spinnerIndex].scaleFactor * 
                                     ( state->runningFadeIn - kFadeInStartPoint ) * state->menuFadeIn * 0.85 * state->spinnerScaleY * state->pitchBend;
             } //*/
             
