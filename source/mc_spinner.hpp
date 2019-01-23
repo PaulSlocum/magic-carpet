@@ -20,6 +20,7 @@ public:
     float rotationPosition = 0.0;
     float rotationRate = 0.0;
     float size = 1.0;
+    float scaleFactor = 1.0;
     SpinnerType type = {SpinnerType::SPINNER};
     // ~  ~  ~  ~  ~  ~  ~  
     bool isTouching( float testXCoord, float testYCoord );

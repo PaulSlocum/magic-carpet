@@ -133,7 +133,7 @@ struct MCAppState
     float spinnerScaleY = 0.0;
     // ~  ~  ~  ~  ~  ~  ~  ~    
     long audioLoopPosition = 0;
-    float pitchBend = 0.0;
+    float pitchBend = 0.5;
 };
 
 

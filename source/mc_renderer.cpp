@@ -41,7 +41,6 @@ void MCRenderer::start()
     
     // CREATE SDL WINDOW
     window = SDL_CreateWindow( NULL, 0, 0, screenSize.w, screenSize.h, SDL_WINDOW_FULLSCREEN );
-    //window = SDL_CreateWindow( NULL, 0, 0, screenSize.w, screenSize.h, SDL_WINDOW_OPENGL );
     
     if( !window ) 
     {
@@ -103,7 +102,7 @@ void MCRenderer::drawSpinner( const MCSpinner spinner )
 void MCRenderer::render()
 {
     // DEBUG! - THIS IS ONLY USED FOR THE FRAME COUNTER
-    //frameCount++;
+    frameCount++;
 
     // CLEAR THE SCREEN
     SDL_RenderClear( SDLRenderer );
@@ -124,8 +123,15 @@ void MCRenderer::render()
        startTimeMSec = getCurrentTimeMSec();
     
     // DEBUG!!!  SHOW FPS...
-    //if( frameCount % 60 == 0 )
-    //    printf( "FPS: %f\n",  frameCount * 1000.0 / ( getCurrentTimeMSec() - startTimeMSec )  );
+    if( frameCount % 60 == 0 )
+    {
+        printf( "FPS: %f\n",  frameCount * 1000.0 / ( getCurrentTimeMSec() - startTimeMSec )  );
+        for( int i=0; i<MAX_ACTIVE_SPINNERS; i++ )
+        {
+            printf( "(%d:%d:s%.2f:t%d) ", i, state->spinnerArray[i].active, state->spinnerArray[i].size,  state->spinnerArray[i].texture );
+        }
+        printf( "\n" );
+    }
 }
 
 

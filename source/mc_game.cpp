@@ -211,10 +211,15 @@ void MCGame::initRunningMode()
 //////////////////////////////////////////////////////////////////////////////////////
 void MCGame::updateRunningModeFrame()
 {
-    // DEBUG! - SHOULD EITHER BE MOVED TO CLASS OR USE FRAMECOUNTER INSTEAD
+    // DEBUG! - bloomCycleCounter SHOULD EITHER BE MOVED TO CLASS OR USE FRAMECOUNTER INSTEAD
     static long bloomCycleCounter =0;
     bloomCycleCounter++;
 
+    state->creep += 0.016;
+
+    if( state->runningFadeIn > kFadeInStartPoint )
+        state->background.active = false;
+    
     // UPDATE ALL MAIN SPINNERS...
     for( int spinnerIndex=0; spinnerIndex< MAX_ACTIVE_SPINNERS ; spinnerIndex++ )
     {
@@ -252,6 +257,7 @@ void MCGame::updateRunningModeFrame()
             if((long)abs(state->spinnerArray[spinnerIndex].rotationRate + state->creep)%180 < 8)
                 state->spinnerArray[spinnerIndex].rotationRate +=  1.7;
             
+            // ROTATE SPINNER
             state->spinnerArray[spinnerIndex].rotationPosition += state->spinnerArray[spinnerIndex].rotationRate + state->creep;
             ////glBindTexture(GL_TEXTURE_2D,spinnerTextureArray[ state->spinnerArray[spinnerIndex].texture ]); // <-- OPENGL CODE INCLUDED FOR REFERENCE
             ////glLoadIdentity(); // <-- OPENGL CODE INCLUDED FOR REFERENCE

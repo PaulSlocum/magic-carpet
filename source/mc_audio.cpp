@@ -40,7 +40,8 @@ void MCAudio::callback( Uint8* stream, int len )
         playbackOffset = 0;
     memcpy( stream, &audioDecodeBuffer[ playbackOffset ], len );
     playbackOffset += len/2;
-    printf( "** PLAYBACK POS: %ld  CHUNK SIZE: %d \n", playbackOffset, len );
+    
+    //printf( "** PLAYBACK POS: %ld  CHUNK SIZE: %d \n", playbackOffset, len ); // <-- DEBUG!!
 }
 
 
