@@ -6,32 +6,35 @@ Magic Carpet 2 Notes
 
 TODO:
 ~- ~- ~- ~- ~- ~- ~- ~- ~-
--  ~  -  ~  -  ~  -  ~  
-- port size fluctuations
-- port rotation and rate fluctionations
-- port preset phase cycler
 -  ~  -  ~  -  ~  -  ~
-- fix the 3 JPEGs that won't load
+- implement fixed tap with release to start from menu
+-  ~  -  ~  -  ~  -  ~
+- implement creep jump function 
+-  ~  -  ~  -  ~  -  ~
+x implement background color
+- verify that background color is the same as original
+-  ~  -  ~  -  ~  -  ~  
+- port preset phase cycler
 -  ~  -  ~  -  ~  -  ~
 - figure out audio system
 - figure out how to implement multiple channels
 - port audio system
-- set up 
+- set up background OGG file loader
 -  ~  -  ~  -  ~  -  ~
-- implement rending to texture
-- implement sizing system
+- implement rendering to texture
+- implement both X and Y scaling of spinner textures 
 -  ~  -  ~  -  ~  -  ~
 - add flipped double image to menu background
 - implement menu sound
 - implement zoom/sound blip in menu
 - fix odd color in red menu spinner
 -  ~  -  ~  -  ~  -  ~
-- implement both X and Y scaling fields for spinners
--  ~  -  ~  -  ~  -  ~
 - get Android or Windows build working
 -  ~  -  ~  -  ~  -  ~
 - add namespace
+- replace "int" "short" "long" with specific with Int types (Uint8?)
 - implement exceptions and error handling
+- consider what would be required to expand the example into a larger game or interactive program
 - verify use of consts
 - review other C++ best practices
 - clean up everything
@@ -72,6 +75,9 @@ x figure out how preset is first loaded when menu is exited in original code
 x port preset loader
 x get audio working
 x get OGG audio file decoding and playing
+x port size fluctuations
+x port rotation and rate fluctionations
+x fix the 3 JPEGs that won't load
 ~~ + ~~ + ~~ + ~~ + ~~ + ~~ + ~~ + ~~ + 
 
 

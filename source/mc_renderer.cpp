@@ -104,6 +104,12 @@ void MCRenderer::render()
     // DEBUG! - THIS IS ONLY USED FOR THE FRAME COUNTER
     frameCount++;
 
+    // Select the color for drawing. It is set to red here.
+    SDL_SetRenderDrawColor( SDLRenderer, state->backgroundColor.red * 255.0, 
+                           state->backgroundColor.green * 255.0, 
+                           state->backgroundColor.blue * 255.0, 
+                           255 );
+    
     // CLEAR THE SCREEN
     SDL_RenderClear( SDLRenderer );
     

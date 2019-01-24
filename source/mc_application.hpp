@@ -103,6 +103,14 @@ enum class WheelPanMode { STOPPED, LEFT, RIGHT };
 
 
 //|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+struct RGBColor 
+{
+    float red = 1.0;
+    float blue = 1.0;
+    float green = 1.0;
+};
+
+//|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 struct MCAppState 
 {
     AppMode mode = AppMode::STOPPED;
@@ -120,20 +128,22 @@ struct MCAppState
     MCSpinner instrumentButton;
     MCSpinner background;
     WheelPanMode wheelPan = WheelPanMode::STOPPED;
+    RGBColor backgroundColor;
     // ~  ~  ~  ~  ~  ~  ~  ~    
-    int32_t presetIndex = 0;
-    int32_t visualPreset = 0;
+    int presetIndex = 0; // <-- THIS SHOULD PROBABLY BE REMOVED, ONLY NEED TO KEEP "selectedPreset"
+    int selectedPreset = 0;
     // ~  ~  ~  ~  ~  ~  ~  ~    
     long spinnerModeAdvanceRate = 0;
     float creep = 0.0;
-    bool dualSpinners = 0;
     int spinPolarity = 1;
     float spinnerSizeOffset = 0.0;
     float spinnerScaleX = 0.0;
     float spinnerScaleY = 0.0;
+    //int spinnerPhase = 0;
+    bool manualTextureSelection = false;
     // ~  ~  ~  ~  ~  ~  ~  ~    
     long audioLoopPosition = 0;
-    float pitchBend = 0.5;
+    float pitchBend = 0.7;
 };
 
 

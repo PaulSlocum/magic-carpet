@@ -27,4 +27,5 @@ private:
     void updateMenuModeFrame();
     void initRunningMode();
     void updateRunningModeFrame();
+    void updateSpinnerMode();
 };

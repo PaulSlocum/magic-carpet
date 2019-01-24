@@ -93,18 +93,17 @@ void MCGame::loadPreset( const int presetNumber )
     //===============================================================
     // VISUAL SETTINGS
     
-    state->visualPreset = ROMVisualPresetOrder[ state->presetIndex ];
+    state->selectedPreset = ROMVisualPresetOrder[ state->presetIndex ];
     
-    state->spinnerModeAdvanceRate = ROMSpinModeAdvRate[ state->visualPreset ];
+    state->spinnerModeAdvanceRate = ROMSpinModeAdvRate[ state->selectedPreset ];
     
-    state->dualSpinners = ROMDualSpinners[ state->visualPreset ];
-    state->spinnerSizeOffset = ROMSpinnerSizeOffset[ state->visualPreset ];
-    state->spinnerScaleX = ROMSpinnerScaleX[ state->visualPreset ];
-    state->spinnerScaleY = ROMSpinnerScaleY[ state->visualPreset ];
+    state->spinnerSizeOffset = ROMSpinnerSizeOffset[ state->selectedPreset ];
+    state->spinnerScaleX = ROMSpinnerScaleX[ state->selectedPreset ];
+    state->spinnerScaleY = ROMSpinnerScaleY[ state->selectedPreset ];
     
     // set up correct textures based on menu selection
     const int* ROMPattern;
-    switch( state->visualPreset )
+    switch( state->selectedPreset )
     {
         case 0: ROMPattern = ROMPatternA1; break;
         case 1: ROMPattern = ROMPatternA2; break;
@@ -123,7 +122,7 @@ void MCGame::loadPreset( const int presetNumber )
     {
         state->spinnerArray[i].rotationRate = 45.0+i*5;
         state->spinnerArray[i].active = false;
-        state->spinnerArray[i].scaleFactor = ROMSpinnerSize[ state->visualPreset * MAX_MAIN_SPINNERS + i ];
+        state->spinnerArray[i].scaleFactor = ROMSpinnerSize[ state->selectedPreset * MAX_MAIN_SPINNERS + i ];
     }
     
     // then turn on a few spinners
@@ -208,6 +207,103 @@ void MCGame::initRunningMode()
 
 
 
+////////////////////////////////////////////////////////////////////////////////////////
+void MCGame::updateSpinnerMode()
+{
+    //state->spinnerPhase = (frameCount%(state->spinnerModeAdvanceRate*2))/((state->spinnerModeAdvanceRate*2)/8);
+    
+    //---------------------------
+    // CYCLE SPINNER MODES
+    if( (frameCount%(state->spinnerModeAdvanceRate/4)==0) && (state->mode == AppMode::RUNNING) )
+    {
+        // THINGS TO DO HERE
+        // - load different spinners every two complete cycles
+        // - change audio samples every two or three complete cycles
+        
+        if( state->soundMode != SoundMode::INSTRUMENT )
+        {
+            switch( (frameCount%state->spinnerModeAdvanceRate)/(state->spinnerModeAdvanceRate/4) )
+            {
+                case 0: for(int i=0; i<MAX_MAIN_SPINNERS; i++ ) state->spinnerArray[i].active=false;
+                    for(int i=0; i<2; i++ ) state->spinnerArray[i].active=true;  
+                    //[looper creepJump]; // TODO: IMPLEMENT THIS 
+                    break;
+                case 1: for(int i=0; i<MAX_MAIN_SPINNERS; i++ ) state->spinnerArray[i].active=false;
+                    for(int i=0; i<4; i++ ) state->spinnerArray[i].active=true;  
+                    //[looper creepJump]; // TODO: IMPLEMENT THIS  
+                    break;
+                case 2: for(int i=0; i<MAX_MAIN_SPINNERS; i++ ) state->spinnerArray[i].active=false;
+                    for(int i=2; i<6; i++ ) state->spinnerArray[i].active=true;  
+                    state->spinnerArray[0].active=true;  
+                    //[looper creepJump];  // TODO: IMPLEMENT THIS 
+                    break;
+                case 3: for(int i=0; i<MAX_MAIN_SPINNERS; i++ ) state->spinnerArray[i].active=false;
+                    for(int i=4; i<8; i++ ) state->spinnerArray[i].active=true;  
+                    state->spinnerArray[0].active=true;  
+                    //[looper creepJump];  // TODO: IMPLEMENT THIS 
+                    break;
+            }
+        }
+
+        // TODO: THIS SECTION OF AUDIO CONTROL ADJUSTMENTS SHOULD PROBABLY BE DONE IN THE AUDIO CLASS
+        /*looper.tremoloRate = ROMTromoloRate[soundPreset][(frameCount/(spinnerModeAdvanceRate/4))%8];
+        
+        if( appSoundMode != kAppSoundModeBinaural )
+            looper.tremoloLevel = (ROMTromoloLevel[soundPreset][(frameCount/(spinnerModeAdvanceRate/4))%8]) * kMasterTremoloLevel;
+        else 
+            looper.tremoloLevel = 1.0; //*/
+        
+        
+        if( state->manualTextureSelection == false )
+        {
+            // ALTERNATE SECONDARY SPINNER PATTERNS EVERY 8 CYCLES
+            const int* ROMPattern;
+            if( (frameCount%(state->spinnerModeAdvanceRate*4))/(state->spinnerModeAdvanceRate*2) == 0 )
+            {
+                switch( state->selectedPreset)
+                {
+                    case 0: ROMPattern = ROMPatternA1; break;
+                    case 1: ROMPattern = ROMPatternA2; break;
+                    case 2: ROMPattern = ROMPatternA3; break;
+                    case 3: ROMPattern = ROMPatternA4; break;
+                    case 4: ROMPattern = ROMPatternA5; break;
+                    case 5: ROMPattern = ROMPatternA6; break;
+                    case 6: ROMPattern = ROMPatternA7; break;
+                    default: ROMPattern = ROMPatternA1;
+                }
+            }
+            else 
+            {
+                switch( state->selectedPreset )
+                {
+                    case 0: ROMPattern = ROMPatternB1; break;
+                    case 1: ROMPattern = ROMPatternB2; break;
+                    case 2: ROMPattern = ROMPatternB3; break;
+                    case 3: ROMPattern = ROMPatternB4; break;
+                    case 4: ROMPattern = ROMPatternB5; break;
+                    case 5: ROMPattern = ROMPatternB6; break;
+                    case 6: ROMPattern = ROMPatternB7; break;
+                    default: ROMPattern = ROMPatternB1;
+                }
+            }
+            
+            for( int spinner=0; spinner<=7; spinner++ )
+                state->spinnerArray[spinner].texture = ROMPattern[spinner]; 
+        }
+        
+        state->menuFadeIn = 0.4; 
+        
+        // TODO: IMPLEMENT THIS IS SOUND CLASS
+        //if( (appSoundMode==kAppSoundModeInstrumentA) || (appSoundMode==kAppSoundModeiPod) )
+        //    looper.voiceArrayPtr[frameCount%3].loopOffset = frameCount*(frameCount%3);
+    }
+    /* */
+    
+}
+
+
+
+
 //////////////////////////////////////////////////////////////////////////////////////
 void MCGame::updateRunningModeFrame()
 {
@@ -219,14 +315,35 @@ void MCGame::updateRunningModeFrame()
 
     if( state->runningFadeIn > kFadeInStartPoint )
         state->background.active = false;
+
+    updateSpinnerMode();
+    
+    // SET BACKGROUND COLOR...
+    if( (((frameCount+state->spinnerModeAdvanceRate/4)%(state->spinnerModeAdvanceRate*2))/(state->spinnerModeAdvanceRate) == 0) 
+       || (state->mode == AppMode::MENU) )
+    {
+        state->backgroundColor.red = ROMBGColorRedA[ state->selectedPreset ];
+        state->backgroundColor.green = ROMBGColorBlueA[ state->selectedPreset ];
+        state->backgroundColor.blue = ROMBGColorGreenA[ state->selectedPreset ];
+    }
+    else
+    {
+        state->backgroundColor.red = ROMBGColorRedB[ state->selectedPreset ];
+        state->backgroundColor.green = ROMBGColorGreenB[ state->selectedPreset ];
+        state->backgroundColor.blue = ROMBGColorBlueB[ state->selectedPreset ];
+    }
+    
+    ////if( (((frameCount+spinnerModeAdvanceRate/4)%(spinnerModeAdvanceRate*2))/(spinnerModeAdvanceRate) == 0) || (appMode == kAppModeMenu) )
+        ////glClearColor(ROMBGColorRedA[originalPresetIndex], ROMBGColorGreenA[originalPresetIndex], ROMBGColorBlueA[originalPresetIndex], 1.0f );
+    ////else
+        ////glClearColor(ROMBGColorRedB[originalPresetIndex], ROMBGColorGreenB[originalPresetIndex], ROMBGColorBlueB[originalPresetIndex], 1.0f );
+
     
     // UPDATE ALL MAIN SPINNERS...
     for( int spinnerIndex=0; spinnerIndex< MAX_ACTIVE_SPINNERS ; spinnerIndex++ )
     {
-        
-        float rhythmBloom = 0;
-        rhythmBloom = 0.78+((1.7-abs(cos(bloomCycleCounter/700.0)+0.7))*0.43) // <- long cycle
-        + sin(((int)state->audioLoopPosition%100000)/101000.0*3.141592654)*0.80 * cos(bloomCycleCounter/150.0); // <- short cycle
+        float rhythmBloom = 0.78+((1.7-abs(cos(bloomCycleCounter/700.0)+0.7))*0.43) // <- long cycle
+                + sin(((int)state->audioLoopPosition%100000)/101000.0*3.141592654)*0.80 * cos(bloomCycleCounter/150.0); // <- short cycle
         
         float biggestSpinner = 0;
         for( int i=8; i>=spinnerIndex; i-- )
@@ -241,10 +358,6 @@ void MCGame::updateRunningModeFrame()
         
         if( (state->spinnerArray[spinnerIndex].active) )
         {
-            
-            // DUAL SPINNERS ON/OFF
-            if( !state->dualSpinners )
-                state->spinPolarity = 0;
             
             //#define kSpinnerSplit (spinnerIndex*0.25-0.5)
 #define kSpinnerSplit 0
@@ -270,13 +383,17 @@ void MCGame::updateRunningModeFrame()
             float spinnerSizeX, spinnerSizeY;
          
             // apply menuFadeIn to every spinner size except the first
+            const float LARGE_SPINNER_SCALE_X = 0.9;  // ORIGINAL VALUE = 0.7
+            const float LARGE_SPINNER_SCALE_Y = 1.0;  // ORIGINAL VALUE = 0.85
             if( spinnerIndex == 0 )
             {
                 // FIRST SPINNER (the biggest spinner in the background)
                 spinnerSizeX = state->spinnerArray[spinnerIndex].scaleFactor * 
-                                    ( state->runningFadeIn - kFadeInStartPoint ) * rhythmBloom * 0.7 * state->spinnerScaleX * state->pitchBend + state->spinnerSizeOffset;
+                                    ( state->runningFadeIn - kFadeInStartPoint ) * rhythmBloom * 
+                                    LARGE_SPINNER_SCALE_X * state->spinnerScaleX * state->pitchBend + state->spinnerSizeOffset;
                 spinnerSizeY = state->spinnerArray[spinnerIndex].scaleFactor * 
-                                    ( state->runningFadeIn - kFadeInStartPoint ) * 0.85 * state->spinnerScaleX * state->pitchBend + state->spinnerSizeOffset;
+                                    ( state->runningFadeIn - kFadeInStartPoint ) * LARGE_SPINNER_SCALE_Y * 
+                                    state->spinnerScaleX * state->pitchBend + state->spinnerSizeOffset;
             }
             else 
             {    // ALL OTHER SPINNERS

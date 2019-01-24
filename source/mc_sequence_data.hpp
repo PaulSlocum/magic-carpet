@@ -79,8 +79,8 @@ const float ROMSpinnerSizeOffset[] = { -0.50,-0.25,0.00,0.00,-0.20,2.00,-0.20 };
 const float ROMSpinnerScaleX[] = { 1.0,1.0,0.8,0.5, 0.5,0.5,0.5 };
 const float ROMSpinnerScaleY[] = { 1.0,1.0,0.8,1.0, 1.0,0.5,1.0 };
 
-// DUAL SPINNERS
-const bool ROMDualSpinners[] = { false, false, false, false, false, false, false };
+// DUAL SPINNERS - THIS IDEA WAS APPARENTLY SCRAPPED AND WAS ALWAYS SET TO "OFF", SO IT HAS BEEN REMOVED
+//const bool ROMDualSpinners[] = { false, false, false, false, false, false, false }; 
 
 const float ROMBGColorRedA[] =   { 0.3f,  0.4f,  0.4f,  0.4f,  0.25f,  0.1f,  0.34f };
 const float ROMBGColorGreenA[] = { 0.15f, 0.2f,  0.25f, 0.30f, 0.20f, 0.05f, 0.25f };
