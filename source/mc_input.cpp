@@ -5,6 +5,7 @@
 
 #include "mc_input.hpp"
 #include "mc_application.hpp"
+#include "mc_touch.hpp"
 
 
 
@@ -26,17 +27,35 @@ MCInput::~MCInput()
 /////////////////////////////////////////////////////////////////////////////////////
 void MCInput::processTouchEvent( const SDL_TouchFingerEvent fingerEvent )
 {
+    if( fingerEvent.type == SDL_FINGERDOWN )
+    {
+        state->touchArray[ (int)fingerEvent.touchId ].x = fingerEvent.x;
+        state->touchArray[ (int)fingerEvent.touchId ].y = fingerEvent.y;
+        state->touchArray[ (int)fingerEvent.touchId ].xStart = fingerEvent.x;
+        state->touchArray[ (int)fingerEvent.touchId ].yStart = fingerEvent.y;
+    }
+
     // MOVE THE MENU WHEEL WITH FINGER DRAGS...
     if( fingerEvent.type == SDL_FINGERMOTION )
     {
         state->menuWheelPosition += fingerEvent.dx;
+        state->touchArray[ (int)fingerEvent.touchId ].x = fingerEvent.x;
+        state->touchArray[ (int)fingerEvent.touchId ].y = fingerEvent.y;
     }
 
-    // START RUNNING IF TOUCHING MAIN SPINNER IN MENU...
-    if( state->mode == AppMode::MENU  &&  state->spinnerArray[0].isTouching( fingerEvent.x, fingerEvent.y ) == true )
+    if( fingerEvent.type == SDL_FINGERUP )
+    {
+        if( state->mode == AppMode::MENU  &&  
+           state->touchArray[ (int)fingerEvent.touchId ].moveDistance() < 0.05  &&  state->spinnerArray[0].isTouching( fingerEvent.x, fingerEvent.y ) == true )  
+            state->mode = AppMode::RUNNING;
+        state->touchArray.erase( (int)fingerEvent.touchId );
+    }
+    
+    // DEBUG -- START RUNNING IF TOUCHING MAIN SPINNER IN MENU...
+    /*if( state->mode == AppMode::MENU  &&  state->spinnerArray[0].isTouching( fingerEvent.x, fingerEvent.y ) == true )
     {
         state->mode = AppMode::RUNNING;
-    }
+    } //*/
 }
 
 

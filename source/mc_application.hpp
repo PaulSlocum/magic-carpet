@@ -6,6 +6,7 @@
 
 #include <map>
 #include "mc_spinner.hpp"
+#include "mc_touch.hpp"
 
 // ' ^ ' ^ ' ^ ' ^ ' ^ ' ^ ' ^ ' ^ ' ^ ' ^ ' ^ ' ^ ' ^ 
 // NEW CONSTANTS
@@ -89,19 +90,6 @@ enum class WheelPanMode { STOPPED, LEFT, RIGHT };
 
 
 
-// TOUCH STRUCT -----------------------------
-// structure to track multiple touches
-/*struct TouchStruct {
-    long frameCountOfLastRefresh;
-    //UITouch* touch;
-    float x;
-    float y;
-    float xStartingPoint;
-    float yStartingPoint;
-    float fade;
-}; //*/
-
-
 //|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 struct RGBColor 
 {
@@ -118,6 +106,7 @@ struct MCAppState
     SoundMode soundMode = SoundMode::NORMAL;
     // ~  ~  ~  ~  ~  ~  ~  ~    
     std::map<int,MCSpinner> spinnerArray;
+    std::map<int,MCTouch> touchArray;
     // ~  ~  ~  ~  ~  ~  ~  ~    
     float menuWheelPosition = 0.5;
     float menuFadeIn = 1.0;
@@ -127,6 +116,7 @@ struct MCAppState
     MCSpinner normalButton;
     MCSpinner instrumentButton;
     MCSpinner background;
+    // ~  ~  ~  ~  ~  ~  ~  ~    
     WheelPanMode wheelPan = WheelPanMode::STOPPED;
     RGBColor backgroundColor;
     // ~  ~  ~  ~  ~  ~  ~  ~    
@@ -139,7 +129,6 @@ struct MCAppState
     float spinnerSizeOffset = 0.0;
     float spinnerScaleX = 0.0;
     float spinnerScaleY = 0.0;
-    //int spinnerPhase = 0;
     bool manualTextureSelection = false;
     // ~  ~  ~  ~  ~  ~  ~  ~    
     long audioLoopPosition = 0;

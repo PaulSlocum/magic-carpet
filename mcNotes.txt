@@ -7,7 +7,6 @@ Magic Carpet 2 Notes
 TODO:
 ~- ~- ~- ~- ~- ~- ~- ~- ~-
 -  ~  -  ~  -  ~  -  ~
-- implement slow spinup of main spinners when menu starts
 -  ~  -  ~  -  ~  -  ~
 - implement fixed tap with release to start from menu
 -  ~  -  ~  -  ~  -  ~
@@ -80,6 +79,7 @@ x fix the 3 JPEGs that won't load
 x update iOS icon and launch screen
 x port preset phase cycler
 x implement background color
+x implement slow spinup of main spinners when menu starts
 ~~ + ~~ + ~~ + ~~ + ~~ + ~~ + ~~ + ~~ + 
 
 

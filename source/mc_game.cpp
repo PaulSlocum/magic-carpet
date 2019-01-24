@@ -342,12 +342,6 @@ void MCGame::updateRunningModeFrame()
         state->backgroundColor.blue = ROMBGColorBlueB[ state->selectedPreset ];
     }
     
-    ////if( (((frameCount+spinnerModeAdvanceRate/4)%(spinnerModeAdvanceRate*2))/(spinnerModeAdvanceRate) == 0) || (appMode == kAppModeMenu) )
-        ////glClearColor(ROMBGColorRedA[originalPresetIndex], ROMBGColorGreenA[originalPresetIndex], ROMBGColorBlueA[originalPresetIndex], 1.0f );
-    ////else
-        ////glClearColor(ROMBGColorRedB[originalPresetIndex], ROMBGColorGreenB[originalPresetIndex], ROMBGColorBlueB[originalPresetIndex], 1.0f );
-
-    
     // UPDATE ALL MAIN SPINNERS...
     for( int spinnerIndex=0; spinnerIndex< MAX_ACTIVE_SPINNERS ; spinnerIndex++ )
     {
