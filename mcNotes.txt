@@ -9,7 +9,6 @@ TODO:
 -  ~  -  ~  -  ~  -  ~
 - make application and renderer agnostic to game variables (menu mode, etc)
 - rename "spinners" class to "sprites" to make it more clear and reusable
-- make it so that there's just one texture load list for spinner, buttons, and background
 - separate "game" class into game_controller, game_screen, menu_screen
 -  ~  -  ~  -  ~  -  ~
 - fix issue with coordinate system being off
@@ -93,6 +92,7 @@ x implement slow spinup of main spinners when menu starts
 x implement fixed tap with release to start from menu
 x verify that background color is the same as original
 x make touch keep track of total movement
+x make it so that there's just one texture load list for spinner, buttons, and background
 ~~ + ~~ + ~~ + ~~ + ~~ + ~~ + ~~ + ~~ + 
 
 

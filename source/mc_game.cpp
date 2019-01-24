@@ -30,11 +30,22 @@ MCGame::~MCGame()
 
 
 //////////////////////////////////////////////////////////////////////////////////////
-void MCGame::init()
+void MCGame::start()
 {
+    state->mode = AppMode::MENU;
+    state->menuFadeIn = 0.0;
+
     state->background.active = true;
     state->background.type = SpinnerType::BACKGROUND;
     state->background.texture = 200 + rand() % 2;
+}
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////
+void MCGame::stop()
+{
+    state->mode = AppMode::STOPPED;
 }
 
 

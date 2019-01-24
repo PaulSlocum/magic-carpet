@@ -147,51 +147,36 @@ void MCRenderer::render()
 ///////////////////////////////////////////////////////////////////
 void MCRenderer::loadTextures()
 {
-    // LOAD MENU BACKGROUND TEXTURE (RANDOMLY SELECT ONE OF TWO IMAGES)...
-    /*if( (rand() %2)==0 )
-        backgroundTexture = loadJpegTexture( "menuBG2d.jpg" );
-    else
-        backgroundTexture = loadJpegTexture( "menuBG2c.jpg" ); //*/
-    //drawSpinner( state->background );
-    //SDL_RenderPresent( SDLRenderer ); //*/
-    
-    // LOAD BUTTON TEXTURES
-    //buttonTextureArray[ 0 ] = loadJpegTexture( "bnChalice.jpg" );
-    //buttonTextureArray[ 1 ] = loadJpegTexture( "bnGrid.jpg" );
-    //buttonTextureArray[ 2 ] = loadJpegTexture( "bnBird.jpg" ); //*/
-
-    //std::map<int, MCSpinner> tempSpinnerArray;
-    MCSpinner tempSpinner;
-    
-    // LOAD SPINNER TEXTURES FROM TEXTURE LIST ARRAY IN HEADER...
+    // LOAD ALL TEXTURES FROM TEXTURE LIST ARRAY IN HEADER...
     bool loadingTextures = true;
     for( int i=0; loadingTextures == true; i++ )
     {
+        // QUIT WHEN A BLANK FILENAME IS ENCOUNTERED
         if( TEXTURE_LOAD_LIST[i].filename[0] == 0 )
             loadingTextures = false;
         else
         {
-            if( TEXTURE_LOAD_LIST[i].type != TextureType::EXTRA_SPINNER )
+            if( TEXTURE_LOAD_LIST[i].type != TextureType::UNUSED )
             {
+                // LOAD TEXTURE FROM JPEG FILE
                 spinnerTextureArray[ TEXTURE_LOAD_LIST[i].textureSlot ] = loadJpegTexture( TEXTURE_LOAD_LIST[i].filename );
 
-                if( TEXTURE_LOAD_LIST[i].type != TextureType::BUTTON )
+                // SHOW TEXTURES AS THEY'RE LOADING..
+                MCSpinner tempSpinner;
+                tempSpinner.size = i/150.0;
+                tempSpinner.yPosition = 0.40;
+                tempSpinner.active = true;
+                tempSpinner.texture = TEXTURE_LOAD_LIST[i].textureSlot;
+                tempSpinner.rotationPosition = i*15.0;
+                if( TEXTURE_LOAD_LIST[i].type == TextureType::BACKGROUND )
                 {
-                    tempSpinner.size = i/150.0;
-                    tempSpinner.yPosition = 0.40;
-                    tempSpinner.active = true;
-                    tempSpinner.texture = TEXTURE_LOAD_LIST[i].textureSlot;
-                    tempSpinner.rotationPosition = i*15.0;
-                    if( TEXTURE_LOAD_LIST[i].type == TextureType::BACKGROUND )
-                    {
-                        tempSpinner.size = 1.0;
-                        tempSpinner.rotationPosition = 0;
-                        tempSpinner.yPosition = 0.50;
-                    }
-                    drawSpinner( tempSpinner );
-                    
-                    SDL_RenderPresent( SDLRenderer );
+                    tempSpinner.size = 1.0;
+                    tempSpinner.rotationPosition = 0;
+                    tempSpinner.yPosition = 0.50;
                 }
+                drawSpinner( tempSpinner );
+                
+                SDL_RenderPresent( SDLRenderer );
             }
         }
     }

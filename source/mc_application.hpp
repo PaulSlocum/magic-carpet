@@ -84,7 +84,7 @@ class SDL_Renderer;
 class SDL_Window;
 
 
-enum class AppMode { STOPPED, LOADING, MENU, RUNNING };
+enum class AppMode { STOPPED, MENU, RUNNING };
 enum class SoundMode { NORMAL, MUTE, INSTRUMENT };
 enum class WheelPanMode { STOPPED, LEFT, RIGHT };
 
@@ -159,6 +159,7 @@ private:
     bool vsyncEnabled = false;
     // ~  ~  ~  ~  ~  ~  ~  ~  
     bool isQuitting = false;
+    bool appStarted = false;
 };
 
 

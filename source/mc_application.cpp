@@ -48,9 +48,9 @@ MCApplication::~MCApplication()
 // NOTE: THIS FUNCTION BLOCKS UNTIL THE APPLICATION CLOSES OR stop() IS CALLED.
 void MCApplication::start()
 {
-    if( state.mode == AppMode::STOPPED )
+    if( appStarted == false )
     {
-        state.mode = AppMode::LOADING;
+        appStarted = true;
      
         // INITIALIZE SDL
         if( SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) != 0 ) 
@@ -68,7 +68,7 @@ void MCApplication::start()
         audioController->start();
         renderer->start();
         
-        gameController->init();
+        gameController->start();
         
 #ifdef PLATFORM_RPI
         vsyncEnabled = false;
@@ -81,7 +81,8 @@ void MCApplication::start()
         
         // QUIT SDL
         SDL_Quit();
-        state.mode = AppMode::STOPPED;
+        gameController->stop();
+        appStarted = false;
     }
 }
 
@@ -104,6 +105,8 @@ void MCApplication::runLoop()
     SDL_Event event;
     isQuitting = false;
     long long timeOfNextFrameMSec = getCurrentTimeMSec() + 1000.0/FRAMES_PER_SECOND;
+
+    renderer->loadTextures();
 
     // MAIN LOOP...
     while( isQuitting == false )
@@ -138,17 +141,8 @@ void MCApplication::runLoop()
         // LOAD TEXTURES / DRAW SCREEN...
         if( (vsyncEnabled == true)  ||  (timeOfNextFrameMSec <= getCurrentTimeMSec() + 0) )
         {
-            if( state.mode == AppMode::LOADING )
-            {
-                renderer->loadTextures();
-                state.mode = AppMode::MENU;
-                state.menuFadeIn = 0.0;
-            }
-            if( state.mode == AppMode::MENU || state.mode == AppMode::RUNNING )
-            {
-                gameController->updateFrame();
-                renderer->render();
-            }
+            gameController->updateFrame();
+            renderer->render();
             timeOfNextFrameMSec = getCurrentTimeMSec() + 1000.0/FRAMES_PER_SECOND;
         }
 

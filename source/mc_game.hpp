@@ -13,7 +13,8 @@ class MCGame
 public:
     MCGame( MCAppState* newState );
     ~MCGame();
-    void init();
+    void start();
+    void stop();
     void updateFrame();
     
 private:
