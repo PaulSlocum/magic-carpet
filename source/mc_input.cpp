@@ -41,12 +41,13 @@ void MCInput::processTouchEvent( const SDL_TouchFingerEvent fingerEvent )
         state->menuWheelPosition += fingerEvent.dx;
         state->touchArray[ (int)fingerEvent.touchId ].x = fingerEvent.x;
         state->touchArray[ (int)fingerEvent.touchId ].y = fingerEvent.y;
+        state->touchArray[ (int)fingerEvent.touchId ].totalMoveDistance += sqrt( pow( fingerEvent.dx, 2 ) + pow( fingerEvent.dy, 2 ) );
     }
 
     if( fingerEvent.type == SDL_FINGERUP )
     {
         if( state->mode == AppMode::MENU  &&  
-           state->touchArray[ (int)fingerEvent.touchId ].moveDistance() < 0.01  &&  state->spinnerArray[0].isTouching( fingerEvent.x, fingerEvent.y ) == true )  
+           state->touchArray[ (int)fingerEvent.touchId ].totalMoveDistance < 0.01  &&  state->spinnerArray[0].isTouching( fingerEvent.x, fingerEvent.y ) == true )  
             state->mode = AppMode::RUNNING;
         state->touchArray.erase( (int)fingerEvent.touchId );
     }

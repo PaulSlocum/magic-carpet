@@ -34,6 +34,7 @@ void MCGame::init()
 {
     state->background.active = true;
     state->background.type = SpinnerType::BACKGROUND;
+    state->background.texture = 200 + rand() % 2;
 }
 
 
@@ -183,18 +184,18 @@ void MCGame::updateMenuModeFrame()
     state->spinnerArray[1].texture = ROMPreviewTrack1[ ROMVisualPresetOrder[ (int)state->menuWheelPosition ] ];
     
     state->normalButton.active = true;
-    state->normalButton.texture = 0;
+    state->normalButton.texture = 300;
     state->normalButton.rotationPosition = frameCount * 25.1 * state->menuFadeIn;
     state->normalButton.size = 0.15;
     state->normalButton.yPosition = 0.65;
     state->normalButton.type = SpinnerType::BUTTON;
     
     state->muteButton = state->normalButton;
-    state->muteButton.texture = 1;
+    state->muteButton.texture = 301;
     state->muteButton.xPosition = 0.38;
     
     state->instrumentButton = state->normalButton;
-    state->instrumentButton.texture = 2;
+    state->instrumentButton.texture = 302;
     state->instrumentButton.xPosition = 0.62;
     
     state->background.rotationPosition = sin(buttonJiggler*2.78)*1.6;

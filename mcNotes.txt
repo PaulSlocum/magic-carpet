@@ -15,7 +15,6 @@ TODO:
 - fix issue with coordinate system being off
 - make it possible to fit a sprite to the screen (for the background)
 -  ~  -  ~  -  ~  -  ~
-- make touch keep track of total movement
 -  ~  -  ~  -  ~  -  ~
 - figure out audio system (how many channels? what's on each channel? 
 - figure out how to implement multiple channels
@@ -27,6 +26,7 @@ TODO:
 - get Android or Windows build working
 -  ~  -  ~  -  ~  -  ~
 - add namespace
+- clean up and improve makefile
 - replace "int" "short" "long" with specific with Int types (Uint8?)
 - implement exceptions and error handling
 - consider what would be required to expand the example into a larger game or interactive program
@@ -92,6 +92,7 @@ x implement background color
 x implement slow spinup of main spinners when menu starts
 x implement fixed tap with release to start from menu
 x verify that background color is the same as original
+x make touch keep track of total movement
 ~~ + ~~ + ~~ + ~~ + ~~ + ~~ + ~~ + ~~ + 
 
 

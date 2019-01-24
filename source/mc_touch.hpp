@@ -8,16 +8,14 @@
 class MCTouch
 {
 public:
-    //long frameCountOfLastRefresh;
-    //UITouch* touch;
-    //int touchID;
     float x = 0.0;
     float y = 0.0;
     float xStart = 0.0;
     float yStart = 0.0;
+    float totalMoveDistance = 0.0;
     //float fade; // TBI
     // ~  ~  ~  ~  ~  ~  ~  
-    float moveDistance();
+    //float moveDistance();
 }; //*/
 
 

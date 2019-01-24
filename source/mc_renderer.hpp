@@ -31,8 +31,8 @@ private:
     int screenHeight = 0;
     // ~  ~  ~  ~  ~  ~  ~  ~  
     std::map<int, SDL_Texture*> spinnerTextureArray;
-    std::map<int, SDL_Texture*> buttonTextureArray;
-    SDL_Texture* backgroundTexture;
+    //std::map<int, SDL_Texture*> buttonTextureArray;
+    //SDL_Texture* backgroundTexture;
     std::map<int, bool> spinnerTextureArrayLoaded;
     // ~  ~  ~  ~  ~  ~  ~  ~  
     SDL_Texture* loadJpegTexture( const std::string imageFilename );
