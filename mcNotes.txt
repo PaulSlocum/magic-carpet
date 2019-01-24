@@ -7,16 +7,13 @@ Magic Carpet 2 Notes
 TODO:
 ~- ~- ~- ~- ~- ~- ~- ~- ~-
 -  ~  -  ~  -  ~  -  ~
-- update iOS icon and launch screen
+- implement slow spinup of main spinners when menu starts
 -  ~  -  ~  -  ~  -  ~
 - implement fixed tap with release to start from menu
 -  ~  -  ~  -  ~  -  ~
 - implement creep jump function 
 -  ~  -  ~  -  ~  -  ~
-x implement background color
 - verify that background color is the same as original
--  ~  -  ~  -  ~  -  ~  
-- port preset phase cycler
 -  ~  -  ~  -  ~  -  ~
 - figure out audio system
 - figure out how to implement multiple channels
@@ -80,6 +77,9 @@ x get OGG audio file decoding and playing
 x port size fluctuations
 x port rotation and rate fluctionations
 x fix the 3 JPEGs that won't load
+x update iOS icon and launch screen
+x port preset phase cycler
+x implement background color
 ~~ + ~~ + ~~ + ~~ + ~~ + ~~ + ~~ + ~~ + 
 
 

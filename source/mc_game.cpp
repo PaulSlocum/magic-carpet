@@ -144,7 +144,10 @@ void MCGame::loadPreset( const int presetNumber )
 void MCGame::initMenuMode()
 {
     for( int i=0; i<MAX_ACTIVE_SPINNERS; i++ )
+    {
         state->spinnerArray[i].active = false;
+        state->spinnerArray[i].rotationRate = 0.0;
+    }
 }
 
 
@@ -164,20 +167,24 @@ void MCGame::updateMenuModeFrame()
     if( state->menuWheelPosition<0.0 )
         state->menuWheelPosition += NUMBER_OF_PRESETS;
     
+    state->spinnerArray[0].rotationRate = convergeValue( state->spinnerArray[0].rotationRate, 30.1, 0.15 );
+    
     state->spinnerArray[0].active = true;
-    state->spinnerArray[0].rotationPosition = frameCount * 30.1;
+    state->spinnerArray[0].rotationPosition += state->spinnerArray[0].rotationRate;
+    //state->spinnerArray[0].rotationPosition = frameCount * 30.1 * state->menuFadeIn;
     state->spinnerArray[0].texture = ROMPreviewTrack0[ ROMVisualPresetOrder[ (int)state->menuWheelPosition ] ];
     state->spinnerArray[0].size = 0.3;
     state->spinnerArray[0].yPosition = 0.4;
     state->spinnerArray[0].xPosition = state->menuWheelPosition - floor( state->menuWheelPosition);
     
     state->spinnerArray[1] = state->spinnerArray[0];
-    state->spinnerArray[1].size = 0.19;
+    state->spinnerArray[1].size = 0.22;
+    state->spinnerArray[1].rotationPosition = 360 - state->spinnerArray[1].rotationPosition;
     state->spinnerArray[1].texture = ROMPreviewTrack1[ ROMVisualPresetOrder[ (int)state->menuWheelPosition ] ];
     
     state->normalButton.active = true;
     state->normalButton.texture = 0;
-    state->normalButton.rotationPosition = frameCount * 25.1;
+    state->normalButton.rotationPosition = frameCount * 25.1 * state->menuFadeIn;
     state->normalButton.size = 0.15;
     state->normalButton.yPosition = 0.65;
     state->normalButton.type = SpinnerType::BUTTON;
