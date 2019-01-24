@@ -152,6 +152,8 @@ void MCGame::initMenuMode()
 //////////////////////////////////////////////////////////////////////////////////////
 void MCGame::updateMenuModeFrame()
 {
+    state->backgroundColor = {0.2, 0.1, 0.1};
+    
     // PAN WHEEL AND KEEP MENU WHEEL IN RANGE
     if( state->wheelPan == WheelPanMode::LEFT )
         state->menuWheelPosition -= 0.01;

@@ -168,19 +168,15 @@ void MCRenderer::loadTextures()
         if( TEXTURE_LOAD_LIST[i].isUsed == true )
         {
             spinnerTextureArray[ TEXTURE_LOAD_LIST[i].textureSlot ] = loadJpegTexture( TEXTURE_LOAD_LIST[i].filename );
-            //tempSpinnerArray[i].texture = TEXTURE_LOAD_LIST[i].textureSlot;
-            //tempSpinnerArray[i].size = i/20.0;
-            //drawSpinner( tempSpinnerArray[i] );
 
             tempSpinner.size = i/150.0;
+            tempSpinner.yPosition = 0.40;
             tempSpinner.active = true;
             tempSpinner.texture = TEXTURE_LOAD_LIST[i].textureSlot;
             tempSpinner.rotationPosition = i*15.0;
             drawSpinner( tempSpinner );
             
-            // RENDER (SHOW LOADED TEXTURE) -- THIS FUNCTION BLOCKS UNTIL VSYNC IF VSYNC IS ENABLED/SUPPORTED ON THE PLATFORM (CURRENTLY DOES NOT WORK ON RPI)
-            //if( i%2 == 0 )
-                SDL_RenderPresent( SDLRenderer );
+            SDL_RenderPresent( SDLRenderer );
         }
     }
 }
