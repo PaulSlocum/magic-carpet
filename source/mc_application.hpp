@@ -94,8 +94,8 @@ enum class WheelPanMode { STOPPED, LEFT, RIGHT };
 struct RGBColor 
 {
     float red = 1.0;
-    float blue = 1.0;
     float green = 1.0;
+    float blue = 1.0;
 };
 
 //|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||

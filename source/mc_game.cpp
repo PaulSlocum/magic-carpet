@@ -331,15 +331,11 @@ void MCGame::updateRunningModeFrame()
     if( (((frameCount+state->spinnerModeAdvanceRate/4)%(state->spinnerModeAdvanceRate*2))/(state->spinnerModeAdvanceRate) == 0) 
        || (state->mode == AppMode::MENU) )
     {
-        state->backgroundColor.red = ROMBGColorRedA[ state->selectedPreset ];
-        state->backgroundColor.green = ROMBGColorBlueA[ state->selectedPreset ];
-        state->backgroundColor.blue = ROMBGColorGreenA[ state->selectedPreset ];
+        state->backgroundColor = { ROMBGColorRedA[ state->selectedPreset ], ROMBGColorGreenA[ state->selectedPreset ], ROMBGColorBlueA[ state->selectedPreset ] };
     }
     else
     {
-        state->backgroundColor.red = ROMBGColorRedB[ state->selectedPreset ];
-        state->backgroundColor.green = ROMBGColorGreenB[ state->selectedPreset ];
-        state->backgroundColor.blue = ROMBGColorBlueB[ state->selectedPreset ];
+        state->backgroundColor = { ROMBGColorRedB[ state->selectedPreset ], ROMBGColorGreenB[ state->selectedPreset ], ROMBGColorBlueB[ state->selectedPreset ] };
     }
     
     // UPDATE ALL MAIN SPINNERS...
@@ -375,14 +371,11 @@ void MCGame::updateRunningModeFrame()
             
             // ROTATE SPINNER
             state->spinnerArray[spinnerIndex].rotationPosition += state->spinnerArray[spinnerIndex].rotationRate + state->creep;
-            ////glBindTexture(GL_TEXTURE_2D,spinnerTextureArray[ state->spinnerArray[spinnerIndex].texture ]); // <-- OPENGL CODE INCLUDED FOR REFERENCE
-            ////glLoadIdentity(); // <-- OPENGL CODE INCLUDED FOR REFERENCE
             
             // DEBUG! -- THIS SHOULD BE MOVED TO CLASS OR DERIVED FROM FRAMECOUNT
             static int flipper=1;
             flipper *= -1;
             
-            const float kMaxSpinnerSize = 1.5; // ORIGINAL VALUE 2.5
             float spinnerSizeX, spinnerSizeY;
          
             // apply menuFadeIn to every spinner size except the first
@@ -401,6 +394,9 @@ void MCGame::updateRunningModeFrame()
                 spinnerSizeY = state->spinnerArray[spinnerIndex].scaleFactor * 
                                     ( state->runningFadeIn - kFadeInStartPoint ) * LARGE_SPINNER_SCALE_Y * 
                                     state->spinnerScaleX * state->pitchBend + state->spinnerSizeOffset + LARGE_SPINNER_SIZE_OFFSET;
+                const float kMinSpinnerSize = 0.8; 
+                if( spinnerSizeX < kMinSpinnerSize )
+                    spinnerSizeX = kMinSpinnerSize;
             }
             else 
             {    // ALL OTHER SPINNERS
@@ -437,20 +433,7 @@ void MCGame::updateRunningModeFrame()
             else //*/ 
                 spinnerScaling = 1.0;
             
-            // I THINK THIS CODE IS PRIMARILY TO SLIDE THE SPINNERS TO THE CENTER AS A TRANSITION FROM THE MENU...
-            // ...THIS SHOULD PROBABLY BE IMPLEMENTED DIFFERENTLY...
-            // ... OPENGL CODE INCLUDED FOR REFERENCE
-            ////if( !showMenuSideways )
-                ////glTranslatef( (-0.7+(runningFadeIn-0.5)*0.7),
-                    ////         (prayerWheelPosition*2-(int)prayerWheelPosition*2-1)*(1.5-runningFadeIn)+0.2*spinPolarity*(doubleSpin*2-1)
-                        ////     +kSpinnerSplit, 0.0f);    
-            ////else 
-                ////glTranslatef( (-0.7+(1.5-0.5)*0.7),
-                    ////         (1.5-runningFadeIn)*0.7+0.2*spinPolarity*(doubleSpin*2-1)
-                        ////     +kSpinnerSplit, 0.0f); //*/
-            
-            ////glRotatef(mainSpinnerArray[spinnerIndex].rotationPosition, 0.0f, 0.0f, 1.0f);   // <-- OPENGL CODE INCLUDED FOR REFERENCE
-
+            const float kMaxSpinnerSize = 1.5; // ORIGINAL VALUE 2.5
             if( spinnerSizeX > kMaxSpinnerSize )
                 spinnerSizeX = kMaxSpinnerSize;
             state->spinnerArray[spinnerIndex].size = spinnerSizeX; 

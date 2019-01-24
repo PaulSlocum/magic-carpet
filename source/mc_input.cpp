@@ -46,7 +46,7 @@ void MCInput::processTouchEvent( const SDL_TouchFingerEvent fingerEvent )
     if( fingerEvent.type == SDL_FINGERUP )
     {
         if( state->mode == AppMode::MENU  &&  
-           state->touchArray[ (int)fingerEvent.touchId ].moveDistance() < 0.05  &&  state->spinnerArray[0].isTouching( fingerEvent.x, fingerEvent.y ) == true )  
+           state->touchArray[ (int)fingerEvent.touchId ].moveDistance() < 0.01  &&  state->spinnerArray[0].isTouching( fingerEvent.x, fingerEvent.y ) == true )  
             state->mode = AppMode::RUNNING;
         state->touchArray.erase( (int)fingerEvent.touchId );
     }

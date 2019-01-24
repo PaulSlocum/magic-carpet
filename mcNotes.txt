@@ -7,25 +7,22 @@ Magic Carpet 2 Notes
 TODO:
 ~- ~- ~- ~- ~- ~- ~- ~- ~-
 -  ~  -  ~  -  ~  -  ~
+- make application and renderer agnostic to game variables (menu mode, etc)
+- rename "spinners" class to "sprites" to make it more clear and reusable
+- make it so that there's just one texture load list for spinner, buttons, and background
+- separate "game" class into game_controller, game_screen, menu_screen
 -  ~  -  ~  -  ~  -  ~
-- implement fixed tap with release to start from menu
+- fix issue with coordinate system being off
+- make it possible to fit a sprite to the screen (for the background)
 -  ~  -  ~  -  ~  -  ~
-- implement creep jump function 
+- make touch keep track of total movement
 -  ~  -  ~  -  ~  -  ~
-- verify that background color is the same as original
--  ~  -  ~  -  ~  -  ~
-- figure out audio system
+- figure out audio system (how many channels? what's on each channel? 
 - figure out how to implement multiple channels
 - port audio system
 - set up background OGG file loader
 -  ~  -  ~  -  ~  -  ~
-- implement rendering to texture
-- implement both X and Y scaling of spinner textures 
--  ~  -  ~  -  ~  -  ~
-- add flipped double image to menu background
 - implement menu sound
-- implement zoom/sound blip in menu
-- fix odd color in red menu spinner
 -  ~  -  ~  -  ~  -  ~
 - get Android or Windows build working
 -  ~  -  ~  -  ~  -  ~
@@ -40,7 +37,20 @@ TODO:
 - finish readme.md
 - make GIF and/or video for readme.md
 -  ~  -  ~  -  ~  -  ~
-- implement or figure out VSync support on RPi
+-  ~  -  ~  -  ~  -  ~
+. implement tremolo
+. implement vibrato
+. implement or figure out VSync support on RPi
+. improve accuracy of spinner modes and movementvcxprof
+. implement rendering to texture
+. implement both X and Y scaling of spinner textures 
+. implement creep jump function 
+. add flipped double image to menu background
+. implement zoom/sound blip in menu
+. fix odd color in red menu spinner
+. implement sound buttons
+. implement mute mode
+. implement instrument mode
 -  ~  -  ~  -  ~  -  ~
 ~- ~- ~- ~- ~- ~- ~- ~- ~- 
 
@@ -80,6 +90,8 @@ x update iOS icon and launch screen
 x port preset phase cycler
 x implement background color
 x implement slow spinup of main spinners when menu starts
+x implement fixed tap with release to start from menu
+x verify that background color is the same as original
 ~~ + ~~ + ~~ + ~~ + ~~ + ~~ + ~~ + ~~ + 
 
 
