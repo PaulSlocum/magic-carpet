@@ -25,8 +25,6 @@ MCApplication::MCApplication()
     renderer = new MCRenderer( &state );
     audioController = new MCAudio( &state );
     gameController = new MCGame( &state );
-    inputHandler = new MCInput( &state );
-    
 }
 
 
@@ -36,7 +34,6 @@ MCApplication::MCApplication()
 // DESTRUCTOR
 MCApplication::~MCApplication()
 {
-    delete inputHandler;
     delete gameController;
     delete audioController;
     delete renderer;
@@ -112,7 +109,7 @@ void MCApplication::runLoop()
     while( isQuitting == false )
     {
         // PROCESS ALL EVENTS IN QUEUE...
-        while( SDL_PollEvent(&event) ) 
+        while( SDL_PollEvent( &event ) ) 
         {
             printf( "RECEIVED EVENT\n" );
             switch( event.type )
@@ -124,17 +121,10 @@ void MCApplication::runLoop()
                 case SDL_FINGERDOWN: 
                 case SDL_FINGERUP:
                 case SDL_FINGERMOTION:
-                    inputHandler->processTouchEvent( event.tfinger );
-                    break;
-
                 case SDL_KEYDOWN:
                 case SDL_KEYUP:
-                    inputHandler->processKeyboardEvent( event.key );
+                    gameController->processEvent( event );
                     break;
-            }
-            if (event.type == SDL_QUIT) 
-            {
-                stop();
             }
         }
         

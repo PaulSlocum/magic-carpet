@@ -1,12 +1,13 @@
 // mc_game.cpp
 ////////////////////////////////////////////////////////////////////////
 
+#include "SDL.h"
 #include <math.h>
-
 #include "mc_game.hpp"
 #include "mc_application.hpp"
 #include "mc_sequence_data.hpp"
 #include "mc_util.hpp"
+#include "mc_input.hpp"
 
 
 // TODO: MOVE SOMEWHERE
@@ -18,6 +19,7 @@ const float kFadeInStartPoint = 0.7; // 0.5
 MCGame::MCGame( MCAppState* newState )
 {
     state = newState;
+    inputHandler = new MCInput( newState );
 }
 
 
@@ -25,6 +27,7 @@ MCGame::MCGame( MCAppState* newState )
 //////////////////////////////////////////////////////////////////////////////////////
 MCGame::~MCGame()
 {
+    delete inputHandler;
 }
 
 
@@ -50,6 +53,23 @@ void MCGame::stop()
 
 
 
+/////////////////////////////////////////////////////////////////////////////////////
+void MCGame::processEvent( SDL_Event event )
+{
+    switch( event.type )
+    {
+        case SDL_FINGERDOWN: 
+        case SDL_FINGERUP:
+        case SDL_FINGERMOTION:
+            inputHandler->processTouchEvent( event.tfinger );
+            break;
+            
+        case SDL_KEYDOWN:
+        case SDL_KEYUP:
+            inputHandler->processKeyboardEvent( event.key );
+            break;
+    }
+}
 
 
 

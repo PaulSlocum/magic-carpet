@@ -3,6 +3,8 @@
 
 
 class MCAppState;
+class MCInput;
+union SDL_Event;
 
 
 #define NUMBER_OF_PRESETS 7
@@ -15,6 +17,7 @@ public:
     ~MCGame();
     void start();
     void stop();
+    void processEvent( SDL_Event event );
     void updateFrame();
     
 private:
@@ -23,6 +26,8 @@ private:
     int frameCount = 0;
     // ~  ~  ~  ~  ~  ~  ~  
     void loadPreset( const int presetNumber );
+    // ~  ~  ~  ~  ~  ~  ~
+    MCInput* inputHandler;
     // ~  ~  ~  ~  ~  ~  ~
     void initMenuMode();
     void updateMenuModeFrame();

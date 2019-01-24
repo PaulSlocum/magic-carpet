@@ -153,7 +153,7 @@ private:
     // ~  ~  ~  ~  ~  ~  ~  ~  
     MCRenderer* renderer;
     MCGame* gameController;
-    MCInput* inputHandler;
+    //MCInput* inputHandler;
     MCAudio* audioController;
     // ~  ~  ~  ~  ~  ~  ~  ~  
     bool vsyncEnabled = false;
