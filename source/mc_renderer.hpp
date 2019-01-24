@@ -4,7 +4,7 @@
 #include <string>
 #include <map>
 #include "SDL.h"
-#include "mc_spinner.hpp"
+#include "mc_sprite.hpp"
 
 
 
@@ -36,7 +36,7 @@ private:
     std::map<int, bool> spinnerTextureArrayLoaded;
     // ~  ~  ~  ~  ~  ~  ~  ~  
     SDL_Texture* loadJpegTexture( const std::string imageFilename );
-    void drawSpinner( const MCSpinner spinner );
+    void drawSpinner( const MCSprite spinner );
     // ~  ~  ~  ~  ~  ~  ~  ~  
     // DEBUG - TRYING TO IMPLEMENT RENDER TARGET
     //SDL_Surface *softSurface;

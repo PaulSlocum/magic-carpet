@@ -64,7 +64,7 @@ void MCRenderer::start()
 
 
 ///////////////////////////////////////////////////////////////////////////////////
-void MCRenderer::drawSpinner( const MCSpinner spinner )
+void MCRenderer::drawSpinner( const MCSprite spinner )
 {
     if( spinner.active == true )
     {
@@ -162,7 +162,7 @@ void MCRenderer::loadTextures()
                 spinnerTextureArray[ TEXTURE_LOAD_LIST[i].textureSlot ] = loadJpegTexture( TEXTURE_LOAD_LIST[i].filename );
 
                 // SHOW TEXTURES AS THEY'RE LOADING..
-                MCSpinner tempSpinner;
+                MCSprite tempSpinner;
                 tempSpinner.size = i/150.0;
                 tempSpinner.yPosition = 0.40;
                 tempSpinner.active = true;

@@ -3,11 +3,11 @@
 
 #include "stdio.h"
 #include "math.h"
-#include "mc_spinner.hpp"
+#include "mc_sprite.hpp"
 
 
 
-bool MCSpinner::isTouching( float testXCoord, float testYCoord )
+bool MCSprite::isTouching( float testXCoord, float testYCoord )
 {
     float centerDistance = sqrt( pow(testXCoord - xPosition, 2) + pow(testYCoord - yPosition, 2) );
     printf( "TOUCH DISTANCE: %f \n", centerDistance );

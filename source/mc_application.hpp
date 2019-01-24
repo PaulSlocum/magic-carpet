@@ -5,7 +5,7 @@
 #define MC_APPLICATION_HPP
 
 #include <map>
-#include "mc_spinner.hpp"
+#include "mc_sprite.hpp"
 #include "mc_touch.hpp"
 
 // ' ^ ' ^ ' ^ ' ^ ' ^ ' ^ ' ^ ' ^ ' ^ ' ^ ' ^ ' ^ ' ^ 
@@ -105,17 +105,17 @@ struct MCAppState
     AppMode previousMode = AppMode::STOPPED;
     SoundMode soundMode = SoundMode::NORMAL;
     // ~  ~  ~  ~  ~  ~  ~  ~    
-    std::map<int,MCSpinner> spinnerArray;
+    std::map<int,MCSprite> spinnerArray;
     std::map<int,MCTouch> touchArray;
     // ~  ~  ~  ~  ~  ~  ~  ~    
     float menuWheelPosition = 0.5;
     float menuFadeIn = 1.0;
     float runningFadeIn = 1.0;
     // ~  ~  ~  ~  ~  ~  ~  ~    
-    MCSpinner muteButton;
-    MCSpinner normalButton;
-    MCSpinner instrumentButton;
-    MCSpinner background;
+    MCSprite muteButton;
+    MCSprite normalButton;
+    MCSprite instrumentButton;
+    MCSprite background;
     // ~  ~  ~  ~  ~  ~  ~  ~    
     WheelPanMode wheelPan = WheelPanMode::STOPPED;
     RGBColor backgroundColor;

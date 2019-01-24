@@ -1,16 +1,16 @@
-// mc_spinner.hpp
+// mc_sprite.hpp
 //////////////////////////////////////////////////////////////////////////////////////
 
-#ifndef MC_SPINNER_HPP
-#define MC_SPINNER_HPP
+#ifndef MC_SPRITE_HPP
+#define MC_SPRITE_HPP
 
 
-enum class SpinnerType { SPINNER, BUTTON, BACKGROUND };
+enum class SpriteType { SPINNER, BUTTON, BACKGROUND };
 
 
 // SPINNER STRUCT -----------------------------
 // Structure to track of spinning patterns
-class MCSpinner 
+class MCSprite 
 {
 public:
     bool active = false;
@@ -21,7 +21,7 @@ public:
     float rotationRate = 0.0;
     float size = 1.0;
     float scaleFactor = 1.0;
-    SpinnerType type = {SpinnerType::SPINNER};
+    SpriteType type = {SpriteType::SPINNER};
     // ~  ~  ~  ~  ~  ~  ~  
     bool isTouching( float testXCoord, float testYCoord );
 };

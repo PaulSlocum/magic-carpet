@@ -18,7 +18,7 @@
 		EB1118DB21F9825C004022DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB1118DA21F9825C004022DC /* Assets.xcassets */; };
 		EB1118DE21F99F68004022DC /* mc_touch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EB1118DD21F99F68004022DC /* mc_touch.cpp */; };
 		EB2560BA21E8F2E8007DC439 /* media in Resources */ = {isa = PBXBuildFile; fileRef = EB2560B921E8F2E7007DC439 /* media */; };
-		EB27A15C21F0E3FB0082D1C2 /* mc_spinner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EB27A15A21F0E3FB0082D1C2 /* mc_spinner.cpp */; };
+		EB27A15C21F0E3FB0082D1C2 /* mc_sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EB27A15A21F0E3FB0082D1C2 /* mc_sprite.cpp */; };
 		EB27A16221F1644C0082D1C2 /* mc_game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EB27A16021F1644C0082D1C2 /* mc_game.cpp */; };
 		EBC84AC321E956EA0039B60F /* mc_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EBC84ABD21E956EA0039B60F /* mc_util.cpp */; };
 		EBC84AC521E967810039B60F /* mcNotes.txt in Resources */ = {isa = PBXBuildFile; fileRef = EBC84AC421E967810039B60F /* mcNotes.txt */; };
@@ -72,8 +72,8 @@
 		EB1118DC21F99F68004022DC /* mc_touch.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = mc_touch.hpp; path = ../source/mc_touch.hpp; sourceTree = "<group>"; };
 		EB1118DD21F99F68004022DC /* mc_touch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mc_touch.cpp; path = ../source/mc_touch.cpp; sourceTree = "<group>"; };
 		EB2560B921E8F2E7007DC439 /* media */ = {isa = PBXFileReference; lastKnownFileType = folder; name = media; path = ../media; sourceTree = "<group>"; };
-		EB27A15A21F0E3FB0082D1C2 /* mc_spinner.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mc_spinner.cpp; path = ../source/mc_spinner.cpp; sourceTree = "<group>"; };
-		EB27A15B21F0E3FB0082D1C2 /* mc_spinner.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = mc_spinner.hpp; path = ../source/mc_spinner.hpp; sourceTree = "<group>"; };
+		EB27A15A21F0E3FB0082D1C2 /* mc_sprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mc_sprite.cpp; path = ../source/mc_sprite.cpp; sourceTree = "<group>"; };
+		EB27A15B21F0E3FB0082D1C2 /* mc_sprite.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = mc_sprite.hpp; path = ../source/mc_sprite.hpp; sourceTree = "<group>"; };
 		EB27A15D21F0E4160082D1C2 /* makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; name = makefile; path = ../makefile; sourceTree = "<group>"; };
 		EB27A16021F1644C0082D1C2 /* mc_game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mc_game.cpp; path = ../source/mc_game.cpp; sourceTree = "<group>"; };
 		EB27A16121F1644C0082D1C2 /* mc_game.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = mc_game.hpp; path = ../source/mc_game.hpp; sourceTree = "<group>"; };
@@ -162,8 +162,8 @@
 				EB27A16121F1644C0082D1C2 /* mc_game.hpp */,
 				EBF01D3721F57A58007E5B6C /* mc_input.cpp */,
 				EBF01D3821F57A58007E5B6C /* mc_input.hpp */,
-				EB27A15A21F0E3FB0082D1C2 /* mc_spinner.cpp */,
-				EB27A15B21F0E3FB0082D1C2 /* mc_spinner.hpp */,
+				EB27A15A21F0E3FB0082D1C2 /* mc_sprite.cpp */,
+				EB27A15B21F0E3FB0082D1C2 /* mc_sprite.hpp */,
 				EB1118DD21F99F68004022DC /* mc_touch.cpp */,
 				EB1118DC21F99F68004022DC /* mc_touch.hpp */,
 				EBF01D2F21F50661007E5B6C /* mc_audio.cpp */,
@@ -347,7 +347,7 @@
 				FD77A09D0E26BDE500F39101 /* mc_main.cpp in Sources */,
 				EB1118D421F80576004022DC /* stb_vorbis.cpp in Sources */,
 				EBC84AD221ED47F40039B60F /* mc_application.cpp in Sources */,
-				EB27A15C21F0E3FB0082D1C2 /* mc_spinner.cpp in Sources */,
+				EB27A15C21F0E3FB0082D1C2 /* mc_sprite.cpp in Sources */,
 				EB27A16221F1644C0082D1C2 /* mc_game.cpp in Sources */,
 				EB1118DE21F99F68004022DC /* mc_touch.cpp in Sources */,
 				EBC84AD521EDAF670039B60F /* mc_renderer.cpp in Sources */,

@@ -39,8 +39,13 @@ void MCGame::start()
     state->menuFadeIn = 0.0;
 
     state->background.active = true;
-    state->background.type = SpinnerType::BACKGROUND;
-    state->background.texture = 200 + rand() % 2;
+    state->background.type = SpriteType::BACKGROUND;
+    
+    // RANDOMLY CHOOSE BETWEEN THE TWO BACKGROUND TEXTURES...
+    if( rand()%2 == 0 )
+        state->background.texture = 200;
+    else
+        state->background.texture = 201;
 }
 
 
@@ -219,7 +224,7 @@ void MCGame::updateMenuModeFrame()
     state->normalButton.rotationPosition = frameCount * 25.1 * state->menuFadeIn;
     state->normalButton.size = 0.15;
     state->normalButton.yPosition = 0.65;
-    state->normalButton.type = SpinnerType::BUTTON;
+    state->normalButton.type = SpriteType::BUTTON;
     
     state->muteButton = state->normalButton;
     state->muteButton.texture = 301;
