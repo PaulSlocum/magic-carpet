@@ -379,28 +379,34 @@ void MCGame::updateRunningModeFrame()
             static int flipper=1;
             flipper *= -1;
             
-            const float kMaxSpinnerSize = 2.5;
+            const float kMaxSpinnerSize = 1.5; // ORIGINAL VALUE 2.5
             float spinnerSizeX, spinnerSizeY;
          
             // apply menuFadeIn to every spinner size except the first
-            const float LARGE_SPINNER_SCALE_X = 0.9;  // ORIGINAL VALUE = 0.7
-            const float LARGE_SPINNER_SCALE_Y = 1.0;  // ORIGINAL VALUE = 0.85
+            const float LARGE_SPINNER_SCALE_X = 0.5;  // ORIGINAL VALUE = 0.7
+            const float LARGE_SPINNER_SCALE_Y = 0.6;  // ORIGINAL VALUE = 0.85
+            const float LARGE_SPINNER_SIZE_OFFSET = 0.6;
+            const float SPINNER_SCALE_X = 0.3;  // ORIGINAL VALUE = 0.7
+            const float SPINNER_SCALE_Y = 0.4;  // ORIGINAL VALUE = 0.85
+            const float SPINNER_SIZE_OFFSET = 0.1;
             if( spinnerIndex == 0 )
             {
                 // FIRST SPINNER (the biggest spinner in the background)
                 spinnerSizeX = state->spinnerArray[spinnerIndex].scaleFactor * 
                                     ( state->runningFadeIn - kFadeInStartPoint ) * rhythmBloom * 
-                                    LARGE_SPINNER_SCALE_X * state->spinnerScaleX * state->pitchBend + state->spinnerSizeOffset;
+                                    LARGE_SPINNER_SCALE_X * state->spinnerScaleX * state->pitchBend + state->spinnerSizeOffset + LARGE_SPINNER_SIZE_OFFSET;
                 spinnerSizeY = state->spinnerArray[spinnerIndex].scaleFactor * 
                                     ( state->runningFadeIn - kFadeInStartPoint ) * LARGE_SPINNER_SCALE_Y * 
-                                    state->spinnerScaleX * state->pitchBend + state->spinnerSizeOffset;
+                                    state->spinnerScaleX * state->pitchBend + state->spinnerSizeOffset + LARGE_SPINNER_SIZE_OFFSET;
             }
             else 
             {    // ALL OTHER SPINNERS
                 spinnerSizeX = state->spinnerArray[spinnerIndex].scaleFactor * 
-                                    ( state->runningFadeIn - kFadeInStartPoint ) * state->menuFadeIn * rhythmBloom * 0.7 * state->spinnerScaleX * state->pitchBend;
+                                    ( state->runningFadeIn - kFadeInStartPoint ) * state->menuFadeIn * rhythmBloom * 
+                                    SPINNER_SCALE_X * state->spinnerScaleX * state->pitchBend + SPINNER_SIZE_OFFSET;
                 spinnerSizeY = state->spinnerArray[spinnerIndex].scaleFactor * 
-                                    ( state->runningFadeIn - kFadeInStartPoint ) * state->menuFadeIn * 0.85 * state->spinnerScaleY * state->pitchBend;
+                                    ( state->runningFadeIn - kFadeInStartPoint ) * state->menuFadeIn * SPINNER_SCALE_Y * 
+                                    state->spinnerScaleY * state->pitchBend + SPINNER_SIZE_OFFSET;
             } //*/
             
             // MAKE SPINNERS SMALLER IN INSTRUMENT MODE

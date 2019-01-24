@@ -7,6 +7,8 @@ Magic Carpet 2 Notes
 TODO:
 ~- ~- ~- ~- ~- ~- ~- ~- ~-
 -  ~  -  ~  -  ~  -  ~
+- update iOS icon and launch screen
+-  ~  -  ~  -  ~  -  ~
 - implement fixed tap with release to start from menu
 -  ~  -  ~  -  ~  -  ~
 - implement creep jump function 
