@@ -108,12 +108,15 @@ void MCRenderer::render()
     // DRAW EVERYTHING FROM THE SPRITE RENDER LIST
     for( int i=0; i < app->spriteRenderList.size(); i++ )
         drawSprite( app->spriteRenderList[i] );
-    
-    // RENDER! -- THIS FUNCTION BLOCKS UNTIL VSYNC IF VSYNC IS ENABLED/SUPPORTED ON THE PLATFORM (CURRENTLY DOES NOT WORK ON RPI)
-    SDL_RenderPresent( SDLRenderer );
-    
 }
 
+
+/////////////////////////////////////////////////////////////////////////////////////
+void MCRenderer::presentBuffer()
+{
+    // !!! THIS FUNCTION BLOCKS UNTIL VSYNC IF VSYNC IS ENABLED/SUPPORTED ON THE PLATFORM (CURRENTLY DOES NOT WORK ON RPI)
+    SDL_RenderPresent( SDLRenderer );
+}
 
 
 

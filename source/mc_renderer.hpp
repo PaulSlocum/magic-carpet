@@ -17,6 +17,7 @@ public:
     ~MCRenderer();
     void start();
     void render();
+    void presentBuffer();
     void loadTextures();
     
 private:

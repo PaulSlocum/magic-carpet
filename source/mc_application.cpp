@@ -97,37 +97,60 @@ void MCApplication::runLoop()
     renderer->loadTextures();
 
     // MAIN LOOP...
+    enum class LoopState {POLL, DRAW, PRESENT};
+    LoopState loopState = LoopState::POLL;
     while( isQuitting == false )
     {
-        // PROCESS ALL EVENTS IN QUEUE...
-        while( SDL_PollEvent( &event ) ) 
+        switch( loopState )
         {
-            printf( "RECEIVED EVENT\n" );
-            switch( event.type )
+            case LoopState::POLL:
             {
-                case SDL_QUIT: 
-                    stop(); 
-                    break;
-                    
-                case SDL_FINGERDOWN: 
-                case SDL_FINGERUP:
-                case SDL_FINGERMOTION:
-                case SDL_KEYDOWN:
-                case SDL_KEYUP:
-                    gameController->processEvent( event );
-                    break;
+                // PROCESS ALL EVENTS IN QUEUE...
+                while( SDL_PollEvent( &event ) ) 
+                {
+                    printf( "RECEIVED EVENT\n" );
+                    switch( event.type )
+                    {
+                        case SDL_QUIT: 
+                            stop(); 
+                            break;
+                            
+                        case SDL_FINGERDOWN: 
+                        case SDL_FINGERUP:
+                        case SDL_FINGERMOTION:
+                        case SDL_KEYDOWN:
+                        case SDL_KEYUP:
+                            gameController->processEvent( event );
+                            break;
+                    }
+                }
+                loopState = LoopState::DRAW;
+                break;
             }
-        }
+
+            case LoopState::DRAW:
+            {
+                gameController->updateFrame();
+                renderer->render();
+                loopState = LoopState::PRESENT;
+                break;
+            }
+
+            case LoopState::PRESENT:
+            {
+                const int EARLY_OFFSET_MSEC = 0;
+                if( (vsyncEnabled == true)  ||  (timeOfNextFrameMSec <= getCurrentTimeMSec() + EARLY_OFFSET_MSEC) )
+                {
+                    renderer->presentBuffer();
+                    loopState = LoopState::POLL;
+                    timeOfNextFrameMSec = getCurrentTimeMSec() + 1000.0/FRAMES_PER_SECOND;
+                }
+                break;
+            }
+                
+        } // SWITCH
         
         // LOAD TEXTURES / DRAW SCREEN...
-	const int EARLY_OFFSET_MSEC = 7;
-        if( (vsyncEnabled == true)  ||  (timeOfNextFrameMSec <= getCurrentTimeMSec() + EARLY_OFFSET_MSEC) )
-        {
-            gameController->updateFrame();
-
-            renderer->render();
-            timeOfNextFrameMSec = getCurrentTimeMSec() + 1000.0/FRAMES_PER_SECOND;
-        }
 
         SDL_Delay(1);
     }
