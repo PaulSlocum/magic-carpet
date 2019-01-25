@@ -20,6 +20,8 @@
 		EB2560BA21E8F2E8007DC439 /* media in Resources */ = {isa = PBXBuildFile; fileRef = EB2560B921E8F2E7007DC439 /* media */; };
 		EB27A15C21F0E3FB0082D1C2 /* mc_sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EB27A15A21F0E3FB0082D1C2 /* mc_sprite.cpp */; };
 		EB27A16221F1644C0082D1C2 /* mc_game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EB27A16021F1644C0082D1C2 /* mc_game.cpp */; };
+		EB32E22521FA8A550065E44A /* mc_menu_screen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EB32E22221FA8A550065E44A /* mc_menu_screen.cpp */; };
+		EB32E22621FA8A550065E44A /* mc_game_screen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EB32E22321FA8A550065E44A /* mc_game_screen.cpp */; };
 		EBC84AC321E956EA0039B60F /* mc_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EBC84ABD21E956EA0039B60F /* mc_util.cpp */; };
 		EBC84AC521E967810039B60F /* mcNotes.txt in Resources */ = {isa = PBXBuildFile; fileRef = EBC84AC421E967810039B60F /* mcNotes.txt */; };
 		EBC84ACA21EA94190039B60F /* ujpeg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EBC84AC921EA94190039B60F /* ujpeg.cpp */; };
@@ -78,6 +80,10 @@
 		EB27A16021F1644C0082D1C2 /* mc_game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mc_game.cpp; path = ../source/mc_game.cpp; sourceTree = "<group>"; };
 		EB27A16121F1644C0082D1C2 /* mc_game.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = mc_game.hpp; path = ../source/mc_game.hpp; sourceTree = "<group>"; };
 		EB27A16521F36EDB0082D1C2 /* mc_texture_list.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = mc_texture_list.hpp; path = ../source/mc_texture_list.hpp; sourceTree = "<group>"; };
+		EB32E22121FA8A550065E44A /* mc_game_screen.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = mc_game_screen.hpp; path = ../source/mc_game_screen.hpp; sourceTree = "<group>"; };
+		EB32E22221FA8A550065E44A /* mc_menu_screen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mc_menu_screen.cpp; path = ../source/mc_menu_screen.cpp; sourceTree = "<group>"; };
+		EB32E22321FA8A550065E44A /* mc_game_screen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mc_game_screen.cpp; path = ../source/mc_game_screen.cpp; sourceTree = "<group>"; };
+		EB32E22421FA8A550065E44A /* mc_menu_screen.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = mc_menu_screen.hpp; path = ../source/mc_menu_screen.hpp; sourceTree = "<group>"; };
 		EBC84ABD21E956EA0039B60F /* mc_util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mc_util.cpp; path = ../source/mc_util.cpp; sourceTree = "<group>"; };
 		EBC84AC421E967810039B60F /* mcNotes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = mcNotes.txt; path = ../mcNotes.txt; sourceTree = "<group>"; };
 		EBC84AC921EA94190039B60F /* ujpeg.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ujpeg.cpp; path = ../source/ujpeg.cpp; sourceTree = "<group>"; };
@@ -160,6 +166,10 @@
 				EBC84AD421EDAF670039B60F /* mc_renderer.hpp */,
 				EB27A16021F1644C0082D1C2 /* mc_game.cpp */,
 				EB27A16121F1644C0082D1C2 /* mc_game.hpp */,
+				EB32E22321FA8A550065E44A /* mc_game_screen.cpp */,
+				EB32E22121FA8A550065E44A /* mc_game_screen.hpp */,
+				EB32E22221FA8A550065E44A /* mc_menu_screen.cpp */,
+				EB32E22421FA8A550065E44A /* mc_menu_screen.hpp */,
 				EBF01D3721F57A58007E5B6C /* mc_input.cpp */,
 				EBF01D3821F57A58007E5B6C /* mc_input.hpp */,
 				EB27A15A21F0E3FB0082D1C2 /* mc_sprite.cpp */,
@@ -351,7 +361,9 @@
 				EB27A16221F1644C0082D1C2 /* mc_game.cpp in Sources */,
 				EB1118DE21F99F68004022DC /* mc_touch.cpp in Sources */,
 				EBC84AD521EDAF670039B60F /* mc_renderer.cpp in Sources */,
+				EB32E22521FA8A550065E44A /* mc_menu_screen.cpp in Sources */,
 				EBC84AC321E956EA0039B60F /* mc_util.cpp in Sources */,
+				EB32E22621FA8A550065E44A /* mc_game_screen.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

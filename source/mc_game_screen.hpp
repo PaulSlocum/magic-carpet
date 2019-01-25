@@ -1,0 +1,11 @@
+// mc_game_screen.hpp
+/////////////////////////////////////////////////////////////////////
+
+
+
+class MCGameScreen
+{
+public:
+    MCGameScreen();
+    ~MCGameScreen();
+}
