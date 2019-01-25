@@ -152,6 +152,7 @@ void MCRenderer::loadTextures()
                     tempSpinner.yPosition = 0.50;
                 }
                 app->spriteRenderList[ spriteListIndex ] = tempSpinner;
+		spriteListIndex++;
                 //drawSprite( tempSpinner );
                 render();
                 
