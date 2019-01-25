@@ -7,6 +7,8 @@ Magic Carpet 2 Notes
 TODO:
 ~- ~- ~- ~- ~- ~- ~- ~- ~-
 -  ~  -  ~  -  ~  -  ~
+- apply menu fade-in to sprite sizes on the game-side instead of the render-side
+-  ~  -  ~  -  ~  -  ~
 - make application and renderer agnostic to game variables (menu mode, etc)
 - rename "spinners" class to "sprites" to make it more clear and reusable
 - separate "game" class into game_controller, game_screen, menu_screen

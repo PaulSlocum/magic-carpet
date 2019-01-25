@@ -2,15 +2,11 @@
 /////////////////////////////////////////////////////////////////////////////////
 
 #include "SDL.h"
-
 #include <string>
-
 #include "mc_application.hpp"
 #include "mc_renderer.hpp"
 #include "mc_util.hpp"
 #include "mc_game.hpp"
-
-
 
 
 //////////////////////////////////////////////////////////////////////////////////////
@@ -21,7 +17,7 @@ MCApplication::MCApplication()
     srand( (unsigned int) time(NULL) );
     
     renderer = new MCRenderer( this );
-    gameController = new MCGame( &state );
+    gameController = new MCGame( this );
 }
 
 
@@ -127,14 +123,6 @@ void MCApplication::runLoop()
         if( (vsyncEnabled == true)  ||  (timeOfNextFrameMSec <= getCurrentTimeMSec() + 0) )
         {
             gameController->updateFrame();
-
-            spriteRenderList.clear();
-            spriteRenderList[0] = state.background;
-            spriteRenderList[1] = state.normalButton;
-            spriteRenderList[2] = state.muteButton;
-            spriteRenderList[3] = state.instrumentButton;
-            for( int spinnerNumber=0; spinnerNumber<MAX_ACTIVE_SPINNERS; spinnerNumber++ )
-                 spriteRenderList[ spinnerNumber+4 ] = state.spinnerArray[ spinnerNumber ];
 
             renderer->render();
             timeOfNextFrameMSec = getCurrentTimeMSec() + 1000.0/FRAMES_PER_SECOND;

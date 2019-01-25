@@ -85,8 +85,10 @@ void MCRenderer::drawSprite( const MCSprite sprite )
         // SETUP SOURCE/DECT RECTS FOR COPY
         SDL_Rect srcRect = { 0, 0, textureWidth, textureHeight };
         SDL_Rect dstRect;
-        dstRect.w = screenWidth * sprite.size * app->state.menuFadeIn;
-        dstRect.h = screenWidth * sprite.size * app->state.menuFadeIn;
+        dstRect.w = screenWidth * sprite.size;
+        dstRect.h = screenWidth * sprite.size;
+        //dstRect.w = screenWidth * sprite.size * app->state.menuFadeIn; // TODO: APPLY MENU FADE-IN TO "GAME" CLASS 
+        //dstRect.h = screenWidth * sprite.size * app->state.menuFadeIn;
         dstRect.x = (screenWidth - dstRect.w) / 2 + ( (sprite.xPosition-0.5) * 2 * screenWidth);
         dstRect.y = (screenHeight - dstRect.h) / 2 + ( (sprite.yPosition-0.5) * 2 * screenHeight);
 
@@ -103,25 +105,17 @@ void MCRenderer::drawSprite( const MCSprite sprite )
 void MCRenderer::render()
 {
     // Select the color for drawing. It is set to red here.
-    SDL_SetRenderDrawColor( SDLRenderer, app->state.backgroundColor.red * 255.0, 
-                           app->state.backgroundColor.green * 255.0, 
-                           app->state.backgroundColor.blue * 255.0, 
+    SDL_SetRenderDrawColor( SDLRenderer, app->backgroundColor.red * 255.0, 
+                           app->backgroundColor.green * 255.0, 
+                           app->backgroundColor.blue * 255.0, 
                            255 );
     
     // CLEAR THE SCREEN
     SDL_RenderClear( SDLRenderer );
     
-    // DRAW EVERYTHING
-    /*drawSpinner( app->state.background );
-    drawSpinner( app->state.normalButton );
-    drawSpinner( app->state.muteButton );
-    drawSpinner( app->state.instrumentButton ); //*/
-    //for( int spinnerNumber=0; spinnerNumber<MAX_ACTIVE_SPINNERS; spinnerNumber++ )
-    //    drawSpinner( app->state.spinnerArray[ spinnerNumber ] );
-    //for( MCSprite thisSprite : app->spriteRenderList )
+    // DRAW EVERYTHING FROM THE SPRITE RENDER LIST
     for( int i=0; i < app->spriteRenderList.size(); i++ )
         drawSprite( app->spriteRenderList[i] );
-        
     
     // RENDER! -- THIS FUNCTION BLOCKS UNTIL VSYNC IF VSYNC IS ENABLED/SUPPORTED ON THE PLATFORM (CURRENTLY DOES NOT WORK ON RPI)
     SDL_RenderPresent( SDLRenderer );
