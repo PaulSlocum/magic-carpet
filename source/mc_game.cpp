@@ -8,6 +8,7 @@
 #include "mc_sequence_data.hpp"
 #include "mc_util.hpp"
 #include "mc_input.hpp"
+#include "mc_audio.hpp"
 
 
 // TODO: MOVE SOMEWHERE
@@ -20,6 +21,7 @@ MCGame::MCGame( MCAppState* newState )
 {
     state = newState;
     inputHandler = new MCInput( newState );
+    audioController = new MCAudio( newState );
 }
 
 
@@ -27,6 +29,7 @@ MCGame::MCGame( MCAppState* newState )
 //////////////////////////////////////////////////////////////////////////////////////
 MCGame::~MCGame()
 {
+    delete audioController;
     delete inputHandler;
 }
 
@@ -46,6 +49,8 @@ void MCGame::start()
         state->background.texture = 200;
     else
         state->background.texture = 201;
+
+    audioController->start();
 }
 
 
@@ -53,6 +58,7 @@ void MCGame::start()
 //////////////////////////////////////////////////////////////////////////////////////
 void MCGame::stop()
 {
+    //audioController->stop(); // TBI?
     state->mode = AppMode::STOPPED;
 }
 

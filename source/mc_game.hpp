@@ -4,6 +4,7 @@
 
 class MCAppState;
 class MCInput;
+class MCAudio;
 union SDL_Event;
 
 
@@ -28,6 +29,7 @@ private:
     void loadPreset( const int presetNumber );
     // ~  ~  ~  ~  ~  ~  ~
     MCInput* inputHandler;
+    MCAudio* audioController;
     // ~  ~  ~  ~  ~  ~  ~
     void initMenuMode();
     void updateMenuModeFrame();

@@ -9,8 +9,6 @@
 #include "mc_renderer.hpp"
 #include "mc_util.hpp"
 #include "mc_game.hpp"
-#include "mc_input.hpp"
-#include "mc_audio.hpp"
 
 
 
@@ -23,7 +21,6 @@ MCApplication::MCApplication()
     srand( (unsigned int) time(NULL) );
     
     renderer = new MCRenderer( &state );
-    audioController = new MCAudio( &state );
     gameController = new MCGame( &state );
 }
 
@@ -35,7 +32,6 @@ MCApplication::MCApplication()
 MCApplication::~MCApplication()
 {
     delete gameController;
-    delete audioController;
     delete renderer;
 }
 
@@ -62,7 +58,6 @@ void MCApplication::start()
         SDL_SetHint( SDL_HINT_ORIENTATIONS, "LandscapeLeft LandscapeRight" );
 
         // START AUDIO SYSTEM
-        audioController->start();
         renderer->start();
         
         gameController->start();
