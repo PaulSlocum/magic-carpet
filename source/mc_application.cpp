@@ -120,7 +120,8 @@ void MCApplication::runLoop()
         }
         
         // LOAD TEXTURES / DRAW SCREEN...
-        if( (vsyncEnabled == true)  ||  (timeOfNextFrameMSec <= getCurrentTimeMSec() + 0) )
+	const int EARLY_OFFSET_MSEC = 7;
+        if( (vsyncEnabled == true)  ||  (timeOfNextFrameMSec <= getCurrentTimeMSec() + EARLY_OFFSET_MSEC) )
         {
             gameController->updateFrame();
 

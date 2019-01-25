@@ -8,7 +8,7 @@ CXXFLAGS := `sdl2-config --cflags --libs` \
 -Wall \
 -Wpedantic \
 -Wextra \
--std=c++11 \
+-std=c++17 \
 -Wno-unknown-pragmas \
 -lSDL2 \
 -lm \
@@ -32,11 +32,13 @@ LDLIBS := -L/opt/vc/lib \
 
 srcfiles := source/mc_util.cpp source/mc_main.cpp source/mc_renderer.cpp \
  source/mc_application.cpp source/ujpeg.cpp source/mc_sprite.cpp \
- source/mc_game.cpp source/mc_input.cpp
+ source/mc_game.cpp source/mc_input.cpp source/mc_game_screen.cpp \
+ source/mc_menu_screen.cpp source/mc_audio.cpp source/stb_vorbis.cpp
 
 objects := source/mc_util.o source/mc_main.o source/mc_renderer.o \
  source/mc_application.o source/ujpeg.o source/mc_sprite.o \
- source/mc_game.o source/mc_input.cpp
+ source/mc_game.o source/mc_input.cpp source/mc_game_screen.o \
+ source/mc_menu_screen.o source/mc_audio.o source/stb_vorbis.o
 
 #############################################################################
 
