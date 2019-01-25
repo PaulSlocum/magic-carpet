@@ -22,9 +22,6 @@ public:
 private:
     MCAppState* state;
     // ~  ~  ~  ~  ~  ~  ~  ~  
-    int frameCount = 0;
-    long long startTimeMSec = 0;
-    // ~  ~  ~  ~  ~  ~  ~  ~  
     SDL_Renderer *SDLRenderer = NULL;
     SDL_Window *window = NULL;
     int screenWidth = 0;

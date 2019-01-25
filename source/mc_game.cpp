@@ -121,6 +121,23 @@ void MCGame::updateFrame()
     }
     
     state->previousMode = state->mode;
+
+    // DEBUG!!!  SHOW FPS AND OTHER DEBUG INFO...
+    if( startTimeMSec == 0 )
+        startTimeMSec = getCurrentTimeMSec();
+    else
+    {
+        if( frameCount % 60 == 0 )
+        {
+            printf( "FPS: %f\n",  frameCount * 1000.0 / ( getCurrentTimeMSec() - startTimeMSec )  );
+            /*for( int i=0; i<MAX_ACTIVE_SPINNERS; i++ )
+             {
+             printf( "(%d:%d:s%.2f:t%d) ", i, state->spinnerArray[i].active, state->spinnerArray[i].size,  state->spinnerArray[i].texture );
+             }//*/
+            printf( "\n" );
+        }
+    }
+
 }
 
 

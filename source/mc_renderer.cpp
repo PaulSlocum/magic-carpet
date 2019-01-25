@@ -102,9 +102,6 @@ void MCRenderer::drawSpinner( const MCSprite spinner )
 /////////////////////////////////////////////////////////////////////////////////////
 void MCRenderer::render()
 {
-    // DEBUG! - THIS IS ONLY USED FOR THE FRAME COUNTER
-    frameCount++;
-
     // Select the color for drawing. It is set to red here.
     SDL_SetRenderDrawColor( SDLRenderer, state->backgroundColor.red * 255.0, 
                            state->backgroundColor.green * 255.0, 
@@ -125,20 +122,6 @@ void MCRenderer::render()
     // RENDER! -- THIS FUNCTION BLOCKS UNTIL VSYNC IF VSYNC IS ENABLED/SUPPORTED ON THE PLATFORM (CURRENTLY DOES NOT WORK ON RPI)
     SDL_RenderPresent( SDLRenderer );
     
-    // UPDATE FRAME TIMER
-    if( startTimeMSec == 0 )
-       startTimeMSec = getCurrentTimeMSec();
-    
-    // DEBUG!!!  SHOW FPS...
-    if( frameCount % 60 == 0 )
-    {
-        printf( "FPS: %f\n",  frameCount * 1000.0 / ( getCurrentTimeMSec() - startTimeMSec )  );
-        for( int i=0; i<MAX_ACTIVE_SPINNERS; i++ )
-        {
-            printf( "(%d:%d:s%.2f:t%d) ", i, state->spinnerArray[i].active, state->spinnerArray[i].size,  state->spinnerArray[i].texture );
-        }
-        printf( "\n" );
-    }
 }
 
 

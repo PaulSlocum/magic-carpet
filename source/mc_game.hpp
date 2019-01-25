@@ -24,7 +24,8 @@ public:
 private:
     MCAppState* state;
     // ~  ~  ~  ~  ~  ~  ~  
-    int frameCount = 0;
+    int frameCount = 0;    
+    long long startTimeMSec = 0;
     // ~  ~  ~  ~  ~  ~  ~  
     void loadPreset( const int presetNumber );
     // ~  ~  ~  ~  ~  ~  ~
