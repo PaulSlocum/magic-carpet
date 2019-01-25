@@ -56,19 +56,19 @@ void MCMenuScreen::updateFrame()
     game->spinnerArray[0].active = true;
     game->spinnerArray[0].rotationPosition += game->spinnerArray[0].rotationRate;
     game->spinnerArray[0].texture = ROMPreviewTrack0[ ROMVisualPresetOrder[ (int)game->menuWheelPosition ] ];
-    game->spinnerArray[0].size = 0.3;
+    game->spinnerArray[0].size = 0.3 * game->menuFadeIn;
     game->spinnerArray[0].yPosition = 0.4;
     game->spinnerArray[0].xPosition = game->menuWheelPosition - floor( game->menuWheelPosition);
     
     game->spinnerArray[1] = game->spinnerArray[0];
-    game->spinnerArray[1].size = 0.22;
+    game->spinnerArray[1].size = 0.22 * game->menuFadeIn;
     game->spinnerArray[1].rotationPosition = 360 - game->spinnerArray[1].rotationPosition;
     game->spinnerArray[1].texture = ROMPreviewTrack1[ ROMVisualPresetOrder[ (int)game->menuWheelPosition ] ];
     
     game->normalButton.active = true;
     game->normalButton.texture = 300;
     game->normalButton.rotationPosition = game->frameCount * 25.1 * game->menuFadeIn;
-    game->normalButton.size = 0.15;
+    game->normalButton.size = 0.15 * game->menuFadeIn;
     game->normalButton.yPosition = 0.65;
     game->normalButton.type = SpriteType::BUTTON;
     
@@ -81,6 +81,7 @@ void MCMenuScreen::updateFrame()
     game->instrumentButton.xPosition = 0.62;
     
     game->background.rotationPosition = sin( game->buttonJiggler*2.78 )*1.6;
+    game->background.size = game->menuFadeIn;
 }
 
 

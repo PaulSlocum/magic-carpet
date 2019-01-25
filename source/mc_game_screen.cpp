@@ -52,6 +52,7 @@ void MCGameScreen::updateFrame()
     
     if( game->runningFadeIn > kFadeInStartPoint )
         game->background.active = false;
+    //game->background.size = game->menuFadeIn;
     
     updateSpinnerMode();
     

@@ -81,8 +81,6 @@ void MCRenderer::drawSprite( const MCSprite sprite )
         SDL_Rect dstRect;
         dstRect.w = screenWidth * sprite.size;
         dstRect.h = screenWidth * sprite.size;
-        //dstRect.w = screenWidth * sprite.size * app->state.menuFadeIn; // TODO: APPLY MENU FADE-IN TO "GAME" CLASS (MAYBE IT ALREADY IS?)
-        //dstRect.h = screenWidth * sprite.size * app->state.menuFadeIn;
         dstRect.x = (screenWidth - dstRect.w) / 2 + ( (sprite.xPosition-0.5) * 2 * screenWidth);
         dstRect.y = (screenHeight - dstRect.h) / 2 + ( (sprite.yPosition-0.5) * 2 * screenHeight);
 
