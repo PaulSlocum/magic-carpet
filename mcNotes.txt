@@ -7,15 +7,8 @@ Magic Carpet 2 Notes
 TODO:
 ~- ~- ~- ~- ~- ~- ~- ~- ~-
 -  ~  -  ~  -  ~  -  ~
-- apply menu fade-in to sprite sizes on the game-side instead of the render-side
--  ~  -  ~  -  ~  -  ~
-- make application and renderer agnostic to game variables (menu mode, etc)
-- rename "spinners" class to "sprites" to make it more clear and reusable
-- separate "game" class into game_controller, game_screen, menu_screen
--  ~  -  ~  -  ~  -  ~
 - fix issue with coordinate system being off
-- make it possible to fit a sprite to the screen (for the background)
--  ~  -  ~  -  ~  -  ~
+- make it possible to fit a sprite vertically to the screen (for the background)
 -  ~  -  ~  -  ~  -  ~
 - figure out audio system (how many channels? what's on each channel? 
 - figure out how to implement multiple channels
@@ -95,6 +88,10 @@ x implement fixed tap with release to start from menu
 x verify that background color is the same as original
 x make touch keep track of total movement
 x make it so that there's just one texture load list for spinner, buttons, and background
+x apply menu fade-in to sprite sizes on the game-side instead of the render-side
+x make application and renderer agnostic to game variables (menu mode, etc)
+x rename "spinners" class to "sprites" to make it more clear and reusable
+x separate "game" class into game_controller, game_screen, menu_screen
 ~~ + ~~ + ~~ + ~~ + ~~ + ~~ + ~~ + ~~ + 
 
 
