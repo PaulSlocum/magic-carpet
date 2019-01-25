@@ -7,15 +7,18 @@ Magic Carpet 2 Notes
 TODO:
 ~- ~- ~- ~- ~- ~- ~- ~- ~-
 -  ~  -  ~  -  ~  -  ~
-- fix issue with coordinate system being off
-- make it possible to fit a sprite vertically to the screen (for the background)
+- remove pitch bend offset and implement it elsewhere (figure out what pitchbend default value should really be, and if we not doing midi, do we need it at all?)
 -  ~  -  ~  -  ~  -  ~
+- set up background OGG file loader
 - figure out audio system (how many channels? what's on each channel? 
 - figure out how to implement multiple channels
 - port audio system
-- set up background OGG file loader
 -  ~  -  ~  -  ~  -  ~
+- record menu sound from original app
 - implement menu sound
+-  ~  -  ~  -  ~  -  ~
+- fix issue with coordinate system being off
+- make it possible to fit a sprite vertically to the screen (for the background)
 -  ~  -  ~  -  ~  -  ~
 - get Android or Windows build working
 -  ~  -  ~  -  ~  -  ~
