@@ -70,12 +70,6 @@ void MCRenderer::drawSprite( const MCSprite sprite )
     {
         SDL_Texture* spinnerTexture;
         spinnerTexture = spinnerTextureArray[ sprite.texture ]; 
-        //switch( spinner.type )
-        {
-            //case SpinnerType::SPINNER: spinnerTexture = spinnerTextureArray[ spinner.texture ]; break; 
-            //case SpinnerType::BUTTON: spinnerTexture = buttonTextureArray[ spinner.texture ]; break; 
-            //case SpinnerType::BACKGROUND: spinnerTexture = backgroundTexture; break; 
-        }
         
         // GET TEXTURE SIZE
         int textureHeight;

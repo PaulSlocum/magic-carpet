@@ -8,7 +8,6 @@
 
 
 
-//class MCAppState;
 class MCApplication;
 
 class MCRenderer

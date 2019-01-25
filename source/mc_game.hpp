@@ -11,8 +11,6 @@
 class MCAppState;
 class MCInput;
 class MCAudio;
-//class MCSprite;
-class MCTouch;
 class MCApplication;
 union SDL_Event;
 
