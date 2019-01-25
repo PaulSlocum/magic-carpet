@@ -80,7 +80,7 @@ void MCMenuScreen::updateFrame()
     game->instrumentButton.texture = 302;
     game->instrumentButton.xPosition = 0.62;
     
-    game->background.rotationPosition = sin( game->buttonJiggler*2.78 )*1.6;
+    game->background.rotationPosition = sin( game->totalFrameCount*2.78 )*1.6;
     game->background.size = game->menuFadeIn;
 }
 

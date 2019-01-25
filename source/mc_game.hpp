@@ -30,10 +30,6 @@ enum class SoundMode { NORMAL, MUTE, INSTRUMENT };
 enum class WheelPanMode { STOPPED, LEFT, RIGHT };
 
 
-// DEBUG -- KEEP UNTIL RUNNING MODE IS FULLY WORKING TO MAKE SURE IT DOESN'T HAVE SOME DIFFERENCE FROM FRAMECOUNT
-#define buttonJiggler frameCount
-
-
 
 //|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 struct RGBColor 
@@ -64,7 +60,8 @@ public:
     std::map<int,MCSprite> spinnerArray;
     std::map<int,MCTouch> touchArray;
     // ~  ~  ~  ~  ~  ~  ~  ~    
-    int frameCount = 0;    
+    int frameCount = 0; // <- RESET WHEN PRESET IS LOADED
+    int totalFrameCount = 0;
     float menuWheelPosition = 0.5;
     float menuFadeIn = 1.0;
     float runningFadeIn = 1.0;

@@ -91,6 +91,7 @@ void MCGame::processEvent( SDL_Event event )
 void MCGame::updateFrame()
 {
     frameCount++;
+    totalFrameCount++;
     
     // DEBUG -- KEEP UNTIL AUDIO SYSTEM IS IMPLEMENTED 
     audioLoopPosition += 22000;
@@ -140,9 +141,9 @@ void MCGame::updateFrame()
         startTimeMSec = getCurrentTimeMSec();
     else
     {
-        if( frameCount % 60 == 0 )
+        if( totalFrameCount % 60 == 0 )
         {
-            printf( "FPS: %f\n",  frameCount * 1000.0 / ( getCurrentTimeMSec() - startTimeMSec )  );
+            printf( "FPS: %f\n",  totalFrameCount * 1000.0 / ( getCurrentTimeMSec() - startTimeMSec )  );
             printf( "\n" );
         }
     }
