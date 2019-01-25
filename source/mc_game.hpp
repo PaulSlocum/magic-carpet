@@ -11,15 +11,27 @@
 class MCInput;
 class MCAudio;
 class MCApplication;
+class MCMenuScreen;
+class MCGameScreen;
 union SDL_Event;
 
 
+// TODO: THESE SHOULD MAYBE BE MOVED?
+#define MAX_MAIN_SPINNERS 8 
+#define MAX_ACTIVE_SPINNERS 7
+
 #define NUMBER_OF_PRESETS 7
+
+
 
 
 enum class AppMode { STOPPED, MENU, RUNNING };
 enum class SoundMode { NORMAL, MUTE, INSTRUMENT };
 enum class WheelPanMode { STOPPED, LEFT, RIGHT };
+
+
+// DEBUG -- KEEP UNTIL RUNNING MODE IS FULLY WORKING TO MAKE SURE IT DOESN'T HAVE SOME DIFFERENCE FROM FRAMECOUNT
+#define buttonJiggler frameCount
 
 
 
@@ -43,6 +55,8 @@ public:
     void processEvent( SDL_Event event );
     void updateFrame();
     // ~  ~  ~  ~  ~  ~  ~  ~    
+    void loadPreset( const int presetNumber );
+    // ~  ~  ~  ~  ~  ~  ~
     AppMode mode = AppMode::STOPPED;
     AppMode previousMode = AppMode::STOPPED;
     SoundMode soundMode = SoundMode::NORMAL;
@@ -50,6 +64,7 @@ public:
     std::map<int,MCSprite> spinnerArray;
     std::map<int,MCTouch> touchArray;
     // ~  ~  ~  ~  ~  ~  ~  ~    
+    int frameCount = 0;    
     float menuWheelPosition = 0.5;
     float menuFadeIn = 1.0;
     float runningFadeIn = 1.0;
@@ -62,7 +77,6 @@ public:
     WheelPanMode wheelPan = WheelPanMode::STOPPED;
     RGBColor backgroundColor;
     // ~  ~  ~  ~  ~  ~  ~  ~    
-    int presetIndex = 0; // <-- THIS SHOULD PROBABLY BE REMOVED, ONLY NEED TO KEEP "selectedPreset"
     int selectedPreset = 0;
     // ~  ~  ~  ~  ~  ~  ~  ~    
     long spinnerModeAdvanceRate = 0;
@@ -80,19 +94,16 @@ public:
 private:
     MCApplication* app;
     // ~  ~  ~  ~  ~  ~  ~  
-    int frameCount = 0;    
     long long startTimeMSec = 0;
     // ~  ~  ~  ~  ~  ~  ~  
-    void loadPreset( const int presetNumber );
-    // ~  ~  ~  ~  ~  ~  ~
     MCInput* inputHandler;
     MCAudio* audioController;
+    MCMenuScreen* menuScreen;
+    MCGameScreen* gameScreen;
     // ~  ~  ~  ~  ~  ~  ~
-    void initMenuMode();
-    void updateMenuModeFrame();
-    void initRunningMode();
-    void updateRunningModeFrame();
-    void updateSpinnerMode();
+    //void initRunningMode();
+    //void updateRunningModeFrame();
+    //void updateSpinnerMode();
 };
 
 

@@ -9,19 +9,12 @@
 #include "mc_sprite.hpp"
 #include "mc_game.hpp"
 
-// ' ^ ' ^ ' ^ ' ^ ' ^ ' ^ ' ^ ' ^ ' ^ ' ^ ' ^ ' ^ ' ^ 
-// NEW CONSTANTS
-// ' ^ ' ^ ' ^ ' ^ ' ^ ' ^ ' ^ ' ^ ' ^ ' ^ ' ^ ' ^ ' ^ 
 
 // ~ ^  ~ ^  ~ ^  ~ ^  ~ ^  ~ ^  ~ ^  ~ ^  ~ ^ 
 #define FRAMES_PER_SECOND 60.0
 // ~ ^  ~ ^  ~ ^  ~ ^  ~ ^  ~ ^  ~ ^  ~ ^  ~ ^ 
 
-// TODO: THESE SHOULD BE MOVED
-#define MAX_MAIN_SPINNERS 8 
-#define MAX_ACTIVE_SPINNERS 7
 
-// ' ^ ' ^ ' ^ ' ^ ' ^ ' ^ ' ^ ' ^ ' ^ ' ^ ' ^ ' ^ ' ^ 
 
 
 class MCRenderer;

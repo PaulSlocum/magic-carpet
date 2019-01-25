@@ -52,13 +52,9 @@ void MCInput::processTouchEvent( const SDL_TouchFingerEvent fingerEvent )
             game->mode = AppMode::RUNNING;
         game->touchArray.erase( (int)fingerEvent.touchId );
     }
-    
-    // DEBUG -- START RUNNING IF TOUCHING MAIN SPINNER IN MENU...
-    /*if( game->mode == AppMode::MENU  &&  game->spinnerArray[0].isTouching( fingerEvent.x, fingerEvent.y ) == true )
-    {
-        game->mode = AppMode::RUNNING;
-    } //*/
 }
+
+
 
 
 /////////////////////////////////////////////////////////////////////////////////////
