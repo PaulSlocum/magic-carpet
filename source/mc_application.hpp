@@ -5,6 +5,7 @@
 #define MC_APPLICATION_HPP
 
 #include <map>
+#include <vector>
 #include "mc_sprite.hpp"
 #include "mc_touch.hpp"
 
@@ -148,6 +149,8 @@ public:
     void start();
     void stop();
     // ~  ~  ~  ~  ~  ~  ~  ~
+    RGBColor backgroundColor;
+    std::map<int,MCSprite> spriteRenderList;
     MCAppState state;
     
 private:

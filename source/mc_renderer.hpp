@@ -8,19 +8,20 @@
 
 
 
-class MCAppState;
+//class MCAppState;
+class MCApplication;
 
 class MCRenderer
 {
 public:
-    MCRenderer( MCAppState* newState );
+    MCRenderer( MCApplication* newApp );
     ~MCRenderer();
     void start();
     void render();
     void loadTextures();
     
 private:
-    MCAppState* state;
+    MCApplication* app;
     // ~  ~  ~  ~  ~  ~  ~  ~  
     SDL_Renderer *SDLRenderer = NULL;
     SDL_Window *window = NULL;
@@ -28,12 +29,9 @@ private:
     int screenHeight = 0;
     // ~  ~  ~  ~  ~  ~  ~  ~  
     std::map<int, SDL_Texture*> spinnerTextureArray;
-    //std::map<int, SDL_Texture*> buttonTextureArray;
-    //SDL_Texture* backgroundTexture;
-    std::map<int, bool> spinnerTextureArrayLoaded;
     // ~  ~  ~  ~  ~  ~  ~  ~  
     SDL_Texture* loadJpegTexture( const std::string imageFilename );
-    void drawSpinner( const MCSprite spinner );
+    void drawSprite( const MCSprite spinner );
     // ~  ~  ~  ~  ~  ~  ~  ~  
     // DEBUG - TRYING TO IMPLEMENT RENDER TARGET
     //SDL_Surface *softSurface;

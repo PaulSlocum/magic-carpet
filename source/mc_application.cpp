@@ -20,7 +20,7 @@ MCApplication::MCApplication()
     // SEED RANDOM NUMBERS
     srand( (unsigned int) time(NULL) );
     
-    renderer = new MCRenderer( &state );
+    renderer = new MCRenderer( this );
     gameController = new MCGame( &state );
 }
 
@@ -127,11 +127,20 @@ void MCApplication::runLoop()
         if( (vsyncEnabled == true)  ||  (timeOfNextFrameMSec <= getCurrentTimeMSec() + 0) )
         {
             gameController->updateFrame();
+
+            spriteRenderList.clear();
+            spriteRenderList[0] = state.background;
+            spriteRenderList[1] = state.normalButton;
+            spriteRenderList[2] = state.muteButton;
+            spriteRenderList[3] = state.instrumentButton;
+            for( int spinnerNumber=0; spinnerNumber<MAX_ACTIVE_SPINNERS; spinnerNumber++ )
+                 spriteRenderList[ spinnerNumber+4 ] = state.spinnerArray[ spinnerNumber ];
+
             renderer->render();
             timeOfNextFrameMSec = getCurrentTimeMSec() + 1000.0/FRAMES_PER_SECOND;
         }
 
-        SDL_Delay(2);
+        SDL_Delay(1);
     }
 }
 

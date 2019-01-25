@@ -12,9 +12,9 @@
 
 
 //////////////////////////////////////////////////////////////////////////////////////
-MCRenderer::MCRenderer( MCAppState* newState )
+MCRenderer::MCRenderer( MCApplication* newApp )
 {
-    state = newState;
+    app = newApp;
     
     // DEBUG - TRYING TO SET UP RENDER TARGET
     /*int nWidth = 800;
@@ -64,12 +64,12 @@ void MCRenderer::start()
 
 
 ///////////////////////////////////////////////////////////////////////////////////
-void MCRenderer::drawSpinner( const MCSprite spinner )
+void MCRenderer::drawSprite( const MCSprite sprite )
 {
-    if( spinner.active == true )
+    if( sprite.active == true )
     {
         SDL_Texture* spinnerTexture;
-        spinnerTexture = spinnerTextureArray[ spinner.texture ]; 
+        spinnerTexture = spinnerTextureArray[ sprite.texture ]; 
         //switch( spinner.type )
         {
             //case SpinnerType::SPINNER: spinnerTexture = spinnerTextureArray[ spinner.texture ]; break; 
@@ -85,12 +85,12 @@ void MCRenderer::drawSpinner( const MCSprite spinner )
         // SETUP SOURCE/DECT RECTS FOR COPY
         SDL_Rect srcRect = { 0, 0, textureWidth, textureHeight };
         SDL_Rect dstRect;
-        dstRect.w = screenWidth * spinner.size * state->menuFadeIn;
-        dstRect.h = screenWidth * spinner.size * state->menuFadeIn;
-        dstRect.x = (screenWidth - dstRect.w) / 2 + ( (spinner.xPosition-0.5) * 2 * screenWidth);
-        dstRect.y = (screenHeight - dstRect.h) / 2 + ( (spinner.yPosition-0.5) * 2 * screenHeight);
+        dstRect.w = screenWidth * sprite.size * app->state.menuFadeIn;
+        dstRect.h = screenWidth * sprite.size * app->state.menuFadeIn;
+        dstRect.x = (screenWidth - dstRect.w) / 2 + ( (sprite.xPosition-0.5) * 2 * screenWidth);
+        dstRect.y = (screenHeight - dstRect.h) / 2 + ( (sprite.yPosition-0.5) * 2 * screenHeight);
 
-        SDL_RenderCopyEx( SDLRenderer, spinnerTexture, &srcRect, &dstRect, spinner.rotationPosition, NULL, SDL_FLIP_NONE );
+        SDL_RenderCopyEx( SDLRenderer, spinnerTexture, &srcRect, &dstRect, sprite.rotationPosition, NULL, SDL_FLIP_NONE );
 
         // DEBUG - EVENTUALLY PROBABLY WANT TO CONVERT THIS RENDERER TO A RENGER TARGET
         //SDL_RenderCopyEx( softRenderer, spinnerTextureArray[0], &srcRect, &dstRect, angle, NULL, SDL_FLIP_NONE );
@@ -103,21 +103,25 @@ void MCRenderer::drawSpinner( const MCSprite spinner )
 void MCRenderer::render()
 {
     // Select the color for drawing. It is set to red here.
-    SDL_SetRenderDrawColor( SDLRenderer, state->backgroundColor.red * 255.0, 
-                           state->backgroundColor.green * 255.0, 
-                           state->backgroundColor.blue * 255.0, 
+    SDL_SetRenderDrawColor( SDLRenderer, app->state.backgroundColor.red * 255.0, 
+                           app->state.backgroundColor.green * 255.0, 
+                           app->state.backgroundColor.blue * 255.0, 
                            255 );
     
     // CLEAR THE SCREEN
     SDL_RenderClear( SDLRenderer );
     
     // DRAW EVERYTHING
-    drawSpinner( state->background );
-    drawSpinner( state->normalButton );
-    drawSpinner( state->muteButton );
-    drawSpinner( state->instrumentButton );
-    for( int spinnerNumber=0; spinnerNumber<MAX_ACTIVE_SPINNERS; spinnerNumber++ )
-        drawSpinner( state->spinnerArray[ spinnerNumber ] );
+    /*drawSpinner( app->state.background );
+    drawSpinner( app->state.normalButton );
+    drawSpinner( app->state.muteButton );
+    drawSpinner( app->state.instrumentButton ); //*/
+    //for( int spinnerNumber=0; spinnerNumber<MAX_ACTIVE_SPINNERS; spinnerNumber++ )
+    //    drawSpinner( app->state.spinnerArray[ spinnerNumber ] );
+    //for( MCSprite thisSprite : app->spriteRenderList )
+    for( int i=0; i < app->spriteRenderList.size(); i++ )
+        drawSprite( app->spriteRenderList[i] );
+        
     
     // RENDER! -- THIS FUNCTION BLOCKS UNTIL VSYNC IF VSYNC IS ENABLED/SUPPORTED ON THE PLATFORM (CURRENTLY DOES NOT WORK ON RPI)
     SDL_RenderPresent( SDLRenderer );
@@ -157,7 +161,7 @@ void MCRenderer::loadTextures()
                     tempSpinner.rotationPosition = 0;
                     tempSpinner.yPosition = 0.50;
                 }
-                drawSpinner( tempSpinner );
+                drawSprite( tempSpinner );
                 
                 SDL_RenderPresent( SDLRenderer );
             }

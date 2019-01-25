@@ -11,7 +11,7 @@
 #include "mc_audio.hpp"
 
 
-// TODO: MOVE SOMEWHERE
+// TODO: MOVE SOMEWHERE ELSE AND RENAME
 const float kFadeInStartPoint = 0.7; // 0.5
 
 
