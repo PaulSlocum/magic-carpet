@@ -94,11 +94,11 @@ void MCApplication::runLoop()
     isQuitting = false;
     long long timeOfNextFrameMSec = getCurrentTimeMSec() + 1000.0/FRAMES_PER_SECOND;
 
-    renderer->loadTextures();
-
     // MAIN LOOP...
     enum class LoopState {POLL, DRAW, PRESENT};
     LoopState loopState = LoopState::POLL;
+    SDL_Delay( 1000 );
+    renderer->loadTextures();
     while( isQuitting == false )
     {
         switch( loopState )

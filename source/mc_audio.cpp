@@ -100,6 +100,6 @@ void MCAudio::start()
         exit( 1 );
     }
 
-    // I ASSUME THIS *UN*PAUSES THE AUDIO??
+    // UNPAUSE AUDIO
     SDL_PauseAudio(0);
 }

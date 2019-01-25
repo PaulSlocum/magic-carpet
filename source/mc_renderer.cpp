@@ -125,6 +125,7 @@ void MCRenderer::loadTextures()
 {
     // LOAD ALL TEXTURES FROM TEXTURE LIST ARRAY IN HEADER...
     bool loadingTextures = true;
+    int spriteListIndex = 0;
     for( int i=0; loadingTextures == true; i++ )
     {
         // QUIT WHEN A BLANK FILENAME IS ENCOUNTERED
@@ -150,9 +151,12 @@ void MCRenderer::loadTextures()
                     tempSpinner.rotationPosition = 0;
                     tempSpinner.yPosition = 0.50;
                 }
-                drawSprite( tempSpinner );
+                app->spriteRenderList[ spriteListIndex ] = tempSpinner;
+                //drawSprite( tempSpinner );
+                render();
                 
-                SDL_RenderPresent( SDLRenderer );
+                //SDL_RenderPresent( SDLRenderer );
+                presentBuffer();
             }
         }
     }
