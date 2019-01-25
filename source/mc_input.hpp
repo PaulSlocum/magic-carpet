@@ -3,7 +3,7 @@
 
 #include <set>
 
-class MCAppState;
+class MCGame;
 struct SDL_TouchFingerEvent;
 struct SDL_KeyboardEvent;
 
@@ -11,13 +11,13 @@ struct SDL_KeyboardEvent;
 class MCInput 
 {
 public:
-    MCInput( MCAppState* newState );
+    MCInput( MCGame* newGame );
     ~MCInput();
     void processTouchEvent( const SDL_TouchFingerEvent event );
     void processKeyboardEvent( const SDL_KeyboardEvent event );
 
 private:
-    MCAppState* state;
+    MCGame* game;
     // ~  ~  ~  ~  ~  ~  ~
     std::set<int> keysDown;
 };

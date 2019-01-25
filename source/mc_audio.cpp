@@ -10,9 +10,9 @@
 
 
 ///////////////////////////////////////////////////////////////
-MCAudio::MCAudio( MCAppState* newState )
+MCAudio::MCAudio( MCGame* newGame )
 {
-    state = newState;
+    game = newGame;
 }
 
 

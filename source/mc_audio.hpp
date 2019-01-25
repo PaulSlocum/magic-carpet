@@ -2,18 +2,18 @@
 /////////////////////////////////////////////////////////////////////
 
 
-class MCAppState;
+class MCGame;
 
 class MCAudio 
 {
 public:
-    MCAudio( MCAppState* newState );
+    MCAudio( MCGame* newGame );
     ~MCAudio();
     void start();
     void callback( Uint8* stream, int len );
     
 private:
-    MCAppState* state;
+    MCGame* game;
     // ~  ~  ~  ~  ~  ~  
     bool started = false;
     short* audioDecodeBuffer;

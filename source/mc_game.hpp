@@ -8,7 +8,6 @@
 #include "mc_sprite.hpp"
 #include "mc_touch.hpp"
 
-class MCAppState;
 class MCInput;
 class MCAudio;
 class MCApplication;
@@ -33,10 +32,17 @@ struct RGBColor
 };//*/
 
 
-
-//|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-struct MCAppState 
+//||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+class MCGame
 {
+public:
+    MCGame( MCApplication* newApp );
+    ~MCGame();
+    void start();
+    void stop();
+    void processEvent( SDL_Event event );
+    void updateFrame();
+    // ~  ~  ~  ~  ~  ~  ~  ~    
     AppMode mode = AppMode::STOPPED;
     AppMode previousMode = AppMode::STOPPED;
     SoundMode soundMode = SoundMode::NORMAL;
@@ -69,24 +75,10 @@ struct MCAppState
     // ~  ~  ~  ~  ~  ~  ~  ~    
     long audioLoopPosition = 0;
     float pitchBend = 0.7;
-};
-
-
-
-//||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-class MCGame
-{
-public:
-    MCGame( MCApplication* newApp );
-    ~MCGame();
-    void start();
-    void stop();
-    void processEvent( SDL_Event event );
-    void updateFrame();
+    
     
 private:
     MCApplication* app;
-    MCAppState state;
     // ~  ~  ~  ~  ~  ~  ~  
     int frameCount = 0;    
     long long startTimeMSec = 0;
