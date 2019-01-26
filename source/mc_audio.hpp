@@ -21,12 +21,17 @@ private:
     MCGame* game;
     // ~  ~  ~  ~  ~  ~  
     bool started = false;
-    short* audioDecodeBuffer;
-    long audioFileLength = 0;
-    long playbackOffset = 0;
+    short* binuaralAudioBuffer = NULL;
+    int binuaralAudioBufferLength = 0;
+    short* musicAudioBuffer = NULL;
+    int musicAudioBufferLength;
+    int playbackOffset = 0;
     // ~  ~  ~  ~  ~  ~  
     SDL_Thread *fileThread;
     volatile bool keepFileThreadRunning = true;
-    volatile bool audioFilesLoaded = false;
-    
+    volatile bool musicFileLoaded = false;
+    volatile bool binuaralFileLoaded = false;
+    volatile int loadedMusicPreset = -1;
+    // ~  ~  ~  ~  ~  ~
+    short* loadAudioFile( std::string filename, int* fileLength );
 };

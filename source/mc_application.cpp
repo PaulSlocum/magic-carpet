@@ -109,7 +109,6 @@ void MCApplication::runLoop()
                 // PROCESS ALL EVENTS IN QUEUE...
                 while( SDL_PollEvent( &event ) ) 
                 {
-                    printf( "RECEIVED EVENT\n" );
                     switch( event.type )
                     {
                         case SDL_QUIT: 
