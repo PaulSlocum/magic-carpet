@@ -9,30 +9,13 @@
 #include "mc_util.hpp"
 
 
-//==============================================================================================
-static int fileLoaderThread_c( void *ptr )
-{
-    // CALL CORRESPONDING THREAD METHOD IN CLASS...
-    MCAudio* threadObject = (MCAudio*) ptr;
-    threadObject->fileLoaderThread();
-    
-    return 0; // <-- RETURN VALUE IS UNUSED, 'SDL_CreatThread' REQUIRES FUNCTION THAT RETURNS AN INT
-}
-
-
-///////////////////////////////////////////////////////////////////////
-void MCAudio::fileLoaderThread()
-{
-    while( keepFileThreadRunning == true )
-    {
-        printf( "THREAD ********************** \n" );
-        SDL_Delay( 1000 );
-    }
-}
+void callback_c( void *audioObject, Uint8 *stream, int len ); 
+static int fileLoaderThread_c( void *ptr );
 
 
 
 ///////////////////////////////////////////////////////////////
+// CONSTRUCTOR
 MCAudio::MCAudio( MCGame* newGame )
 {
     game = newGame;
@@ -43,6 +26,7 @@ MCAudio::MCAudio( MCGame* newGame )
 
 
 ///////////////////////////////////////////////////////////////
+// DESTRUCTOR
 MCAudio::~MCAudio()
 {
     keepFileThreadRunning = false;
@@ -51,45 +35,10 @@ MCAudio::~MCAudio()
 
 
 
-//=======================================================================================
-// C AUDIO CALLBACK
-void callback_c( void *audioObject, Uint8 *stream, int len ) 
-{
-    ((MCAudio*)audioObject)->callback( stream, len );
-}
-
-
-
-/////////////////////////////////////////////////////////////////////////////////////////
-// C++ AUDIO CALLBACK
-void MCAudio::callback( Uint8* stream, int len )
-{
-    if( (playbackOffset + len) > (audioFileLength*2) ) 
-        playbackOffset = 0;
-    memcpy( stream, &audioDecodeBuffer[ playbackOffset ], len );
-    playbackOffset += len/2;
-    
-    //printf( "** PLAYBACK POS: %ld  CHUNK SIZE: %d \n", playbackOffset, len ); // <-- DEBUG!!
-}
-
-
 
 //////////////////////////////////////////////////////////////////////////////////////////
 void MCAudio::start()
 {
-    int channels = 0;
-    int sampleRate = 0;
-    std::string audioFilenameWithPath = stdprintf( "%smedia/audio/%s", SDL_GetBasePath(), "music2.ogg" );
-    printf( "** OGG FILENAME: %s \n", audioFilenameWithPath.c_str() );
-    audioFileLength = stb_vorbis_decode_filename( audioFilenameWithPath.c_str(), &channels, &sampleRate, &audioDecodeBuffer );
-    if( audioFileLength > 0 )
-    {
-        printf( "** OGG FILE DECODED!!  CHAN: %d  RATE: %d   LEN: %ld \n", channels, sampleRate, audioFileLength );
-    }
-    else
-    {
-        printf( "** ERROR DECODING OGG: %ld  \n", audioFileLength );
-    }
     
     // -=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
     
@@ -127,9 +76,80 @@ void MCAudio::start()
         printf( "ERROR: COULD NOT OBTAIN SAMPLE FREQ OF %d \n", desired->freq );
         exit( 1 );
     }
-
+    
     // UNPAUSE AUDIO
     SDL_PauseAudio(0);
+}
+
+
+
+
+//==============================================================================================
+static int fileLoaderThread_c( void *ptr )
+{
+    // CALL CORRESPONDING THREAD METHOD IN CLASS...
+    MCAudio* threadObject = (MCAudio*) ptr;
+    threadObject->fileLoaderThread();
+    
+    return 0; // <-- RETURN VALUE IS UNUSED, 'SDL_CreatThread' REQUIRES FUNCTION THAT RETURNS AN INT
+}
+
+
+///////////////////////////////////////////////////////////////////////
+// BACKGROUND THREAD TO LOAD AUDIO FILES AS NEEDED
+void MCAudio::fileLoaderThread()
+{
+    printf( "STARTING THREAD ********************** \n" );
+    while( keepFileThreadRunning == true )
+    {
+        if( audioFilesLoaded == false )
+        {
+            int channels = 0;
+            int sampleRate = 0;
+            std::string audioFilenameWithPath = stdprintf( "%smedia/audio/%s", SDL_GetBasePath(), "music2.ogg" );
+            printf( "** OGG FILENAME: %s \n", audioFilenameWithPath.c_str() );
+            audioFileLength = stb_vorbis_decode_filename( audioFilenameWithPath.c_str(), &channels, &sampleRate, &audioDecodeBuffer );
+            if( audioFileLength > 0 )
+            {
+                printf( "** OGG FILE DECODED!!  CHAN: %d  RATE: %d   LEN: %ld \n", channels, sampleRate, audioFileLength );
+            }
+            else
+            {
+                printf( "** ERROR DECODING OGG: %ld  \n", audioFileLength );
+            } //*/
+            
+            audioFilesLoaded = true;
+        }
+        
+        SDL_Delay( 10 );
+    }
+}
+
+
+
+
+//=======================================================================================
+// C AUDIO CALLBACK
+void callback_c( void *audioObject, Uint8 *stream, int len ) 
+{
+    ((MCAudio*)audioObject)->callback( stream, len );
+}
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
+// C++ AUDIO CALLBACK
+void MCAudio::callback( Uint8* stream, int len )
+{
+    if( audioFilesLoaded == true )
+    {
+        if( (playbackOffset + len) > (audioFileLength*2) ) 
+            playbackOffset = 0;
+        memcpy( stream, &audioDecodeBuffer[ playbackOffset ], len );
+        playbackOffset += len/2;
+    }
+    
+    //printf( "** PLAYBACK POS: %ld  CHUNK SIZE: %d \n", playbackOffset, len ); // <-- DEBUG!!
 }
 
 

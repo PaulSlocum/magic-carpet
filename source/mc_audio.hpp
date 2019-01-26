@@ -27,5 +27,6 @@ private:
     // ~  ~  ~  ~  ~  ~  
     SDL_Thread *fileThread;
     volatile bool keepFileThreadRunning = true;
+    volatile bool audioFilesLoaded = false;
     
 };
