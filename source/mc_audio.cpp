@@ -151,36 +151,42 @@ void MCAudio::fileLoaderThread()
     while( keepFileThreadRunning == true )
     {
         // LOAD THE MUSIC FILE CORRESPONDING TO THE CURRENTLY SELECTED PRESET (LOADS IN BACKGROUND WHILE MENU IS RUNNING)
-        if( game->audioPreset != loadedMusicPreset )
+        fileThreadMutex.lock();
+        if( internalAudioPreset != loadedMusicPreset )
         {
-            fileThreadMutex.lock();
             musicFileLoaded = false;
             fileThreadMutex.unlock();
 
             short* newMusicBuffer = NULL;
             int newMusicBufferLength = 0;
-            printf( "MUSIC FILE LOADING %d.... \n", game->audioPreset );
-            newMusicBuffer = loadAudioFile( MUSIC_FILENAME_LIST[ game->audioPreset ], &newMusicBufferLength );
-            printf( "MUSIC FILE LOADED %d \n", game->audioPreset );
+            printf( "MUSIC FILE LOADING %d.... \n", internalAudioPreset );
+            newMusicBuffer = loadAudioFile( MUSIC_FILENAME_LIST[ internalAudioPreset ], &newMusicBufferLength );
+            printf( "MUSIC FILE LOADED %d \n", internalAudioPreset );
 
             fileThreadMutex.lock();
             if( musicAudioBuffer != NULL )
-            {
                 free( musicAudioBuffer );
-                musicAudioBuffer = NULL;
-                musicAudioBufferLength = 0;
-            }
             musicAudioBuffer = newMusicBuffer;
             musicAudioBufferLength = newMusicBufferLength;
-            loadedMusicPreset = game->audioPreset;
+            loadedMusicPreset = internalAudioPreset;
             musicFileLoaded = true;
             fileThreadMutex.unlock();
         }
+        else
+            fileThreadMutex.unlock();
+
         SDL_Delay( 10 );
     }
     printf( "QUITING THREAD_____________________ \n " );
 }
 
+
+/////////////////////////////////////////////////////////////////////////////////
+void MCAudio::updateFrame()
+{
+    // THIS IS TO LOCALIZE THREAD MUTEX TO THIS CLASS
+    internalAudioPreset = game->audioPreset;
+}
 
 
 
@@ -200,6 +206,7 @@ void MCAudio::callback( Uint8* stream, int len )
     fileThreadMutex.lock();
     if( game->mode == AppMode::RUNNING )
     {
+        // PLAY MUSIC AUDIO WHILE RUNNING
         if( musicFileLoaded == true )
         {
             if( (playbackOffset + len) > (musicAudioBufferLength*2) ) 
@@ -208,8 +215,9 @@ void MCAudio::callback( Uint8* stream, int len )
             playbackOffset += len/2;
         } //*/
     }
-    else // ELSE - MENU/LOADING MODE...
+    else
     {
+        // PLAY BINAURAL AUDIO IN MENU
         if( binauralFileLoaded == true )
         {
             if( (playbackOffset + len) > (binauralAudioBufferLength*2) ) 
@@ -219,6 +227,7 @@ void MCAudio::callback( Uint8* stream, int len )
         } //*/
         else
         {
+            // FILES NOT LOADED YET, SO COPY SILENCE
             memset( stream, 0, len );
         }
     }

@@ -22,6 +22,7 @@
 		EB27A16221F1644C0082D1C2 /* mc_game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EB27A16021F1644C0082D1C2 /* mc_game.cpp */; };
 		EB32E22521FA8A550065E44A /* mc_menu_screen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EB32E22221FA8A550065E44A /* mc_menu_screen.cpp */; };
 		EB32E22621FA8A550065E44A /* mc_game_screen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EB32E22321FA8A550065E44A /* mc_game_screen.cpp */; };
+		EB4E187521FCBA32005A8A58 /* readme.md in Resources */ = {isa = PBXBuildFile; fileRef = EB4E187421FCBA32005A8A58 /* readme.md */; };
 		EBC84AC321E956EA0039B60F /* mc_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EBC84ABD21E956EA0039B60F /* mc_util.cpp */; };
 		EBC84AC521E967810039B60F /* dev_notes.txt in Resources */ = {isa = PBXBuildFile; fileRef = EBC84AC421E967810039B60F /* dev_notes.txt */; };
 		EBC84ACA21EA94190039B60F /* ujpeg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EBC84AC921EA94190039B60F /* ujpeg.cpp */; };
@@ -84,6 +85,7 @@
 		EB32E22221FA8A550065E44A /* mc_menu_screen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mc_menu_screen.cpp; path = ../source/mc_menu_screen.cpp; sourceTree = "<group>"; };
 		EB32E22321FA8A550065E44A /* mc_game_screen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mc_game_screen.cpp; path = ../source/mc_game_screen.cpp; sourceTree = "<group>"; };
 		EB32E22421FA8A550065E44A /* mc_menu_screen.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = mc_menu_screen.hpp; path = ../source/mc_menu_screen.hpp; sourceTree = "<group>"; };
+		EB4E187421FCBA32005A8A58 /* readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = readme.md; path = ../readme.md; sourceTree = "<group>"; };
 		EBC84ABD21E956EA0039B60F /* mc_util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mc_util.cpp; path = ../source/mc_util.cpp; sourceTree = "<group>"; };
 		EBC84AC421E967810039B60F /* dev_notes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = dev_notes.txt; path = ../dev_notes.txt; sourceTree = "<group>"; };
 		EBC84AC921EA94190039B60F /* ujpeg.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ujpeg.cpp; path = ../source/ujpeg.cpp; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				EB4E187421FCBA32005A8A58 /* readme.md */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				EBC84AC421E967810039B60F /* dev_notes.txt */,
 				EB27A15D21F0E4160082D1C2 /* makefile */,
@@ -340,6 +343,7 @@
 				FD77A07F0E26BDA900F39101 /* Default.png in Resources */,
 				EB1118DB21F9825C004022DC /* Assets.xcassets in Resources */,
 				EB1118D921F980F5004022DC /* Media.xcassets in Resources */,
+				EB4E187521FCBA32005A8A58 /* readme.md in Resources */,
 				945C4F53195AF17F00DBBF61 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

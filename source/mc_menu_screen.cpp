@@ -41,7 +41,6 @@ void MCMenuScreen::updateFrame()
 {
     int rawPresetNumber = (int)game->menuWheelPosition % NUMBER_OF_PRESETS;
     game->visualPreset = ROMVisualPresetOrder[ rawPresetNumber ];
-    //game->audioPreset = ROMVisualPresetOrder[ rawPresetNumber ];
     game->audioPreset = ROMSoundPresetOrder[ rawPresetNumber ];
     
     game->backgroundColor = {0.2, 0.1, 0.1};

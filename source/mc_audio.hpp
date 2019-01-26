@@ -16,6 +16,7 @@ public:
     ~MCAudio();
     void start();
     void callback( Uint8* stream, int len );
+    void updateFrame();
     // ~  ~  ~  ~  ~  ~  
     void fileLoaderThread();
     
@@ -31,6 +32,7 @@ private:
     // ~  ~  ~  ~  ~  ~  
     SDL_Thread *fileThread;
     std::mutex fileThreadMutex;
+    int internalAudioPreset = 0;
     volatile bool keepFileThreadRunning = true;
     volatile bool musicFileLoaded = false;
     volatile bool binauralFileLoaded = false;

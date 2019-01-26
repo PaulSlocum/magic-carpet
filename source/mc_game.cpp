@@ -100,6 +100,8 @@ void MCGame::updateFrame()
     menuFadeIn = convergeValue( menuFadeIn, 1.0, 0.012 );
     runningFadeIn = convergeValue( runningFadeIn, 1.5, 0.006 );
     
+    audioController->updateFrame();
+    
     // IF STARTING MENU MODE...
     if( mode == AppMode::MENU  &&  previousMode != AppMode::MENU )
     {
