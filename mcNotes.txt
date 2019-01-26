@@ -7,7 +7,22 @@ Magic Carpet 2 Notes
 TODO:
 ~- ~- ~- ~- ~- ~- ~- ~- ~-
 -  ~  -  ~  -  ~  -  ~
-- remove pitch bend offset and implement it elsewhere (figure out what pitchbend default value should really be, and if we not doing midi, do we need it at all?)
+- get background thread proof of concept working
+- join thread in destructor 
+- set up two source buffers
+- load binaualal into source buffer 1
+- have menu just play binaural (or maybe try manually making menu sound with original sin() equation)
+- disable moving of the menu wheel after starting
+- auto-load correct file into buffer 2 in thread in realtime
+- set up semaphore
+-  ~  -  ~  -  ~  -  ~
+- set up mixer callback structure without actually mixing yet
+- get looping playback working on channels 2 and 3
+- have binaural play on channel 1 (I think this just plays straight but has tremolo and pitch modulation)
+-  ~  -  ~  -  ~  -  ~
+-  ~  -  ~  -  ~  -  ~
+- remove pitch bend offset and implement it elsewhere 
+                (figure out what pitchbend default value should really be, and if we not doing midi, do we need it at all?)
 -  ~  -  ~  -  ~  -  ~
 - set up background OGG file loader
 - figure out audio system (how many channels? what's on each channel? 
@@ -23,6 +38,7 @@ TODO:
 - get Android or Windows build working
 -  ~  -  ~  -  ~  -  ~
 - add namespace
+- make sure all memory and textures are freed on closing
 - clean up and improve makefile
 - replace "int" "short" "long" with specific with Int types (Uint8?)
 - implement exceptions and error handling

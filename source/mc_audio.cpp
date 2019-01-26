@@ -9,16 +9,44 @@
 #include "mc_util.hpp"
 
 
+//==============================================================================================
+static int fileLoaderThread_c( void *ptr )
+{
+    // CALL CORRESPONDING THREAD METHOD IN CLASS...
+    MCAudio* threadObject = (MCAudio*) ptr;
+    threadObject->fileLoaderThread();
+    
+    return 0; // <-- RETURN VALUE IS UNUSED, 'SDL_CreatThread' REQUIRES FUNCTION THAT RETURNS AN INT
+}
+
+
+///////////////////////////////////////////////////////////////////////
+void MCAudio::fileLoaderThread()
+{
+    while( keepFileThreadRunning == true )
+    {
+        printf( "THREAD ********************** \n" );
+        SDL_Delay( 1000 );
+    }
+}
+
+
+
 ///////////////////////////////////////////////////////////////
 MCAudio::MCAudio( MCGame* newGame )
 {
     game = newGame;
+
+    keepFileThreadRunning = true;
+    fileThread = SDL_CreateThread( fileLoaderThread_c, "TestThread", (void*)this );
 }
 
 
 ///////////////////////////////////////////////////////////////
 MCAudio::~MCAudio()
 {
+    keepFileThreadRunning = false;
+    SDL_WaitThread( fileThread, NULL );
 }
 
 
@@ -103,3 +131,6 @@ void MCAudio::start()
     // UNPAUSE AUDIO
     SDL_PauseAudio(0);
 }
+
+
+
