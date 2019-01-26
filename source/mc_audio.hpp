@@ -1,6 +1,8 @@
 // mc_audio.hpp
 /////////////////////////////////////////////////////////////////////
 
+#include <mutex>
+
 
 class SDL_Thread;
 
@@ -21,16 +23,17 @@ private:
     MCGame* game;
     // ~  ~  ~  ~  ~  ~  
     bool started = false;
-    short* binuaralAudioBuffer = NULL;
-    int binuaralAudioBufferLength = 0;
+    short* binauralAudioBuffer = NULL;
+    int binauralAudioBufferLength = 0;
     short* musicAudioBuffer = NULL;
     int musicAudioBufferLength;
     int playbackOffset = 0;
     // ~  ~  ~  ~  ~  ~  
     SDL_Thread *fileThread;
+    std::mutex fileThreadMutex;
     volatile bool keepFileThreadRunning = true;
     volatile bool musicFileLoaded = false;
-    volatile bool binuaralFileLoaded = false;
+    volatile bool binauralFileLoaded = false;
     volatile int loadedMusicPreset = -1;
     // ~  ~  ~  ~  ~  ~
     short* loadAudioFile( std::string filename, int* fileLength );

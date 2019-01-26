@@ -30,7 +30,8 @@ MCGameScreen::~MCGameScreen()
 //////////////////////////////////////////////////////////////////////////////////////
 void MCGameScreen::init()
 {
-    game->loadPreset( (int) game->menuWheelPosition );
+    game->loadPreset( game->selectedPreset );
+    //game->loadPreset( (int) game->menuWheelPosition ); // <-- OLD VERSION, CAN DELETE 
 
     game->manualTextureSelection = false;
     game->runningFadeIn = 0.4;

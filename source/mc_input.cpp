@@ -39,7 +39,9 @@ void MCInput::processTouchEvent( const SDL_TouchFingerEvent fingerEvent )
     // MOVE THE MENU WHEEL WITH FINGER DRAGS...
     if( fingerEvent.type == SDL_FINGERMOTION )
     {
-        game->menuWheelPosition += fingerEvent.dx;
+        if( game->mode == AppMode::MENU )
+            game->menuWheelPosition += fingerEvent.dx;
+        
         game->touchArray[ (int)fingerEvent.touchId ].x = fingerEvent.x;
         game->touchArray[ (int)fingerEvent.touchId ].y = fingerEvent.y;
         game->touchArray[ (int)fingerEvent.touchId ].totalMoveDistance += sqrt( pow( fingerEvent.dx, 2 ) + pow( fingerEvent.dy, 2 ) );
@@ -60,26 +62,29 @@ void MCInput::processTouchEvent( const SDL_TouchFingerEvent fingerEvent )
 /////////////////////////////////////////////////////////////////////////////////////
 void MCInput::processKeyboardEvent( const SDL_KeyboardEvent keyEvent )
 {
-    // KEY TRACKING...
-    if( keyEvent.type == SDL_KEYDOWN )
-        keysDown.insert( keyEvent.keysym.scancode );
-    if( keyEvent.type == SDL_KEYUP )
-        keysDown.erase( keyEvent.keysym.scancode );
-    
-    // ENTER/ESC TO START/EXIT FROM MENU...
-    if( keyEvent.keysym.scancode == SDL_SCANCODE_RETURN  &&  game->mode == AppMode::MENU )
-        game->mode = AppMode::RUNNING;
-    if( keyEvent.keysym.scancode == SDL_SCANCODE_ESCAPE  &&  game->mode == AppMode::RUNNING )
-        game->mode = AppMode::MENU;
-
-    // MOVE THE MENU WHEEL WITH LEFT/RIGHT CURSOR KEYS...
-    if( keysDown.count( SDL_SCANCODE_LEFT ) )
-        game->wheelPan = WheelPanMode::LEFT;
-    else
+    if( keyEvent.repeat == false )
     {
-        if( keysDown.count( SDL_SCANCODE_RIGHT ) )
-            game->wheelPan = WheelPanMode::RIGHT;
+        // KEY TRACKING...
+        if( keyEvent.type == SDL_KEYDOWN )
+            keysDown.insert( keyEvent.keysym.scancode );
+        if( keyEvent.type == SDL_KEYUP )
+            keysDown.erase( keyEvent.keysym.scancode );
+        
+        // ENTER/ESC TO START/EXIT FROM MENU...
+        if( keyEvent.keysym.scancode == SDL_SCANCODE_RETURN  &&  game->mode == AppMode::MENU )
+            game->mode = AppMode::RUNNING;
+        if( keyEvent.keysym.scancode == SDL_SCANCODE_ESCAPE  &&  game->mode == AppMode::RUNNING )
+            game->mode = AppMode::MENU;
+
+        // MOVE THE MENU WHEEL WITH LEFT/RIGHT CURSOR KEYS...
+        if( keysDown.count( SDL_SCANCODE_LEFT ) )
+            game->wheelPan = WheelPanMode::LEFT;
         else
-            game->wheelPan = WheelPanMode::STOPPED;
-    }//*/
+        {
+            if( keysDown.count( SDL_SCANCODE_RIGHT ) )
+                game->wheelPan = WheelPanMode::RIGHT;
+            else
+                game->wheelPan = WheelPanMode::STOPPED;
+        }//*/
+    }
 }

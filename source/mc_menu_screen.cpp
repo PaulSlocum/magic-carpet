@@ -39,7 +39,7 @@ void MCMenuScreen::init()
 //////////////////////////////////////////////////////////////////////////////////////
 void MCMenuScreen::updateFrame()
 {
-    game->selectedPreset = (int)game->menuWheelPosition;
+    game->selectedPreset = ROMVisualPresetOrder[ (int)game->menuWheelPosition % NUMBER_OF_PRESETS ];
     
     game->backgroundColor = {0.2, 0.1, 0.1};
     

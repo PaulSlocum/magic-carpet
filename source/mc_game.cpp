@@ -163,7 +163,7 @@ void MCGame::loadPreset( const int presetNumber )
     //===============================================================
     // VISUAL SETTINGS
     
-    selectedPreset = ROMVisualPresetOrder[ presetNumber ];
+    //selectedPreset = ROMVisualPresetOrder[ presetNumber ];
     
     spinnerModeAdvanceRate = ROMSpinModeAdvRate[ selectedPreset ];
     

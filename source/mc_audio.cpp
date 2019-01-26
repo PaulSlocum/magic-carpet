@@ -32,6 +32,16 @@ MCAudio::~MCAudio()
 {
     keepFileThreadRunning = false;
     SDL_WaitThread( fileThread, NULL );
+    if( musicAudioBuffer != NULL )
+    {
+        free( musicAudioBuffer );
+        musicAudioBuffer = NULL;
+    }
+    if( binauralAudioBuffer != NULL )
+    {
+        free( binauralAudioBuffer );
+        binauralAudioBuffer = NULL;
+    }
 }
 
 
@@ -40,9 +50,6 @@ MCAudio::~MCAudio()
 //////////////////////////////////////////////////////////////////////////////////////////
 void MCAudio::start()
 {
-    
-    // -=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-    
     /* setup audio */
     SDL_AudioSpec *desired, *obtained;
     
@@ -85,18 +92,6 @@ void MCAudio::start()
 
 
 
-//==============================================================================================
-static int fileLoaderThread_c( void *ptr )
-{
-    // CALL CORRESPONDING THREAD METHOD IN CLASS...
-    MCAudio* threadObject = (MCAudio*) ptr;
-    threadObject->fileLoaderThread();
-    
-    return 0; // <-- RETURN VALUE IS UNUSED, 'SDL_CreatThread' REQUIRES FUNCTION THAT RETURNS AN INT
-}
-
-
-
 //////////////////////////////////////////////////////////////////////////
 short* MCAudio::loadAudioFile( std::string filename, int* fileLength )
 {
@@ -123,36 +118,62 @@ short* MCAudio::loadAudioFile( std::string filename, int* fileLength )
 
 
 
+
+
+//==============================================================================================
+static int fileLoaderThread_c( void *ptr )
+{
+    // CALL CORRESPONDING THREAD METHOD IN CLASS...
+    MCAudio* threadObject = (MCAudio*) ptr;
+    threadObject->fileLoaderThread();
+    
+    return 0; // <-- RETURN VALUE IS UNUSED ('SDL_CreatThread' REQUIRES FUNCTION THAT RETURNS AN INT)
+}
+
+
+
 ///////////////////////////////////////////////////////////////////////
-// BACKGROUND THREAD TO LOAD AUDIO FILES AS NEEDED
+// BACKGROUND THREAD TO LOAD AUDIO FILES AS NEEDED, RUNS UNTIL AUDIO OBJECT IS DESTROYED
 void MCAudio::fileLoaderThread()
 {
-    std::string musicFileList[] = { "music1.ogg", "music2.ogg", "music3.ogg", "music4.ogg", "music5.ogg", "music6.ogg", "music7.ogg" };
+    const std::string musicFileList[] = { "music1.ogg", "music2.ogg", "music3.ogg", "music4.ogg", "music5.ogg", "music6.ogg", "music7.ogg" };
     
-    if( binuaralFileLoaded == false )
+    // BINAURAL FILE IS ALWAYS LOADED
+    if( binauralFileLoaded == false )
     {
-        binuaralAudioBuffer = loadAudioFile( "binaural1.ogg", &binuaralAudioBufferLength );
-        binuaralFileLoaded = true;
+        binauralAudioBuffer = loadAudioFile( "binaural1.ogg", &binauralAudioBufferLength );
+        binauralFileLoaded = true;
         printf( "BINAURAL FILE LOADED. \n" );
     }
 
     printf( "STARTING THREAD ********************** \n" );
     while( keepFileThreadRunning == true )
     {
+        // LOAD THE MUSIC FILE CORRESPONDING TO THE CURRENTLY SELECTED PRESET (LOADS IN BACKGROUND WHILE MENU IS RUNNING)
         if( game->selectedPreset != loadedMusicPreset )
         {
+            fileThreadMutex.lock();
+            musicFileLoaded = false;
+            fileThreadMutex.unlock();
+
+            short* newMusicBuffer = NULL;
+            int newMusicBufferLength = 0;
+            printf( "MUSIC FILE LOADING %d.... \n", game->selectedPreset );
+            newMusicBuffer = loadAudioFile( musicFileList[ game->selectedPreset ], &newMusicBufferLength );
+            printf( "MUSIC FILE LOADED %d \n", game->selectedPreset );
+
+            fileThreadMutex.lock();
             if( musicAudioBuffer != NULL )
             {
                 free( musicAudioBuffer );
                 musicAudioBuffer = NULL;
+                musicAudioBufferLength = 0;
             }
-            
-            printf( "MUSIC FILE LOADING.... \n" );
-            musicFileLoaded = false;
-            musicAudioBuffer = loadAudioFile( musicFileList[ game->selectedPreset ], &musicAudioBufferLength );
+            musicAudioBuffer = newMusicBuffer;
+            musicAudioBufferLength = newMusicBufferLength;
             loadedMusicPreset = game->selectedPreset;
             musicFileLoaded = true;
-            printf( "MUSIC FILE LOADED. \n" );
+            fileThreadMutex.unlock();
         }
         SDL_Delay( 10 );
     }
@@ -175,21 +196,32 @@ void callback_c( void *audioObject, Uint8 *stream, int len )
 // C++ AUDIO CALLBACK
 void MCAudio::callback( Uint8* stream, int len )
 {
-    /*if( binuaralFileLoaded == true )
+    fileThreadMutex.lock();
+    if( game->mode == AppMode::RUNNING )
     {
-        if( (playbackOffset + len) > (binuaralAudioBufferLength*2) ) 
-            playbackOffset = 0;
-        memcpy( stream, &binuaralAudioBuffer[ playbackOffset ], len );
-        playbackOffset += len/2;
-    } //*/
-    
-    if( musicFileLoaded == true )
+        if( musicFileLoaded == true )
+        {
+            if( (playbackOffset + len) > (musicAudioBufferLength*2) ) 
+                playbackOffset = 0;
+            memcpy( stream, &musicAudioBuffer[ playbackOffset ], len );
+            playbackOffset += len/2;
+        } //*/
+    }
+    else // ELSE - MENU/LOADING MODE...
     {
-        if( (playbackOffset + len) > (musicAudioBufferLength*2) ) 
-            playbackOffset = 0;
-        memcpy( stream, &musicAudioBuffer[ playbackOffset ], len );
-        playbackOffset += len/2;
-    } //*/
+        if( binauralFileLoaded == true )
+        {
+            if( (playbackOffset + len) > (binauralAudioBufferLength*2) ) 
+                playbackOffset = 0;
+            memcpy( stream, &binauralAudioBuffer[ playbackOffset ], len );
+            playbackOffset += len/2;
+        } //*/
+        else
+        {
+            memset( stream, 0, len );
+        }
+    }
+    fileThreadMutex.unlock();
 
     //printf( "** PLAYBACK POS: %ld  CHUNK SIZE: %d \n", playbackOffset, len ); // <-- DEBUG!!
 }
