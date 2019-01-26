@@ -163,17 +163,17 @@ void MCGame::loadPreset( const int presetNumber )
     //===============================================================
     // VISUAL SETTINGS
     
-    //selectedPreset = ROMVisualPresetOrder[ presetNumber ];
+    //visualPreset = ROMVisualPresetOrder[ presetNumber ];
     
-    spinnerModeAdvanceRate = ROMSpinModeAdvRate[ selectedPreset ];
+    spinnerModeAdvanceRate = ROMSpinModeAdvRate[ visualPreset ];
     
-    spinnerSizeOffset = ROMSpinnerSizeOffset[ selectedPreset ];
-    spinnerScaleX = ROMSpinnerScaleX[ selectedPreset ];
-    spinnerScaleY = ROMSpinnerScaleY[ selectedPreset ];
+    spinnerSizeOffset = ROMSpinnerSizeOffset[ visualPreset ];
+    spinnerScaleX = ROMSpinnerScaleX[ visualPreset ];
+    spinnerScaleY = ROMSpinnerScaleY[ visualPreset ];
     
     // set up correct textures based on menu selection
     const int* ROMPattern;
-    switch( selectedPreset )
+    switch( visualPreset )
     {
         case 0: ROMPattern = ROMPatternA1; break;
         case 1: ROMPattern = ROMPatternA2; break;
@@ -192,7 +192,7 @@ void MCGame::loadPreset( const int presetNumber )
     {
         spinnerArray[i].rotationRate = 45.0+i*5;
         spinnerArray[i].active = false;
-        spinnerArray[i].scaleFactor = ROMSpinnerSize[ selectedPreset * MAX_MAIN_SPINNERS + i ];
+        spinnerArray[i].scaleFactor = ROMSpinnerSize[ visualPreset * MAX_MAIN_SPINNERS + i ];
     }
     
     // then turn on a few spinners

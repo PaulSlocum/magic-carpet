@@ -74,7 +74,8 @@ public:
     WheelPanMode wheelPan = WheelPanMode::STOPPED;
     RGBColor backgroundColor;
     // ~  ~  ~  ~  ~  ~  ~  ~    
-    int selectedPreset = 0;
+    int visualPreset = 0;
+    int audioPreset = 0;
     // ~  ~  ~  ~  ~  ~  ~  ~    
     long spinnerModeAdvanceRate = 0;
     float creep = 0.0;

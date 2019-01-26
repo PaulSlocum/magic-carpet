@@ -39,7 +39,10 @@ void MCMenuScreen::init()
 //////////////////////////////////////////////////////////////////////////////////////
 void MCMenuScreen::updateFrame()
 {
-    game->selectedPreset = ROMVisualPresetOrder[ (int)game->menuWheelPosition % NUMBER_OF_PRESETS ];
+    int rawPresetNumber = (int)game->menuWheelPosition % NUMBER_OF_PRESETS;
+    game->visualPreset = ROMVisualPresetOrder[ rawPresetNumber ];
+    //game->audioPreset = ROMVisualPresetOrder[ rawPresetNumber ];
+    game->audioPreset = ROMSoundPresetOrder[ rawPresetNumber ];
     
     game->backgroundColor = {0.2, 0.1, 0.1};
     
@@ -57,7 +60,7 @@ void MCMenuScreen::updateFrame()
     
     game->spinnerArray[0].active = true;
     game->spinnerArray[0].rotationPosition += game->spinnerArray[0].rotationRate;
-    game->spinnerArray[0].texture = ROMPreviewTrack0[ ROMVisualPresetOrder[ game->selectedPreset ] ];
+    game->spinnerArray[0].texture = ROMPreviewTrack0[ ROMVisualPresetOrder[ game->visualPreset ] ];
     game->spinnerArray[0].size = 0.3 * game->menuFadeIn;
     game->spinnerArray[0].yPosition = 0.4;
     game->spinnerArray[0].xPosition = game->menuWheelPosition - floor( game->menuWheelPosition);
@@ -65,7 +68,7 @@ void MCMenuScreen::updateFrame()
     game->spinnerArray[1] = game->spinnerArray[0];
     game->spinnerArray[1].size = 0.22 * game->menuFadeIn;
     game->spinnerArray[1].rotationPosition = 360 - game->spinnerArray[1].rotationPosition;
-    game->spinnerArray[1].texture = ROMPreviewTrack1[ ROMVisualPresetOrder[game->selectedPreset ] ];
+    game->spinnerArray[1].texture = ROMPreviewTrack1[ ROMVisualPresetOrder[game->visualPreset ] ];
     
     game->normalButton.active = true;
     game->normalButton.texture = 300;

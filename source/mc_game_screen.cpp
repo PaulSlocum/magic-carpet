@@ -30,7 +30,7 @@ MCGameScreen::~MCGameScreen()
 //////////////////////////////////////////////////////////////////////////////////////
 void MCGameScreen::init()
 {
-    game->loadPreset( game->selectedPreset );
+    game->loadPreset( game->visualPreset );
     //game->loadPreset( (int) game->menuWheelPosition ); // <-- OLD VERSION, CAN DELETE 
 
     game->manualTextureSelection = false;
@@ -61,11 +61,11 @@ void MCGameScreen::updateFrame()
     if( (((game->frameCount+game->spinnerModeAdvanceRate/4)%(game->spinnerModeAdvanceRate*2))/(game->spinnerModeAdvanceRate) == 0) 
        || (game->mode == AppMode::MENU) )
     {
-        game->backgroundColor = { ROMBGColorRedA[ game->selectedPreset ], ROMBGColorGreenA[ game->selectedPreset ], ROMBGColorBlueA[ game->selectedPreset ] };
+        game->backgroundColor = { ROMBGColorRedA[ game->visualPreset ], ROMBGColorGreenA[ game->visualPreset ], ROMBGColorBlueA[ game->visualPreset ] };
     }
     else
     {
-        game->backgroundColor = { ROMBGColorRedB[ game->selectedPreset ], ROMBGColorGreenB[ game->selectedPreset ], ROMBGColorBlueB[ game->selectedPreset ] };
+        game->backgroundColor = { ROMBGColorRedB[ game->visualPreset ], ROMBGColorGreenB[ game->visualPreset ], ROMBGColorBlueB[ game->visualPreset ] };
     }
     
     // UPDATE ALL MAIN SPINNERS...
@@ -229,7 +229,7 @@ void MCGameScreen::updateSpinnerMode()
             const int* ROMPattern;
             if( (game->frameCount%(game->spinnerModeAdvanceRate*4))/(game->spinnerModeAdvanceRate*2) == 0 )
             {
-                switch( game->selectedPreset)
+                switch( game->visualPreset)
                 {
                     case 0: ROMPattern = ROMPatternA1; break;
                     case 1: ROMPattern = ROMPatternA2; break;
@@ -243,7 +243,7 @@ void MCGameScreen::updateSpinnerMode()
             }
             else 
             {
-                switch( game->selectedPreset )
+                switch( game->visualPreset )
                 {
                     case 0: ROMPattern = ROMPatternB1; break;
                     case 1: ROMPattern = ROMPatternB2; break;

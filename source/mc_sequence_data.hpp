@@ -87,11 +87,8 @@ const long ROMSpinModeAdvRate[] =  { 7000, 6500, 6000, 4500, 5500, 5000, 4500 };
 //  #O#O#O#O#O#O#O#O#O#O#O#O
 //  ========================
 
-#ifndef kLITE_VERSION
 const int ROMSoundPresetOrder[] = { 6 ,2 ,5 ,3 ,4 ,1 ,0 };
-#else
-const int ROMSoundPresetOrder[] = { 6 ,2 ,4 ,3 ,5 ,1 ,0 };
-#endif
+
 
 // VOLUME 
 const float ROMVolume[] =               { -5,  -10, -18, -15,   -23, -23, -21 };

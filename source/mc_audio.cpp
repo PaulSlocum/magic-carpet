@@ -136,21 +136,22 @@ static int fileLoaderThread_c( void *ptr )
 // BACKGROUND THREAD TO LOAD AUDIO FILES AS NEEDED, RUNS UNTIL AUDIO OBJECT IS DESTROYED
 void MCAudio::fileLoaderThread()
 {
-    const std::string musicFileList[] = { "music1.ogg", "music2.ogg", "music3.ogg", "music4.ogg", "music5.ogg", "music6.ogg", "music7.ogg" };
+    const std::string MUSIC_FILENAME_LIST[] = { "music1.ogg", "music2.ogg", "music3.ogg", "music4.ogg", "music5.ogg", "music6.ogg", "music7.ogg" };
+    const std::string BINAURAL_FILENAME = "binaural1.ogg";
     
     // BINAURAL FILE IS ALWAYS LOADED
     if( binauralFileLoaded == false )
     {
-        binauralAudioBuffer = loadAudioFile( "binaural1.ogg", &binauralAudioBufferLength );
+        binauralAudioBuffer = loadAudioFile( BINAURAL_FILENAME, &binauralAudioBufferLength );
         binauralFileLoaded = true;
         printf( "BINAURAL FILE LOADED. \n" );
     }
 
-    printf( "STARTING THREAD ********************** \n" );
+    printf( "STARTING THREAD_____________________ \n" );
     while( keepFileThreadRunning == true )
     {
         // LOAD THE MUSIC FILE CORRESPONDING TO THE CURRENTLY SELECTED PRESET (LOADS IN BACKGROUND WHILE MENU IS RUNNING)
-        if( game->selectedPreset != loadedMusicPreset )
+        if( game->audioPreset != loadedMusicPreset )
         {
             fileThreadMutex.lock();
             musicFileLoaded = false;
@@ -158,9 +159,9 @@ void MCAudio::fileLoaderThread()
 
             short* newMusicBuffer = NULL;
             int newMusicBufferLength = 0;
-            printf( "MUSIC FILE LOADING %d.... \n", game->selectedPreset );
-            newMusicBuffer = loadAudioFile( musicFileList[ game->selectedPreset ], &newMusicBufferLength );
-            printf( "MUSIC FILE LOADED %d \n", game->selectedPreset );
+            printf( "MUSIC FILE LOADING %d.... \n", game->audioPreset );
+            newMusicBuffer = loadAudioFile( MUSIC_FILENAME_LIST[ game->audioPreset ], &newMusicBufferLength );
+            printf( "MUSIC FILE LOADED %d \n", game->audioPreset );
 
             fileThreadMutex.lock();
             if( musicAudioBuffer != NULL )
@@ -171,7 +172,7 @@ void MCAudio::fileLoaderThread()
             }
             musicAudioBuffer = newMusicBuffer;
             musicAudioBufferLength = newMusicBufferLength;
-            loadedMusicPreset = game->selectedPreset;
+            loadedMusicPreset = game->audioPreset;
             musicFileLoaded = true;
             fileThreadMutex.unlock();
         }
