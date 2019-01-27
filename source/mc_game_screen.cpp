@@ -110,7 +110,7 @@ void MCGameScreen::updateFrame()
             const float LARGE_SPINNER_SIZE_OFFSET = 0.6;
             const float SPINNER_SCALE_X = 0.3;  // ORIGINAL VALUE = 0.7
             const float SPINNER_SCALE_Y = 0.4;  // ORIGINAL VALUE = 0.85
-            const float SPINNER_SIZE_OFFSET = 0.1;
+            const float SPINNER_SIZE_OFFSET = 0.2;
             if( spinnerIndex == 0 )
             {
                 // FIRST SPINNER (the biggest spinner in the background)

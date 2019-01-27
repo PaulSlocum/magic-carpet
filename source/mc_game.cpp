@@ -37,12 +37,16 @@ MCGame::~MCGame()
 }
 
 
-
 //////////////////////////////////////////////////////////////////////////////////////
 void MCGame::start()
 {
     mode = AppMode::MENU;
     menuFadeIn = 0.0;
+    
+    int randomValue = rand();
+    menuWheelPosition = randomValue % NUMBER_OF_PRESETS + 0.5;
+    
+    timeOfLastInputMSec = getCurrentTimeMSec();
 
     background.active = true;
     background.type = SpriteType::BACKGROUND;

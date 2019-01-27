@@ -7,8 +7,7 @@ Magic Carpet 2 Notes
 TODO:
 ~- ~- ~- ~- ~- ~- ~- ~- ~-
 -  ~  -  ~  -  ~  -  ~
-x disable moving of the menu wheel after starting
-- set up semaphore
+- fix issue where it sometimes loads the incorrect music 
 -  ~  -  ~  -  ~  -  ~
 - set up mixer callback structure without actually mixing yet
 -  ~  -  ~  -  ~  -  ~
@@ -28,7 +27,6 @@ x disable moving of the menu wheel after starting
 - review and clean up makefile
 - add namespace
 - make sure all memory and textures are freed on closing
-- replace "int" "short" "long" with specific with Int types (Uint8?)
 - implement exceptions and error handling
 - consider what would be required to expand the example into a larger game or interactive program
 - verify use of consts
@@ -39,6 +37,7 @@ x disable moving of the menu wheel after starting
 - make GIF and/or video for readme.md
 -  ~  -  ~  -  ~  -  ~
 -  ~  -  ~  -  ~  -  ~
+. figure out why random isn't that random
 . record menu sound from original app
 . implement original menu sound
 . implement tremolo
@@ -107,6 +106,10 @@ x set up two source buffers
 x load binaualal into source buffer 1
 x have menu just play binaural (or maybe try manually making menu sound with original sin() equation)
 x auto-load correct file into buffer 2 in thread in realtime
+x disable moving of the menu wheel after starting
+x set up semaphore
+x randomize starting spinner
+x make menu auto-select the current spinner after timeout 
 ~~ + ~~ + ~~ + ~~ + ~~ + ~~ + ~~ + ~~ + 
 
 

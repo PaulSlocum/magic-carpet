@@ -7,6 +7,7 @@
 #include "mc_application.hpp"
 #include "mc_touch.hpp"
 #include "mc_game.hpp"
+#include "mc_util.hpp"
 
 
 
@@ -28,6 +29,8 @@ MCInput::~MCInput()
 /////////////////////////////////////////////////////////////////////////////////////
 void MCInput::processTouchEvent( const SDL_TouchFingerEvent fingerEvent )
 {
+    game->timeOfLastInputMSec = getCurrentTimeMSec();
+    
     if( fingerEvent.type == SDL_FINGERDOWN )
     {
         game->touchArray[ (int)fingerEvent.touchId ].x = fingerEvent.x;
@@ -62,8 +65,11 @@ void MCInput::processTouchEvent( const SDL_TouchFingerEvent fingerEvent )
 /////////////////////////////////////////////////////////////////////////////////////
 void MCInput::processKeyboardEvent( const SDL_KeyboardEvent keyEvent )
 {
+    game->timeOfLastInputMSec = getCurrentTimeMSec();
+
     if( keyEvent.repeat == false )
     {
+        
         // KEY TRACKING...
         if( keyEvent.type == SDL_KEYDOWN )
             keysDown.insert( keyEvent.keysym.scancode );

@@ -39,6 +39,10 @@ void MCMenuScreen::init()
 //////////////////////////////////////////////////////////////////////////////////////
 void MCMenuScreen::updateFrame()
 {
+    const long long MENU_TIMEOUT_MSEC = 17000;
+    if( getCurrentTimeMSec() - game->timeOfLastInputMSec > MENU_TIMEOUT_MSEC )
+        game->mode = AppMode::RUNNING;
+    
     int rawPresetNumber = (int)game->menuWheelPosition % NUMBER_OF_PRESETS;
     game->visualPreset = ROMVisualPresetOrder[ rawPresetNumber ];
     game->audioPreset = ROMSoundPresetOrder[ rawPresetNumber ];

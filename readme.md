@@ -10,6 +10,6 @@ I partly intended the project to be an example for creating other lightweight cr
 
 Magic Carpet includes a very simple sprite system that can load images from JPEGs, an audio engine that can load OGG files into buffers and play samples from them, plus it includes examples of reading touch and keyboard input.  It's most of what's needed to get started with a simple SDL application.
 
-(c) 2012-2018 Paul Slocum all rights reserved.  I plan to soon release this code soon under MIT license, contact me if you want to use it.  
+(c) 2011-2018 Paul Slocum all rights reserved.  I plan to soon release this code soon under MIT license, contact me if you want to use it.  
 
 ![menu screenshot](media/screenshots/screen_1_480x320.jpg)

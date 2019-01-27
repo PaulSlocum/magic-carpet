@@ -14,7 +14,9 @@
 MCApplication::MCApplication()
 {
     // SEED RANDOM NUMBERS
-    srand( (unsigned int) time(NULL) );
+    unsigned int randomSeed = (unsigned int) getCurrentTimeMSec(); 
+    srand( randomSeed  );
+    printf( "RANDOM SEED: %d \n", randomSeed );
     
     renderer = new MCRenderer( this );
     gameController = new MCGame( this );

@@ -87,6 +87,8 @@ public:
     // ~  ~  ~  ~  ~  ~  ~  ~    
     long audioLoopPosition = 0;
     float pitchBend = 0.7;
+    // ~  ~  ~  ~  ~  ~  ~  ~
+    long long timeOfLastInputMSec = 0;
     
     
 private:
