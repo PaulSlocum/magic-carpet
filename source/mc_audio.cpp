@@ -10,7 +10,7 @@
 #include "mc_game.hpp"
 
 
-void callback_c( void *audioObject, Uint8 *stream, int len ); 
+void audioCallback_c( void *audioObject, Uint8 *stream, int len ); 
 static int fileLoaderThread_c( void *ptr );
 
 
@@ -50,29 +50,19 @@ MCAudio::~MCAudio()
 //////////////////////////////////////////////////////////////////////////////////////////
 void MCAudio::start()
 {
-    /* setup audio */
-    SDL_AudioSpec *desired, *obtained;
+    // ALLOCATE SPACE FOR DESIRED AND OBTAINED AUDIO SPECS
+    SDL_AudioSpec* desired = (SDL_AudioSpec *) malloc(sizeof(SDL_AudioSpec));
+    SDL_AudioSpec* obtained = (SDL_AudioSpec *) malloc(sizeof(SDL_AudioSpec));
     
-    /* Allocate a desired SDL_AudioSpec */
-    desired = (SDL_AudioSpec *) malloc(sizeof(SDL_AudioSpec));
-    
-    /* Allocate space for the obtained SDL_AudioSpec */
-    obtained = (SDL_AudioSpec *) malloc(sizeof(SDL_AudioSpec));
-    
-    /* choose a samplerate and audio-format */
+    // SET UP PARAMETERS FOR AUDIO DEVICE AND CALLBACK 
     desired->freq = 22050;
     desired->format = AUDIO_S16SYS;
-    
-    //desired->samples = 4096;
     desired->samples = 4096/2;
-    
-    /* Our callback function */
-    desired->callback = callback_c;
+    desired->callback = audioCallback_c;
     desired->userdata = this;
-    
     desired->channels = 2;
     
-    /* Open the audio device and start playing sound! */
+    // OPEN THE AUDIO DEVICE...
     if ( SDL_OpenAudio(desired, obtained) < 0 ) {
         fprintf(stderr, "AudioMixer, Unable to open audio: %s\n", SDL_GetError());
         exit(1);
@@ -194,16 +184,16 @@ void MCAudio::updateFrame()
 
 //=======================================================================================
 // C AUDIO CALLBACK
-void callback_c( void *audioObject, Uint8 *stream, int len ) 
+void audioCallback_c( void *audioObject, Uint8 *stream, int len ) 
 {
-    ((MCAudio*)audioObject)->callback( stream, len );
+    ((MCAudio*)audioObject)->audioCallback( stream, len );
 }
 
 
 
 /////////////////////////////////////////////////////////////////////////////////////////
 // C++ AUDIO CALLBACK
-void MCAudio::callback( Uint8* stream, int len )
+void MCAudio::audioCallback( Uint8* stream, int len )
 {
     fileThreadMutex.lock();
     if( game->mode == AppMode::RUNNING )

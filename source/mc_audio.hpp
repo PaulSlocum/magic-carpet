@@ -15,7 +15,7 @@ public:
     MCAudio( MCGame* newGame );
     ~MCAudio();
     void start();
-    void callback( Uint8* stream, int len );
+    void audioCallback( Uint8* stream, int len );
     void updateFrame();
     // ~  ~  ~  ~  ~  ~  
     void fileLoaderThread();

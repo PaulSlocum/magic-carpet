@@ -13,7 +13,6 @@
 		28FD15080DC6FC5B0079059D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28FD15070DC6FC5B0079059D /* QuartzCore.framework */; };
 		944A656F195747D90094A81E /* libSDL2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 944A656E1957463F0094A81E /* libSDL2.a */; };
 		945C4F53195AF17F00DBBF61 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 945C4F52195AF17F00DBBF61 /* Default-568h@2x.png */; };
-		EB1118D421F80576004022DC /* stb_vorbis.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EB1118CE21F80576004022DC /* stb_vorbis.cpp */; };
 		EB1118D921F980F5004022DC /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB1118D821F980F5004022DC /* Media.xcassets */; };
 		EB1118DB21F9825C004022DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB1118DA21F9825C004022DC /* Assets.xcassets */; };
 		EB1118DE21F99F68004022DC /* mc_touch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EB1118DD21F99F68004022DC /* mc_touch.cpp */; };
@@ -23,9 +22,10 @@
 		EB32E22521FA8A550065E44A /* mc_menu_screen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EB32E22221FA8A550065E44A /* mc_menu_screen.cpp */; };
 		EB32E22621FA8A550065E44A /* mc_game_screen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EB32E22321FA8A550065E44A /* mc_game_screen.cpp */; };
 		EB4E187521FCBA32005A8A58 /* readme.md in Resources */ = {isa = PBXBuildFile; fileRef = EB4E187421FCBA32005A8A58 /* readme.md */; };
+		EB4E187821FDEA61005A8A58 /* stb_vorbis.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EB4E187621FDEA61005A8A58 /* stb_vorbis.cpp */; };
+		EB4E187B21FDEA6C005A8A58 /* ujpeg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EB4E187921FDEA6C005A8A58 /* ujpeg.cpp */; };
 		EBC84AC321E956EA0039B60F /* mc_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EBC84ABD21E956EA0039B60F /* mc_util.cpp */; };
 		EBC84AC521E967810039B60F /* todo.txt in Resources */ = {isa = PBXBuildFile; fileRef = EBC84AC421E967810039B60F /* todo.txt */; };
-		EBC84ACA21EA94190039B60F /* ujpeg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EBC84AC921EA94190039B60F /* ujpeg.cpp */; };
 		EBC84AD221ED47F40039B60F /* mc_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EBC84AD021ED47F30039B60F /* mc_application.cpp */; };
 		EBC84AD521EDAF670039B60F /* mc_renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EBC84AD321EDAF670039B60F /* mc_renderer.cpp */; };
 		EBF01D3321F50662007E5B6C /* mc_audio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EBF01D2F21F50661007E5B6C /* mc_audio.cpp */; };
@@ -68,8 +68,6 @@
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		944A65681957463F0094A81E /* SDL.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SDL.xcodeproj; path = "../lib/sdl/Xcode-iOS/SDL/SDL.xcodeproj"; sourceTree = "<group>"; };
 		945C4F52195AF17F00DBBF61 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		EB1118CE21F80576004022DC /* stb_vorbis.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = stb_vorbis.cpp; path = ../source/stb_vorbis.cpp; sourceTree = "<group>"; };
-		EB1118D521F81E67004022DC /* stb_vorbis.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = stb_vorbis.hpp; path = ../source/stb_vorbis.hpp; sourceTree = "<group>"; };
 		EB1118D821F980F5004022DC /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Media.xcassets; path = ../media/icon/Media.xcassets; sourceTree = "<group>"; };
 		EB1118DA21F9825C004022DC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../media/launch/Assets.xcassets; sourceTree = "<group>"; };
 		EB1118DC21F99F68004022DC /* mc_touch.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = mc_touch.hpp; path = ../source/mc_touch.hpp; sourceTree = "<group>"; };
@@ -86,10 +84,12 @@
 		EB32E22321FA8A550065E44A /* mc_game_screen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mc_game_screen.cpp; path = ../source/mc_game_screen.cpp; sourceTree = "<group>"; };
 		EB32E22421FA8A550065E44A /* mc_menu_screen.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = mc_menu_screen.hpp; path = ../source/mc_menu_screen.hpp; sourceTree = "<group>"; };
 		EB4E187421FCBA32005A8A58 /* readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = readme.md; path = ../readme.md; sourceTree = "<group>"; };
+		EB4E187621FDEA61005A8A58 /* stb_vorbis.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = stb_vorbis.cpp; path = ../lib/stb_vorbis/stb_vorbis.cpp; sourceTree = "<group>"; };
+		EB4E187721FDEA61005A8A58 /* stb_vorbis.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = stb_vorbis.hpp; path = ../lib/stb_vorbis/stb_vorbis.hpp; sourceTree = "<group>"; };
+		EB4E187921FDEA6C005A8A58 /* ujpeg.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ujpeg.cpp; path = ../lib/ujpeg/ujpeg.cpp; sourceTree = "<group>"; };
+		EB4E187A21FDEA6C005A8A58 /* ujpeg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ujpeg.h; path = ../lib/ujpeg/ujpeg.h; sourceTree = "<group>"; };
 		EBC84ABD21E956EA0039B60F /* mc_util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mc_util.cpp; path = ../source/mc_util.cpp; sourceTree = "<group>"; };
 		EBC84AC421E967810039B60F /* todo.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = todo.txt; path = ../todo.txt; sourceTree = "<group>"; };
-		EBC84AC921EA94190039B60F /* ujpeg.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ujpeg.cpp; path = ../source/ujpeg.cpp; sourceTree = "<group>"; };
-		EBC84ACB21EA946C0039B60F /* ujpeg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ujpeg.h; path = ../source/ujpeg.h; sourceTree = "<group>"; };
 		EBC84ACF21ED47F30039B60F /* mc_application.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = mc_application.hpp; path = ../source/mc_application.hpp; sourceTree = "<group>"; };
 		EBC84AD021ED47F30039B60F /* mc_application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mc_application.cpp; path = ../source/mc_application.cpp; sourceTree = "<group>"; };
 		EBC84AD121ED47F30039B60F /* mc_util.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = mc_util.hpp; path = ../source/mc_util.hpp; sourceTree = "<group>"; };
@@ -249,10 +249,10 @@
 		EB27A15F21F1641A0082D1C2 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				EB1118CE21F80576004022DC /* stb_vorbis.cpp */,
-				EB1118D521F81E67004022DC /* stb_vorbis.hpp */,
-				EBC84AC921EA94190039B60F /* ujpeg.cpp */,
-				EBC84ACB21EA946C0039B60F /* ujpeg.h */,
+				EB4E187921FDEA6C005A8A58 /* ujpeg.cpp */,
+				EB4E187A21FDEA6C005A8A58 /* ujpeg.h */,
+				EB4E187621FDEA61005A8A58 /* stb_vorbis.cpp */,
+				EB4E187721FDEA61005A8A58 /* stb_vorbis.hpp */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -356,15 +356,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				EBF01D3921F57A59007E5B6C /* mc_input.cpp in Sources */,
-				EBC84ACA21EA94190039B60F /* ujpeg.cpp in Sources */,
 				EBF01D3321F50662007E5B6C /* mc_audio.cpp in Sources */,
 				FD77A09D0E26BDE500F39101 /* mc_main.cpp in Sources */,
-				EB1118D421F80576004022DC /* stb_vorbis.cpp in Sources */,
 				EBC84AD221ED47F40039B60F /* mc_application.cpp in Sources */,
 				EB27A15C21F0E3FB0082D1C2 /* mc_sprite.cpp in Sources */,
 				EB27A16221F1644C0082D1C2 /* mc_game.cpp in Sources */,
+				EB4E187B21FDEA6C005A8A58 /* ujpeg.cpp in Sources */,
 				EB1118DE21F99F68004022DC /* mc_touch.cpp in Sources */,
 				EBC84AD521EDAF670039B60F /* mc_renderer.cpp in Sources */,
+				EB4E187821FDEA61005A8A58 /* stb_vorbis.cpp in Sources */,
 				EB32E22521FA8A550065E44A /* mc_menu_screen.cpp in Sources */,
 				EBC84AC321E956EA0039B60F /* mc_util.cpp in Sources */,
 				EB32E22621FA8A550065E44A /* mc_game_screen.cpp in Sources */,
