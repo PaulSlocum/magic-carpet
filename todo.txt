@@ -7,7 +7,6 @@ Magic Carpet 2 Notes
 TODO:
 ~- ~- ~- ~- ~- ~- ~- ~- ~-
 -  ~  -  ~  -  ~  -  ~
-- move libraries to lib
 - review and clean up makefile
 -  ~  -  ~  -  ~  -  ~
 - fix bug where it sometimes loads the incorrect music 
@@ -17,6 +16,7 @@ TODO:
 - get looping playback working on channels 2 and 3
 - have binaural play on channel 1 (I think this just plays straight but has tremolo and pitch modulation)
 - implement actual mixing in mixer
+- implement reading levels from audio setting tables
 -  ~  -  ~  -  ~  -  ~
 -  ~  -  ~  -  ~  -  ~
 - remove pitch bend offset and implement it elsewhere 
@@ -39,9 +39,9 @@ TODO:
 - clean up everything
 - test on raw RPi system
 - finish readme.md
-- make GIF and/or video for readme.md
 -  ~  -  ~  -  ~  -  ~
 -  ~  -  ~  -  ~  -  ~
+. make GIF and/or video for readme.md
 . figure out why random isn't that random
 . record menu sound from original app
 . implement original menu sound
@@ -115,6 +115,7 @@ x disable moving of the menu wheel after starting
 x set up semaphore
 x randomize starting spinner
 x make menu auto-select the current spinner after timeout 
+x move libraries to lib
 ~~ + ~~ + ~~ + ~~ + ~~ + ~~ + ~~ + ~~ + 
 
 

@@ -11,7 +11,7 @@
 
 
 void audioCallback_c( void *audioObject, Uint8 *stream, int len ); 
-static int fileLoaderThread_c( void *ptr );
+static int fileLoaderThread_c( void *audioObject );
 
 
 
@@ -113,11 +113,10 @@ short* MCAudio::loadAudioFile( std::string filename, int* fileLength )
 
 
 //==============================================================================================
-static int fileLoaderThread_c( void *ptr )
+static int fileLoaderThread_c( void *audioObject )
 {
     // CALL CORRESPONDING THREAD METHOD IN CLASS...
-    MCAudio* threadObject = (MCAudio*) ptr;
-    threadObject->fileLoaderThread();
+    ((MCAudio*) audioObject)->fileLoaderThread();
     
     return 0; // <-- RETURN VALUE IS UNUSED ('SDL_CreatThread' REQUIRES FUNCTION THAT RETURNS AN INT)
 }
