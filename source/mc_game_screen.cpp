@@ -135,8 +135,8 @@ void MCGameScreen::updateFrame()
             } //*/
             
             // MAKE SPINNERS SMALLER IN INSTRUMENT MODE
-            float spinnerScaling;
-            /*if( appSoundMode==kAppSoundModeInstrumentA )
+            /*float spinnerScaling;
+            if( appSoundMode==kAppSoundModeInstrumentA )
              {
              switch( spinnerIndex )
              {
@@ -156,8 +156,8 @@ void MCGameScreen::updateFrame()
              break;
              }
              }
-             else //*/ 
-            spinnerScaling = 1.0;
+             else 
+            spinnerScaling = 1.0; //*/
             
             const float kMaxSpinnerSize = 1.5; // ORIGINAL VALUE 2.5
             if( spinnerSizeX > kMaxSpinnerSize )

@@ -102,7 +102,7 @@ void MCRenderer::render()
     SDL_RenderClear( SDLRenderer );
     
     // DRAW EVERYTHING FROM THE SPRITE RENDER LIST
-    for( int i=0; i < app->spriteRenderList.size(); i++ )
+    for( unsigned i=0; i < app->spriteRenderList.size(); i++ )
         drawSprite( app->spriteRenderList[i] );
 }
 
