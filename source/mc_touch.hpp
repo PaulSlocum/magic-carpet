@@ -15,7 +15,6 @@ public:
     float totalMoveDistance = 0.0;
     //float fade; // TBI
     // ~  ~  ~  ~  ~  ~  ~  
-    //float moveDistance();
 }; //*/
 
 

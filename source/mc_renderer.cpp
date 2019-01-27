@@ -16,12 +16,6 @@
 MCRenderer::MCRenderer( MCApplication* newApp )
 {
     app = newApp;
-    
-    // DEBUG - TRYING TO SET UP RENDER TARGET
-    /*int nWidth = 800;
-    int nHeight = 400;
-    softSurface = SDL_CreateRGBSurface( 0, nWidth, nHeight, 32, 0, 0, 0, 0 );
-    softRenderer = SDL_CreateSoftwareRenderer( softSurface ); //*/
 }
 
 
@@ -154,11 +148,8 @@ void MCRenderer::loadTextures()
                     tempSpinner.yPosition = 0.50;
                 }
                 app->spriteRenderList[ spriteListIndex ] = tempSpinner;
-		spriteListIndex++;
-                //drawSprite( tempSpinner );
+                spriteListIndex++;
                 render();
-                
-                //SDL_RenderPresent( SDLRenderer );
                 presentBuffer();
             }
         }
@@ -171,11 +162,9 @@ void MCRenderer::loadTextures()
 //////////////////////////////////////////////////////////////////////////////////////////
 SDL_Texture* MCRenderer::loadJpegTexture( const std::string imageFilename )
 {
-    //---------------------
     // LOAD JPEG
     uJPEG jpeg;
     std::string imageFilenameWithPath = stdprintf( "%smedia/images/%s", SDL_GetBasePath(), imageFilename.c_str() );
-    //printf( "FILE PATH: %s\n", imageFilenameWithPath.c_str() );
     SDL_Surface *bmp_surface = NULL;
     jpeg.decodeFile( imageFilenameWithPath.c_str() );
     if( jpeg.bad() ) 
@@ -184,9 +173,6 @@ SDL_Texture* MCRenderer::loadJpegTexture( const std::string imageFilename )
     }
     else
     {
-        //printf("JPEG DECODED!!!!\n");
-        //printf("W: %d   H: %d   COLOR:%d  SIZE:%d\n", jpeg.getWidth(), jpeg.getHeight(), jpeg.isColor(), jpeg.getImageSize() );  
-        
         // CREATE SURFACE FROM JPEG
         bmp_surface = SDL_CreateRGBSurfaceFrom( (unsigned char*) jpeg.getImage(), 
                                                jpeg.getWidth(), jpeg.getHeight(), 24, jpeg.getWidth()*3, 0xFF, 0xFF00, 0xFF0000, 0 );
@@ -200,18 +186,12 @@ SDL_Texture* MCRenderer::loadJpegTexture( const std::string imageFilename )
     }
     else
     {   
-        // IS THIS NECESSARY?
+        // NOT TOTALLY SURE WHAT THIS DOES (COPIED FROM ORIGINAL CODE)
         SDL_SetTextureBlendMode( texture, SDL_BLENDMODE_BLEND );  
     }
     
-    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    //printf( "SURFACE --> W:%d H:%d DEPTH:%d PITCH:%d\n", bmp_surface->w, bmp_surface->h, bmp_surface->format->BitsPerPixel, bmp_surface->pitch ); 
-    //printf( "FORMAT:%d RMASK:%x GMASK:%x BMASK:%x AMASK:%x\n", 
-    //       bmp_surface->format->format, bmp_surface->format->Rmask, bmp_surface->format->Gmask, bmp_surface->format->Bmask, bmp_surface->format->Amask );
-    
     // FREE SURFACE MEMORY
     SDL_FreeSurface(bmp_surface); //*/
-    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     
     return( texture );
 }

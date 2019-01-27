@@ -60,7 +60,7 @@ public:
     std::map<int,MCSprite> spinnerArray;
     std::map<int,MCTouch> touchArray;
     // ~  ~  ~  ~  ~  ~  ~  ~    
-    int frameCount = 0; // <- RESET WHEN PRESET IS LOADED
+    int frameCount = 0; // <- THIS IS RESET WHEN PRESET IS LOADED
     int totalFrameCount = 0;
     float menuWheelPosition = 0.5;
     float menuFadeIn = 1.0;
@@ -101,9 +101,6 @@ private:
     MCMenuScreen* menuScreen;
     MCGameScreen* gameScreen;
     // ~  ~  ~  ~  ~  ~  ~
-    //void initRunningMode();
-    //void updateRunningModeFrame();
-    //void updateSpinnerMode();
 };
 
 

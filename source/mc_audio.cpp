@@ -101,6 +101,8 @@ short* MCAudio::loadAudioFile( std::string filename, int* fileLength )
     short* decodeOutput = NULL;
     std::string audioFilenameWithPath = stdprintf( "%smedia/audio/%s", SDL_GetBasePath(), filename.c_str() );
     printf( "** OGG FILENAME: %s \n", audioFilenameWithPath.c_str() );
+    
+    // DECODE AUDIO FILE TO BUFFER
     length = stb_vorbis_decode_filename( audioFilenameWithPath.c_str(), &channels, &sampleRate, &decodeOutput );
     if( length > 0 )
     {

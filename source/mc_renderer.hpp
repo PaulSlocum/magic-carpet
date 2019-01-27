@@ -33,7 +33,4 @@ private:
     SDL_Texture* loadJpegTexture( const std::string imageFilename );
     void drawSprite( const MCSprite spinner );
     // ~  ~  ~  ~  ~  ~  ~  ~  
-    // DEBUG - TRYING TO IMPLEMENT RENDER TARGET
-    //SDL_Surface *softSurface;
-    //SDL_Renderer *softRenderer;
 };

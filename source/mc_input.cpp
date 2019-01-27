@@ -39,9 +39,9 @@ void MCInput::processTouchEvent( const SDL_TouchFingerEvent fingerEvent )
         game->touchArray[ (int)fingerEvent.touchId ].yStart = fingerEvent.y;
     }
 
-    // MOVE THE MENU WHEEL WITH FINGER DRAGS...
     if( fingerEvent.type == SDL_FINGERMOTION )
     {
+        // MOVE THE MENU WHEEL WITH FINGER DRAGS...
         if( game->mode == AppMode::MENU )
             game->menuWheelPosition += fingerEvent.dx;
         
@@ -52,9 +52,11 @@ void MCInput::processTouchEvent( const SDL_TouchFingerEvent fingerEvent )
 
     if( fingerEvent.type == SDL_FINGERUP )
     {
+        // CHECK FOR TAP...
         if( game->mode == AppMode::MENU  &&  
            game->touchArray[ (int)fingerEvent.touchId ].totalMoveDistance < 0.01  &&  game->spinnerArray[0].isTouching( fingerEvent.x, fingerEvent.y ) == true )  
             game->mode = AppMode::RUNNING;
+        
         game->touchArray.erase( (int)fingerEvent.touchId );
     }
 }
@@ -69,7 +71,6 @@ void MCInput::processKeyboardEvent( const SDL_KeyboardEvent keyEvent )
 
     if( keyEvent.repeat == false )
     {
-        
         // KEY TRACKING...
         if( keyEvent.type == SDL_KEYDOWN )
             keysDown.insert( keyEvent.keysym.scancode );
@@ -82,7 +83,7 @@ void MCInput::processKeyboardEvent( const SDL_KeyboardEvent keyEvent )
         if( keyEvent.keysym.scancode == SDL_SCANCODE_ESCAPE  &&  game->mode == AppMode::RUNNING )
             game->mode = AppMode::MENU;
 
-        // MOVE THE MENU WHEEL WITH LEFT/RIGHT CURSOR KEYS...
+        // MOVE THE MENU WHEEL WITH LEFT/RIGHT CURSOR KEYS BEING HELD DOWN...
         if( keysDown.count( SDL_SCANCODE_LEFT ) )
             game->wheelPan = WheelPanMode::LEFT;
         else
