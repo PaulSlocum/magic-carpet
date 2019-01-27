@@ -5,7 +5,6 @@
 #define MC_APPLICATION_HPP
 
 #include <map>
-#include <vector>
 #include "mc_sprite.hpp"
 #include "mc_game.hpp"
 
@@ -15,13 +14,8 @@
 // ~ ^  ~ ^  ~ ^  ~ ^  ~ ^  ~ ^  ~ ^  ~ ^  ~ ^ 
 
 
-
-
 class MCRenderer;
 class MCGame;
-class MCAudio;
-class SDL_Renderer;
-class SDL_Window;
 
 
 //|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||

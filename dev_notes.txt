@@ -7,7 +7,12 @@ Magic Carpet 2 Notes
 TODO:
 ~- ~- ~- ~- ~- ~- ~- ~- ~-
 -  ~  -  ~  -  ~  -  ~
-- fix issue where it sometimes loads the incorrect music 
+- move libraries to lib
+- review and clean up makefile
+-  ~  -  ~  -  ~  -  ~
+- get FPS limit working on both iOS and RPi 
+-  ~  -  ~  -  ~  -  ~
+- fix bug where it sometimes loads the incorrect music 
 -  ~  -  ~  -  ~  -  ~
 - set up mixer callback structure without actually mixing yet
 -  ~  -  ~  -  ~  -  ~
@@ -24,7 +29,7 @@ TODO:
 -  ~  -  ~  -  ~  -  ~
 - get Android or Windows build working
 -  ~  -  ~  -  ~  -  ~
-- review and clean up makefile
+- implement "stop" function for each active class and verify that entire system can be "started" and "stopped"
 - add namespace
 - make sure all memory and textures are freed on closing
 - implement exceptions and error handling

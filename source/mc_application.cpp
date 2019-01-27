@@ -13,10 +13,8 @@
 // CONSTRUCTOR
 MCApplication::MCApplication()
 {
-    // SEED RANDOM NUMBERS
     unsigned int randomSeed = (unsigned int) getCurrentTimeMSec(); 
     srand( randomSeed  );
-    printf( "RANDOM SEED: %d \n", randomSeed );
     
     renderer = new MCRenderer( this );
     gameController = new MCGame( this );
@@ -45,7 +43,6 @@ void MCApplication::start()
         appStarted = true;
      
         // INITIALIZE SDL
-        //if( SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) != 0 ) 
         if( SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) != 0 ) 
         {
             SDL_Log( "Unable to initialize SDL: %s", SDL_GetError() );
@@ -57,9 +54,8 @@ void MCApplication::start()
         // SET IOS ALLOWED ORIENTATIONS
         SDL_SetHint( SDL_HINT_ORIENTATIONS, "LandscapeLeft LandscapeRight" );
 
-        // START AUDIO SYSTEM
+        // START RENDERER AND GAME CONTROLLER
         renderer->start();
-        
         gameController->start();
         
 #ifdef PLATFORM_RPI
@@ -68,7 +64,7 @@ void MCApplication::start()
         vsyncEnabled = true;
 #endif    
         
-        // RUN LOOP BLOCKS UNTIL PROGRAM IS FINISHED...
+        // THIS BLOCKS UNTIL PROGRAM IS FINISHED...
         runLoop();
         
         // QUIT SDL
@@ -101,7 +97,6 @@ void MCApplication::runLoop()
     // MAIN LOOP...
     enum class LoopState {POLL, DRAW, PRESENT};
     LoopState loopState = LoopState::POLL;
-    SDL_Delay( 1000 );
     renderer->loadTextures();
     while( isQuitting == false )
     {
@@ -153,8 +148,6 @@ void MCApplication::runLoop()
                 
         } // SWITCH
         
-        // LOAD TEXTURES / DRAW SCREEN...
-
         SDL_Delay(1);
     }
 }
