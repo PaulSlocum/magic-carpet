@@ -10,8 +10,6 @@ TODO:
 - move libraries to lib
 - review and clean up makefile
 -  ~  -  ~  -  ~  -  ~
-- get FPS limit working on both iOS and RPi 
--  ~  -  ~  -  ~  -  ~
 - fix bug where it sometimes loads the incorrect music 
 -  ~  -  ~  -  ~  -  ~
 - set up mixer callback structure without actually mixing yet
@@ -23,6 +21,8 @@ TODO:
 -  ~  -  ~  -  ~  -  ~
 - remove pitch bend offset and implement it elsewhere 
                 (figure out what pitchbend default value should really be, and if we not doing midi, do we need it at all?)
+-  ~  -  ~  -  ~  -  ~
+- get FPS limit working on both iOS and RPi 
 -  ~  -  ~  -  ~  -  ~
 - fix issue with coordinate system being off
 - make it possible to fit a sprite vertically to the screen (for the background)

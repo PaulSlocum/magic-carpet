@@ -24,7 +24,7 @@
 		EB32E22621FA8A550065E44A /* mc_game_screen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EB32E22321FA8A550065E44A /* mc_game_screen.cpp */; };
 		EB4E187521FCBA32005A8A58 /* readme.md in Resources */ = {isa = PBXBuildFile; fileRef = EB4E187421FCBA32005A8A58 /* readme.md */; };
 		EBC84AC321E956EA0039B60F /* mc_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EBC84ABD21E956EA0039B60F /* mc_util.cpp */; };
-		EBC84AC521E967810039B60F /* dev_notes.txt in Resources */ = {isa = PBXBuildFile; fileRef = EBC84AC421E967810039B60F /* dev_notes.txt */; };
+		EBC84AC521E967810039B60F /* todo.txt in Resources */ = {isa = PBXBuildFile; fileRef = EBC84AC421E967810039B60F /* todo.txt */; };
 		EBC84ACA21EA94190039B60F /* ujpeg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EBC84AC921EA94190039B60F /* ujpeg.cpp */; };
 		EBC84AD221ED47F40039B60F /* mc_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EBC84AD021ED47F30039B60F /* mc_application.cpp */; };
 		EBC84AD521EDAF670039B60F /* mc_renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EBC84AD321EDAF670039B60F /* mc_renderer.cpp */; };
@@ -87,7 +87,7 @@
 		EB32E22421FA8A550065E44A /* mc_menu_screen.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = mc_menu_screen.hpp; path = ../source/mc_menu_screen.hpp; sourceTree = "<group>"; };
 		EB4E187421FCBA32005A8A58 /* readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = readme.md; path = ../readme.md; sourceTree = "<group>"; };
 		EBC84ABD21E956EA0039B60F /* mc_util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mc_util.cpp; path = ../source/mc_util.cpp; sourceTree = "<group>"; };
-		EBC84AC421E967810039B60F /* dev_notes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = dev_notes.txt; path = ../dev_notes.txt; sourceTree = "<group>"; };
+		EBC84AC421E967810039B60F /* todo.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = todo.txt; path = ../todo.txt; sourceTree = "<group>"; };
 		EBC84AC921EA94190039B60F /* ujpeg.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ujpeg.cpp; path = ../source/ujpeg.cpp; sourceTree = "<group>"; };
 		EBC84ACB21EA946C0039B60F /* ujpeg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ujpeg.h; path = ../source/ujpeg.h; sourceTree = "<group>"; };
 		EBC84ACF21ED47F30039B60F /* mc_application.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = mc_application.hpp; path = ../source/mc_application.hpp; sourceTree = "<group>"; };
@@ -148,7 +148,7 @@
 			children = (
 				EB4E187421FCBA32005A8A58 /* readme.md */,
 				8D1107310486CEB800E47090 /* Info.plist */,
-				EBC84AC421E967810039B60F /* dev_notes.txt */,
+				EBC84AC421E967810039B60F /* todo.txt */,
 				EB27A15D21F0E4160082D1C2 /* makefile */,
 				944A65681957463F0094A81E /* SDL.xcodeproj */,
 				29B97315FDCFA39411CA2CEA /* Source */,
@@ -339,7 +339,7 @@
 			files = (
 				FD77A07D0E26BD8C00F39101 /* Icon.png in Resources */,
 				EB2560BA21E8F2E8007DC439 /* media in Resources */,
-				EBC84AC521E967810039B60F /* dev_notes.txt in Resources */,
+				EBC84AC521E967810039B60F /* todo.txt in Resources */,
 				FD77A07F0E26BDA900F39101 /* Default.png in Resources */,
 				EB1118DB21F9825C004022DC /* Assets.xcassets in Resources */,
 				EB1118D921F980F5004022DC /* Media.xcassets in Resources */,
