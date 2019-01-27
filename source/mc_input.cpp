@@ -2,9 +2,7 @@
 ////////////////////////////////////////////////////////////////////
 
 #include "SDL.h"
-
 #include "mc_input.hpp"
-#include "mc_application.hpp"
 #include "mc_touch.hpp"
 #include "mc_game.hpp"
 #include "mc_util.hpp"

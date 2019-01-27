@@ -1,8 +1,8 @@
 // mc_game.cpp
 ////////////////////////////////////////////////////////////////////////
 
-#include "SDL.h"
 #include <math.h>
+#include "SDL.h"
 #include "mc_game.hpp"
 #include "mc_application.hpp"
 #include "mc_sequence_data.hpp"

@@ -1,9 +1,9 @@
 // mc_audio.cpp
 //////////////////////////////////////////////////////////////////////
 
-#include "SDL.h"
 #include <string>
 #include "math.h"
+#include "SDL.h"
 #include "stb_vorbis.hpp"
 #include "mc_audio.hpp"
 #include "mc_util.hpp"

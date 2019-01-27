@@ -1,10 +1,12 @@
 // mc_renderer.hpp
 ///////////////////////////////////////////////////////////////////////////////////
 
-#include <string>
+
 #include <map>
 #include "SDL.h"
-#include "mc_sprite.hpp"
+
+
+class MCSprite;
 
 
 
