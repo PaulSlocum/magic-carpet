@@ -16,9 +16,6 @@ CXXFLAGS := \
 -Ilib/ujpeg \
 -Ilib/stb_vorbis 
 
-# RELEASE VERSION - STRIP ALL SYMBOL INFO
-#-s \
-
 
 LDLIBS := \
 -lSDL2 \

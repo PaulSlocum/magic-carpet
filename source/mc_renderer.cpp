@@ -92,7 +92,7 @@ void MCRenderer::drawSprite( const MCSprite sprite )
 /////////////////////////////////////////////////////////////////////////////////////
 void MCRenderer::render()
 {
-    // Select the color for drawing. It is set to red here.
+    // THE DRAW COLOR IS USED AS THE BACKGROUND COLOR WHEN CLEARNING THE SCREEN
     SDL_SetRenderDrawColor( SDLRenderer, app->backgroundColor.red * 255.0, 
                            app->backgroundColor.green * 255.0, 
                            app->backgroundColor.blue * 255.0, 

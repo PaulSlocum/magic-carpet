@@ -53,7 +53,6 @@ void MCGameScreen::updateFrame()
     
     if( game->runningFadeIn > kFadeInStartPoint )
         game->background.active = false;
-    //game->background.size = game->menuFadeIn;
     
     updateSpinnerMode();
     
@@ -134,7 +133,7 @@ void MCGameScreen::updateFrame()
                 game->spinnerScaleY * game->pitchBend + SPINNER_SIZE_OFFSET;
             } //*/
             
-            // MAKE SPINNERS SMALLER IN INSTRUMENT MODE
+            // MAKE SPINNERS SMALLER IN INSTRUMENT MODE - THIS SECTION TO BE IMPLEMENTED LATER
             /*float spinnerScaling;
             if( appSoundMode==kAppSoundModeInstrumentA )
              {

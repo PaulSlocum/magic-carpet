@@ -6,7 +6,7 @@ A generative audiovisual artwork that produces imagery using rapidly spinning ph
 
 Magic Carpet is written in cross-platform C++ using SDL with minimal dependencies.  It currently builds for Raspberry Pi and iOS, and I'm planning to add builds for other platforms.  This code was ported from my original Magic Carpet iOS app which used Objective C and OpenGL. 
 
-In addiion to making Magic Carpet carpet more portable, I intended the project to be a skeleton for creating other lightweight cross-platform audiovisual C++ applications.  SDL comes with examples that build on various platforms, but it's not trivial to combine those into a single fully working project on diverse platforms like Raspberry Pi and iOS.
+In addition to making Magic Carpet carpet more portable, I intended the project to be a skeleton for creating other lightweight cross-platform audiovisual C++ applications.  SDL comes with examples that build on various platforms, but it's not trivial to combine those into a single fully working project on diverse platforms like Raspberry Pi and iOS.
 
 Magic Carpet includes a very simple sprite system that can load images from JPEGs, an audio engine that can load Ogg files into buffers and play samples from them, plus it includes examples of reading touch and keyboard input.  It's most of what's needed to get started with a simple SDL application.
 
