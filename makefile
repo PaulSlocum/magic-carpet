@@ -1,3 +1,6 @@
+# MAGIC CARPET MAKEFILE FOR RASPBERRY PI
+#===========================================================================
+
 appname := magic_carpet.prg
 
 CXX := gcc
