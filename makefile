@@ -3,34 +3,33 @@ appname := magic_carpet.prg
 CXX := gcc
 
 CXXFLAGS := \
+-std=c++17 \
 `sdl2-config --cflags --libs` \
 -DPLATFORM_RPI \
 -g \
--s \
 -Wall \
 -Wpedantic \
 -Wextra \
--std=c++17 \
 -Wno-unknown-pragmas \
--lSDL2 \
--lm \
--lstdc++ \
+-Wno-variadic-macros \
 -Ilib/sdl/include \
 -Ilib/ujpeg \
--Ilib/stb_vorbis \
--Wno-variadic-macros 
+-Ilib/stb_vorbis 
+
+# RELEASE VERSION - STRIP ALL SYMBOL INFO
+#-s \
 
 
 LDLIBS := \
--L/opt/vc/lib \
--lbcm_host \
--lvcos \
--lvchostif \
--lvchiq_arm \
--lpthread \
--lasound 
+-lSDL2 \
+-lm \
+-lstdc++
 
-#-lefence 
+
+
+# DISPMANX LIBS TO BE USED FOR RPI VSYNC
+#-L/opt/vc/lib -lbcm_host -lvcos -lvchostif -lvchiq_arm
+
 
 
 #============================================================================
