@@ -3,7 +3,6 @@
 
 
 #include <string>
-#include <vector>
 
 
 enum class TextureType { BACKGROUND, BUTTON, SPINNER, UNUSED, NONE };
