@@ -167,13 +167,6 @@ void MCGame::updateFrame()
 ///////////////////////////////////////////////////////////////////////////////////////
 void MCGame::loadPreset( const int presetNumber )
 {
-    printf( "LOAD PRESET ---- %d \n", presetNumber );
-    
-    //===============================================================
-    // VISUAL SETTINGS
-    
-    //visualPreset = ROMVisualPresetOrder[ presetNumber ];
-    
     spinnerModeAdvanceRate = ROMSpinModeAdvRate[ visualPreset ];
     
     spinnerSizeOffset = ROMSpinnerSizeOffset[ visualPreset ];
@@ -210,7 +203,6 @@ void MCGame::loadPreset( const int presetNumber )
     
     // reset the frame count so spinner sequence starts in the same place
     frameCount = 0;
-    //*/
 }
 
 

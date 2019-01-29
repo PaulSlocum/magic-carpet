@@ -10,8 +10,8 @@
 #include "mc_game.hpp"
 
 
-void audioCallback_c( void *audioObject, Uint8 *stream, int len ); 
-static int fileLoaderThread_c( void *audioObject );
+void audioCallback_c( void* audioObject, unsigned char* stream, int len ); 
+static int fileLoaderThread_c( void* audioObject );
 
 
 
@@ -185,7 +185,7 @@ void MCAudio::updateFrame()
 
 //=======================================================================================
 // C AUDIO CALLBACK
-void audioCallback_c( void *audioObject, Uint8 *stream, int len ) 
+void audioCallback_c( void* audioObject, unsigned char* stream, int len ) 
 {
     ((MCAudio*)audioObject)->audioCallback( stream, len );
 }
@@ -194,7 +194,7 @@ void audioCallback_c( void *audioObject, Uint8 *stream, int len )
 
 /////////////////////////////////////////////////////////////////////////////////////////
 // C++ AUDIO CALLBACK
-void MCAudio::audioCallback( Uint8* stream, const int len )
+void MCAudio::audioCallback( unsigned char* stream, const int len )
 {
     fileThreadMutex.lock();
     if( game->mode == AppMode::RUNNING )

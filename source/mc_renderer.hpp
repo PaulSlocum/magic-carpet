@@ -9,7 +9,6 @@
 class MCSprite;
 
 
-
 class MCApplication;
 
 class MCRenderer
