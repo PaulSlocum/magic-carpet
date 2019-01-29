@@ -39,8 +39,7 @@ void MCMenuScreen::init()
 //////////////////////////////////////////////////////////////////////////////////////
 void MCMenuScreen::updateFrame()
 {
-    const long long MENU_TIMEOUT_MSEC = 17000;
-    if( getCurrentTimeMSec() - game->timeOfLastInputMSec > MENU_TIMEOUT_MSEC )
+    if( AUTO_START_GAME == true  &&  (getCurrentTimeMSec() - game->timeOfLastInputMSec) > (AUTO_START_DELAY_SEC * 1000) )
         game->mode = AppMode::RUNNING;
     
     int rawPresetNumber = (int)game->menuWheelPosition % NUMBER_OF_PRESETS;

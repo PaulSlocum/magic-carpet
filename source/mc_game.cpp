@@ -140,16 +140,20 @@ void MCGame::updateFrame()
     app->spriteRenderList[3] = instrumentButton;
     for( int spinnerNumber=0; spinnerNumber<MAX_ACTIVE_SPINNERS; spinnerNumber++ )
         app->spriteRenderList[ spinnerNumber+4 ] = spinnerArray[ spinnerNumber ];
+
     
     // DEBUG!!!  SHOW FPS AND OTHER DEBUG INFO...
-    if( startTimeMSec == 0 )
-        startTimeMSec = getCurrentTimeMSec();
-    else
+    if( DEBUG_SHOW_FPS == true )
     {
-        if( totalFrameCount % 60 == 0 )
+        if( startTimeMSec == 0 )
+            startTimeMSec = getCurrentTimeMSec();
+        else
         {
-            printf( "FPS: %f\n",  totalFrameCount * 1000.0 / ( getCurrentTimeMSec() - startTimeMSec )  );
-            printf( "\n" );
+            if( totalFrameCount % 60 == 0 )
+            {
+                printf( "FPS: %f\n",  totalFrameCount * 1000.0 / ( getCurrentTimeMSec() - startTimeMSec )  );
+                printf( "\n" );
+            }
         }
     }
 

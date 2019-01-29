@@ -16,12 +16,14 @@ class MCGameScreen;
 union SDL_Event;
 
 
-// TODO: THESE SHOULD MAYBE BE MOVED?
-#define MAX_MAIN_SPINNERS 8 
-#define MAX_ACTIVE_SPINNERS 7
+const int MAX_MAIN_SPINNERS = 8; 
+const int MAX_ACTIVE_SPINNERS = 7;
+const int NUMBER_OF_PRESETS = 7;
 
-#define NUMBER_OF_PRESETS 7
+const bool AUTO_START_GAME = false;
+const int AUTO_START_DELAY_SEC = 17;
 
+const bool DEBUG_SHOW_FPS = false;
 
 
 

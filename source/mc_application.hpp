@@ -9,9 +9,7 @@
 #include "mc_game.hpp"
 
 
-// ~ ^  ~ ^  ~ ^  ~ ^  ~ ^  ~ ^  ~ ^  ~ ^  ~ ^ 
-#define FRAMES_PER_SECOND 60.0
-// ~ ^  ~ ^  ~ ^  ~ ^  ~ ^  ~ ^  ~ ^  ~ ^  ~ ^ 
+const int FRAMES_PER_SECOND = 60.0;
 
 
 class MCRenderer;

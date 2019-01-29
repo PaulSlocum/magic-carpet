@@ -145,28 +145,30 @@ void MCAudio::fileLoaderThread()
         fileThreadMutex.lock();
         if( internalAudioPreset != loadedMusicPreset )
         {
+            int presetToLoad = internalAudioPreset; // <-- NECESSARY TO STORE THIS LOCALLY SO WE CAN UNLOCK MUTEX WHILE DECODING THE FILE
             musicFileLoaded = false;
             fileThreadMutex.unlock();
-
+            
             short* newMusicBuffer = NULL;
             int newMusicBufferLength = 0;
-            printf( "MUSIC FILE LOADING %d.... \n", internalAudioPreset );
-            newMusicBuffer = loadAudioFile( MUSIC_FILENAME_LIST[ internalAudioPreset ], &newMusicBufferLength );
-            printf( "MUSIC FILE LOADED %d \n", internalAudioPreset );
+            printf( "MUSIC FILE LOADING %d.... \n", presetToLoad );
+            newMusicBuffer = loadAudioFile( MUSIC_FILENAME_LIST[ presetToLoad ], &newMusicBufferLength );
+            printf( "MUSIC FILE LOADED %d \n", presetToLoad );
 
             fileThreadMutex.lock();
             if( musicAudioBuffer != NULL )
                 free( musicAudioBuffer );
             musicAudioBuffer = newMusicBuffer;
             musicAudioBufferLength = newMusicBufferLength;
-            loadedMusicPreset = internalAudioPreset;
+            loadedMusicPreset = presetToLoad;
+            playbackOffset = 0;
             musicFileLoaded = true;
             fileThreadMutex.unlock();
         }
         else
             fileThreadMutex.unlock();
 
-        SDL_Delay( 10 );
+        SDL_Delay( 30 );
     }
     printf( "QUITING THREAD_____________________ \n " );
 }

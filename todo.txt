@@ -4,12 +4,83 @@ Magic Carpet 2 Notes
 
 
 
+2019-01-28 20:58:57.544614-0800 MagicCarpet[6131:2955170] [DYMTLInitPlatform] platform initialization successful
+----------------------- 
+M A G I C   C A R P E T 
+----------------------- 
+** OGG FILENAME: /var/containers/Bundle/Application/99D3DED0-3C01-4E47-847A-75DFD48AF42E/MagicCarpet.app/media/audio/binaural1.ogg 
+DISPLAY BOUNDS: 1024 x 768 
+WINDOW SIZE: 1024 x 768 
+** OGG FILE DECODED!!  CHAN: 2  RATE: 22050   LEN: 311296 
+BINAURAL FILE LOADED. 
+STARTING THREAD_____________________ 
+MUSIC FILE LOADING 0.... 
+** OGG FILENAME: /var/containers/Bundle/Application/99D3DED0-3C01-4E47-847A-75DFD48AF42E/MagicCarpet.app/media/audio/music1.ogg 
+** OGG FILE DECODED!!  CHAN: 2  RATE: 22050   LEN: 1236992 
+MUSIC FILE LOADED 0 
+MUSIC FILE LOADING 3.... 
+** OGG FILENAME: /var/containers/Bundle/Application/99D3DED0-3C01-4E47-847A-75DFD48AF42E/MagicCarpet.app/media/audio/music4.ogg 
+** OGG FILE DECODED!!  CHAN: 2  RATE: 22050   LEN: 1236992 
+MUSIC FILE LOADED 3 
+MUSIC FILE LOADING 5.... 
+** OGG FILENAME: /var/containers/Bundle/Application/99D3DED0-3C01-4E47-847A-75DFD48AF42E/MagicCarpet.app/media/audio/music6.ogg 
+** OGG FILE DECODED!!  CHAN: 2  RATE: 22050   LEN: 1236992 
+MUSIC FILE LOADED 0 
+MUSIC FILE LOADING 1.... 
+** OGG FILENAME: /var/containers/Bundle/Application/99D3DED0-3C01-4E47-847A-75DFD48AF42E/MagicCarpet.app/media/audio/music2.ogg 
+TOUCH DISTANCE: 0.082690 
+LOAD PRESET ---- 4 
+** OGG FILE DECODED!!  CHAN: 2  RATE: 22050   LEN: 1236992 
+MUSIC FILE LOADED 4 
+
+
+
+
+
+2019-01-28 21:02:46.717248-0800 MagicCarpet[6151:2956440] [DYMTLInitPlatform] platform initialization successful
+----------------------- 
+M A G I C   C A R P E T 
+----------------------- 
+DISPLAY BOUNDS: 1024 x 768 
+** OGG FILENAME: /var/containers/Bundle/Application/585692FF-5A61-433E-82BF-453DD314A779/MagicCarpet.app/media/audio/binaural1.ogg 
+WINDOW SIZE: 1024 x 768 
+** OGG FILE DECODED!!  CHAN: 2  RATE: 22050   LEN: 311296 
+BINAURAL FILE LOADED. 
+STARTING THREAD_____________________ 
+MUSIC FILE LOADING 0.... 
+** OGG FILENAME: /var/containers/Bundle/Application/585692FF-5A61-433E-82BF-453DD314A779/MagicCarpet.app/media/audio/music1.ogg 
+** OGG FILE DECODED!!  CHAN: 2  RATE: 22050   LEN: 1236992 
+MUSIC FILE LOADED 0 
+MUSIC FILE LOADING 2.... 
+** OGG FILENAME: /var/containers/Bundle/Application/585692FF-5A61-433E-82BF-453DD314A779/MagicCarpet.app/media/audio/music3.ogg 
+** OGG FILE DECODED!!  CHAN: 2  RATE: 22050   LEN: 1236992 
+MUSIC FILE LOADED 2 
+MUSIC FILE LOADING 6.... 
+** OGG FILENAME: /var/containers/Bundle/Application/585692FF-5A61-433E-82BF-453DD314A779/MagicCarpet.app/media/audio/music7.ogg 
+** OGG FILE DECODED!!  CHAN: 2  RATE: 22050   LEN: 1236992 
+MUSIC FILE LOADED 0 
+MUSIC FILE LOADING 1.... 
+** OGG FILENAME: /var/containers/Bundle/Application/585692FF-5A61-433E-82BF-453DD314A779/MagicCarpet.app/media/audio/music2.ogg 
+TOUCH DISTANCE: 0.177271 
+LOAD PRESET ---- 4 
+** OGG FILE DECODED!!  CHAN: 2  RATE: 22050   LEN: 1236992 
+MUSIC FILE LOADED 4 
+
+
+
+
+
 TODO:
 ~- ~- ~- ~- ~- ~- ~- ~- ~-
+x fix bug where it sometimes loads the incorrect music 
 -  ~  -  ~  -  ~  -  ~
-- review and clean up makefile
 -  ~  -  ~  -  ~  -  ~
-- fix bug where it sometimes loads the incorrect music 
+- fix issue with coordinate system being off
+- make it possible to fit a sprite vertically to the screen (for the background)
+- implement both X and Y scaling of spinner textures 
+- remove pitch bend offset and implement it elsewhere 
+(figure out what pitchbend default value should really be, and if we not doing midi, do we need it at all?)
+-  ~  -  ~  -  ~  -  ~
 -  ~  -  ~  -  ~  -  ~
 - set up mixer callback structure without actually mixing yet
 -  ~  -  ~  -  ~  -  ~
@@ -18,14 +89,7 @@ TODO:
 - implement actual mixing in mixer
 - implement reading levels from audio setting tables
 -  ~  -  ~  -  ~  -  ~
--  ~  -  ~  -  ~  -  ~
-- remove pitch bend offset and implement it elsewhere 
-                (figure out what pitchbend default value should really be, and if we not doing midi, do we need it at all?)
--  ~  -  ~  -  ~  -  ~
 - get FPS limit working on both iOS and RPi 
--  ~  -  ~  -  ~  -  ~
-- fix issue with coordinate system being off
-- make it possible to fit a sprite vertically to the screen (for the background)
 -  ~  -  ~  -  ~  -  ~
 - get Android or Windows build working
 -  ~  -  ~  -  ~  -  ~
@@ -41,6 +105,7 @@ TODO:
 - finish readme.md
 -  ~  -  ~  -  ~  -  ~
 -  ~  -  ~  -  ~  -  ~
+. eliminate warnings when building ujpeg and stb_vorbis
 . make GIF and/or video for readme.md
 . figure out why random isn't that random
 . record menu sound from original app
@@ -50,7 +115,6 @@ TODO:
 . implement or figure out VSync support on RPi
 . improve accuracy of spinner modes and movementvcxprof
 . implement rendering to texture
-. implement both X and Y scaling of spinner textures 
 . implement creep jump function 
 . add flipped double image to menu background
 . implement zoom/sound blip in menu
@@ -116,6 +180,7 @@ x set up semaphore
 x randomize starting spinner
 x make menu auto-select the current spinner after timeout 
 x move libraries to lib
+x review and clean up makefile
 ~~ + ~~ + ~~ + ~~ + ~~ + ~~ + ~~ + ~~ + 
 
 
