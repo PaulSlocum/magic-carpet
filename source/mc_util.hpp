@@ -4,7 +4,7 @@
 #include <string>
 
 
-std::string stdprintf(const std::string fmt_str, ...);
+std::string stdprintf( const std::string fmt_str, ... );
 
 long long getCurrentTimeMSec();
 

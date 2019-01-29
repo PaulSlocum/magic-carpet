@@ -165,7 +165,7 @@ SDL_Texture* MCRenderer::loadJpegTexture( const std::string imageFilename )
 {
     // LOAD JPEG
     uJPEG jpeg;
-    std::string imageFilenameWithPath = stdprintf( "%smedia/images/%s", SDL_GetBasePath(), imageFilename.c_str() );
+    const std::string imageFilenameWithPath = stdprintf( "%smedia/images/%s", SDL_GetBasePath(), imageFilename.c_str() );
     SDL_Surface *bmp_surface = NULL;
     jpeg.decodeFile( imageFilenameWithPath.c_str() );
     if( jpeg.bad() ) 

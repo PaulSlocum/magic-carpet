@@ -83,7 +83,7 @@ void MCAudio::start()
 
 
 //////////////////////////////////////////////////////////////////////////
-short* MCAudio::loadAudioFile( std::string filename, int* fileLength )
+short* MCAudio::loadAudioFile( const std::string filename, int* fileLength )
 {
     int channels = 0;
     int sampleRate = 0;
@@ -194,7 +194,7 @@ void audioCallback_c( void *audioObject, Uint8 *stream, int len )
 
 /////////////////////////////////////////////////////////////////////////////////////////
 // C++ AUDIO CALLBACK
-void MCAudio::audioCallback( Uint8* stream, int len )
+void MCAudio::audioCallback( Uint8* stream, const int len )
 {
     fileThreadMutex.lock();
     if( game->mode == AppMode::RUNNING )

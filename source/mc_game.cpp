@@ -71,7 +71,7 @@ void MCGame::stop()
 
 
 /////////////////////////////////////////////////////////////////////////////////////
-void MCGame::processEvent( SDL_Event event )
+void MCGame::processEvent( const SDL_Event event )
 {
     switch( event.type )
     {

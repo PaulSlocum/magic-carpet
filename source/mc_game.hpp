@@ -39,7 +39,7 @@ struct RGBColor
     float red = 1.0;
     float green = 1.0;
     float blue = 1.0;
-};//*/
+};
 
 
 //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
@@ -50,7 +50,7 @@ public:
     ~MCGame();
     void start();
     void stop();
-    void processEvent( SDL_Event event );
+    void processEvent( const SDL_Event event );
     void updateFrame();
     // ~  ~  ~  ~  ~  ~  ~  ~    
     void loadPreset( const int presetNumber );

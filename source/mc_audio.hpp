@@ -15,7 +15,7 @@ public:
     MCAudio( MCGame* newGame );
     ~MCAudio();
     void start();
-    void audioCallback( Uint8* stream, int len );
+    void audioCallback( Uint8* stream, const int len );
     void updateFrame();
     // ~  ~  ~  ~  ~  ~  
     void fileLoaderThread();
@@ -38,5 +38,5 @@ private:
     volatile bool binauralFileLoaded = false;
     volatile int loadedMusicPreset = -1;
     // ~  ~  ~  ~  ~  ~
-    short* loadAudioFile( std::string filename, int* fileLength );
+    short* loadAudioFile( const std::string filename, int* fileLength );
 };

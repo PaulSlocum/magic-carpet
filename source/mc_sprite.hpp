@@ -23,7 +23,7 @@ public:
     float scaleFactor = 1.0;
     SpriteType type = {SpriteType::SPINNER};
     // ~  ~  ~  ~  ~  ~  ~  
-    bool isTouching( float testXCoord, float testYCoord );
+    bool isTouching( const float testXCoord, const float testYCoord );
 };
 
 
