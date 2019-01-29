@@ -1,15 +1,11 @@
 // mc_util.cpp
 ///////////////////////////////////////////
 
-#include "mc_util.hpp"
-
 #include <sys/time.h>
-#include <iostream>
-#include <unistd.h>
 #include <memory>
 #include <string.h>
 #include <stdarg.h>
-//#include <algorithm>
+#include "mc_util.hpp"
 
 
 
