@@ -14,7 +14,6 @@ CXXFLAGS := \
 -Wpedantic \
 -Wextra \
 -Wno-unknown-pragmas \
--Wno-variadic-macros \
 -Ilib/sdl/include \
 -Ilib/ujpeg \
 -Ilib/stb_vorbis 
