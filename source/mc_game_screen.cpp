@@ -70,6 +70,8 @@ void MCGameScreen::updateFrame()
     // UPDATE ALL MAIN SPINNERS...
     for( int spinnerIndex=0; spinnerIndex< MAX_ACTIVE_SPINNERS ; spinnerIndex++ )
     {
+        float scaleFactor = ROMSpinnerSize[ state->visualPreset * MAX_MAIN_SPINNERS + i ];
+
         float rhythmBloom = 0.78+((1.7-abs(cos(bloomCycleCounter/700.0)+0.7))*0.43) // <- long cycle
         + sin(((int)game->audioLoopPosition%100000)/101000.0*3.141592654)*0.80 * cos(bloomCycleCounter/150.0); // <- short cycle
         

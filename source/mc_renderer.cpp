@@ -76,8 +76,10 @@ void MCRenderer::drawSprite( const MCSprite sprite )
         SDL_Rect srcRect = { 0, 0, textureWidth, textureHeight };
         SDL_Rect dstRect;
         dstRect.w = screenWidth * sprite.size;
-        //dstRect.h = screenWidth * sprite.size;
-        dstRect.h = screenHeight * sprite.size;
+        if( sprite.fitToScreen == true )
+            dstRect.h = screenHeight * sprite.size;
+        else
+            dstRect.h = screenWidth * sprite.size;
         dstRect.x = (screenWidth - dstRect.w) / 2 + ( (sprite.xPosition-0.5) * 2 * screenWidth);
         dstRect.y = (screenHeight - dstRect.h) / 2 + ( (sprite.yPosition-0.5) * 2 * screenHeight);
 

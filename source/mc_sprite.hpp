@@ -21,6 +21,9 @@ public:
     float rotationRate = 0.0;
     float size = 1.0;
     float scaleFactor = 1.0;
+    float scaleFactorX = 1.0;
+    float scaleFactorY = 1.0;
+    bool fitToScreen = false;
     SpriteType type = {SpriteType::SPINNER};
     // ~  ~  ~  ~  ~  ~  ~  
     bool isTouching( const float testXCoord, const float testYCoord );
