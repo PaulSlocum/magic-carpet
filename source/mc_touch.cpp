@@ -5,8 +5,3 @@
 #include "mc_touch.hpp"
 
 
-/////////////////////////////////////////////////////////////////////////////////////
-/*float MCTouch::moveDistance()
-{
-    return sqrt( pow( xStart - x, 2 ) + pow( yStart - y, 2 ) );
-} //*/
