@@ -1,6 +1,6 @@
 # Magic Carpet
 
-A generative audiovisual artwork that produces imagery using rapidly spinning photos of rugs and quilts.  Video documentation is [here](https://www.youtube.com/watch?v=vnxtZg9wPo4).
+A generative audiovisual artwork that produces imagery using rapidly spinning photos of rugs and quilts.  Video documentation is [here](https://www.youtube.com/watch?v=vnxtZg9wPo4).  The port is mostly complete except for some of the audio effects.
 
 ![menu screenshot](media/screenshots/screen_menu_480x320.jpg)
 
