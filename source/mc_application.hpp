@@ -36,7 +36,7 @@ private:
     // ~  ~  ~  ~  ~  ~  ~  ~  
     bool vsyncEnabled = false;
     // ~  ~  ~  ~  ~  ~  ~  ~  
-    bool isQuitting = false;
+    volatile bool isQuitting = false;
     bool appStarted = false;
 };
 

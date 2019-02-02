@@ -38,5 +38,5 @@ private:
     volatile bool binauralFileLoaded = false;
     volatile int loadedMusicPreset = -1;
     // ~  ~  ~  ~  ~  ~
-    short* loadAudioFile( const std::string filename, int* fileLength );
+    short* loadOggAudioFile( const std::string filename, int* fileLength );
 };

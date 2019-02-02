@@ -83,7 +83,7 @@ void MCAudio::start()
 
 
 //////////////////////////////////////////////////////////////////////////
-short* MCAudio::loadAudioFile( const std::string filename, int* fileLength )
+short* MCAudio::loadOggAudioFile( const std::string filename, int* fileLength )
 {
     int channels = 0;
     int sampleRate = 0;
@@ -133,7 +133,7 @@ void MCAudio::fileLoaderThread()
     // BINAURAL FILE IS ALWAYS LOADED
     if( binauralFileLoaded == false )
     {
-        binauralAudioBuffer = loadAudioFile( BINAURAL_FILENAME, &binauralAudioBufferLength );
+        binauralAudioBuffer = loadOggAudioFile( BINAURAL_FILENAME, &binauralAudioBufferLength );
         binauralFileLoaded = true;
         printf( "BINAURAL FILE LOADED. \n" );
     }
@@ -152,7 +152,7 @@ void MCAudio::fileLoaderThread()
             short* newMusicBuffer = NULL;
             int newMusicBufferLength = 0;
             printf( "MUSIC FILE LOADING %d.... \n", presetToLoad );
-            newMusicBuffer = loadAudioFile( MUSIC_FILENAME_LIST[ presetToLoad ], &newMusicBufferLength );
+            newMusicBuffer = loadOggAudioFile( MUSIC_FILENAME_LIST[ presetToLoad ], &newMusicBufferLength );
             printf( "MUSIC FILE LOADED %d \n", presetToLoad );
 
             fileThreadMutex.lock();
@@ -178,7 +178,9 @@ void MCAudio::fileLoaderThread()
 void MCAudio::updateFrame()
 {
     // THIS IS TO LOCALIZE THREAD MUTEX TO THIS CLASS
+    fileThreadMutex.lock();
     internalAudioPreset = game->audioPreset;
+    fileThreadMutex.unlock();
 }
 
 

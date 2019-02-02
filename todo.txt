@@ -7,6 +7,7 @@ Magic Carpet 2 Notes
 TODO:
 ~- ~- ~- ~- ~- ~- ~- ~- ~-
 -  ~  -  ~  -  ~  -  ~
+- evaluate whether isQuitting should be volatile
 -  ~  -  ~  -  ~  -  ~
 - fix issue with coordinate system being off
 - make it possible to fit a sprite vertically to the screen (for the background)
