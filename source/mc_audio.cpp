@@ -51,27 +51,27 @@ MCAudio::~MCAudio()
 void MCAudio::start()
 {
     // ALLOCATE SPACE FOR DESIRED AND OBTAINED AUDIO SPECS
-    SDL_AudioSpec* desired = (SDL_AudioSpec *) malloc(sizeof(SDL_AudioSpec));
-    SDL_AudioSpec* obtained = (SDL_AudioSpec *) malloc(sizeof(SDL_AudioSpec));
+    SDL_AudioSpec desired;
+    SDL_AudioSpec obtained;
     
     // SET UP PARAMETERS FOR AUDIO DEVICE AND CALLBACK 
-    desired->freq = 22050;
-    desired->format = AUDIO_S16SYS;
-    desired->samples = 4096/2;
-    desired->callback = audioCallback_c;
-    desired->userdata = this;
-    desired->channels = 2;
+    desired.freq = 22050;
+    desired.format = AUDIO_S16SYS;
+    desired.samples = 4096/2;
+    desired.callback = audioCallback_c;
+    desired.userdata = this;
+    desired.channels = 2;
     
     // OPEN THE AUDIO DEVICE...
-    if ( SDL_OpenAudio(desired, obtained) < 0 ) {
+    if ( SDL_OpenAudio( &desired, &obtained ) < 0 ) {
         fprintf(stderr, "AudioMixer, Unable to open audio: %s\n", SDL_GetError());
         exit(1);
     }
     
     // MAKE SURE WE GOT THE 22K SAMPLE FREQUENCY...
-    if( obtained->freq != desired->freq )
+    if( obtained.freq != desired.freq )
     {
-        printf( "ERROR: COULD NOT OBTAIN SAMPLE FREQ OF %d \n", desired->freq );
+        printf( "ERROR: COULD NOT OBTAIN SAMPLE FREQ OF %d \n", desired.freq );
         exit( 1 );
     }
     
