@@ -83,6 +83,7 @@ void MCAudio::start()
 
 
 //////////////////////////////////////////////////////////////////////////
+// RETURNS NEW BUFFER WITH DECODED FILE
 short* MCAudio::loadOggAudioFile( const std::string filename, int* fileLength )
 {
     int channels = 0;
