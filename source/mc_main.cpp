@@ -16,7 +16,6 @@ int main( int argc __attribute__ ((unused)), char *argv[] __attribute__ ((unused
     
     MCApplication magicCarpetApp;
     magicCarpetApp.start();
-    magicCarpetApp.start();
 
     return 0;
 }

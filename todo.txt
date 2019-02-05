@@ -7,10 +7,10 @@ Magic Carpet 2 Notes
 TODO:
 ~- ~- ~- ~- ~- ~- ~- ~- ~-
 x implement "stop" function for each active class 
+x verify that entire system can be "started" and "stopped"
 x look into SDL_BLENDMODE_BLEND
 ~- ~- ~- ~- ~- ~- ~- ~- ~-
 -  ~  -  ~  -  ~  -  ~
-- verify that entire system can be "started" and "stopped"
 - move texture loading sequence into game class to make renderer more generic
 -  ~  -  ~  -  ~  -  ~
 - remove pitch bend offset and implement it elsewhere 
