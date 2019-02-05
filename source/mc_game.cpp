@@ -156,10 +156,7 @@ void MCGame::updateFrame()
         else
         {
             if( totalFrameCount % 60 == 0 )
-            {
-                printf( "FPS: %f\n",  totalFrameCount * 1000.0 / ( getCurrentTimeMSec() - startTimeMSec )  );
-                printf( "\n" );
-            }
+                logmsg( "FPS: %f\n\n",  totalFrameCount * 1000.0 / ( getCurrentTimeMSec() - startTimeMSec )  );
         }
     }
 

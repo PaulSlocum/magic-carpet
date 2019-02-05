@@ -102,18 +102,17 @@ short* MCAudio::loadOggAudioFile( const std::string filename, int* fileLength )
     int length = 0;
     short* decodeOutput = NULL;
     std::string audioFilenameWithPath = stdprintf( "%smedia/audio/%s", SDL_GetBasePath(), filename.c_str() );
-    printf( "** OGG FILENAME: %s \n", audioFilenameWithPath.c_str() );
     
     // DECODE AUDIO FILE TO BUFFER
     length = stb_vorbis_decode_filename( audioFilenameWithPath.c_str(), &channels, &sampleRate, &decodeOutput );
     if( length > 0 )
     {
-        printf( "** OGG FILE DECODED!!  CHAN: %d  RATE: %d   LEN: %d \n", channels, sampleRate, length );
+        logmsg( "** OGG FILE DECODED: CHAN: %d  RATE: %d   LEN: %d \n", channels, sampleRate, length );
     }
     else
     {
-        printf( "** ERROR DECODING OGG: %d  \n", length );
-    } //*/
+        logerr( "** ERROR DECODING OGG: %d  \n", length );
+    } 
     
     *fileLength = length;
     return decodeOutput;
@@ -147,10 +146,10 @@ void MCAudio::fileLoaderThread()
     {
         binauralAudioBuffer = loadOggAudioFile( BINAURAL_FILENAME, &binauralAudioBufferLength );
         binauralFileLoaded = true;
-        printf( "BINAURAL FILE LOADED. \n" );
+        logmsg( "BINAURAL FILE LOADED. \n" );
     }
 
-    printf( "STARTING THREAD_____________________ \n" );
+    logmsg( "STARTING AUDIO LOADER THREAD_____________________ \n" );
     while( keepFileThreadRunning == true )
     {
         // LOAD THE MUSIC FILE CORRESPONDING TO THE CURRENTLY SELECTED PRESET (LOADS IN BACKGROUND WHILE MENU IS RUNNING)
@@ -160,12 +159,11 @@ void MCAudio::fileLoaderThread()
             int presetToLoad = internalAudioPreset; // <-- NECESSARY TO STORE THIS LOCALLY SO WE CAN UNLOCK MUTEX WHILE DECODING THE FILE
             musicFileLoaded = false;
             fileThreadMutex.unlock();
-            
+
+            // LOAD NEW MUSIC FILE...
             short* newMusicBuffer = NULL;
             int newMusicBufferLength = 0;
-            printf( "MUSIC FILE LOADING %d.... \n", presetToLoad );
             newMusicBuffer = loadOggAudioFile( MUSIC_FILENAME_LIST[ presetToLoad ], &newMusicBufferLength );
-            printf( "MUSIC FILE LOADED %d \n", presetToLoad );
 
             fileThreadMutex.lock();
             if( musicAudioBuffer != NULL )
@@ -182,7 +180,7 @@ void MCAudio::fileLoaderThread()
 
         SDL_Delay( 30 );
     }
-    printf( "QUITING THREAD_____________________ \n " );
+    logmsg( "QUITING AUDIO LOADER THREAD_____________________ \n " );
 }
 
 
@@ -240,7 +238,8 @@ void MCAudio::audioCallback( unsigned char* stream, const int len )
     }
     fileThreadMutex.unlock();
 
-    //printf( "** PLAYBACK POS: %ld  CHUNK SIZE: %d \n", playbackOffset, len ); // <-- DEBUG!!
+    // DEBUG - SHOW PLAYBACK STATUS
+    //logmsg( "** PLAYBACK POS: %ld  CHUNK SIZE: %d \n", playbackOffset, len ); // <-- DEBUG!!
 }
 
 

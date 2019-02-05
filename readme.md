@@ -10,6 +10,6 @@ In addition to making the Magic Carpet carpet app more portable, I intended the 
 
 Use the Xcode project to build for iOS and the makefile to build for Raspberry Pi.
 
-(c) 2011-2019 Paul Slocum all rights reserved.  For personal use only, but I plan to soon release this code under MIT license.  Contact me if you'd like to use it.  
+(c) 2011-2019 Paul Slocum all rights reserved.  For personal use only, but I plan to soon release this code under MIT license.  Contact me if you'd like to use it for something.
 
 ![menu screenshot](media/screenshots/screen_1_480x320.jpg)

@@ -192,7 +192,7 @@ SDL_Texture* MCRenderer::loadJpegTexture( const std::string imageFilename )
     jpeg.decodeFile( imageFilenameWithPath.c_str() );
     if( jpeg.bad() ) 
     {
-        printf("JPEG DECODING FAILED\n");
+        logerr("JPEG DECODING FAILED\n");
     }
     else
     {
@@ -205,7 +205,7 @@ SDL_Texture* MCRenderer::loadJpegTexture( const std::string imageFilename )
     SDL_Texture* texture = SDL_CreateTextureFromSurface( sdlRenderer, bmp_surface );
     if( texture == 0 ) 
     {
-        printf( "TEXTURE CREATION FAILED\n" );
+        logerr( "TEXTURE CREATION FAILED\n" );
     }
     else
     {   
