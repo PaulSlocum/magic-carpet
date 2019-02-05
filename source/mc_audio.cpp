@@ -152,7 +152,7 @@ void MCAudio::fileLoaderThread()
     logmsg( "STARTING AUDIO LOADER THREAD_____________________ \n" );
     while( keepFileThreadRunning == true )
     {
-        // LOAD THE MUSIC FILE CORRESPONDING TO THE CURRENTLY SELECTED PRESET (LOADS IN BACKGROUND WHILE MENU IS RUNNING)
+        // IF THE PRESET NUMBER HAS CHANGED...
         fileThreadMutex.lock();
         if( internalAudioPreset != loadedMusicPreset )
         {
@@ -178,7 +178,7 @@ void MCAudio::fileLoaderThread()
         else
             fileThreadMutex.unlock();
 
-        SDL_Delay( 30 );
+        SDL_Delay( 100 );
     }
     logmsg( "QUITING AUDIO LOADER THREAD_____________________ \n " );
 }
