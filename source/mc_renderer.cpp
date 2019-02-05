@@ -155,8 +155,8 @@ void MCRenderer::loadTextures()
             if( TEXTURE_LOAD_LIST[i].type != TextureType::UNUSED )
             {
                 // LOAD TEXTURE FROM JPEG FILE
-                spinnerTextureArray[ TEXTURE_LOAD_LIST[i].textureSlot ] = loadJpegTexture( TEXTURE_LOAD_LIST[i].filename );
-
+                loadJpegTexture( TEXTURE_LOAD_LIST[i].filename, TEXTURE_LOAD_LIST[i].textureSlot );
+                
                 // SHOW TEXTURES AS THEY'RE LOADING..
                 MCSprite tempSpinner;
                 tempSpinner.size = i/150.0;
@@ -183,7 +183,7 @@ void MCRenderer::loadTextures()
 
 
 //////////////////////////////////////////////////////////////////////////////////////////
-SDL_Texture* MCRenderer::loadJpegTexture( const std::string imageFilename )
+void MCRenderer::loadJpegTexture( const std::string imageFilename, int textureNumber )
 {
     // LOAD JPEG
     uJPEG jpeg;
@@ -216,7 +216,8 @@ SDL_Texture* MCRenderer::loadJpegTexture( const std::string imageFilename )
     // FREE SURFACE MEMORY
     SDL_FreeSurface(bmp_surface); //*/
     
-    return( texture );
+    // STORE NEW TEXTURE IN TEXTURE ARRAY
+    spinnerTextureArray[ textureNumber ] = texture;
 }
 
 

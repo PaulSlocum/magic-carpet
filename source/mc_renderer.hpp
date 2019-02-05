@@ -21,6 +21,7 @@ public:
     void render();
     void presentBuffer();
     void loadTextures();
+    void loadJpegTexture( const std::string imageFilename, int textureNumber );
     
 private:
     MCApplication* app;
@@ -34,7 +35,6 @@ private:
     // ~  ~  ~  ~  ~  ~  ~  ~  
     std::map<int, SDL_Texture*> spinnerTextureArray;
     // ~  ~  ~  ~  ~  ~  ~  ~  
-    SDL_Texture* loadJpegTexture( const std::string imageFilename );
     void drawSprite( const MCSprite spinner );
     // ~  ~  ~  ~  ~  ~  ~  ~  
 };

@@ -12,6 +12,8 @@ x look into SDL_BLENDMODE_BLEND
 ~- ~- ~- ~- ~- ~- ~- ~- ~-
 -  ~  -  ~  -  ~  -  ~
 - move texture loading sequence into game class to make renderer more generic
+- add a way to remove textures from texture array
+- free all the textures that were loaded
 -  ~  -  ~  -  ~  -  ~
 - remove pitch bend offset and implement it elsewhere 
   (figure out what pitchbend default value should really be, and if we not doing midi, do we need it at all?)
