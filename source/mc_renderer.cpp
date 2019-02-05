@@ -56,7 +56,7 @@ void MCRenderer::start()
                 rendererStarted = true;
                 
                 SDL_GetWindowSize( window, &screenWidth, &screenHeight );
-                printf( "WINDOW SIZE: %d x %d \n", screenWidth, screenHeight );
+                logmsg( "WINDOW SIZE: %d x %d \n", screenWidth, screenHeight );
                 
             }
         }
@@ -86,7 +86,7 @@ void MCRenderer::drawSprite( const MCSprite sprite )
     {
         SDL_Texture* spinnerTexture;
         spinnerTexture = spinnerTextureArray[ sprite.texture ]; 
-        
+
         // GET TEXTURE SIZE
         int textureHeight;
         int textureWidth;
@@ -209,8 +209,8 @@ SDL_Texture* MCRenderer::loadJpegTexture( const std::string imageFilename )
     }
     else
     {   
-        // NOT TOTALLY SURE WHAT THIS DOES (COPIED FROM ORIGINAL CODE)
-        SDL_SetTextureBlendMode( texture, SDL_BLENDMODE_BLEND );  
+        // NOTE: THE ORIGINAL VERSION LOOKED LIKE A CROSS BETWEEN SDL_BLENDMODE_ADD and SDL_BLENDMODE_BLEND
+        SDL_SetTextureBlendMode( texture, SDL_BLENDMODE_BLEND ); 
     }
     
     // FREE SURFACE MEMORY

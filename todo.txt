@@ -6,17 +6,15 @@ Magic Carpet 2 Notes
 
 TODO:
 ~- ~- ~- ~- ~- ~- ~- ~- ~-
+x implement "stop" function for each active class 
+x look into SDL_BLENDMODE_BLEND
+~- ~- ~- ~- ~- ~- ~- ~- ~-
 -  ~  -  ~  -  ~  -  ~
-- implement "stop" function for each active class 
 - verify that entire system can be "started" and "stopped"
 - move texture loading sequence into game class to make renderer more generic
 -  ~  -  ~  -  ~  -  ~
--  ~  -  ~  -  ~  -  ~
-- fix issue with coordinate system being off
-- make it possible to fit a sprite vertically to the screen (for the background)
-- implement both X and Y scaling of spinner textures from preset tables 
 - remove pitch bend offset and implement it elsewhere 
-        (figure out what pitchbend default value should really be, and if we not doing midi, do we need it at all?)
+  (figure out what pitchbend default value should really be, and if we not doing midi, do we need it at all?)
 -  ~  -  ~  -  ~  -  ~
 -  ~  -  ~  -  ~  -  ~
 - set up mixer callback structure without actually mixing yet
@@ -26,18 +24,21 @@ TODO:
 - implement actual mixing in mixer
 - implement reading levels from audio setting tables
 -  ~  -  ~  -  ~  -  ~
-- get FPS limit working on both iOS and RPi 
--  ~  -  ~  -  ~  -  ~
 - get Windows build working
+-  ~  -  ~  -  ~  -  ~
+- fix issue with coordinate system being off
+- make it possible to fit a sprite vertically to the screen (for the background)
+- implement both X and Y scaling of spinner textures from preset tables 
 -  ~  -  ~  -  ~  -  ~
 - add namespace
 - check for any memory problems
-- implement exceptions and error handling
-- clean up everything
-- test on raw RPi system
 - finish readme.md (include build instructions)
 -  ~  -  ~  -  ~  -  ~
 -  ~  -  ~  -  ~  -  ~
+. figure out why the blending is different from the original
+-  ~  -  ~  -  ~  -  ~
+. test on raw RPi system
+. get FPS limit working on both iOS and RPi 
 . eliminate warnings when building ujpeg and stb_vorbis
 . make dedicated GIF and/or video for readme.md
 . figure out why random isn't that random
