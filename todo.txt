@@ -7,7 +7,8 @@ Magic Carpet 2 Notes
 TODO:
 ~- ~- ~- ~- ~- ~- ~- ~- ~-
 -  ~  -  ~  -  ~  -  ~
-- implement "stop" function for each active class and verify that entire system can be "started" and "stopped"
+- implement "stop" function for each active class 
+- verify that entire system can be "started" and "stopped"
 - move texture loading sequence into game class to make renderer more generic
 -  ~  -  ~  -  ~  -  ~
 -  ~  -  ~  -  ~  -  ~

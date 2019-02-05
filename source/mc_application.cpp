@@ -65,8 +65,9 @@ void MCApplication::start()
             runLoop();
             
             // QUIT SDL
-            SDL_Quit();
             gameController->stop();
+            renderer->stop();
+            SDL_Quit();
             appStarted = false;
         }
     }

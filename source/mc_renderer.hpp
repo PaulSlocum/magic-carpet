@@ -25,10 +25,12 @@ public:
 private:
     MCApplication* app;
     // ~  ~  ~  ~  ~  ~  ~  ~  
-    SDL_Renderer *SDLRenderer = NULL;
+    SDL_Renderer *sdlRenderer = NULL;
     SDL_Window *window = NULL;
     int screenWidth = 0;
     int screenHeight = 0;
+    // ~  ~  ~  ~  ~  ~  ~  ~
+    bool rendererStarted = false;
     // ~  ~  ~  ~  ~  ~  ~  ~  
     std::map<int, SDL_Texture*> spinnerTextureArray;
     // ~  ~  ~  ~  ~  ~  ~  ~  

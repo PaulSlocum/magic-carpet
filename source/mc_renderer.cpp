@@ -29,31 +29,38 @@ MCRenderer::~MCRenderer()
 /////////////////////////////////////////////////////////////////////////////////////
 void MCRenderer::start()
 {
-    SDL_Rect screenSize;
-    screenWidth = 0;
-    screenHeight = 0;
-    SDL_GetDisplayBounds( 0, &screenSize );
-    logmsg( "DISPLAY BOUNDS: %d x %d \n", screenSize.w, screenSize.h );
-    
-    // CREATE SDL WINDOW
-    window = SDL_CreateWindow( NULL, 0, 0, screenSize.w, screenSize.h, SDL_WINDOW_FULLSCREEN );
-    
-    if( window == NULL ) 
+    if( rendererStarted == false )
     {
-        logerr( "Could not initialize SDL Window\n" );
-        return;
+        SDL_Rect screenSize;
+        screenWidth = 0;
+        screenHeight = 0;
+        SDL_GetDisplayBounds( 0, &screenSize );
+        logmsg( "DISPLAY BOUNDS: %d x %d \n", screenSize.w, screenSize.h );
+        
+        // CREATE SDL WINDOW
+        window = SDL_CreateWindow( NULL, 0, 0, screenSize.w, screenSize.h, SDL_WINDOW_FULLSCREEN );
+        if( window == NULL ) 
+        {
+            logerr( "Could not initialize SDL Window\n" );
+        }
+        else
+        {
+            // CREATE SDL RENDERED IN WINDOW
+            sdlRenderer = SDL_CreateRenderer( window, -1, 0 );
+            if( sdlRenderer == NULL ) 
+            {
+                logerr( "Could not create SDL renderer\n" );
+            }
+            else
+            {
+                rendererStarted = true;
+                
+                SDL_GetWindowSize( window, &screenWidth, &screenHeight );
+                printf( "WINDOW SIZE: %d x %d \n", screenWidth, screenHeight );
+                
+            }
+        }
     }
-    
-    // CREATE SDL RENDERED IN WINDOW
-    SDLRenderer = SDL_CreateRenderer( window, -1, 0 );
-    if( SDLRenderer == NULL ) 
-    {
-        logerr( "Could not create SDL renderer\n" );
-        return;
-    }
-    
-    SDL_GetWindowSize( window, &screenWidth, &screenHeight );
-    printf( "WINDOW SIZE: %d x %d \n", screenWidth, screenHeight );
 }
 
 
@@ -61,6 +68,12 @@ void MCRenderer::start()
 /////////////////////////////////////////////////////////////////////////////////////
 void MCRenderer::stop()
 {
+    if( rendererStarted == true )
+    {
+        SDL_DestroyRenderer( sdlRenderer );
+        SDL_DestroyWindow( window );
+        rendererStarted = false;
+    }
 }
 
 
@@ -90,7 +103,7 @@ void MCRenderer::drawSprite( const MCSprite sprite )
         dstRect.x = (screenWidth - dstRect.w) / 2 + ( (sprite.xPosition-0.5) * 2 * screenWidth);
         dstRect.y = (screenHeight - dstRect.h) / 2 + ( (sprite.yPosition-0.5) * 2 * screenHeight);
 
-        SDL_RenderCopyEx( SDLRenderer, spinnerTexture, &srcRect, &dstRect, sprite.rotationPosition, NULL, SDL_FLIP_NONE );
+        SDL_RenderCopyEx( sdlRenderer, spinnerTexture, &srcRect, &dstRect, sprite.rotationPosition, NULL, SDL_FLIP_NONE );
 
         // DEBUG - EVENTUALLY PROBABLY WANT TO CONVERT THIS RENDERER TO A RENGER TARGET
         //SDL_RenderCopyEx( softRenderer, spinnerTextureArray[0], &srcRect, &dstRect, angle, NULL, SDL_FLIP_NONE );
@@ -103,13 +116,13 @@ void MCRenderer::drawSprite( const MCSprite sprite )
 void MCRenderer::render()
 {
     // THE DRAW COLOR IS USED AS THE BACKGROUND COLOR WHEN CLEARNING THE SCREEN
-    SDL_SetRenderDrawColor( SDLRenderer, app->backgroundColor.red * 255.0, 
+    SDL_SetRenderDrawColor( sdlRenderer, app->backgroundColor.red * 255.0, 
                            app->backgroundColor.green * 255.0, 
                            app->backgroundColor.blue * 255.0, 
                            255 );
     
     // CLEAR THE SCREEN
-    SDL_RenderClear( SDLRenderer );
+    SDL_RenderClear( sdlRenderer );
     
     // DRAW EVERYTHING FROM THE SPRITE RENDER LIST
     for( unsigned i=0; i < app->spriteRenderList.size(); i++ )
@@ -121,7 +134,7 @@ void MCRenderer::render()
 void MCRenderer::presentBuffer()
 {
     // !!! THIS FUNCTION BLOCKS UNTIL VSYNC IF VSYNC IS ENABLED/SUPPORTED ON THE PLATFORM (CURRENTLY DOES NOT WORK ON RPI)
-    SDL_RenderPresent( SDLRenderer );
+    SDL_RenderPresent( sdlRenderer );
 }
 
 
@@ -189,7 +202,7 @@ SDL_Texture* MCRenderer::loadJpegTexture( const std::string imageFilename )
     }
     
     // CREATE TEXTURE FROM JPEG SURFACE
-    SDL_Texture* texture = SDL_CreateTextureFromSurface( SDLRenderer, bmp_surface );
+    SDL_Texture* texture = SDL_CreateTextureFromSurface( sdlRenderer, bmp_surface );
     if( texture == 0 ) 
     {
         printf( "TEXTURE CREATION FAILED\n" );
