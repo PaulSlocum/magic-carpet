@@ -40,23 +40,26 @@ MCGame::~MCGame()
 //////////////////////////////////////////////////////////////////////////////////////
 void MCGame::start()
 {
-    mode = AppMode::MENU;
-    menuFadeIn = 0.0;
-    
-    menuWheelPosition = rand() % NUMBER_OF_PRESETS + 0.5;
-    
-    timeOfLastInputMSec = getCurrentTimeMSec();
+    if( mode == AppMode::STOPPED )
+    {
+        mode = AppMode::MENU;
+        menuFadeIn = 0.0;
+        
+        menuWheelPosition = rand() % NUMBER_OF_PRESETS + 0.5;
+        
+        timeOfLastInputMSec = getCurrentTimeMSec();
 
-    background.active = true;
-    background.type = SpriteType::BACKGROUND;
-    
-    // RANDOMLY CHOOSE BETWEEN THE TWO BACKGROUND TEXTURES...
-    if( rand()%2 == 0 )
-        background.texture = 200;
-    else
-        background.texture = 201;
+        background.active = true;
+        background.type = SpriteType::BACKGROUND;
+        
+        // RANDOMLY CHOOSE BETWEEN THE TWO BACKGROUND TEXTURES...
+        if( rand()%2 == 0 )
+            background.texture = 200;
+        else
+            background.texture = 201;
 
-    audioController->start();
+        audioController->start();
+    }
 }
 
 
@@ -64,8 +67,11 @@ void MCGame::start()
 //////////////////////////////////////////////////////////////////////////////////////
 void MCGame::stop()
 {
-    //audioController->stop(); // TBI?
-    mode = AppMode::STOPPED;
+    if( mode != AppMode::STOPPED )
+    {
+        audioController->stop();
+        mode = AppMode::STOPPED;
+    }
 }
 
 

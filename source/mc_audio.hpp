@@ -15,15 +15,17 @@ public:
     MCAudio( MCGame* newGame );
     ~MCAudio();
     void start();
-    void audioCallback( Uint8* stream, const int len );
+    void stop();
     void updateFrame();
     // ~  ~  ~  ~  ~  ~  
+    void audioCallback( Uint8* stream, const int len );
     void fileLoaderThread();
+    // ~  ~  ~  ~  ~  ~  
     
 private:
     MCGame* game;
     // ~  ~  ~  ~  ~  ~  
-    bool started = false;
+    bool audioStarted = false;
     short* binauralAudioBuffer = NULL;
     int binauralAudioBufferLength = 0;
     short* musicAudioBuffer = NULL;

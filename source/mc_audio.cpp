@@ -48,34 +48,48 @@ MCAudio::~MCAudio()
 //////////////////////////////////////////////////////////////////////////////////////////
 void MCAudio::start()
 {
-    SDL_AudioSpec desired;
-    SDL_AudioSpec obtained;
-    
-    // SET UP PARAMETERS FOR AUDIO DEVICE AND CALLBACK 
-    desired.freq = 22050;
-    desired.format = AUDIO_S16SYS;
-    desired.samples = 4096/2;
-    desired.callback = audioCallback_c;
-    desired.userdata = this;
-    desired.channels = 2;
-    
-    // OPEN THE AUDIO DEVICE...
-    if ( SDL_OpenAudio( &desired, &obtained ) < 0 ) {
-        fprintf(stderr, "AudioMixer, Unable to open audio: %s\n", SDL_GetError());
-        exit(1);
-    }
-    
-    // MAKE SURE WE GOT THE 22K SAMPLE FREQUENCY...
-    if( obtained.freq != desired.freq )
+    if( audioStarted == false )
     {
-        printf( "ERROR: COULD NOT OBTAIN SAMPLE FREQ OF %d \n", desired.freq );
-        exit( 1 );
+        SDL_AudioSpec desired;
+        SDL_AudioSpec obtained;
+        
+        // SET UP PARAMETERS FOR AUDIO DEVICE AND CALLBACK 
+        desired.freq = 22050;
+        desired.format = AUDIO_S16SYS;
+        desired.samples = 4096/2;
+        desired.callback = audioCallback_c;
+        desired.userdata = this;
+        desired.channels = 2;
+        
+        // OPEN THE AUDIO DEVICE...
+        if( SDL_OpenAudio(&desired, &obtained) < 0 ) 
+        {
+            logerr( "Unable to open SDL audio: %s\n", SDL_GetError() );
+        }
+        else
+        {
+            audioStarted = true;
+
+            // MAKE SURE WE GOT THE 22K SAMPLE FREQUENCY...
+            if( obtained.freq != desired.freq )
+                logerr( "Audio: Could not obtain sample frequency of %d \n", desired.freq );
+            
+            // UNPAUSE AUDIO
+            SDL_PauseAudio(0);
+        }
     }
-    
-    // UNPAUSE AUDIO
-    SDL_PauseAudio(0);
 }
 
+
+/////////////////////////////////////////////////////////////////////////////////////
+void MCAudio::stop()
+{
+    if( audioStarted == true )
+    {
+        SDL_CloseAudio();
+        audioStarted = false;
+    }
+}
 
 
 
