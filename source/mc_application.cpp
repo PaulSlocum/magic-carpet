@@ -8,7 +8,6 @@
 
 
 //////////////////////////////////////////////////////////////////////////////////////
-// CONSTRUCTOR
 MCApplication::MCApplication()
 {
     unsigned int randomSeed = (unsigned int) getCurrentTimeMSec(); 
@@ -22,7 +21,6 @@ MCApplication::MCApplication()
 
 
 //////////////////////////////////////////////////////////////////////////////////////
-// DESTRUCTOR
 MCApplication::~MCApplication()
 {
     delete gameController;
@@ -38,37 +36,39 @@ void MCApplication::start()
 {
     if( appStarted == false )
     {
-        appStarted = true;
-     
         // INITIALIZE SDL
         if( SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) != 0 ) 
         {
-            SDL_Log( "Unable to initialize SDL: %s", SDL_GetError() );
+            logerr( "Unable to initialize SDL: %s", SDL_GetError() );
         }
+        else
+        {
+            appStarted = true;
+            
+            // HIDE MOUSE CURSOR
+            SDL_ShowCursor( false );
 
-        // HIDE MOUSE CURSOR
-        SDL_ShowCursor( false );
+            // SET IOS ALLOWED ORIENTATIONS
+            SDL_SetHint( SDL_HINT_ORIENTATIONS, "LandscapeLeft LandscapeRight" );
 
-        // SET IOS ALLOWED ORIENTATIONS
-        SDL_SetHint( SDL_HINT_ORIENTATIONS, "LandscapeLeft LandscapeRight" );
-
-        // START RENDERER AND GAME CONTROLLER
-        renderer->start();
-        gameController->start();
-        
+            // START RENDERER AND GAME CONTROLLER
+            renderer->start();
+            gameController->start();
+            
 #ifdef PLATFORM_RPI
-        vsyncEnabled = false;
+            vsyncEnabled = false;
 #else
-        vsyncEnabled = true;
+            vsyncEnabled = true;
 #endif    
-        
-        // THIS BLOCKS UNTIL PROGRAM IS FINISHED...
-        runLoop();
-        
-        // QUIT SDL
-        SDL_Quit();
-        gameController->stop();
-        appStarted = false;
+            
+            // THIS BLOCKS UNTIL PROGRAM IS FINISHED...
+            runLoop();
+            
+            // QUIT SDL
+            SDL_Quit();
+            gameController->stop();
+            appStarted = false;
+        }
     }
 }
 

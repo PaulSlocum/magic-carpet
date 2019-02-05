@@ -16,7 +16,6 @@ static int fileLoaderThread_c( void* audioObject );
 
 
 ///////////////////////////////////////////////////////////////
-// CONSTRUCTOR
 MCAudio::MCAudio( MCGame* newGame )
 {
     game = newGame;
@@ -27,7 +26,6 @@ MCAudio::MCAudio( MCGame* newGame )
 
 
 ///////////////////////////////////////////////////////////////
-// DESTRUCTOR
 MCAudio::~MCAudio()
 {
     keepFileThreadRunning = false;
@@ -50,7 +48,6 @@ MCAudio::~MCAudio()
 //////////////////////////////////////////////////////////////////////////////////////////
 void MCAudio::start()
 {
-    // ALLOCATE SPACE FOR DESIRED AND OBTAINED AUDIO SPECS
     SDL_AudioSpec desired;
     SDL_AudioSpec obtained;
     

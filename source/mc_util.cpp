@@ -56,6 +56,31 @@ std::string stdprintf( const std::string fmt_str, ... )
 
 
 //==========================================================================
+void logerr( const char *format, ... )
+{
+    printf( ">>ERROR: " );
+    va_list ptr;
+    va_start(ptr, format);
+    vprintf(format, ptr);
+    va_end(ptr);
+    printf( "\n" );
+}
+
+
+//==========================================================================
+void logmsg( const char *format, ... )
+{
+    printf( ">>" );
+    va_list ptr;
+    va_start(ptr, format);
+    vprintf(format, ptr);
+    va_end(ptr);
+    printf( "\n" );
+}
+
+
+
+//==========================================================================
 long long getCurrentTimeMSec()
 {
 	// GOOD VERSION...

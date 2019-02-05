@@ -17,6 +17,7 @@ public:
     MCRenderer( MCApplication* newApp );
     ~MCRenderer();
     void start();
+    void stop();
     void render();
     void presentBuffer();
     void loadTextures();

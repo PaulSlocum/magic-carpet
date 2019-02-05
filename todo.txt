@@ -7,7 +7,9 @@ Magic Carpet 2 Notes
 TODO:
 ~- ~- ~- ~- ~- ~- ~- ~- ~-
 -  ~  -  ~  -  ~  -  ~
-- evaluate whether isQuitting should be volatile
+- implement "stop" function for each active class and verify that entire system can be "started" and "stopped"
+- move texture loading sequence into game class to make renderer more generic
+-  ~  -  ~  -  ~  -  ~
 -  ~  -  ~  -  ~  -  ~
 - fix issue with coordinate system being off
 - make it possible to fit a sprite vertically to the screen (for the background)
@@ -15,8 +17,6 @@ TODO:
 - remove pitch bend offset and implement it elsewhere 
         (figure out what pitchbend default value should really be, and if we not doing midi, do we need it at all?)
 -  ~  -  ~  -  ~  -  ~
--  ~  -  ~  -  ~  -  ~
-- move texture loading sequence into game class to make rendere more generic
 -  ~  -  ~  -  ~  -  ~
 - set up mixer callback structure without actually mixing yet
 -  ~  -  ~  -  ~  -  ~
@@ -29,7 +29,6 @@ TODO:
 -  ~  -  ~  -  ~  -  ~
 - get Windows build working
 -  ~  -  ~  -  ~  -  ~
-- implement "stop" function for each active class and verify that entire system can be "started" and "stopped"
 - add namespace
 - check for any memory problems
 - implement exceptions and error handling

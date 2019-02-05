@@ -12,7 +12,6 @@
 
 
 //////////////////////////////////////////////////////////////////////////////////////
-// CONSTRUCTOR
 MCRenderer::MCRenderer( MCApplication* newApp )
 {
     app = newApp;
@@ -21,7 +20,6 @@ MCRenderer::MCRenderer( MCApplication* newApp )
 
 
 //////////////////////////////////////////////////////////////////////////////////////
-// DESTRUCTOR
 MCRenderer::~MCRenderer()
 {
 }
@@ -32,28 +30,37 @@ MCRenderer::~MCRenderer()
 void MCRenderer::start()
 {
     SDL_Rect screenSize;
+    screenWidth = 0;
+    screenHeight = 0;
     SDL_GetDisplayBounds( 0, &screenSize );
-    printf( "DISPLAY BOUNDS: %d x %d \n", screenSize.w, screenSize.h );
+    logmsg( "DISPLAY BOUNDS: %d x %d \n", screenSize.w, screenSize.h );
     
     // CREATE SDL WINDOW
     window = SDL_CreateWindow( NULL, 0, 0, screenSize.w, screenSize.h, SDL_WINDOW_FULLSCREEN );
     
-    if( !window ) 
+    if( window == NULL ) 
     {
-        printf("Could not initialize Window\n");
+        logerr( "Could not initialize SDL Window\n" );
         return;
     }
     
     // CREATE SDL RENDERED IN WINDOW
     SDLRenderer = SDL_CreateRenderer( window, -1, 0 );
-    if( !SDLRenderer ) 
+    if( SDLRenderer == NULL ) 
     {
-        printf("Could not create renderer\n");
+        logerr( "Could not create SDL renderer\n" );
         return;
     }
     
     SDL_GetWindowSize( window, &screenWidth, &screenHeight );
     printf( "WINDOW SIZE: %d x %d \n", screenWidth, screenHeight );
+}
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////
+void MCRenderer::stop()
+{
 }
 
 
