@@ -101,14 +101,16 @@ void MCApplication::runLoop()
     long long timeOfNextFrameMSec = getCurrentTimeMSec() + 1000.0/FRAMES_PER_SECOND;
 
     // MAIN LOOP...
-    enum class LoopState {POLL, DRAW, PRESENT};
-    LoopState loopState = LoopState::POLL;
+    //enum class LoopState {POLL, DRAW, PRESENT};
+    bool readyToRender = false;
+    //LoopState loopState = LoopState::POLL;
     //renderer->loadTextures(); // <-- THIS CAN BE REMOVED
     while( isQuitting == false )
     {
-        switch( loopState )
+        //switch( loopState )
         {
-            case LoopState::POLL:
+            //case LoopState::UPDATE:
+            if( readyToRender == false )
             {
                 // PROCESS ALL EVENTS IN QUEUE...
                 while( SDL_PollEvent( &event ) ) 
@@ -128,28 +130,25 @@ void MCApplication::runLoop()
                             break;
                     }
                 }
-                loopState = LoopState::DRAW;
-                break;
-            }
 
-            case LoopState::DRAW:
-            {
                 gameController->updateFrame();
                 renderer->render();
-                loopState = LoopState::PRESENT;
-                break;
+
+                readyToRender = true;
             }
 
-            case LoopState::PRESENT:
+            //case LoopState::PRESENT:
+            if( readyToRender == true )
             {
                 const int EARLY_OFFSET_MSEC = 0;
                 if( (vsyncEnabled == true)  ||  (timeOfNextFrameMSec <= getCurrentTimeMSec() + EARLY_OFFSET_MSEC) )
                 {
                     renderer->presentBuffer();
-                    loopState = LoopState::POLL;
+                    //loopState = LoopState::POLL;
                     timeOfNextFrameMSec = getCurrentTimeMSec() + 1000.0/FRAMES_PER_SECOND;
+                    readyToRender = false;
                 }
-                break;
+                //break;
             }
                 
         } // SWITCH
