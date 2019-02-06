@@ -11,6 +11,9 @@ x verify that entire system can be "started" and "stopped"
 x look into SDL_BLENDMODE_BLEND
 ~- ~- ~- ~- ~- ~- ~- ~- ~-
 -  ~  -  ~  -  ~  -  ~
+- fix spaces/tabs in source
+- remove \n's from log calls
+-  ~  -  ~  -  ~  -  ~
 - move texture loading sequence into game class to make renderer more generic
 - add a way to remove textures from texture array
 - free all the textures that were loaded

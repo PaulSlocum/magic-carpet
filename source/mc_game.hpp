@@ -91,7 +91,7 @@ public:
     float pitchBend = 0.7;
     // ~  ~  ~  ~  ~  ~  ~  ~
     long long timeOfLastInputMSec = 0;
-    
+    // ~  ~  ~  ~  ~  ~  ~  ~
     
 private:
     MCApplication* app;
@@ -103,6 +103,9 @@ private:
     MCMenuScreen* menuScreen;
     MCGameScreen* gameScreen;
     // ~  ~  ~  ~  ~  ~  ~
+    void loadTextures();
+    bool texturesLoaded = false;
+    // ~  ~  ~  ~  ~  ~  ~  ~
 };
 
 

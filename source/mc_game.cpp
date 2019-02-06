@@ -12,6 +12,7 @@
 #include "mc_menu_screen.hpp"
 #include "mc_game_screen.hpp"
 
+#include "mc_texture_list.hpp"
 
 
 
@@ -99,65 +100,74 @@ void MCGame::processEvent( const SDL_Event event )
 //////////////////////////////////////////////////////////////////////////////////////
 void MCGame::updateFrame()
 {
-    frameCount++;
-    totalFrameCount++;
-    
-    // DEBUG -- KEEP UNTIL AUDIO SYSTEM IS IMPLEMENTED 
-    audioLoopPosition += 22000;
-    
-    // HANDLE FADE INS
-    menuFadeIn = convergeValue( menuFadeIn, 1.0, 0.012 );
-    runningFadeIn = convergeValue( runningFadeIn, 1.5, 0.006 );
-    
-    audioController->updateFrame();
-    
-    // IF STARTING MENU MODE...
-    if( mode == AppMode::MENU  &&  previousMode != AppMode::MENU )
+    if( texturesLoaded == false )
     {
-        menuScreen->init();
+        loadTextures();
+        texturesLoaded = true;
     }
-    
-    // MENU MODE FRAME UPDATE...
-    if( mode == AppMode::MENU )
+    else
     {
-        menuScreen->updateFrame();
-    }
-    
-    // IF STARTING RUNNING MODE...
-    if( mode == AppMode::RUNNING  &&  previousMode != AppMode::RUNNING )
-    {
-        gameScreen->init();
-    }
-    
-    // RUNNING MODE FRAME UPDATE...
-    if( mode == AppMode::RUNNING )
-    {
-        gameScreen->updateFrame();
-    }
-    
-    previousMode = mode;
-
-    // SET APPLICATION BACKGROUND COLOR AND ADD ALL SPRITES TO SPRITE RENDER LIST
-    app->backgroundColor = backgroundColor;
-    app->spriteRenderList.clear();
-    app->spriteRenderList[0] = background;
-    app->spriteRenderList[1] = normalButton;
-    app->spriteRenderList[2] = muteButton;
-    app->spriteRenderList[3] = instrumentButton;
-    for( int spinnerNumber=0; spinnerNumber<MAX_ACTIVE_SPINNERS; spinnerNumber++ )
-        app->spriteRenderList[ spinnerNumber+4 ] = spinnerArray[ spinnerNumber ];
-
-    
-    // DEBUG!!!  SHOW FPS AND OTHER DEBUG INFO...
-    if( DEBUG_SHOW_FPS == true )
-    {
-        if( startTimeMSec == 0 )
-            startTimeMSec = getCurrentTimeMSec();
-        else
+        frameCount++;
+        totalFrameCount++;
+        
+        // DEBUG -- KEEP UNTIL AUDIO SYSTEM IS IMPLEMENTED 
+        audioLoopPosition += 22000;
+        
+        // HANDLE FADE INS
+        menuFadeIn = convergeValue( menuFadeIn, 1.0, 0.012 );
+        runningFadeIn = convergeValue( runningFadeIn, 1.5, 0.006 );
+        
+        audioController->updateFrame();
+        
+        // IF STARTING MENU MODE...
+        if( mode == AppMode::MENU  &&  previousMode != AppMode::MENU )
         {
-            if( totalFrameCount % 60 == 0 )
-                logmsg( "FPS: %f\n\n",  totalFrameCount * 1000.0 / ( getCurrentTimeMSec() - startTimeMSec )  );
+            menuScreen->init();
         }
+        
+        // MENU MODE FRAME UPDATE...
+        if( mode == AppMode::MENU )
+        {
+            menuScreen->updateFrame();
+        }
+        
+        // IF STARTING RUNNING MODE...
+        if( mode == AppMode::RUNNING  &&  previousMode != AppMode::RUNNING )
+        {
+            gameScreen->init();
+        }
+        
+        // RUNNING MODE FRAME UPDATE...
+        if( mode == AppMode::RUNNING )
+        {
+            gameScreen->updateFrame();
+        }
+        
+        previousMode = mode;
+
+        // SET APPLICATION BACKGROUND COLOR AND ADD ALL SPRITES TO SPRITE RENDER LIST
+        app->backgroundColor = backgroundColor;
+        app->spriteRenderList.clear();
+        app->spriteRenderList[0] = background;
+        app->spriteRenderList[1] = normalButton;
+        app->spriteRenderList[2] = muteButton;
+        app->spriteRenderList[3] = instrumentButton;
+        for( int spinnerNumber=0; spinnerNumber<MAX_ACTIVE_SPINNERS; spinnerNumber++ )
+            app->spriteRenderList[ spinnerNumber+4 ] = spinnerArray[ spinnerNumber ];
+
+        
+        // DEBUG!!!  SHOW FPS AND OTHER DEBUG INFO...
+        if( DEBUG_SHOW_FPS == true )
+        {
+            if( startTimeMSec == 0 )
+                startTimeMSec = getCurrentTimeMSec();
+            else
+            {
+                if( totalFrameCount % 60 == 0 )
+                    logmsg( "FPS: %f\n\n",  totalFrameCount * 1000.0 / ( getCurrentTimeMSec() - startTimeMSec )  );
+            }
+        }
+        
     }
 
 }
@@ -208,6 +218,51 @@ void MCGame::loadPreset( const int presetNumber )
     frameCount = 0;
 }
 
+
+
+
+
+
+
+///////////////////////////////////////////////////////////////////
+void MCGame::loadTextures()
+{
+    // LOAD ALL TEXTURES FROM TEXTURE LIST ARRAY IN HEADER...
+    bool loadingTextures = true;
+    int spriteListIndex = 0;
+    for( int i=0; loadingTextures == true; i++ )
+    {
+        // QUIT WHEN A BLANK FILENAME IS ENCOUNTERED
+        if( TEXTURE_LOAD_LIST[i].filename[0] == 0 )
+            loadingTextures = false;
+        else
+        {
+            if( TEXTURE_LOAD_LIST[i].type != TextureType::UNUSED )
+            {
+                // LOAD TEXTURE FROM JPEG FILE
+                app->loadJpegTexture( TEXTURE_LOAD_LIST[i].filename, TEXTURE_LOAD_LIST[i].textureSlot );
+                
+                // SHOW TEXTURES AS THEY'RE LOADING..
+                MCSprite tempSpinner;
+                tempSpinner.size = i/150.0;
+                tempSpinner.yPosition = 0.40;
+                tempSpinner.active = true;
+                tempSpinner.texture = TEXTURE_LOAD_LIST[i].textureSlot;
+                tempSpinner.rotationPosition = i*15.0;
+                if( TEXTURE_LOAD_LIST[i].type == TextureType::BACKGROUND )
+                {
+                    tempSpinner.size = 1.0;
+                    tempSpinner.rotationPosition = 0;
+                    tempSpinner.yPosition = 0.50;
+                }
+                app->spriteRenderList[ spriteListIndex ] = tempSpinner;
+                spriteListIndex++;
+                //render();
+                //presentBuffer();
+            }
+        }
+    }
+}
 
 
 

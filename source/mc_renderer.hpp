@@ -16,11 +16,12 @@ class MCRenderer
 public:
     MCRenderer( MCApplication* newApp );
     ~MCRenderer();
+    // ~  ~  ~  ~  ~  ~  ~  ~  
     void start();
     void stop();
+    // ~  ~  ~  ~  ~  ~  ~  ~  
     void render();
     void presentBuffer();
-    void loadTextures();
     void loadJpegTexture( const std::string imageFilename, int textureNumber );
     
 private:

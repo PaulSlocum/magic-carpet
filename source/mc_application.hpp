@@ -27,6 +27,7 @@ public:
     // ~  ~  ~  ~  ~  ~  ~  ~
     RGBColor backgroundColor;
     std::map<int,MCSprite> spriteRenderList;
+    void loadJpegTexture( const std::string filename, const int textureNumber );
     
 private:
     void runLoop();

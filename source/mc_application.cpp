@@ -13,6 +13,12 @@ MCApplication::MCApplication()
     unsigned int randomSeed = (unsigned int) getCurrentTimeMSec(); 
     srand( randomSeed  );
     
+#ifdef PLATFORM_RPI
+    vsyncEnabled = false;
+#else
+    vsyncEnabled = true;
+#endif    
+
     renderer = new MCRenderer( this );
     gameController = new MCGame( this );
 }
@@ -55,13 +61,7 @@ void MCApplication::start()
             renderer->start();
             gameController->start();
             
-#ifdef PLATFORM_RPI
-            vsyncEnabled = false;
-#else
-            vsyncEnabled = true;
-#endif    
-            
-            // THIS BLOCKS UNTIL PROGRAM IS FINISHED...
+            // THE RUNLOOP BLOCKS UNTIL PROGRAM IS FINISHED...
             runLoop();
             
             // QUIT SDL
@@ -84,6 +84,13 @@ void MCApplication::stop()
 
 
 
+////////////////////////////////////////////////////////////////////////////////////
+void MCApplication::loadJpegTexture( const std::string filename, const int textureNumber )
+{
+    renderer->loadJpegTexture( filename, textureNumber );
+}
+
+
 
 
 /////////////////////////////////////////////////////////////////////////////////////
@@ -96,7 +103,7 @@ void MCApplication::runLoop()
     // MAIN LOOP...
     enum class LoopState {POLL, DRAW, PRESENT};
     LoopState loopState = LoopState::POLL;
-    renderer->loadTextures();
+    //renderer->loadTextures(); // <-- THIS CAN BE REMOVED
     while( isQuitting == false )
     {
         switch( loopState )

@@ -8,7 +8,6 @@
 #include "mc_renderer.hpp"
 #include "mc_application.hpp"
 #include "mc_util.hpp"
-#include "mc_texture_list.hpp"
 
 
 //////////////////////////////////////////////////////////////////////////////////////
@@ -138,46 +137,6 @@ void MCRenderer::presentBuffer()
 }
 
 
-
-///////////////////////////////////////////////////////////////////
-void MCRenderer::loadTextures()
-{
-    // LOAD ALL TEXTURES FROM TEXTURE LIST ARRAY IN HEADER...
-    bool loadingTextures = true;
-    int spriteListIndex = 0;
-    for( int i=0; loadingTextures == true; i++ )
-    {
-        // QUIT WHEN A BLANK FILENAME IS ENCOUNTERED
-        if( TEXTURE_LOAD_LIST[i].filename[0] == 0 )
-            loadingTextures = false;
-        else
-        {
-            if( TEXTURE_LOAD_LIST[i].type != TextureType::UNUSED )
-            {
-                // LOAD TEXTURE FROM JPEG FILE
-                loadJpegTexture( TEXTURE_LOAD_LIST[i].filename, TEXTURE_LOAD_LIST[i].textureSlot );
-                
-                // SHOW TEXTURES AS THEY'RE LOADING..
-                MCSprite tempSpinner;
-                tempSpinner.size = i/150.0;
-                tempSpinner.yPosition = 0.40;
-                tempSpinner.active = true;
-                tempSpinner.texture = TEXTURE_LOAD_LIST[i].textureSlot;
-                tempSpinner.rotationPosition = i*15.0;
-                if( TEXTURE_LOAD_LIST[i].type == TextureType::BACKGROUND )
-                {
-                    tempSpinner.size = 1.0;
-                    tempSpinner.rotationPosition = 0;
-                    tempSpinner.yPosition = 0.50;
-                }
-                app->spriteRenderList[ spriteListIndex ] = tempSpinner;
-                spriteListIndex++;
-                render();
-                presentBuffer();
-            }
-        }
-    }
-}
 
 
 
