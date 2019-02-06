@@ -96,62 +96,52 @@ void MCApplication::loadJpegTexture( const std::string filename, const int textu
 /////////////////////////////////////////////////////////////////////////////////////
 void MCApplication::runLoop()
 {
-    SDL_Event event;
     isQuitting = false;
+    bool readyToPresent = false;
     long long timeOfNextFrameMSec = getCurrentTimeMSec() + 1000.0/FRAMES_PER_SECOND;
+    SDL_Event incomingEvent;
 
     // MAIN LOOP...
-    //enum class LoopState {POLL, DRAW, PRESENT};
-    bool readyToRender = false;
-    //LoopState loopState = LoopState::POLL;
-    //renderer->loadTextures(); // <-- THIS CAN BE REMOVED
     while( isQuitting == false )
     {
-        //switch( loopState )
+        if( readyToPresent == false )
         {
-            //case LoopState::UPDATE:
-            if( readyToRender == false )
+            // PROCESS ALL EVENTS IN QUEUE...
+            while( SDL_PollEvent( &incomingEvent ) ) 
             {
-                // PROCESS ALL EVENTS IN QUEUE...
-                while( SDL_PollEvent( &event ) ) 
+                switch( incomingEvent.type )
                 {
-                    switch( event.type )
-                    {
-                        case SDL_QUIT: 
-                            stop(); 
-                            break;
-                            
-                        case SDL_FINGERDOWN: 
-                        case SDL_FINGERUP:
-                        case SDL_FINGERMOTION:
-                        case SDL_KEYDOWN:
-                        case SDL_KEYUP:
-                            gameController->processEvent( event );
-                            break;
-                    }
+                    case SDL_QUIT: 
+                        stop(); 
+                        break;
+                        
+                    case SDL_FINGERDOWN: 
+                    case SDL_FINGERUP:
+                    case SDL_FINGERMOTION:
+                    case SDL_KEYDOWN:
+                    case SDL_KEYUP:
+                        gameController->processEvent( incomingEvent );
+                        break;
                 }
-
-                gameController->updateFrame();
-                renderer->render();
-
-                readyToRender = true;
             }
 
-            //case LoopState::PRESENT:
-            if( readyToRender == true )
+            // UPDATE FRAME/RENDER
+            gameController->updateFrame();
+            renderer->render();
+
+            readyToPresent = true;
+        }
+
+        if( readyToPresent == true )
+        {
+            const int EARLY_OFFSET_MSEC = 0;
+            if( (vsyncEnabled == true)  ||  (timeOfNextFrameMSec <= getCurrentTimeMSec() + EARLY_OFFSET_MSEC) )
             {
-                const int EARLY_OFFSET_MSEC = 0;
-                if( (vsyncEnabled == true)  ||  (timeOfNextFrameMSec <= getCurrentTimeMSec() + EARLY_OFFSET_MSEC) )
-                {
-                    renderer->presentBuffer();
-                    //loopState = LoopState::POLL;
-                    timeOfNextFrameMSec = getCurrentTimeMSec() + 1000.0/FRAMES_PER_SECOND;
-                    readyToRender = false;
-                }
-                //break;
+                renderer->presentBuffer();
+                timeOfNextFrameMSec = getCurrentTimeMSec() + 1000.0/FRAMES_PER_SECOND;
+                readyToPresent = false;
             }
-                
-        } // SWITCH
+        }
         
         SDL_Delay(1);
     }
