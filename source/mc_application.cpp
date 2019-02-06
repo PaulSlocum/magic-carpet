@@ -64,7 +64,7 @@ void MCApplication::start()
             // THE RUNLOOP BLOCKS UNTIL PROGRAM IS FINISHED...
             runLoop();
             
-            // QUIT SDL
+            // STOP AND QUIT SDL
             gameController->stop();
             renderer->stop();
             SDL_Quit();

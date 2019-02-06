@@ -9,8 +9,6 @@
 #include "mc_game.hpp"
 
 
-const int FRAMES_PER_SECOND = 60.0;
-
 
 class MCRenderer;
 class MCGame;
@@ -39,6 +37,8 @@ private:
     // ~  ~  ~  ~  ~  ~  ~  ~  
     volatile bool isQuitting = false;
     bool appStarted = false;
+    // ~  ~  ~  ~  ~  ~  ~  ~  
+    const int FRAMES_PER_SECOND = 60.0; 
 };
 
 
