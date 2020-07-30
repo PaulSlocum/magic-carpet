@@ -1,6 +1,6 @@
 # Magic Carpet
 
-Magic Carpet is a generative audiovisual artwork that produces unique imagery using rapidly spinning photos of rugs and quilts which is accompanied by generative music.  It was originally released as an iOS app in 2010, but later when Apple's changes to iOS broke the app, I decided to port it to cross-platform C++ using SDL.  This new version is mostly complete except for some of the original generative audio effects that still need to be added.
+Magic Carpet is a generative audiovisual artwork that produces unique imagery using rapidly spinning photos of rugs and quilts that are accompanied by generative music.  It was originally released as an iOS app in 2010, but later when Apple's changes to iOS broke the app, I decided to port it to cross-platform C++ using SDL.  This new version is mostly complete except for some of the original generative audio effects that still need to be added.
 
 Video documentation is [here](http://qotile.net/files/MAGIC_CARPET_wsound.mp4).
 
