@@ -11,6 +11,7 @@ x verify that entire system can be "started" and "stopped"
 x look into SDL_BLENDMODE_BLEND
 ~- ~- ~- ~- ~- ~- ~- ~- ~-
 -  ~  -  ~  -  ~  -  ~
+- move init assignments to "init" functions in menu/game screens
 - fix spaces/tabs in source
 - remove \n's from log calls
 -  ~  -  ~  -  ~  -  ~
